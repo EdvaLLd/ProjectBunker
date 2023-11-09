@@ -15,4 +15,12 @@ public class Pathpoint : MonoBehaviour
     public float total = 0;
     [HideInInspector]
     public Pathpoint discoveryPoint = null;
+
+    public void ResetPoint()
+    {
+        distFromStart = Mathf.Infinity;
+        estDistToEnd = 0;
+        total = 0;
+        discoveryPoint = null;
+    }
 }
