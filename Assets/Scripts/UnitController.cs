@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class UnitController : MonoBehaviour
 {
-    private bool selectionAllowed = false;
-    private bool isSelected = false;
+    [HideInInspector]
+    public bool selectionAllowed = false;
+    [HideInInspector]
+    public bool isSelected = false;
 
     [SerializeField]
     private Material[] testMaterials = new Material[2];
@@ -62,7 +64,7 @@ public class UnitController : MonoBehaviour
         }
     }
 
-    private void SwapMaterial() 
+    private void SwapMaterial() //temporary UI substitute to signify selected. 
     {
         if (isSelected) 
         {
