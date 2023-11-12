@@ -39,6 +39,9 @@ public class Pathfinding : MonoBehaviour
                     currentPoint = currentPoint.discoveryPoint;
                 }
                 path.Add(startPoint);
+                if(Vector3.Distance(new Vector3(startPos.x,startPos.y, 0), new Vector3(path[path.Count-1].transform.position.x, path[path.Count - 1].transform.position.y,0)) > 
+                    Vector3.Distance(new Vector3(path[path.Count - 1].transform.position.x, path[path.Count - 1].transform.position.y,0), new Vector3(startPoint.transform.position.x, startPoint.transform.position.y,0))) path.Add(startPoint);
+                path.Reverse();
                 return path;
             }
             for (int i = 0; i < currentPoint.connections.Length; i++)
@@ -95,7 +98,7 @@ public class Pathfinding : MonoBehaviour
         {
             List<Pathpoint> path =  FindPath(sp.transform.position, ep.transform.position);
             print("PATH:");
-            for (int i = path.Count - 1; i >= 0; i--)
+            for (int i = 0; i < path.Count; i++)
             {
                 print(path[i]);
             }
@@ -132,10 +135,5 @@ public class Pathfinding : MonoBehaviour
         }
 
         return bestPoint;
-    }
-
-    void WalkPath(Pathpoint[] path)
-    {
-
     }
 }
