@@ -42,8 +42,8 @@ public class Pathfinding : MonoBehaviour
                     path.Add(currentPoint);
                     currentPoint = currentPoint.discoveryPoint;
                 }
-                print("1 "+startPos);
-                print("2 " + startPoint.transform.position);
+                //print("1 "+startPos);
+                //print("2 " + startPoint.transform.position);
                 if(Vector3.Distance(new Vector3(startPos.x,startPos.y, 0), new Vector3(path[path.Count-1].transform.position.x, path[path.Count - 1].transform.position.y,0)) > 
                     Vector3.Distance(new Vector3(path[path.Count - 1].transform.position.x, path[path.Count - 1].transform.position.y,0), new Vector3(startPoint.transform.position.x, startPoint.transform.position.y,0))) path.Add(startPoint);
                 path.Reverse();
@@ -94,7 +94,7 @@ public class Pathfinding : MonoBehaviour
     }
 
     Vector3 startPos = Vector3.zero;
-    Vector3 endPos = Vector3.zero;
+    public Vector3 endPos = Vector3.zero;
     private void Update()
     {
 ;
