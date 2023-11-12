@@ -13,13 +13,17 @@ public class Pathfinding : MonoBehaviour
         allPoints = FindObjectsOfType(typeof(Pathpoint)) as Pathpoint[];
     }
 
-    List<Pathpoint> FindPath(Vector2 startPos, Vector2 goalPos)
+    public List<Pathpoint> FindPath(Vector2 startPos, Vector2 goalPos)
     {
         //Setup
         openList.Clear();
         closedList.Clear();
         Pathpoint goalPoint = FindClosestPoint(goalPos);
         Pathpoint startPoint = FindClosestPoint(startPos);
+        for (int i = 0; i < allPoints.Length; i++)
+        {
+            allPoints[i].ResetPoint();
+        }
         Pathpoint currentPoint = startPoint;
         currentPoint.distFromStart = 0;
         currentPoint.estDistToEnd = Vector3.Distance(currentPoint.transform.position, goalPos);
@@ -38,7 +42,9 @@ public class Pathfinding : MonoBehaviour
                     path.Add(currentPoint);
                     currentPoint = currentPoint.discoveryPoint;
                 }
+                
                 path.Add(startPoint);
+
                 if(Vector3.Distance(new Vector3(startPos.x,startPos.y, 0), new Vector3(path[path.Count-1].transform.position.x, path[path.Count - 1].transform.position.y,0)) > 
                     Vector3.Distance(new Vector3(path[path.Count - 1].transform.position.x, path[path.Count - 1].transform.position.y,0), new Vector3(startPoint.transform.position.x, startPoint.transform.position.y,0))) path.Add(startPoint);
                 path.Reverse();
@@ -49,23 +55,9 @@ public class Pathfinding : MonoBehaviour
                 Pathpoint p = currentPoint.connections[i];
                 if (!p.isLocked)
                 {
-                    float distFromStart = currentPoint.distFromStart + Vector3.Distance(p.transform.position, currentPoint.transform.position);
-                    if (openList.Contains(p) || closedList.Contains(p))
-                    {
-                        if (distFromStart < p.distFromStart)
-                        {
-                            System.Console.WriteLine("SHOULD UPDATE NODE AND ALL CHILD NODES");
-                        }
-                    }
-                    else
-                    {
-                        p.distFromStart = distFromStart;
-                        p.estDistToEnd = Vector3.Distance(p.transform.position, goalPos);
-                        p.total = p.distFromStart + p.estDistToEnd;
-                        p.discoveryPoint = currentPoint;
-                        openList.Add(p);
-                    }
+                    UpdatePointValues(p, currentPoint, goalPos);
                 }
+                
             }
             closedList.Add(currentPoint);
             openList.Remove(currentPoint);
@@ -73,30 +65,57 @@ public class Pathfinding : MonoBehaviour
         return null;
     }
 
-    public Pathpoint sp = null;
-    public Pathpoint ep = null;
+    void UpdatePointValues(Pathpoint pointToUpdate, Pathpoint parentPoint, Vector3 endPos)
+    {
+        float distFromStart = parentPoint.distFromStart + Vector3.Distance(pointToUpdate.transform.position, parentPoint.transform.position);
+
+        if (distFromStart < pointToUpdate.distFromStart)
+        {
+            pointToUpdate.distFromStart = distFromStart;
+            pointToUpdate.estDistToEnd = Vector3.Distance(pointToUpdate.transform.position, endPos);
+            pointToUpdate.total = pointToUpdate.distFromStart + pointToUpdate.estDistToEnd;
+            pointToUpdate.discoveryPoint = parentPoint;
+            if (!openList.Contains(pointToUpdate) && !closedList.Contains(pointToUpdate))
+            {
+                openList.Add(pointToUpdate);
+            }
+            if(closedList.Contains(pointToUpdate))
+            {
+                UpdateAllChildPoints(pointToUpdate, endPos);
+            }
+        }
+    }
+
+    void UpdateAllChildPoints(Pathpoint point, Vector3 endPos)
+    {
+        for (int i = 0; i < point.connections.Length; i++)
+        {
+            UpdatePointValues(point.connections[i], point, endPos);
+        }
+    }
+
+    Vector3 startPos = Vector3.zero;
+    public Vector3 endPos = Vector3.zero;
     private void Update()
     {
-
+;
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
-
-            sp = FindClosestPoint(mousePos);
-            print($"startpos: {sp.transform.position}");
+            startPos = mousePos;
+            print($"startpos: {startPos}");
         }
         if (Input.GetMouseButtonDown(1))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
-
-            ep = FindClosestPoint(mousePos);
-            print($"endpos: {ep.transform.position}");
+            endPos = mousePos;
+            print($"endpos: {endPos}");
         }
-        if(Input.GetKeyDown(KeyCode.Space) && sp != null && ep != null)
+        if(Input.GetKeyDown(KeyCode.Space) && startPos != Vector3.zero && endPos != Vector3.zero)
         {
-            List<Pathpoint> path =  FindPath(sp.transform.position, ep.transform.position);
+            List<Pathpoint> path = FindPath(startPos, endPos);
             print("PATH:");
             for (int i = 0; i < path.Count; i++)
             {
@@ -118,7 +137,7 @@ public class Pathfinding : MonoBehaviour
                 }
             }
         }
-        return closestPoint; //Den här kommer antagligen behöva pillas med
+        return closestPoint; //Den hÃ¤r kommer antagligen behÃ¶va pillas med
     }
 
     Pathpoint PointWithBestEstimation()
@@ -128,7 +147,7 @@ public class Pathfinding : MonoBehaviour
         Pathpoint bestPoint = openList[0];
         for (int i = 1; i < openList.Count; i++)
         {
-            if (openList[i].estDistToEnd < bestPoint.estDistToEnd)
+            if (openList[i].total < bestPoint.total)
             {
                 bestPoint = openList[i];
             }
