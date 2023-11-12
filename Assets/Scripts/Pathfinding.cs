@@ -42,8 +42,9 @@ public class Pathfinding : MonoBehaviour
                     path.Add(currentPoint);
                     currentPoint = currentPoint.discoveryPoint;
                 }
-                //print("1 "+startPos);
-                //print("2 " + startPoint.transform.position);
+                
+                path.Add(startPoint);
+
                 if(Vector3.Distance(new Vector3(startPos.x,startPos.y, 0), new Vector3(path[path.Count-1].transform.position.x, path[path.Count - 1].transform.position.y,0)) > 
                     Vector3.Distance(new Vector3(path[path.Count - 1].transform.position.x, path[path.Count - 1].transform.position.y,0), new Vector3(startPoint.transform.position.x, startPoint.transform.position.y,0))) path.Add(startPoint);
                 path.Reverse();
@@ -136,7 +137,7 @@ public class Pathfinding : MonoBehaviour
                 }
             }
         }
-        return closestPoint; //Den här kommer antagligen behöva pillas med
+        return closestPoint; //Den hÃ¤r kommer antagligen behÃ¶va pillas med
     }
 
     Pathpoint PointWithBestEstimation()
