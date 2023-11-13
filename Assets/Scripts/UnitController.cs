@@ -23,8 +23,30 @@ public class UnitController : MonoBehaviour
 
     private int index = 0;
 
+    public static InteractableItem itemInteractedWith = null;
+
+    List<Vector2> path = new List<Vector2>();
+    Vector2 posMovingTo = Vector2.zero;
+    bool move = false;
+
     private void Update()
     {
+        if (isSelected && itemInteractedWith != null)
+        {
+
+            if (Vector2.Distance(transform.position, itemInteractedWith.transform.position) < 0.1f)
+            {
+                itemInteractedWith.InteractWith();
+            }
+            path = GetPath(transform.position, itemInteractedWith.transform.position);
+            if (!move && path.Count > 0)
+            {
+                posMovingTo = path[0];
+                path.RemoveAt(0);
+            }
+            itemInteractedWith = null;
+            move = true;
+        }
         Move();
     }
 
@@ -84,18 +106,19 @@ public class UnitController : MonoBehaviour
         }
     }
 
-    private List<Pathpoint> GetPath(Vector2 start, Vector2 destination) 
+    private List<Vector2> GetPath(Vector2 start, Vector2 destination) 
     {
         return gameObject.GetComponent<Pathfinding>().FindPath(start, destination);
     }
 
+
     private void Move() 
     {
-        Vector2 finalDestination = startPoint;
-        direction = (/*finalDestination*/immediateDestination - startPoint).normalized;
+        /*Vector2 finalDestination = startPoint;
+        direction = (immediateDestination - startPoint).normalized;
 
         Pathpoint[] pointArray = FindObjectsOfType(typeof(Pathpoint)) as Pathpoint[];
-        List<Pathpoint> path;//this is where it is ok, when you undo and this dissapears, you should not undo anymore.
+        List<Vector2> path;//this is where it is ok, when you undo and this dissapears, you should not undo anymore.
 
         foreach (Pathpoint point in pointArray) 
         {
@@ -103,7 +126,7 @@ public class UnitController : MonoBehaviour
             {
                 finalDestination = point.transform.position;
                 path = GetPath(startPoint, finalDestination);
-                immediateDestination = path[index].transform.position;
+                immediateDestination = path[index];
 
                 if (gameObject.GetComponent<Collider2D>().OverlapPoint(immediateDestination) && index < path.Count)
                 {
@@ -125,6 +148,26 @@ public class UnitController : MonoBehaviour
        
          
 
-        transform.Translate(direction * movementSpeed * Time.deltaTime);
+        transform.Translate(direction * movementSpeed * Time.deltaTime);*/
+
+        if(move) //teoretiskt sätt förlorar man range på framen man kommer fram till en point, men spelar nog ingen roll
+        {
+            if(Vector2.Distance(transform.position, posMovingTo) < movementSpeed * Time.deltaTime)
+            {
+                transform.position = new Vector3(posMovingTo.x, posMovingTo.y, transform.position.z);
+                if (path.Count > 0)
+                {
+                    posMovingTo = path[0];
+                    path.RemoveAt(0);
+                }
+                else move = false;
+            }
+            else
+            {
+                Vector2 newPos = Vector2.MoveTowards(transform.position, posMovingTo, movementSpeed * Time.deltaTime);
+                transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
+            }
+        }
     }
+
 }

@@ -16,15 +16,15 @@ public class Pathpoint : MonoBehaviour
     [HideInInspector]
     public Pathpoint discoveryPoint = null;
     
-    [HideInInspector]
-    public bool mouseIsHovering = false;
+    //[HideInInspector]
+    //public bool mouseIsHovering = false;
     /*[HideInInspector]
     public bool allowSelection = true;*/
     //[HideInInspector]
-    public bool isSelected = false;
+    //public bool isSelected = false;
 
-    [SerializeField]
-    private Material[] selectionStateMaterials = new Material[2];
+    //[SerializeField]
+    //private Material[] selectionStateMaterials = new Material[2];
 
     public void ResetPoint()
     {
@@ -34,7 +34,7 @@ public class Pathpoint : MonoBehaviour
         discoveryPoint = null;
     }
 
-    void OnMouseOver()
+    /*void OnMouseOver()
     {
         if (!mouseIsHovering)
         {
@@ -42,7 +42,7 @@ public class Pathpoint : MonoBehaviour
             mouseIsHovering = true;
         }
 
-            SelectUnit(mouseIsHovering/*, allowSelection*/);
+            SelectUnit(mouseIsHovering);
     }
 
     void OnMouseExit()
@@ -52,13 +52,13 @@ public class Pathpoint : MonoBehaviour
             //print(gameObject.name + " can no longer be selected.");
             mouseIsHovering = false;
         }
-    }
+    }*/
 
-    private void SelectUnit(bool mouseAbove/*, bool canSelect*/)
-    {
+    //private void SelectUnit(bool mouseAbove/*, bool canSelect*/)
+    //{
         /*if (canSelect) 
         {*/
-            if (Input.GetMouseButtonDown(1))
+            /*if (Input.GetMouseButtonDown(1))
             {
                 if (mouseAbove && !isSelected)
                 {
@@ -74,9 +74,9 @@ public class Pathpoint : MonoBehaviour
             }
         
         //}
-    }
+    }*/
 
-    public void SwapMaterial() //temporary UI substitute to signify selected. 
+    /*public void SwapMaterial() //temporary UI substitute to signify selected. 
     {
         if (isSelected)
         {
@@ -86,5 +86,5 @@ public class Pathpoint : MonoBehaviour
         {
                 gameObject.GetComponent<MeshRenderer>().material = selectionStateMaterials[0];
         }
-    }
+    }*/
 }

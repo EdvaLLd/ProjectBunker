@@ -16,6 +16,11 @@ public class UIManager : MonoBehaviour
     {
         windowToOpen.SetActive(!windowToOpen.active);
     }
+
+    public void CloseWindow(GameObject windowToOpen)
+    {
+        windowToOpen.SetActive(false);
+    }
     public void DisplayInventoryItems(EnumsToClassConverter param)
     {
         DisplayInventoryItems(param.SortingType);

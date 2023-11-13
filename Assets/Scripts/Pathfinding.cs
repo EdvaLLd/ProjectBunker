@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Kvar att fixa: 
+ * så man går i djupled till maskiner
+ * så man går på marken
+ * om man är närmre ett slutpunkten än objektet, men objektet är närmre näst sista punkten än sista så går man fel
+ * om man klickar på en punkt innan man har en karaktär markerad så går snubben dit direkt efter man markerar denne
+ */
 public class Pathfinding : MonoBehaviour
 {
     Pathpoint[] allPoints;
@@ -13,7 +20,7 @@ public class Pathfinding : MonoBehaviour
         allPoints = FindObjectsOfType(typeof(Pathpoint)) as Pathpoint[];
     }
 
-    public List<Pathpoint> FindPath(Vector2 startPos, Vector2 goalPos)
+    public List<Vector2> FindPath(Vector2 startPos, Vector2 goalPos)
     {
         //Setup
         openList.Clear();
@@ -36,18 +43,22 @@ public class Pathfinding : MonoBehaviour
             currentPoint = PointWithBestEstimation();
             if(currentPoint == goalPoint)
             {
-                List<Pathpoint> path = new List<Pathpoint>();
+                List<Vector2> path = new List<Vector2>();
+
+                path.Add(goalPos);
                 while (currentPoint != startPoint)
                 {
-                    path.Add(currentPoint);
+                    path.Add(currentPoint.transform.position);
                     currentPoint = currentPoint.discoveryPoint;
                 }
                 
-                path.Add(startPoint);
+                //path.Add(startPoint.transform.position);
 
-                if(Vector3.Distance(new Vector3(startPos.x,startPos.y, 0), new Vector3(path[path.Count-1].transform.position.x, path[path.Count - 1].transform.position.y,0)) > 
-                    Vector3.Distance(new Vector3(path[path.Count - 1].transform.position.x, path[path.Count - 1].transform.position.y,0), new Vector3(startPoint.transform.position.x, startPoint.transform.position.y,0))) path.Add(startPoint);
+                if(Vector3.Distance(new Vector3(startPos.x,startPos.y, 0), new Vector3(path[path.Count-1].x, path[path.Count - 1].y,0)) > 
+                    Vector3.Distance(new Vector3(path[path.Count - 1].x, path[path.Count - 1].y,0), new Vector3(startPoint.transform.position.x, startPoint.transform.position.y,0))) path.Add(startPoint.transform.position);
                 path.Reverse();
+
+                if (Vector2.Distance(startPos, goalPos) < Vector2.Distance(startPos, path[0])) return new List<Vector2>() { goalPos };
                 return path;
             }
             for (int i = 0; i < currentPoint.connections.Length; i++)
@@ -62,7 +73,7 @@ public class Pathfinding : MonoBehaviour
             closedList.Add(currentPoint);
             openList.Remove(currentPoint);
         }
-        return null;
+        return new List<Vector2>();
     }
 
     void UpdatePointValues(Pathpoint pointToUpdate, Pathpoint parentPoint, Vector3 endPos)
@@ -96,7 +107,7 @@ public class Pathfinding : MonoBehaviour
 
     Vector3 startPos = Vector3.zero;
     public Vector3 endPos = Vector3.zero;
-    private void Update()
+    /*private void Update()
     {
 ;
         if (Input.GetMouseButtonDown(0))
@@ -122,7 +133,7 @@ public class Pathfinding : MonoBehaviour
                 print(path[i]);
             }
         }
-    }
+    }*/
 
     Pathpoint FindClosestPoint(Vector3 currentPos)
     {

@@ -15,5 +15,5 @@ MonoBehaviour:
   ID: 0
   DisplayName: Wood
   Description: A piece of wood
-  Icon: {fileID: 21300000, guid: 3086d66a563317b40a20a20da2c64ac0, type: 3}
+  Icon: {fileID: 21300000, guid: bac8e92a58e75c746897a920f7b975ac, type: 3}
   SortingType: 1

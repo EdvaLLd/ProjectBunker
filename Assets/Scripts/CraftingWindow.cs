@@ -8,8 +8,8 @@ public class CraftingWindow : MonoBehaviour
 {
     [SerializeField]
     List<CraftingRecipe> recipes = new List<CraftingRecipe>(); //Borde vara unlockade recept sen
-    [SerializeField]
-    CraftingMachine machine;
+    
+    //public CraftingMachine machine;
 
     [SerializeField]
     GameObject recipePrefab, ingredientPrefab;
@@ -23,6 +23,7 @@ public class CraftingWindow : MonoBehaviour
     CraftingRecipe recipeMarked;
     public void InitCraftingWindow(CraftingMachine machine)
     {
+        ClearChilds(recipeList.transform);
         for (int i = 0; i < recipes.Count; i++)
         {
             CraftingRecipe recipe = recipes[i];
@@ -49,6 +50,14 @@ public class CraftingWindow : MonoBehaviour
         }
     }
 
+    void ClearChilds(Transform parent)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     public void RecipeClicked(CraftingRecipe recipe)
     {
         if(IsCraftable(recipe))
@@ -69,6 +78,7 @@ public class CraftingWindow : MonoBehaviour
             }
             Inventory.AddItem(recipeMarked.itemCrafted, recipeMarked.itemAmount);
             GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().UpdateInventoryDisplay();
+            print("Item crafted");
         }
     }
 
@@ -93,7 +103,7 @@ public class CraftingWindow : MonoBehaviour
 
     public void Start()
     {
-        InitCraftingWindow(machine);
+        //InitCraftingWindow(machine);
         Inventory.AddItem(recipes[0].Ingredients[0].item, 4);
         Inventory.AddItem(recipes[0].Ingredients[1].item, 1);
     }
