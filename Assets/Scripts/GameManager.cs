@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
         DayNightValue += calculatedCycleRate;
 
-        Quaternion sunRotation = Quaternion.Euler(DayNightValue, 90, 0);
+        Quaternion sunRotation = Quaternion.Euler(DayNightValue, 323, 0);
 
         light.transform.rotation = sunRotation;
 

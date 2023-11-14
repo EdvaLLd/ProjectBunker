@@ -4230,7 +4230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DayNightValue: 0
-  cycleRate: 10
+  cycleRate: 60
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0
