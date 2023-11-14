@@ -13,9 +13,38 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private float DayNightValue = 0; //0.0f - 360.0f
+    [SerializeField]
+    private float cycleRate = 0.1f;
+
+    private GameObject light;
+
     private void Awake()
     {
         instance = this;
+        light = GameObject.Find("Directional Light");
     }
 
+    private void Update()
+    {
+        //print("Gecko");
+        DayAndNightCycle(cycleRate);
+    }
+
+    private void DayAndNightCycle(float rate) 
+    {
+        float calculatedCycleRate = rate * Time.deltaTime;
+
+        DayNightValue += calculatedCycleRate;
+
+        Quaternion sunRotation = Quaternion.Euler(DayNightValue, 323, 0);
+
+        light.transform.rotation = sunRotation;
+
+        if (DayNightValue >= 360) 
+        {
+            DayNightValue = 0;
+        }
+    }
 }
