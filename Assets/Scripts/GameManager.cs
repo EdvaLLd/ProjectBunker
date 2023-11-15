@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     public static GameManager Instance
     {
-        get 
+        get
         {
             return instance;
         }
@@ -18,12 +18,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float cycleRate = 0.1f;
 
-    private GameObject light;
+    private GameObject skylight;
+
+    private Location[] explorableLocations = new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
 
     private void Awake()
     {
         instance = this;
-        light = GameObject.Find("Directional Light");
+        skylight = GameObject.Find("Directional Light");
     }
 
     private void Update()
@@ -38,9 +40,9 @@ public class GameManager : MonoBehaviour
 
         DayNightValue += calculatedCycleRate;
 
-        light.transform.rotation = Quaternion.Euler(DayNightValue, -38, 0);
+        skylight.transform.rotation = Quaternion.Euler(DayNightValue, -38, 0);
 
-        if (light.transform.rotation.x == 30) 
+        if (skylight.transform.rotation.x == 30) 
         {
 
         }
@@ -48,6 +50,14 @@ public class GameManager : MonoBehaviour
         if (DayNightValue >= 360) 
         {
             DayNightValue = 0;
+        }
+    }
+
+    private void SetLocationList(Location[] locations) 
+    {
+        for (int arrayIndex = 0; arrayIndex < locations.Length; arrayIndex++) 
+        {
+
         }
     }
 }

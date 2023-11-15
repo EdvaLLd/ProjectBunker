@@ -17,11 +17,11 @@ public class UnitController : MonoBehaviour
     [SerializeField]
     private float movementSpeed = 1;
 
-    private Vector2 startPoint;
+    /*private Vector2 startPoint;
     private Vector2 immediateDestination;
     private Vector2 direction;
 
-    private int index = 0;
+    private int index = 0;*/
 
     public static InteractableItem itemInteractedWith = null;
 
