@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class InteractableCraftingMachine : InteractableItem
 {
-    [SerializeField]
     GameObject craftingWindow;
     [SerializeField]
     CraftingMachine machine;
+
+    private void Start()
+    {
+        craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow");
+    }
 
     public override void InteractWith()
     {

@@ -15,12 +15,17 @@ public class Pathfinding : MonoBehaviour
     List<Pathpoint> openList = new List<Pathpoint>();
     List<Pathpoint> closedList = new List<Pathpoint>();
 
+
+    //hur stor skillnaden kan vara i y-led för att karaktären ska kunna
+    //skippa pathpointsen och ta sig direkt till målet
+    float acceptablePathCutYAxisValue = 1; 
+
     private void Start()
     {
         allPoints = FindObjectsOfType(typeof(Pathpoint)) as Pathpoint[];
     }
 
-    public List<Vector2> FindPath(Vector2 startPos, Vector2 goalPos)
+    public List<Vector3> FindPath(Vector3 startPos, Vector3 goalPos)
     {
         //Setup
         openList.Clear();
@@ -43,23 +48,8 @@ public class Pathfinding : MonoBehaviour
             currentPoint = PointWithBestEstimation();
             if(currentPoint == goalPoint)
             {
-                List<Vector2> path = new List<Vector2>();
-
-                path.Add(goalPos);
-                while (currentPoint != startPoint)
-                {
-                    path.Add(currentPoint.transform.position);
-                    currentPoint = currentPoint.discoveryPoint;
-                }
                 
-                //path.Add(startPoint.transform.position);
-
-                if(Vector3.Distance(new Vector3(startPos.x,startPos.y, 0), new Vector3(path[path.Count-1].x, path[path.Count - 1].y,0)) > 
-                    Vector3.Distance(new Vector3(path[path.Count - 1].x, path[path.Count - 1].y,0), new Vector3(startPoint.transform.position.x, startPoint.transform.position.y,0))) path.Add(startPoint.transform.position);
-                path.Reverse();
-
-                if (Vector2.Distance(startPos, goalPos) < Vector2.Distance(startPos, path[0])) return new List<Vector2>() { goalPos };
-                return path;
+                return MakePath(startPos, goalPos, currentPoint, startPoint);
             }
             for (int i = 0; i < currentPoint.connections.Length; i++)
             {
@@ -73,7 +63,36 @@ public class Pathfinding : MonoBehaviour
             closedList.Add(currentPoint);
             openList.Remove(currentPoint);
         }
-        return new List<Vector2>();
+        return new List<Vector3>();
+    }
+
+    List<Vector3> MakePath(Vector3 startPos, Vector3 goalPos, Pathpoint currentPoint, Pathpoint startPoint)
+    {
+        List<Vector3> path = new List<Vector3>();
+
+        path.Add(goalPos);
+        while (currentPoint != startPoint)
+        {
+            path.Add(currentPoint.transform.position);
+            currentPoint = currentPoint.discoveryPoint;
+        }
+
+
+        //Om avståndet mellan startpositionen och första pathnoden är större än första noden och startpointen
+        if (Vector3.Distance(startPos, path[path.Count - 1]) >
+            Vector3.Distance(path[path.Count - 1], startPoint.transform.position))
+        { 
+            path.Add(startPoint.transform.position);
+        }
+        path.Reverse();
+
+        Vector3 distToGoalPos = goalPos - startPos;
+
+        if (Vector3.Distance(startPos, goalPos) < Vector3.Distance(startPos, path[0]) && distToGoalPos.y < acceptablePathCutYAxisValue)
+        {
+            return new List<Vector3>() { goalPos };
+        }
+        return path;
     }
 
     void UpdatePointValues(Pathpoint pointToUpdate, Pathpoint parentPoint, Vector3 endPos)

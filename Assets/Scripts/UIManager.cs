@@ -7,10 +7,19 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject inventorySlot, inventoryBG;
+    GameObject inventorySlot;
+    GameObject inventoryBG;
+    GameObject inventoryContentHolder;
 
 
     public SortingTypes sortingTypeEnabled = SortingTypes.All;
+
+
+    private void Start()
+    {
+        inventoryBG = GameObject.FindGameObjectWithTag("Inventory");
+        inventoryContentHolder = GameObject.FindGameObjectWithTag("InventoryContentHolder");
+    }
 
     public void ActivateWindow(GameObject windowToOpen)
     {
@@ -34,7 +43,7 @@ public class UIManager : MonoBehaviour
     public void DisplayInventoryItems(SortingTypes sortingType)
     {
         sortingTypeEnabled = sortingType;
-        Transform parent = inventoryBG.transform.GetChild(1).GetChild(0).GetChild(0);
+        Transform parent = inventoryContentHolder.transform;
         ClearInventory(parent);
         if (sortingType == SortingTypes.All)
         {

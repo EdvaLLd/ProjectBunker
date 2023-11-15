@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - UIManager
+  - CraftingWindow
+  - Inventory
+  - InventoryContentHolder
   layers:
   - Default
   - TransparentFX

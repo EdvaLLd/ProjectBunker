@@ -24,9 +24,10 @@ public class UnitController : MonoBehaviour
     private int index = 0;
 
     public static InteractableItem itemInteractedWith = null;
+    BoxCollider itemInteractedWithBoxCollider = null;
 
-    List<Vector2> path = new List<Vector2>();
-    Vector2 posMovingTo = Vector2.zero;
+    List<Vector3> path;
+    Vector3 posMovingTo = Vector3.zero;
     bool move = false;
 
     private void Update()
@@ -34,15 +35,18 @@ public class UnitController : MonoBehaviour
         if (isSelected && itemInteractedWith != null)
         {
 
-            if (Vector2.Distance(transform.position, itemInteractedWith.transform.position) < 0.1f)
+            if (Vector3.Distance(transform.position, itemInteractedWith.transform.position) < 0.1f)
             {
                 itemInteractedWith.InteractWith();
             }
+
+            itemInteractedWithBoxCollider = itemInteractedWith.GetInteractableAreaCollider();
+
             path = GetPath(transform.position, itemInteractedWith.transform.position);
-            if (!move && path.Count > 0)
+
+            if (!move)
             {
-                posMovingTo = path[0];
-                path.RemoveAt(0);
+                GetNextPosOnPath();
             }
             itemInteractedWith = null;
             move = true;
@@ -69,10 +73,27 @@ public class UnitController : MonoBehaviour
             mouseIsHovering = false;
         }
     }
-    private Vector2 GetUnitPosition()
+
+    Vector3 GetNextPosOnPath()
     {
-        //if (!isSelected) {return new Vector3(0,0,0);}
-        return gameObject.transform.position;
+        if(path.Count > 0)
+        {
+            if(path.Count == 1)
+            {
+                posMovingTo = itemInteractedWithBoxCollider.ClosestPoint(transform.position);
+                posMovingTo.y = itemInteractedWithBoxCollider.transform.position.y; //det här borde antagligen göras om
+                //till att gå på marken
+                path.RemoveAt(0);
+            }
+            else
+            {
+                posMovingTo = path[0];
+                path.RemoveAt(0);
+            }
+            return posMovingTo;
+        }
+        print("Should never be here");
+        return transform.position;
     }
 
     private void SelectUnit(bool canSelect)
@@ -106,7 +127,7 @@ public class UnitController : MonoBehaviour
         }
     }
 
-    private List<Vector2> GetPath(Vector2 start, Vector2 destination) 
+    private List<Vector3> GetPath(Vector3 start, Vector3 destination) 
     {
         return gameObject.GetComponent<Pathfinding>().FindPath(start, destination);
     }
@@ -114,58 +135,22 @@ public class UnitController : MonoBehaviour
 
     private void Move() 
     {
-        /*Vector2 finalDestination = startPoint;
-        direction = (immediateDestination - startPoint).normalized;
-
-        Pathpoint[] pointArray = FindObjectsOfType(typeof(Pathpoint)) as Pathpoint[];
-        List<Vector2> path;//this is where it is ok, when you undo and this dissapears, you should not undo anymore.
-
-        foreach (Pathpoint point in pointArray) 
-        {
-            if (point.isSelected)
-            {
-                finalDestination = point.transform.position;
-                path = GetPath(startPoint, finalDestination);
-                immediateDestination = path[index];
-
-                if (gameObject.GetComponent<Collider2D>().OverlapPoint(immediateDestination) && index < path.Count)
-                {
-                    startPoint = GetUnitPosition();
-                    //point.isSelected = false;
-                    //point.GetComponent<Pathpoint>().SwapMaterial();
-                    index++;
-                }
-                if (gameObject.GetComponent<Collider2D>().OverlapPoint(finalDestination))
-                {
-                    startPoint = finalDestination;
-                    point.isSelected = false;
-                    point.GetComponent<Pathpoint>().SwapMaterial();
-                    index = 0;
-                }
-                print("index: " + index+ ", maxIndex: " + path.Count);
-            }
-        }
-       
-         
-
-        transform.Translate(direction * movementSpeed * Time.deltaTime);*/
 
         if(move) //teoretiskt sätt förlorar man range på framen man kommer fram till en point, men spelar nog ingen roll
         {
-            if(Vector2.Distance(transform.position, posMovingTo) < movementSpeed * Time.deltaTime)
+            if(Vector3.Distance(transform.position, posMovingTo) < movementSpeed * Time.deltaTime)
             {
-                transform.position = new Vector3(posMovingTo.x, posMovingTo.y, transform.position.z);
+                transform.position = posMovingTo;//new Vector3(posMovingTo.x, posMovingTo.y, transform.position.z);
                 if (path.Count > 0)
                 {
-                    posMovingTo = path[0];
-                    path.RemoveAt(0);
+                    GetNextPosOnPath();
                 }
                 else move = false;
             }
             else
             {
-                Vector2 newPos = Vector2.MoveTowards(transform.position, posMovingTo, movementSpeed * Time.deltaTime);
-                transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
+                Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, movementSpeed * Time.deltaTime);
+                transform.position = newPos;//new Vector3(newPos.x, newPos.y, transform.position.z);
             }
         }
     }
