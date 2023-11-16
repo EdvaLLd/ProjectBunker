@@ -767,7 +767,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 451, y: 121}
     spritePosition: {x: 252, y: 304}
-  - name: LEyeBlink
+  - name: REyeBlink
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -951,7 +951,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 373, y: 290}
     spritePosition: {x: 338, y: 206}
-  - name: REyeBlink
+  - name: LEyeBlink
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1135,7 +1135,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 373, y: 355}
     spritePosition: {x: 417, y: 209}
-  - name: REyeOpen
+  - name: LEyeOpen
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1341,7 +1341,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 373, y: 4}
     spritePosition: {x: 412, y: 135}
-  - name: LEyeOpen
+  - name: REyeOpen
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1547,7 +1547,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 373, y: 82}
     spritePosition: {x: 338, y: 133}
-  - name: LEyeIdle
+  - name: REyeIdle
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1731,7 +1731,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 92, y: 445}
     spritePosition: {x: 203, y: 337}
-  - name: LEyeSad
+  - name: REyeSad
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -1915,7 +1915,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 373, y: 160}
     spritePosition: {x: 345, y: 64}
-  - name: REyeSad
+  - name: LEyeSad
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -2099,7 +2099,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 373, y: 225}
     spritePosition: {x: 425, y: 64}
-  - name: REyeIdle
+  - name: LEyeIdle
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -2501,7 +2501,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 4, y: 226}
     spritePosition: {x: 121, y: 375}
-  - name: LHand
+  - name: RHand
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -2661,7 +2661,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 319, y: 292}
     spritePosition: {x: 154, y: 170}
-  - name: LArm
+  - name: RArm
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -4227,7 +4227,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 255, y: 4}
     spritePosition: {x: 189, y: 165}
-  - name: LLeg
+  - name: RLeg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -4685,7 +4685,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 4, y: 369}
     spritePosition: {x: 180, y: 43}
-  - name: LFoot
+  - name: RFoot
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -5401,7 +5401,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 92, y: 369}
     spritePosition: {x: 180, y: 128}
-  - name: RLeg
+  - name: LLeg
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -5960,7 +5960,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 255, y: 159}
     spritePosition: {x: 240, y: 39}
-  - name: RFoot
+  - name: LFoot
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -6281,7 +6281,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 203, y: 369}
     spritePosition: {x: 262, y: 13}
-  - name: RHand
+  - name: LHand
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -6441,7 +6441,7 @@ ScriptedImporter:
     parentGroupIndex: -1
     uvTransform: {x: 319, y: 327}
     spritePosition: {x: 310, y: 153}
-  - name: RArm
+  - name: LArm
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -7550,8 +7550,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: LEyeBlink
-    spriteName: LEyeBlink
+  - name: REyeBlink
+    spriteName: REyeBlink
     isGroup: 0
     parentIndex: 0
     spriteID: e1248e25790d48345bb7fa9b3eb4a557
@@ -7560,8 +7560,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: REyeBlink
-    spriteName: REyeBlink
+  - name: LEyeBlink
+    spriteName: LEyeBlink
     isGroup: 0
     parentIndex: 0
     spriteID: ae5ee3e8e78bd0849a8b324e98a8d16b
@@ -7570,8 +7570,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: REyeOpen
-    spriteName: REyeOpen
+  - name: LEyeOpen
+    spriteName: LEyeOpen
     isGroup: 0
     parentIndex: 0
     spriteID: 61d5b808318b8e1479fea47ef6bab40c
@@ -7580,8 +7580,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: LEyeOpen
-    spriteName: LEyeOpen
+  - name: REyeOpen
+    spriteName: REyeOpen
     isGroup: 0
     parentIndex: 0
     spriteID: 1a85cd467b4812d4cae239a68db0cb94
@@ -7590,8 +7590,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: LEyeIdle
-    spriteName: LEyeIdle
+  - name: REyeIdle
+    spriteName: REyeIdle
     isGroup: 0
     parentIndex: 0
     spriteID: 5072265581c89a94187ff5e948464a56
@@ -7600,8 +7600,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: LEyeSad
-    spriteName: LEyeSad
+  - name: REyeSad
+    spriteName: REyeSad
     isGroup: 0
     parentIndex: 0
     spriteID: 2a22937d70423bb4092972ff99723436
@@ -7610,8 +7610,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: REyeSad
-    spriteName: REyeSad
+  - name: LEyeSad
+    spriteName: LEyeSad
     isGroup: 0
     parentIndex: 0
     spriteID: ac2ad25a443115d4f966c9151227fc7d
@@ -7620,8 +7620,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: REyeIdle
-    spriteName: REyeIdle
+  - name: LEyeIdle
+    spriteName: LEyeIdle
     isGroup: 0
     parentIndex: 0
     spriteID: 442be1584747be748a900149f0a8184c
@@ -7670,8 +7670,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: LHand
-    spriteName: LHand
+  - name: RHand
+    spriteName: RHand
     isGroup: 0
     parentIndex: 16
     spriteID: f1572406fbe2615438172870feb408fd
@@ -7680,8 +7680,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: LArm
-    spriteName: LArm
+  - name: RArm
+    spriteName: RArm
     isGroup: 0
     parentIndex: 16
     spriteID: 16df79dedb7eee647b8d24718b19046f
@@ -7710,8 +7710,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: LLeg
-    spriteName: LLeg
+  - name: RLeg
+    spriteName: RLeg
     isGroup: 0
     parentIndex: 16
     spriteID: 56c8e19d2f888654e83df2c98b78c41f
@@ -7720,8 +7720,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: LFoot
-    spriteName: LFoot
+  - name: RFoot
+    spriteName: RFoot
     isGroup: 0
     parentIndex: 16
     spriteID: 667b7778a2aa0d340a51a59f6137cd4d
@@ -7740,8 +7740,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: RLeg
-    spriteName: RLeg
+  - name: LLeg
+    spriteName: LLeg
     isGroup: 0
     parentIndex: 16
     spriteID: 951004cb7cbff4c48b945511dcf99a87
@@ -7750,8 +7750,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: RFoot
-    spriteName: RFoot
+  - name: LFoot
+    spriteName: LFoot
     isGroup: 0
     parentIndex: 16
     spriteID: 64b20b7d7bb5858479ff48a20a7aa192
@@ -7760,8 +7760,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: RHand
-    spriteName: RHand
+  - name: LHand
+    spriteName: LHand
     isGroup: 0
     parentIndex: 16
     spriteID: 455e75a650e983d49a3070f26962d3e2
@@ -7770,8 +7770,8 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: RArm
-    spriteName: RArm
+  - name: LArm
+    spriteName: LArm
     isGroup: 0
     parentIndex: 16
     spriteID: 97e97ce876024824e8662008ddecb317
