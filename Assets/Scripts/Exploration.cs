@@ -40,45 +40,22 @@ public class Location : MonoBehaviour
     [SerializeField]
     private float maxDistance = 10000;
     [SerializeField]
-    private float minDistance = 0;
-    public enum environments { Home, City, Factory, Forest };
-    [SerializeField]
+    private float minDistance = 500;
+    public enum environments { Lake, Home, City, Factory, Forest };
+    //[SerializeField]
     public environments environment;
 
-    [SerializeField]
-    private float distanceToHome;
+    //[SerializeField]
+    public float distanceToHome;
 
     public string locationName = "Unknown Location";
-
-    /*public void SetLocation(environments location, float distance) 
-    {
-        switch(location)
-        {
-            case environments.City:
-
-                break;
-
-            default:            
-                break;
-        }
-
-        environment = location;
-        distanceToHome = distance;
-    }
-
-    public void SetLocation(environments location, float distance, string name)
-    {
-        environment = location;
-        distanceToHome = distance;
-        locationName = name;
-    }*/
 
     public float RandomDistance() 
     {
         return Random.Range(minDistance, maxDistance);
     }
 
-    public Location SetLocation(environments location, float distance, string name) 
+    /*public Location SetLocation(environments location, float distance, string name) 
     {
         Location returnedLocation = new Location();
        
@@ -87,5 +64,5 @@ public class Location : MonoBehaviour
         returnedLocation.locationName = name;
 
         return returnedLocation;
-    }
+    }*/
 }
