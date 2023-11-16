@@ -8,9 +8,13 @@ public class InteractableCraftingMachine : InteractableItem
     [SerializeField]
     CraftingMachine machine;
 
-    private void Start()
+    private void Awake()
     {
         craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow");
+    }
+    private void Start()
+    {
+        craftingWindow.SetActive(false);
     }
 
     public override void InteractWith()

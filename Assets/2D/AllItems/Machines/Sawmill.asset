@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83164b82e216c8d40987e3f214482d10, type: 3}
   m_Name: Sawmill
   m_EditorClassIdentifier: 
-  ID: 
+  ID: 02001
   DisplayName: Sawmill
   Description: A basic sawmill
   Icon: {fileID: 21300000, guid: ada369d60781b064e98c4db6fb1614ed, type: 3}

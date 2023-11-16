@@ -11,21 +11,21 @@ using UnityEngine;
  */
 public class Pathfinding : MonoBehaviour
 {
-    Pathpoint[] allPoints;
-    List<Pathpoint> openList = new List<Pathpoint>();
-    List<Pathpoint> closedList = new List<Pathpoint>();
+    static Pathpoint[] allPoints;
+    static List<Pathpoint> openList = new List<Pathpoint>();
+    static List<Pathpoint> closedList = new List<Pathpoint>();
 
 
     //hur stor skillnaden kan vara i y-led för att karaktären ska kunna
     //skippa pathpointsen och ta sig direkt till målet
-    float acceptablePathCutYAxisValue = 1; 
+    static float acceptablePathCutYAxisValue = 1; 
 
     private void Start()
     {
         allPoints = FindObjectsOfType(typeof(Pathpoint)) as Pathpoint[];
     }
 
-    public List<Vector3> FindPath(Vector3 startPos, Vector3 goalPos)
+    public static List<Vector3> FindPath(Vector3 startPos, Vector3 goalPos)
     {
         //Setup
         openList.Clear();
@@ -66,7 +66,7 @@ public class Pathfinding : MonoBehaviour
         return new List<Vector3>();
     }
 
-    List<Vector3> MakePath(Vector3 startPos, Vector3 goalPos, Pathpoint currentPoint, Pathpoint startPoint)
+    static List<Vector3> MakePath(Vector3 startPos, Vector3 goalPos, Pathpoint currentPoint, Pathpoint startPoint)
     {
         List<Vector3> path = new List<Vector3>();
 
@@ -95,7 +95,7 @@ public class Pathfinding : MonoBehaviour
         return path;
     }
 
-    void UpdatePointValues(Pathpoint pointToUpdate, Pathpoint parentPoint, Vector3 endPos)
+    static void UpdatePointValues(Pathpoint pointToUpdate, Pathpoint parentPoint, Vector3 endPos)
     {
         float distFromStart = parentPoint.distFromStart + Vector3.Distance(pointToUpdate.transform.position, parentPoint.transform.position);
 
@@ -116,7 +116,7 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
-    void UpdateAllChildPoints(Pathpoint point, Vector3 endPos)
+    static void UpdateAllChildPoints(Pathpoint point, Vector3 endPos)
     {
         for (int i = 0; i < point.connections.Length; i++)
         {
@@ -124,8 +124,8 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
-    Vector3 startPos = Vector3.zero;
-    public Vector3 endPos = Vector3.zero;
+    static Vector3 startPos = Vector3.zero;
+    static public Vector3 endPos = Vector3.zero;
     /*private void Update()
     {
 ;
@@ -154,7 +154,7 @@ public class Pathfinding : MonoBehaviour
         }
     }*/
 
-    Pathpoint FindClosestPoint(Vector3 currentPos)
+    static Pathpoint FindClosestPoint(Vector3 currentPos)
     {
         Pathpoint closestPoint = allPoints[0];
         for (int i = 1; i < allPoints.Length; i++)
@@ -170,7 +170,7 @@ public class Pathfinding : MonoBehaviour
         return closestPoint; //Den här kommer antagligen behöva pillas med
     }
 
-    Pathpoint PointWithBestEstimation()
+    static Pathpoint PointWithBestEstimation()
     {
         if (openList.Count < 0) return null;
 

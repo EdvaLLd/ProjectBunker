@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
-  m_Name: PlantingBox
+  m_Name: Wood
   m_EditorClassIdentifier: 
-  ID: 3
-  DisplayName: Planting Box
-  Description: A box to plant your seeds in
-  Icon: {fileID: 21300000, guid: 763e7866999ba654dbb3ef71002ade16, type: 3}
-  SortingType: 0
+  ID: 01001
+  DisplayName: Wood
+  Description: A piece of wood
+  Icon: {fileID: 21300000, guid: bac8e92a58e75c746897a920f7b975ac, type: 3}
+  SortingType: 1

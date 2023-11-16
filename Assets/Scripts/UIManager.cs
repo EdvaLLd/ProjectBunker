@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,10 +16,25 @@ public class UIManager : MonoBehaviour
     public SortingTypes sortingTypeEnabled = SortingTypes.All;
 
 
-    private void Start()
+
+    private void Awake()
     {
         inventoryBG = GameObject.FindGameObjectWithTag("Inventory");
         inventoryContentHolder = GameObject.FindGameObjectWithTag("InventoryContentHolder");
+    }
+
+    private void Start()
+    {
+        Inventory.onInventoryUpdate += UpdateInventoryDisplay;
+        inventoryBG.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            Inventory.AddItem(Database.GetItemWithID("01001"));
+        }
     }
 
     public void ActivateWindow(GameObject windowToOpen)
