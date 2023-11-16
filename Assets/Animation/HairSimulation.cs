@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HairSimulation : MonoBehaviour
+{
+    public int length;
+    private LineRenderer lineRenderer;
+    public Vector3[] segmentPoses;
+    public Vector3[] segmentV;
+
+    public Transform targetDirection;
+    public float targetDistance;
+    public float smoothSpeed;
+    public float trailSpeed;
+
+    public float wiggleSpeed;
+    public float wiggleMagnitude;
+    public Transform wiggleDirection;
+
+    private void Awake()
+    {
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.positionCount = length;
+        segmentPoses = new Vector3[length];
+        segmentV = new Vector3[length];
+    }
+
+    private void Update()
+    {
+        wiggleDirection.localRotation = Quaternion.Euler(0, 0, Mathf.Sin(Time.time * wiggleSpeed) * wiggleMagnitude);
+
+        segmentPoses[0] = targetDirection.position;
+
+        for(int i = 1; i < segmentPoses.Length; i++)
+        {
+            segmentPoses[i] = Vector3.SmoothDamp(segmentPoses[i], segmentPoses[i - 1] + targetDirection.right * targetDistance, ref segmentV[i], smoothSpeed + i/trailSpeed);
+        }
+        lineRenderer.SetPositions(segmentPoses);
+    }
+
+}
