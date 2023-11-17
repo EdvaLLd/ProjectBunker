@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -22,7 +23,6 @@ public class Character : MonoBehaviour
     public float hunger = 100;
     public float health = 100;
     bool isAlive = true;
-
 
 
     float maxHunger;
@@ -53,7 +53,7 @@ public class Character : MonoBehaviour
             health += 5 * Time.deltaTime;
             hungerConsumedModifier += 2;
         }
-        hunger -= hungerConsumedModifier * Time.deltaTime;
+        hunger -= (hungerConsumedModifier * Time.deltaTime)/3;
         if (hunger < 20)
         {
             health -= (20 - hunger) * Time.deltaTime;
