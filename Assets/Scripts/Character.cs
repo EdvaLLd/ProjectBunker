@@ -32,8 +32,6 @@ public class Character : MonoBehaviour
     {
         maxHunger = hunger;
         maxHealth = health;
-
-        hunger = 25;
     }
 
     private void Update()
@@ -143,6 +141,7 @@ public class Character : MonoBehaviour
 
     public void ConsumeFood(Food food)
     {
+        TextLog.AddLog($"{food.DisplayName} eaten!");
         if(maxHunger != hunger)
         {
             Inventory.RemoveItem(food);
