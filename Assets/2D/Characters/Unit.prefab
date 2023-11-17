@@ -156,4 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd25b7f4dfbcdf42881e9b0c347966e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentEnviornment: 0
+  timeDivisor: 100
+  currentEnviornment: 1
+  noLootProbability: 33

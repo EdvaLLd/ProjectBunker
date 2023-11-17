@@ -48,6 +48,7 @@ public class UnitController : MonoBehaviour
             move = true;
         }
         Move();
+        Explore();
     }
 
     void OnMouseOver()
@@ -170,4 +171,13 @@ public class UnitController : MonoBehaviour
         }
     }
 
+    private void Explore() 
+    {
+        if (Input.GetKeyDown("space") && gameObject.GetComponent<Exploration>().GetCurrentEnvironment() == Location.environments.Home)
+        {
+            {
+                StartCoroutine(gameObject.GetComponent<Exploration>().ExploringProcess());
+            }
+        }
+    }
 }

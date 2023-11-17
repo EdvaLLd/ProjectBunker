@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         //print("Gecko");
         DayAndNightCycle(cycleRate);
         
-        print(explorableLocations[index].locationName + " is " + explorableLocations[index].environment + " at a distance of " + explorableLocations[index].distanceToHome);
+        //print(explorableLocations[index].locationName + " is " + explorableLocations[index].environment + " at a distance of " + explorableLocations[index].distanceToHome + " meters.");
         //print(System.Enum.GetNames(typeof(Location.environments)).GetValue(2));
     }
 
@@ -69,6 +69,11 @@ public class GameManager : MonoBehaviour
         {
             DayNightValue = 0;
         }
+    }
+
+    public Location[] GetExplorableLocations() 
+    {
+        return explorableLocations;
     }
 
     private void SetLocationList()
