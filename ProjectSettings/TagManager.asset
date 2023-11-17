@@ -5,11 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - UIManager
+  - CraftingWindow
+  - Inventory
+  - InventoryContentHolder
+  - InteractOptions
+  - CharacterStatsWindow
+  - TextLog
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - GroundLayer
   - Water
   - UI
   - 

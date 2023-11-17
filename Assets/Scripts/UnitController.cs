@@ -4,180 +4,167 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
+[Serializable]
+public class SelectionVisibilityModifier
+{
+    public Material material;
+}
+
+public enum CharacterTasks
+{
+    none, crafting, inspecting, looting
+}
+
 public class UnitController : MonoBehaviour
 {
-    [HideInInspector]
-    public bool mouseIsHovering = false;
-    [HideInInspector]
-    public bool isSelected = false;
-
+    //Hur man ser skillnad om en karaktär är markerad eller inte
     [SerializeField]
-    private Material[] selectionStateMaterials = new Material[2];
+    SelectionVisibilityModifier unSelectedModifierSetter, selectedModifierSetter;
 
+    //Ska kanske finnas en speedmodifier på varje karaktär?
     [SerializeField]
-    private float movementSpeed = 1;
+    float movementSpeedSetter = 1;
 
-    /*private Vector2 startPoint;
-    private Vector2 immediateDestination;
-    private Vector2 direction;
+    UIManager uiManager;
 
-    private int index = 0;*/
 
-    public static InteractableItem itemInteractedWith = null;
+    //Lägg till alla serializedfield-variabler här som static och i start
+    static SelectionVisibilityModifier unSelectedModifier, selectedModifier;
+    public static float movementSpeed; 
 
-    List<Vector2> path = new List<Vector2>();
-    Vector2 posMovingTo = Vector2.zero;
-    bool move = false;
+
+    static Character selectedCharacter = null;
+
+
 
     private void Update()
     {
-        if (isSelected && itemInteractedWith != null)
+        if (Input.GetKeyDown(KeyCode.C))
         {
-
-            if (Vector2.Distance(transform.position, itemInteractedWith.transform.position) < 0.1f)
-            {
-                itemInteractedWith.InteractWith();
-            }
-            path = GetPath(transform.position, itemInteractedWith.transform.position);
-            if (!move && path.Count > 0)
-            {
-                posMovingTo = path[0];
-                path.RemoveAt(0);
-            }
-            itemInteractedWith = null;
-            move = true;
+            Inventory.AddItem(Database.GetItemWithID("01001"));
         }
-        Move();
-        Explore();
-    }
-
-    void OnMouseOver()
-    {
-        if (!mouseIsHovering)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-           //print(gameObject.name + " can be selected.");
-            mouseIsHovering = true;
+            Inventory.AddItem(Database.GetItemWithID("04001"));
         }
-
-        SelectUnit(mouseIsHovering);
-    }
-
-    void OnMouseExit()
-    {
-        if (mouseIsHovering)
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            //print(gameObject.name + " can no longer be selected.");
-            mouseIsHovering = false;
+            if (selectedCharacter != null)
+            {
+                selectedCharacter.ConsumeFood(Database.GetItemWithID("04001") as Food);
+            }
         }
-    }
-    private Vector2 GetUnitPosition()
-    {
-        //if (!isSelected) {return new Vector3(0,0,0);}
-        return gameObject.transform.position;
-    }
-
-    private void SelectUnit(bool canSelect)
-    {
-        if (Input.GetMouseButtonDown(0))
+        if (selectedCharacter != null)
         {
-            if (canSelect && !isSelected)
-            {
-                isSelected = true;
-                //startPoint = GetUnitPosition();
-                //print(gameObject.name + " was selected.");
-            }
-            else if (canSelect && isSelected)
-            {
-                isSelected = false;
-                //print(gameObject.name + " was deselected.");
-            }
-            SwapMaterial();
+            UpdateCharacterStatsUI();
         }
     }
 
-    private void SwapMaterial() //temporary UI substitute to signify selected. 
+    [SerializeField]
+    GameObject characterStatsWindow;
+    static GameObject characterStatsWindowStatic;
+    void UpdateCharacterStatsUI()
     {
-        if (isSelected) 
+        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHealth(selectedCharacter.health);
+        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHunger(selectedCharacter.hunger);
+    }
+
+    public void FeedCharacter(Food food)
+    {
+        if (selectedCharacter != null)
         {
-            gameObject.GetComponent<MeshRenderer>().material = selectionStateMaterials[1];
+            selectedCharacter.ConsumeFood(food);
+        }
+    }
+
+    private void Start()
+    {
+        unSelectedModifier = unSelectedModifierSetter;
+        selectedModifier = selectedModifierSetter;
+        movementSpeed = movementSpeedSetter;
+        Character.onTaskCompletion += TaskCompleted;
+
+        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+
+
+
+        //temp
+        characterStatsWindow.GetComponent<CharacterStatsHandler>().SetUp();
+        characterStatsWindow.SetActive(false);
+        characterStatsWindowStatic = characterStatsWindow;
+    }
+
+    public void TaskCompleted(Character character)
+    {
+        switch (character.task)
+        {
+            case CharacterTasks.none:
+                print("shouldnt be here");
+                break;
+            case CharacterTasks.crafting:
+                uiManager.ActivateWindow(uiManager.craftingWindow);
+                if (uiManager.craftingWindow.active)
+                {
+                    uiManager.craftingWindow.GetComponent<CraftingWindow>().InitCraftingWindow(character.item as CraftingMachine);
+                }
+                break;
+            case CharacterTasks.inspecting:
+                TextLog.AddLog($"Inspected item: {character.item.Description}");
+                break;
+            case CharacterTasks.looting:
+                ChestContent chest = selectedCharacter.itemInteractedWith.GetComponent<ChestContent>();
+                if (chest == null)
+                {
+                    chest = selectedCharacter.itemInteractedWith.gameObject.AddComponent<ChestContent>();
+                }
+                chest.CheckContent();
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    public static void InteractedWith(CharacterTasks task, ItemBase item, InteractableItem itemInteractedWith)
+    {
+        if(selectedCharacter != null)
+        {
+            selectedCharacter.task = task;
+            selectedCharacter.item = item;
+            selectedCharacter.InteractedWithItem(itemInteractedWith);
+        }
+    }
+
+
+    public static void SwapSelectedCharacter(Character newSelectedCharacter)
+    {
+        if (selectedCharacter == newSelectedCharacter)
+        {
+            setCharacterVisual(selectedCharacter, false);
+            selectedCharacter = null;
+            characterStatsWindowStatic.SetActive(false);
         }
         else
         {
-            gameObject.GetComponent<MeshRenderer>().material = selectionStateMaterials[0];
+            if (selectedCharacter != null)
+            {
+                setCharacterVisual(selectedCharacter, false);
+            }
+            selectedCharacter = newSelectedCharacter;
+            setCharacterVisual(selectedCharacter, true);
+            characterStatsWindowStatic.SetActive(true);
         }
     }
 
-    private List<Vector2> GetPath(Vector2 start, Vector2 destination) 
+    public static void setCharacterVisual(Character character, bool isSelected)
     {
-        return gameObject.GetComponent<Pathfinding>().FindPath(start, destination);
-    }
-
-
-    private void Move() 
-    {
-        /*Vector2 finalDestination = startPoint;
-        direction = (immediateDestination - startPoint).normalized;
-
-        Pathpoint[] pointArray = FindObjectsOfType(typeof(Pathpoint)) as Pathpoint[];
-        List<Vector2> path;//this is where it is ok, when you undo and this dissapears, you should not undo anymore.
-
-        foreach (Pathpoint point in pointArray) 
+        if(isSelected)
         {
-            if (point.isSelected)
-            {
-                finalDestination = point.transform.position;
-                path = GetPath(startPoint, finalDestination);
-                immediateDestination = path[index];
-
-                if (gameObject.GetComponent<Collider2D>().OverlapPoint(immediateDestination) && index < path.Count)
-                {
-                    startPoint = GetUnitPosition();
-                    //point.isSelected = false;
-                    //point.GetComponent<Pathpoint>().SwapMaterial();
-                    index++;
-                }
-                if (gameObject.GetComponent<Collider2D>().OverlapPoint(finalDestination))
-                {
-                    startPoint = finalDestination;
-                    point.isSelected = false;
-                    point.GetComponent<Pathpoint>().SwapMaterial();
-                    index = 0;
-                }
-                print("index: " + index+ ", maxIndex: " + path.Count);
-            }
+            character.GetComponent<MeshRenderer>().material = selectedModifier.material;
         }
-       
-         
-
-        transform.Translate(direction * movementSpeed * Time.deltaTime);*/
-
-        if(move) //teoretiskt sätt förlorar man range på framen man kommer fram till en point, men spelar nog ingen roll
+        else
         {
-            if(Vector2.Distance(transform.position, posMovingTo) < movementSpeed * Time.deltaTime)
-            {
-                transform.position = new Vector3(posMovingTo.x, posMovingTo.y, transform.position.z);
-                if (path.Count > 0)
-                {
-                    posMovingTo = path[0];
-                    path.RemoveAt(0);
-                }
-                else move = false;
-            }
-            else
-            {
-                Vector2 newPos = Vector2.MoveTowards(transform.position, posMovingTo, movementSpeed * Time.deltaTime);
-                transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
-            }
-        }
-    }
-
-    private void Explore() 
-    {
-        if (Input.GetKeyDown("space") && gameObject.GetComponent<Exploration>().GetCurrentEnvironment() == Location.environments.Home)
-        {
-            {
-                StartCoroutine(gameObject.GetComponent<Exploration>().ExploringProcess());
-            }
+            character.GetComponent<MeshRenderer>().material = unSelectedModifier.material;
         }
     }
 }

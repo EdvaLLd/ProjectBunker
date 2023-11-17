@@ -3,14 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class UIManager : MonoBehaviour
 {
+    //--------Inventory--------
     [SerializeField]
-    GameObject inventorySlot, inventoryBG;
-
-
+    GameObject inventorySlot;
+    GameObject inventoryBG;
+    GameObject inventoryContentHolder;
     public SortingTypes sortingTypeEnabled = SortingTypes.All;
+    //-------------------------
+
+    public GameObject craftingWindow;
+
+
+
+
+    private void Awake()
+    {
+        inventoryBG = GameObject.FindGameObjectWithTag("Inventory");
+        inventoryContentHolder = GameObject.FindGameObjectWithTag("InventoryContentHolder");
+        craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow");
+    }
+
+    private void Start()
+    {
+        Inventory.onInventoryUpdate += UpdateInventoryDisplay;
+        inventoryBG.SetActive(false);
+        craftingWindow.SetActive(false);
+
+        Inventory.AddItem(Database.GetItemWithID("01001"), 4);
+        Inventory.AddItem(Database.GetItemWithID("01002"), 1);
+    }
 
     public void ActivateWindow(GameObject windowToOpen)
     {
@@ -19,6 +44,7 @@ public class UIManager : MonoBehaviour
 
     public void CloseWindow(GameObject windowToOpen)
     {
+        UIElementConsumeMouseOver.mouseOverIsAvailable = true;
         windowToOpen.SetActive(false);
     }
     public void DisplayInventoryItems(EnumsToClassConverter param)
@@ -34,7 +60,7 @@ public class UIManager : MonoBehaviour
     public void DisplayInventoryItems(SortingTypes sortingType)
     {
         sortingTypeEnabled = sortingType;
-        Transform parent = inventoryBG.transform.GetChild(1).GetChild(0).GetChild(0);
+        Transform parent = inventoryContentHolder.transform;
         ClearInventory(parent);
         if (sortingType == SortingTypes.All)
         {

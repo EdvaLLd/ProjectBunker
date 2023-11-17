@@ -77,8 +77,6 @@ public class CraftingWindow : MonoBehaviour
                 Inventory.RemoveItem(recipeMarked.Ingredients[i].item, recipeMarked.Ingredients[i].amount);
             }
             Inventory.AddItem(recipeMarked.itemCrafted, recipeMarked.itemAmount);
-            GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().UpdateInventoryDisplay();
-            print("Item crafted");
         }
     }
 
@@ -101,10 +99,4 @@ public class CraftingWindow : MonoBehaviour
         return null;
     }*/
 
-    public void Start()
-    {
-        //InitCraftingWindow(machine);
-        Inventory.AddItem(recipes[0].Ingredients[0].item, 4);
-        Inventory.AddItem(recipes[0].Ingredients[1].item, 1);
-    }
 }
