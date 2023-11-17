@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ONLYFORPLAYTESTS : InteractableItem
 {
-    public override void InteractWith()
+    /*public override void InteractWith()
     {
         throw new System.NotImplementedException();
-    }
+    }*/
 }

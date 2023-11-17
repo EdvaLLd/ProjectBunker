@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Database : MonoBehaviour
 {
-    static Dictionary<string, Item> itemDataBase = new Dictionary<string, Item>();
+    /*static Dictionary<string, Item> itemDataBase = new Dictionary<string, Item>();
     static Dictionary<string, CraftingRecipe> recipesDataBase = new Dictionary<string, CraftingRecipe>();
     static Dictionary<string, CraftingMachine> craftingStationsDataBase = new Dictionary<string, CraftingMachine>();
     void Start()
@@ -41,6 +41,21 @@ public class Database : MonoBehaviour
     public static CraftingMachine GetCraftingMachineWithID(string id)
     {
         return craftingStationsDataBase.ContainsKey(id) ? craftingStationsDataBase[id] : null;
+    }*/
+
+
+    static Dictionary<string, Item> dataBase = new Dictionary<string, Item>();
+    void Awake()
+    {
+        Item[] i = FindObjectsOfTypeIncludingAssets(typeof(Item)) as Item[];
+        for (int q = 0; q < i.Length; q++)
+        {
+            dataBase.Add(i[q].ID, i[q]);
+        }
     }
 
+    public static Item GetItemWithID(string id)
+    {
+        return dataBase.ContainsKey(id) ? dataBase[id] : null;
+    }
 }

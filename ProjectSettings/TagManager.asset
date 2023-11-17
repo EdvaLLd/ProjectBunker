@@ -8,6 +8,9 @@ TagManager:
   - CraftingWindow
   - Inventory
   - InventoryContentHolder
+  - InteractOptions
+  - CharacterStatsWindow
+  - TextLog
   layers:
   - Default
   - TransparentFX

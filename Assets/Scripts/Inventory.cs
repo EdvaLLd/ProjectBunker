@@ -18,6 +18,7 @@ public static class Inventory
 
     public static void AddItem(Item item, int amount = 1)
     {
+        TextLog.AddLog($"Obtained {amount} {item.DisplayName}!", Color.green);
         if(inventory.ContainsKey(item)) inventory[item] += amount;
         else inventory.Add(item, amount);
         onInventoryUpdate?.Invoke();
@@ -51,6 +52,7 @@ public static class Inventory
     {
         if (inventory.ContainsKey(item) && inventory[item] >= amount)
         {
+            TextLog.AddLog($"Removed {amount} {item.DisplayName} from inventory!", Color.red);
             inventory[item] -= amount;
             if (inventory[item] == 0) inventory.Remove(item);
             onInventoryUpdate?.Invoke();

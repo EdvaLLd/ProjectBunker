@@ -7,13 +7,16 @@ using System;
 
 public class UIManager : MonoBehaviour
 {
+    //--------Inventory--------
     [SerializeField]
     GameObject inventorySlot;
     GameObject inventoryBG;
     GameObject inventoryContentHolder;
-
-
     public SortingTypes sortingTypeEnabled = SortingTypes.All;
+    //-------------------------
+
+    public GameObject craftingWindow;
+
 
 
 
@@ -21,20 +24,17 @@ public class UIManager : MonoBehaviour
     {
         inventoryBG = GameObject.FindGameObjectWithTag("Inventory");
         inventoryContentHolder = GameObject.FindGameObjectWithTag("InventoryContentHolder");
+        craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow");
     }
 
     private void Start()
     {
         Inventory.onInventoryUpdate += UpdateInventoryDisplay;
         inventoryBG.SetActive(false);
-    }
+        craftingWindow.SetActive(false);
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            Inventory.AddItem(Database.GetItemWithID("01001"));
-        }
+        Inventory.AddItem(Database.GetItemWithID("01001"), 4);
+        Inventory.AddItem(Database.GetItemWithID("01002"), 1);
     }
 
     public void ActivateWindow(GameObject windowToOpen)
@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
 
     public void CloseWindow(GameObject windowToOpen)
     {
+        UIElementConsumeMouseOver.mouseOverIsAvailable = true;
         windowToOpen.SetActive(false);
     }
     public void DisplayInventoryItems(EnumsToClassConverter param)

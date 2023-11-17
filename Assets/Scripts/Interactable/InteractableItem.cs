@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InteractableItem : MonoBehaviour
+public class InteractableItem : MonoBehaviour
 {
     [SerializeField]
     GameObject interactableArea;
+
+    //[SerializeField]
+    public ItemBase item;
+
+    GameObject interactOptions;
+
+    [SerializeField]
+    InteractOptionsBools interactOptionsBools;
 
     private void Start()
     {
@@ -22,11 +30,21 @@ public abstract class InteractableItem : MonoBehaviour
             interactableArea.GetComponent<BoxCollider>().size = GetComponent<BoxCollider>().size + new Vector3(.3f, .3f, .3f);
             Debug.LogWarning($"Object \"{name}\" does not have a set interact area. Generated one based on presets");
         }
+        interactOptions = GameObject.FindGameObjectWithTag("InteractOptions");
     }
 
-    private void OnMouseOver()
+
+    private void OnMouseEnter()
     {
-        if (Input.GetMouseButtonDown(1)) UnitController.itemInteractedWith = this;
+        if (UIElementConsumeMouseOver.mouseOverIsAvailable)
+        {
+            interactOptions.GetComponent<InteractOptions>().SetUp(interactOptionsBools, this, item);
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        interactOptions.GetComponent<InteractOptions>().queueClose = true;
     }
 
     public BoxCollider GetInteractableAreaCollider()
@@ -38,5 +56,5 @@ public abstract class InteractableItem : MonoBehaviour
         }
         return interactableArea.GetComponent<BoxCollider>();
     }
-    public abstract void InteractWith();
+    //public abstract void InteractWith();
 }

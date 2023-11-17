@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class InteractableCraftingMachine : InteractableItem
 {
-    GameObject craftingWindow;
-    [SerializeField]
-    CraftingMachine machine;
+    /*GameObject craftingWindow;
+    //[SerializeField]
+    //CraftingMachine machine;
 
     private void Awake()
     {
@@ -23,8 +23,7 @@ public class InteractableCraftingMachine : InteractableItem
         if (craftingWindow.active)
         {
             print("Window opened");
-            craftingWindow.GetComponent<CraftingWindow>().InitCraftingWindow(machine);
-        }
-        
-    }
+            craftingWindow.GetComponent<CraftingWindow>().InitCraftingWindow(item as CraftingMachine);
+        } 
+    }*/
 }

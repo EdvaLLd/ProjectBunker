@@ -10,18 +10,69 @@ public class Character : MonoBehaviour
     Vector3 posMovingTo = Vector3.zero;
     bool move = false;
 
+    public ItemBase item = null;
+    public CharacterTasks task = CharacterTasks.none;
+    public InteractableItem itemInteractedWith = null;
+
+    public delegate void OnTaskCompletion(Character characterWhoFinishedTask);
+    public static event OnTaskCompletion onTaskCompletion;
+
+
+    //karaktärens stats
+    public float hunger = 100;
+    public float health = 100;
+    bool isAlive = true;
+
+
+
+    float maxHunger;
+    float maxHealth;
+
+    private void Start()
+    {
+        maxHunger = hunger;
+        maxHealth = health;
+
+        hunger = 25;
+    }
+
     private void Update()
     {
-        Move();
+        if (isAlive)
+        {
+            Move();
+            HungerDecay();
+        }
+
+        //print($"{hunger} | {health}");
+    }
+
+    void HungerDecay()
+    {
+        float hungerConsumedModifier = .3f;
+        if(health != maxHealth && hunger > 80)
+        {
+            health += 5 * Time.deltaTime;
+            hungerConsumedModifier += 2;
+        }
+        hunger -= hungerConsumedModifier * Time.deltaTime;
+        if (hunger < 20)
+        {
+            health -= (20 - hunger) * Time.deltaTime;
+            if(health < 0)
+            {
+                isAlive = false;
+                TextLog.AddLog("Unit died!");
+            }
+        }
+
+        health = Mathf.Clamp(health, 0, maxHealth);
+        hunger = Mathf.Clamp(hunger, 0, maxHunger);
     }
 
     public void InteractedWithItem(InteractableItem item)
     {
-        if (Vector3.Distance(transform.position, item.GetInteractableAreaCollider().ClosestPoint(transform.position)) < 0.1f)
-        {
-            item.InteractWith();
-        }
-
+        itemInteractedWith = item;
         itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
 
         path = Pathfinding.FindPath(transform.position, item.transform.position);
@@ -36,7 +87,7 @@ public class Character : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isAlive)
         {
             UnitController.SwapSelectedCharacter(this);
         }
@@ -76,13 +127,30 @@ public class Character : MonoBehaviour
                 {
                     GetNextPosOnPath();
                 }
-                else move = false;
+                else
+                {
+                    move = false;
+                    onTaskCompletion?.Invoke(this);
+                }
             }
             else
             {
                 Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed * Time.deltaTime);
                 transform.position = newPos;
             }
+        }
+    }
+
+    public void ConsumeFood(Food food)
+    {
+        if(maxHunger != hunger)
+        {
+            Inventory.RemoveItem(food);
+            hunger = Mathf.Clamp(hunger + food.GetHungerRestoration(), 0, maxHunger);
+        }
+        else
+        {
+            print("me no hungry");
         }
     }
 }
