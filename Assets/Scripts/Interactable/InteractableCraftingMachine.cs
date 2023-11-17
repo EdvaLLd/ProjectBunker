@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class InteractableCraftingMachine : InteractableItem
 {
-    [SerializeField]
-    GameObject craftingWindow;
-    [SerializeField]
-    CraftingMachine machine;
+    /*GameObject craftingWindow;
+    //[SerializeField]
+    //CraftingMachine machine;
+
+    private void Awake()
+    {
+        craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow");
+    }
+    private void Start()
+    {
+        craftingWindow.SetActive(false);
+    }
 
     public override void InteractWith()
     {
@@ -15,8 +23,7 @@ public class InteractableCraftingMachine : InteractableItem
         if (craftingWindow.active)
         {
             print("Window opened");
-            craftingWindow.GetComponent<CraftingWindow>().InitCraftingWindow(machine);
-        }
-        
-    }
+            craftingWindow.GetComponent<CraftingWindow>().InitCraftingWindow(item as CraftingMachine);
+        } 
+    }*/
 }

@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 205721914}
   m_Layer: 5
   m_Name: CraftBG
-  m_TagString: Untagged
+  m_TagString: CraftingWindow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2494,7 +2494,7 @@ GameObject:
   - component: {fileID: 555899983}
   m_Layer: 5
   m_Name: Content
-  m_TagString: Untagged
+  m_TagString: InventoryContentHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4195,7 +4195,7 @@ GameObject:
   - component: {fileID: 1023376695}
   m_Layer: 5
   m_Name: InventoryBG
-  m_TagString: Untagged
+  m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4939,7 +4939,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d340c3dcbff896c469a8f3125fc819b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craftingWindow: {fileID: 205721912}
   machine: {fileID: 11400000, guid: 7e10bd6593929e74bad657a68a0943d8, type: 2}
 --- !u!1 &1205391203
 GameObject:
@@ -8767,7 +8766,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlot: {fileID: 5257418689303467112, guid: 3ac425931aba22341b4e72c267a428ab, type: 3}
-  inventoryBG: {fileID: 1023376694}
   sortingTypeEnabled: 0
 --- !u!1001 &2123913698
 PrefabInstance:

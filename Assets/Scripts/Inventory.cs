@@ -6,14 +6,22 @@ public static class Inventory
 {
     public static Dictionary<Item, int> inventory {get; } = new Dictionary<Item, int>(); //Item|num
 
-    public static void AddItem(Item item)
+    public delegate void OnInventoryUpdate();
+    public static event OnInventoryUpdate onInventoryUpdate;
+
+    /*public static void AddItem(Item item)
     {
         inventory.Add(item, 1);
-    }
 
-    public static void AddItem(Item item, int amount)
+        onInventoryUpdate?.Invoke();
+    }*/
+
+    public static void AddItem(Item item, int amount = 1)
     {
-        inventory.Add(item, amount);
+        TextLog.AddLog($"Obtained {amount} {item.DisplayName}!", Color.green);
+        if(inventory.ContainsKey(item)) inventory[item] += amount;
+        else inventory.Add(item, amount);
+        onInventoryUpdate?.Invoke();
     }
 
     public static void AddItem(string ID)
@@ -44,8 +52,10 @@ public static class Inventory
     {
         if (inventory.ContainsKey(item) && inventory[item] >= amount)
         {
+            TextLog.AddLog($"Removed {amount} {item.DisplayName} from inventory!", Color.red);
             inventory[item] -= amount;
             if (inventory[item] == 0) inventory.Remove(item);
+            onInventoryUpdate?.Invoke();
             return true;
         }
         return false;

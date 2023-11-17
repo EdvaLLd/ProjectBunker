@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Just nu är det nog bäst att ha en sån här punkt i varje dörröppning/ändring i y-led
 public class Pathpoint : MonoBehaviour
 {
     public bool isLocked;
