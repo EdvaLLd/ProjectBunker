@@ -37,11 +37,12 @@ public class UIManager : MonoBehaviour
         Inventory.AddItem(Database.GetItemWithID("01002"), 1);
     }
 
+    //Emma
     public void ActivateWindow(GameObject windowToOpen)
     {
         windowToOpen.SetActive(!windowToOpen.active);
     }
-
+    //
     public void CloseWindow(GameObject windowToOpen)
     {
         UIElementConsumeMouseOver.mouseOverIsAvailable = true;
