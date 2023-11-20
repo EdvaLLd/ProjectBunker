@@ -1395,7 +1395,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 687474483}
   m_HandleRect: {fileID: 687474482}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5355,28 +5355,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
---- !u!1 &1040527822 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7780648542340397821, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-  m_PrefabInstance: {fileID: 1971334737}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1040527830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040527822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49242c0520e2c044fad394b4fea55b5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 0}
-  task: 0
-  itemInteractedWith: {fileID: 0}
-  hunger: 100
-  health: 100
 --- !u!1 &1058098498
 GameObject:
   m_ObjectHideFlags: 0
@@ -5900,8 +5878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficulty: 0
   DayNightValue: 0
-  cycleRate: 50
-  index: 0
+  cycleRate: 0.1
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0
@@ -7580,7 +7557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Loot
+  m_text: Explore
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10976,14 +10953,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7780648542340397816, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: movementSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7780648542340397816, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: selectionStateMaterials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 48cc280ffe785b54588b10c0e033b24a, type: 2}
     - target: {fileID: 7780648542340397819, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -11036,8 +11005,7 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7780648542340397816, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061c2097df6214b489e327f16caca47a, type: 3}
 --- !u!1 &2014031546
 GameObject:

@@ -17,13 +17,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private difficulties difficulty;
 
-    [SerializeField]
+    [SerializeField, Header("Day/Night cycle")]
     private float DayNightValue = 0; //0.0f - 360.0f
     [SerializeField]
     private float cycleRate = 0.1f;
 
-    [SerializeField]
-    private int index;
+    /*[SerializeField]
+    private int index;*/
 
     private GameObject skylight;
 
@@ -78,20 +78,26 @@ public class GameManager : MonoBehaviour
 
     private void SetLocationList()
     {
-        Location.environments[] locationArray = (Location.environments[])System.Enum.GetValues(typeof(Location.environments));
-
-        for (int arrayIndex = 0; arrayIndex < explorableLocations.Length; arrayIndex++) 
+        if (System.Enum.GetNames(typeof(Location.environments)).Length > 1)
         {
-            explorableLocations[arrayIndex] = new Location();
+            Location.environments[] locationArray = (Location.environments[])System.Enum.GetValues(typeof(Location.environments));
 
-            explorableLocations[arrayIndex].environment = locationArray[arrayIndex];
-            explorableLocations[arrayIndex].distanceToHome = explorableLocations[arrayIndex].RandomDistance();
-            explorableLocations[arrayIndex].locationName += " No_" + arrayIndex;
-
-            if (explorableLocations[arrayIndex].environment == Location.environments.Home) 
+            for (int arrayIndex = 1; arrayIndex < explorableLocations.Length; arrayIndex++)
             {
-                explorableLocations[arrayIndex].distanceToHome = 0;
+                explorableLocations[arrayIndex] = new Location();
+
+                explorableLocations[arrayIndex].environment = locationArray[arrayIndex];
+                explorableLocations[arrayIndex].distanceToHome = explorableLocations[arrayIndex].RandomDistance();
+                explorableLocations[arrayIndex].locationName += " No_" + arrayIndex;
+
+                //print(locationArray[arrayIndex]);
+
+                /*if (explorableLocations[arrayIndex].environment == Location.environments.Home) 
+                {
+                    explorableLocations[arrayIndex].distanceToHome = 0;
+                }*/
             }
         }
+        else print("You have either no or no locations beyond Home defined in the Location.environment enum in Exploration.cs");
     }
 }

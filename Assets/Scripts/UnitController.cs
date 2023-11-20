@@ -127,10 +127,10 @@ public class UnitController : MonoBehaviour
                 chest.CheckContent();
                 break;
             case CharacterTasks.exploring:
-                TextLog.AddLog(selectedCharacter.name + " went exploring.");
                 selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
-
+                UnitController.SwapSelectedCharacter(null);
                 break;
+            
             default:
                 break;
         }

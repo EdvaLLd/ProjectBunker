@@ -45,28 +45,35 @@ public class Exploration : MonoBehaviour
         string lootMessage = gameObject.name + " brought some " + "loot" + " with them.";
         string noLootMessage = gameObject.name + " didn't find anything useful.";
 
+
         //Item lootedItems = null;
 
         float timeToWait = distance / timeDivisor;
         currentEnvironment = exploreLocation;
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
 
-        print(startMessage);
+        /*print*/
+        TextLog.AddLog(startMessage);
         
         yield return new WaitForSeconds(timeToWait);
 
         currentEnvironment = Location.environments.Home;
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
 
-        print(endMessage);
+        /*print*/
+        TextLog.AddLog(endMessage);
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
 
         if (Random.Range(0, 100) <= noLootProbability)
         {
-            print(noLootMessage);
+            /*print*/
+            TextLog.AddLog(noLootMessage);
         }
         else /*if(Random.Range(0, 100) > noLootProbability)*/
         {
-            print(lootMessage);
+            /*print*/
+            TextLog.AddLog(lootMessage);
             Inventory.AddItem(Database.GetItemWithID("04001"));
         }
     }
@@ -78,12 +85,8 @@ public class Exploration : MonoBehaviour
 
     public void Explore()
     {
-        //UnitController controller = FindObjectOfType<UnitController>();
-        //if (Input.GetKeyDown("space") && gameObject == controller.GetSelectedCharacter())
-        //{ 
+
         StartCoroutine(ExploringProcess());
-        //}
-        
     }
 }
 
@@ -93,7 +96,7 @@ public class Location : MonoBehaviour
     private float maxDistance = 1500;
     [SerializeField]
     private float minDistance = 500;
-    public enum environments { Lake, Home, City, Factory, Forest };
+    public enum environments { Home, Lake, City, Factory, Forest };
     //[SerializeField]
     public environments environment;
 

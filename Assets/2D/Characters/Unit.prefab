@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7780648542340397830}
   - component: {fileID: 7780648542340397817}
   - component: {fileID: 7780648542340397831}
-  - component: {fileID: 7780648542340397816}
   - component: {fileID: 3623519208388952255}
+  - component: {fileID: 2870633525360846124}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -49,7 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0942d0bc5f8da424cb1b244561ce67a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPos: {x: 0, y: 0, z: 0}
 --- !u!33 &7780648542340397830
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -126,24 +125,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7780648542340397816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7780648542340397821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3003013da63155f43b393474745b6d1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseIsHovering: 0
-  isSelected: 0
-  selectionStateMaterials:
-  - {fileID: 2100000, guid: c2038cae78fa05c459f3874ce14191e3, type: 2}
-  - {fileID: 2100000, guid: 7572e84f421c5014e9b1b52fb67968c4, type: 2}
-  movementSpeed: 0.5
 --- !u!114 &3623519208388952255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,5 +138,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDivisor: 100
-  currentEnviornment: 1
+  currentEnvironment: 1
   noLootProbability: 33
+--- !u!114 &2870633525360846124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7780648542340397821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49242c0520e2c044fad394b4fea55b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  task: 0
+  itemInteractedWith: {fileID: 0}
+  hunger: 100
+  health: 100
