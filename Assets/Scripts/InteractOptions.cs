@@ -64,7 +64,7 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if(bools.crafting) craftingGO.SetActive(true);
         if(bools.inspect) inspectGO.SetActive(true);
         if(bools.loot) lootGO.SetActive(true);
-        if (bools.explore) exploreGO.SetActive(true);
+        if(bools.explore) exploreGO.SetActive(true);
 
         MoveWindowsToObject(go);
     }

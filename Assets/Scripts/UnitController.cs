@@ -128,6 +128,8 @@ public class UnitController : MonoBehaviour
                 break;
             case CharacterTasks.exploring:
                 TextLog.AddLog(selectedCharacter.name + " went exploring.");
+                selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
+
                 break;
             default:
                 break;
