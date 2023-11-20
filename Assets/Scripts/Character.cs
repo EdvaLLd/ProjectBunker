@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Character : MonoBehaviour
 {
@@ -81,6 +82,10 @@ public class Character : MonoBehaviour
         }
 
         move = true;
+
+        //Detta bör tas bort senare-----------------
+        Debug.Log("Sätter moving till true");
+        GetComponentInChildren<CharacterAnimation>().StartMoving();
     }
 
     void OnMouseOver()
@@ -118,21 +123,33 @@ public class Character : MonoBehaviour
 
         if (move) //teoretiskt sätt förlorar man range på framen man kommer fram till en point, men spelar nog ingen roll
         {
+            
+
             if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed * Time.deltaTime)
             {
                 transform.position = posMovingTo;
                 if (path.Count > 0)
                 {
                     GetNextPosOnPath();
+
+                    //Detta bör tas bort senare
+                    //GetComponentInChildren<CharacterAnimation>().Flip();
                 }
                 else
                 {
                     move = false;
                     onTaskCompletion?.Invoke(this);
+
+                    //Detta bör tas bort senare
+                    Debug.Log("Stänger av move");
+                    GetComponentInChildren<CharacterAnimation>().StopMoving();
                 }
             }
             else
             {
+                //Detta bör tas bort senare
+                GetComponentInChildren<CharacterAnimation>().Flip();
+
                 Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed * Time.deltaTime);
                 transform.position = newPos;
             }
@@ -151,5 +168,10 @@ public class Character : MonoBehaviour
         {
             print("me no hungry");
         }
+    }
+
+    public float GetCharacterDirectionX()
+    {
+        return transform.position.x - posMovingTo.x;
     }
 }
