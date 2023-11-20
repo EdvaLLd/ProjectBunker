@@ -67,12 +67,23 @@ public class Exploration : MonoBehaviour
         else /*if(Random.Range(0, 100) > noLootProbability)*/
         {
             print(lootMessage);
+            Inventory.AddItem(Database.GetItemWithID("04001"));
         }
     }
 
     public Location.environments GetCurrentEnvironment() 
     {
         return currentEnvironment;
+    }
+
+    public void Explore()
+    {
+        //UnitController controller = FindObjectOfType<UnitController>();
+        //if (Input.GetKeyDown("space") && gameObject == controller.GetSelectedCharacter())
+        //{ 
+        StartCoroutine(ExploringProcess());
+        //}
+        
     }
 }
 

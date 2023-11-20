@@ -12,7 +12,7 @@ public class SelectionVisibilityModifier
 
 public enum CharacterTasks
 {
-    none, crafting, inspecting, looting
+    none, crafting, inspecting, looting, exploring
 }
 
 public class UnitController : MonoBehaviour
@@ -58,6 +58,13 @@ public class UnitController : MonoBehaviour
         {
             UpdateCharacterStatsUI();
         }
+        //selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
+
+        /*if (Input.GetKeyDown("space") && selectedCharacter != null)
+        {
+            //StartCoroutine(ExploringProcess());
+            selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
+        }*/
     }
 
     [SerializeField]
@@ -119,6 +126,9 @@ public class UnitController : MonoBehaviour
                 }
                 chest.CheckContent();
                 break;
+            case CharacterTasks.exploring:
+                TextLog.AddLog(selectedCharacter.name + " went exploring.");
+                break;
             default:
                 break;
         }
@@ -166,5 +176,10 @@ public class UnitController : MonoBehaviour
         {
             character.GetComponent<MeshRenderer>().material = unSelectedModifier.material;
         }
+    }
+
+    public Character GetSelectedCharacter() 
+    {
+        return selectedCharacter;
     }
 }
