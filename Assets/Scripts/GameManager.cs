@@ -22,13 +22,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float cycleRate = 0.1f;
 
-    /*[SerializeField]
-    private int index;*/
-
     private GameObject skylight;
 
     private Location[] explorableLocations = new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
 
+    [SerializeField, Header("Location")]
+    private  List<Item> locationLoot;
    
     private void Awake()
     {

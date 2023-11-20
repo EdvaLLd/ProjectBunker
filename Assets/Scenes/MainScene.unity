@@ -5879,6 +5879,7 @@ MonoBehaviour:
   difficulty: 0
   DayNightValue: 0
   cycleRate: 0.1
+  locationLoot: []
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0

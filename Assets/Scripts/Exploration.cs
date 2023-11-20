@@ -97,7 +97,6 @@ public class Location : MonoBehaviour
     [SerializeField]
     private float minDistance = 500;
     public enum environments { Home, Lake, City, Factory, Forest };
-    //[SerializeField]
     public environments environment;
 
     //[SerializeField]
@@ -109,15 +108,4 @@ public class Location : MonoBehaviour
     {
         return Random.Range(minDistance, maxDistance);
     }
-
-    /*public Location SetLocation(environments location, float distance, string name) 
-    {
-        Location returnedLocation = new Location();
-       
-        returnedLocation.environment = location;
-        returnedLocation.distanceToHome = distance;
-        returnedLocation.locationName = name;
-
-        return returnedLocation;
-    }*/
 }
