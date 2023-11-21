@@ -12,8 +12,8 @@ public class Exploration : MonoBehaviour
     [SerializeField]
     private Location.environments currentEnvironment = Location.environments.Home;
 
-    [SerializeField]
-    private float noLootProbability = 33;
+    /*[SerializeField]
+    private float noLootProbability = 100;*/
 
     // Update is called once per frame
     /*void Update()
@@ -33,12 +33,12 @@ public class Exploration : MonoBehaviour
 
     public IEnumerator ExploringProcess() 
     {
-        GameManager gameManager = FindObjectOfType<GameManager>();
-        int randomIndex = Random.Range(0, gameManager.GetExplorableLocations().Length);
+       // GameManager gameManager = FindObjectOfType<GameManager>();
+        int randomIndex = Random.Range(0, GameManager.GetExplorableLocations().Length);
        
-        Location.environments exploreLocation = gameManager.GetExplorableLocations()[randomIndex].environment;
-        float distance = gameManager.GetExplorableLocations()[randomIndex].distanceToHome;
-        string locationName = gameManager.GetExplorableLocations()[randomIndex].locationName;
+        Location.environments exploreLocation = GameManager.GetExplorableLocations()[randomIndex].environment;
+        float distance = GameManager.GetExplorableLocations()[randomIndex].distanceToHome;
+        string locationName = GameManager.GetExplorableLocations()[randomIndex].locationName;
 
         string startMessage = gameObject.name + " went to explore " + locationName + " near the " + exploreLocation + ".";
         string endMessage = gameObject.name + " returned from their trip to " + locationName + " near the " + exploreLocation + ".";
@@ -65,7 +65,7 @@ public class Exploration : MonoBehaviour
 
         yield return new WaitForSeconds(5);
 
-        if (Random.Range(0, 100) <= noLootProbability)
+        if (Random.Range(0, 100) <= )
         {
             /*print*/
             TextLog.AddLog(noLootMessage);
@@ -88,9 +88,15 @@ public class Exploration : MonoBehaviour
 
         StartCoroutine(ExploringProcess());
     }
+
+    private Location GetRandomExplorableLocation() 
+    {
+        return GameManager.GetExplorableLocations()[Random.Range(0, GameManager.GetExplorableLocations().Length)];
+    }
 }
 
-public class Location : MonoBehaviour 
+[System.Serializable]
+public class Location : MonoBehaviour
 {
     [SerializeField]
     private float maxDistance = 1500;
@@ -99,7 +105,9 @@ public class Location : MonoBehaviour
     public enum environments { Home, Lake, City, Factory, Forest };
     public environments environment;
 
-    //[SerializeField]
+    public List<Item> locationLoot;
+
+    public float[] lootProbabilites = new float[];
     public float distanceToHome;
 
     public string locationName = "Unknown Location";

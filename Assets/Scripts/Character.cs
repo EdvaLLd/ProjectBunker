@@ -19,14 +19,21 @@ public class Character : MonoBehaviour
 
 
     //karaktärens stats
+    [Header("Character stats")]
     public float hunger = 100;
     public float health = 100;
     bool isAlive = true;
 
+    [SerializeField]
+    private float hungerConsumedModifier = .3f;
+    [SerializeField]
+    private float notHungryTime = 4;
 
+    private bool isHungry = true;
 
     float maxHunger;
     float maxHealth;
+
 
     private void Start()
     {
@@ -47,7 +54,6 @@ public class Character : MonoBehaviour
 
     void HungerDecay()
     {
-        float hungerConsumedModifier = .3f;
         if(health != maxHealth && hunger > 80)
         {
             health += 5 * Time.deltaTime;
@@ -141,15 +147,32 @@ public class Character : MonoBehaviour
 
     public void ConsumeFood(Food food)
     {
-        TextLog.AddLog($"{food.DisplayName} eaten!");
-        if(maxHunger != hunger)
+        if(hunger != maxHunger)
         {
+            TextLog.AddLog($"{food.DisplayName} eaten!");
             Inventory.RemoveItem(food);
             hunger = Mathf.Clamp(hunger + food.GetHungerRestoration(), 0, maxHunger);
         }
-        else
+        if(hunger >= maxHunger)
         {
-            print("me no hungry");
+            if (isHungry) 
+            {
+                StartCoroutine(NotHungryEffect());
+            }
+            
+            TextLog.AddLog(FindObjectOfType<UnitController>().GetSelectedCharacter().name + "is not hungry.");
         }
+    }
+
+    private IEnumerator NotHungryEffect() 
+    {
+        isHungry = false;
+        float hungerConsumedModifierDefault = hungerConsumedModifier;
+        hungerConsumedModifier = 0;
+
+        yield return new WaitForSeconds(notHungryTime);
+
+        hungerConsumedModifier = hungerConsumedModifierDefault;
+        isHungry = true;
     }
 }

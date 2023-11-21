@@ -23,24 +23,31 @@ public class GameManager : MonoBehaviour
     private float cycleRate = 0.1f;
 
     private GameObject skylight;
+    
+    //[SerializeField, Header("Location")]
+    private static Location[] explorableLocations = new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
+    
+    [/*SerializeField, */Header("Location"), ArrayElementTitle("money")]
+    public LootItems[] locationalLoot = new LootItems[System.Enum.GetNames(typeof(Location.environments)).Length-1];
 
-    private Location[] explorableLocations = new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
+    //private float[] lootProbabilites = new float[System.Enum.GetNames(typeof(Location.environments)).Length-1];
 
-    [SerializeField, Header("Location")]
-    private  List<Item> locationLoot;
+    [/*SerializeField,*/ Tooltip("The higher the index in LootItems list, the lower is the probability for it appearing. This value is the probability at index 0.")]
+    public float noLootProbabilityDefault = .75f;
+
    
     private void Awake()
     {
         instance = this;
         
         skylight = GameObject.Find("Directional Light");
-        SetLocationList();
+        SetExplorableLocations();
     }
 
-    private void Start()
+    /*private void Start()
     {
         //SetLocationList();
-    }
+    }*/
 
     private void Update()
     {
@@ -75,28 +82,47 @@ public class GameManager : MonoBehaviour
         return explorableLocations;
     }
 
-    private void SetLocationList()
+    private Location[] SetExplorableLocations()
     {
+        Location[] replaceArray =  new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
         if (System.Enum.GetNames(typeof(Location.environments)).Length > 1)
         {
+            /*Location[] */replaceArray = new Location[System.Enum.GetNames(typeof(Location.environments)).Length - 1];
+
+
             Location.environments[] locationArray = (Location.environments[])System.Enum.GetValues(typeof(Location.environments));
 
-            for (int arrayIndex = 1; arrayIndex < explorableLocations.Length; arrayIndex++)
+            for (int arrayIndex = 0; arrayIndex < replaceArray.Length; arrayIndex++)
             {
-                explorableLocations[arrayIndex] = new Location();
+                replaceArray[arrayIndex] = new Location();
+                replaceArray[arrayIndex].environment = locationArray[arrayIndex+1];
 
-                explorableLocations[arrayIndex].environment = locationArray[arrayIndex];
-                explorableLocations[arrayIndex].distanceToHome = explorableLocations[arrayIndex].RandomDistance();
-                explorableLocations[arrayIndex].locationName += " No_" + arrayIndex;
+                replaceArray[arrayIndex].distanceToHome = replaceArray[arrayIndex].RandomDistance();
+                replaceArray[arrayIndex].locationName += " No_" + arrayIndex;
+                replaceArray[arrayIndex].locationLoot = locationalLoot[arrayIndex].lootItems;
+                
+                for (int probabilityIndex = 0; probabilityIndex < locationalLoot.Length; probabilityIndex++) 
+                { 
+                     replaceArray[arrayIndex].lootProbabilites[probabilityIndex] = noLootProbabilityDefault / (probabilityIndex+1) * 100/*Mathf.Pow(noLootProbabilityMultiplyer, probabilityIndex + 1)*/;
+                }
 
-                //print(locationArray[arrayIndex]);
-
-                /*if (explorableLocations[arrayIndex].environment == Location.environments.Home) 
-                {
-                    explorableLocations[arrayIndex].distanceToHome = 0;
-                }*/
+                //print(replaceArray[arrayIndex].environment);
             }
+
+            
         }
-        else print("You have either no or no locations beyond Home defined in the Location.environment enum in Exploration.cs");
+        return explorableLocations = replaceArray;
     }
+}
+
+/*[System.Serializable]
+public class ItemList 
+{
+    public List<Item> itemsList;
+}*/
+
+[System.Serializable]
+public class LootItems
+{
+    public List<Item> lootItems;
 }

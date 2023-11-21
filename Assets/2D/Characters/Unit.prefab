@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDivisor: 100
-  currentEnvironment: 1
+  currentEnvironment: 0
   noLootProbability: 33
 --- !u!114 &2870633525360846124
 MonoBehaviour:
@@ -157,3 +157,5 @@ MonoBehaviour:
   itemInteractedWith: {fileID: 0}
   hunger: 100
   health: 100
+  hungerConsumedModifier: 0.3
+  notHungryTime: 4
