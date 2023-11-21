@@ -32,9 +32,8 @@ public class GameManager : MonoBehaviour
 
     //private float[] lootProbabilites = new float[System.Enum.GetNames(typeof(Location.environments)).Length-1];
 
-    [/*SerializeField,*/ Tooltip("The higher the index in LootItems list, the lower is the probability for it appearing. This value is the probability at index 0.")]
-    public float noLootProbabilityDefault = .75f;
-
+    [SerializeField, Tooltip("The higher the index in LootItems list, the lower is the probability for it appearing. This value is the probability at index 0.")]
+    private float noLootProbabilityDefault = .75f;
    
     private void Awake()
     {
@@ -77,7 +76,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public Location[] GetExplorableLocations() 
+    public static Location[] GetExplorableLocations() 
     {
         return explorableLocations;
     }
@@ -102,8 +101,9 @@ public class GameManager : MonoBehaviour
                 replaceArray[arrayIndex].locationLoot = locationalLoot[arrayIndex].lootItems;
                 
                 for (int probabilityIndex = 0; probabilityIndex < locationalLoot.Length; probabilityIndex++) 
-                { 
-                     replaceArray[arrayIndex].lootProbabilites[probabilityIndex] = noLootProbabilityDefault / (probabilityIndex+1) * 100/*Mathf.Pow(noLootProbabilityMultiplyer, probabilityIndex + 1)*/;
+                {
+                    //replaceArray[arrayIndex].lootProbabilites[probabilityIndex] = new float[locationalLoot[probabilityIndex].lootItems.Count];
+                     replaceArray[arrayIndex].noLootProbabilities[probabilityIndex] = noLootProbabilityDefault / (probabilityIndex+1) * 100/*Mathf.Pow(noLootProbabilityMultiplyer, probabilityIndex + 1)*/;
                 }
 
                 //print(replaceArray[arrayIndex].environment);

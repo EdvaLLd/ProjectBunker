@@ -65,7 +65,11 @@ public class Exploration : MonoBehaviour
 
         yield return new WaitForSeconds(5);
 
-        if (Random.Range(0, 100) <= )
+        //float randomLocationIndex = Random.Range(0, GameManager.GetExplorableLocations().Length);
+        Location randomLocation = GetRandomExplorableLocation();
+        int randomItemIndex = GetRandomLocationItemIndex(randomLocation);
+
+        if (Random.Range(0, 100) <= randomLocation.noLootProbabilities[randomItemIndex])
         {
             /*print*/
             TextLog.AddLog(noLootMessage);
@@ -74,7 +78,7 @@ public class Exploration : MonoBehaviour
         {
             /*print*/
             TextLog.AddLog(lootMessage);
-            Inventory.AddItem(Database.GetItemWithID("04001"));
+            Inventory.AddItem(randomLocation.locationLoot[randomItemIndex], Random.Range(1,4));
         }
     }
 
@@ -93,6 +97,11 @@ public class Exploration : MonoBehaviour
     {
         return GameManager.GetExplorableLocations()[Random.Range(0, GameManager.GetExplorableLocations().Length)];
     }
+
+    private int GetRandomLocationItemIndex(Location location)
+    {
+        return (int)location.noLootProbabilities[Random.Range(0,location.locationLoot.Count)];
+    }
 }
 
 [System.Serializable]
@@ -107,7 +116,7 @@ public class Location : MonoBehaviour
 
     public List<Item> locationLoot;
 
-    public float[] lootProbabilites = new float[];
+    public float[] noLootProbabilities;
     public float distanceToHome;
 
     public string locationName = "Unknown Location";

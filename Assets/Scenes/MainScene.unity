@@ -5879,7 +5879,12 @@ MonoBehaviour:
   difficulty: 0
   DayNightValue: 0
   cycleRate: 0.1
-  locationLoot: []
+  locationalLoot:
+  - lootItems: []
+  - lootItems: []
+  - lootItems: []
+  - lootItems: []
+  noLootProbabilityDefault: 0.75
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0
@@ -10954,10 +10959,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2870633525360846124, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: notHungryTime
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 7780648542340397819, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_RootOrder
       value: 3
