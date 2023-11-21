@@ -20,7 +20,7 @@ public class Character : MonoBehaviour
     public static event OnTaskCompletion onTaskCompletion;
 
 
-    //karaktärens stats
+    //karaktï¿½rens stats
     public float hunger = 100;
     public float health = 100;
     bool isAlive = true;
@@ -29,10 +29,14 @@ public class Character : MonoBehaviour
     float maxHunger;
     float maxHealth;
 
+    private CharacterAnimation characterAnim;
+
     private void Start()
     {
         maxHunger = hunger;
         maxHealth = health;
+
+        characterAnim = GetComponentInChildren<CharacterAnimation>();
     }
 
     private void Update()
@@ -83,9 +87,10 @@ public class Character : MonoBehaviour
 
         move = true;
 
-        //Detta bör tas bort senare-----------------
-        Debug.Log("Sätter moving till true");
-        GetComponentInChildren<CharacterAnimation>().StartMoving();
+        //Detta bï¿½r tas bort senare-----------------
+        if(characterAnim != null){
+            characterAnim.StartMoving();
+        }     
     }
 
     void OnMouseOver()
@@ -103,8 +108,8 @@ public class Character : MonoBehaviour
             if (path.Count == 1)
             {
                 posMovingTo = itemInteractedWithBoxCollider.ClosestPoint(transform.position);
-                posMovingTo.y = itemInteractedWithBoxCollider.transform.position.y; //det här borde antagligen göras om
-                //till att gå på marken
+                posMovingTo.y = itemInteractedWithBoxCollider.transform.position.y; //det hï¿½r borde antagligen gï¿½ras om
+                //till att gï¿½ pï¿½ marken
                 path.RemoveAt(0);
             }
             else
@@ -121,7 +126,7 @@ public class Character : MonoBehaviour
     private void Move()
     {
 
-        if (move) //teoretiskt sätt förlorar man range på framen man kommer fram till en point, men spelar nog ingen roll
+        if (move) //teoretiskt sï¿½tt fï¿½rlorar man range pï¿½ framen man kommer fram till en point, men spelar nog ingen roll
         {
             
 
@@ -131,24 +136,24 @@ public class Character : MonoBehaviour
                 if (path.Count > 0)
                 {
                     GetNextPosOnPath();
-
-                    //Detta bör tas bort senare
-                    //GetComponentInChildren<CharacterAnimation>().Flip();
                 }
                 else
                 {
                     move = false;
                     onTaskCompletion?.Invoke(this);
 
-                    //Detta bör tas bort senare
-                    Debug.Log("Stänger av move");
-                    GetComponentInChildren<CharacterAnimation>().StopMoving();
+                    //Detta bï¿½r tas bort senare
+                    if(characterAnim != null){
+                        characterAnim.StopMoving();
+                    }
                 }
             }
             else
             {
-                //Detta bör tas bort senare
-                GetComponentInChildren<CharacterAnimation>().Flip();
+                //Detta bï¿½r tas bort senare
+                if(characterAnim != null){
+                    characterAnim.Flip();
+                }
 
                 Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed * Time.deltaTime);
                 transform.position = newPos;

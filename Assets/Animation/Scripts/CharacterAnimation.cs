@@ -39,4 +39,5 @@ public class CharacterAnimation : MonoBehaviour
     {
         animator.SetBool("isMoving", false);
     }
+
 }
