@@ -19,6 +19,8 @@ public class IdleVariation : StateMachineBehaviour
         ResetIdle();
         animator.SetFloat("blendIdle", 0);
         currentIdleVar = 0;
+        timeUntilVariation = Random.Range(timeUntilVariation, timeUntilVariation + 5);
+        Debug.Log(timeUntilVariation);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -28,9 +30,11 @@ public class IdleVariation : StateMachineBehaviour
         {
             idleTime += Time.deltaTime;
 
-            if (idleTime > timeUntilVariation && (stateInfo.normalizedTime % 1) < 0.02f)
+            if (idleTime > timeUntilVariation && ((stateInfo.normalizedTime % 1) < 0.02f))
             {
+                Debug.Log("Nu varierar jag mig");
                 timeUntilVariation = Random.Range(minTimeBetweenVariations, maxTimeBetweenVariations);
+                Debug.Log("Ny tid: " + timeUntilVariation);
 
                 readyForVariation = true;
                 currentIdleVar = Random.Range(1, numberOfVariationAnimations + 1);
