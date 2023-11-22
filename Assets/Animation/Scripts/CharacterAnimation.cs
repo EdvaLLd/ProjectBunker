@@ -32,6 +32,7 @@ public class CharacterAnimation : MonoBehaviour
 
     public void StartMoving()
     {
+        animator.SetTrigger("isNeutral");
         animator.SetBool("isMoving", true);
     }
 
@@ -39,5 +40,23 @@ public class CharacterAnimation : MonoBehaviour
     {
         animator.SetBool("isMoving", false);
     }
+
+    //Ansiktsanimationer kommer troligtvis få egna metoder sen, men det här är bara för testning
+    public void StartCrafting()
+    {
+        animator.SetTrigger("isHappy");
+        animator.SetBool("isCrafting", true);
+    }
+
+    public void StopCrafting()
+    {
+        animator.SetTrigger("isNeutral");
+        animator.SetBool("isCrafting", false);
+    }
+
+    //public void Loot()
+    //{
+    //    animator.SetTrigger("loot");
+    //}
 
 }

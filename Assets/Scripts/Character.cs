@@ -87,7 +87,7 @@ public class Character : MonoBehaviour
 
         move = true;
 
-        //Detta b�r tas bort senare-----------------
+        //Animation stuff
         if(characterAnim != null){
             characterAnim.StartMoving();
         }     
@@ -142,15 +142,23 @@ public class Character : MonoBehaviour
                     move = false;
                     onTaskCompletion?.Invoke(this);
 
-                    //Detta b�r tas bort senare
+                    //Animation stuff
                     if(characterAnim != null){
                         characterAnim.StopMoving();
+                        if(task == CharacterTasks.crafting)
+                        {
+                            characterAnim.StartCrafting();
+                        }
+                        else
+                        {
+                            characterAnim.StopCrafting();
+                        }
                     }
                 }
             }
             else
             {
-                //Detta b�r tas bort senare
+                //Animation stuff
                 if(characterAnim != null){
                     characterAnim.Flip();
                 }

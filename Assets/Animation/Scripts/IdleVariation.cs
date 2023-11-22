@@ -10,15 +10,15 @@ public class IdleVariation : StateMachineBehaviour
     [SerializeField] private int numberOfVariationAnimations;
 
     private bool readyForVariation;
-    private bool readyForIdle;
     private float idleTime;
-    private float varTime;
     private int currentIdleVar;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         ResetIdle();
+        animator.SetFloat("blendIdle", 0);
+        currentIdleVar = 0;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
