@@ -181,7 +181,7 @@ PrefabInstance:
     - target: {fileID: 3769279489542058938, guid: b7bbbd3c4e4028b48b5595f3c6730de2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 581db2f59ebeda04f910dd8cba402299, type: 2}
+      objectReference: {fileID: 2100000, guid: f2f3740a1f14884408abea6955c3c53d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7bbbd3c4e4028b48b5595f3c6730de2, type: 3}
 --- !u!4 &3895693 stripped
@@ -247,7 +247,7 @@ PrefabInstance:
     - target: {fileID: -2937657265619014553, guid: 02138b8d68ed63448839c7746b300ac3, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 6e1a6cdb77f347947bd02a208811d19f, type: 2}
+      objectReference: {fileID: 2100000, guid: 96cb7342e647e034798d78d26e42b492, type: 2}
     - target: {fileID: 919132149155446097, guid: 02138b8d68ed63448839c7746b300ac3, type: 3}
       propertyPath: m_Name
       value: bathroomSink
@@ -383,7 +383,7 @@ PrefabInstance:
     - target: {fileID: 1057767606334984907, guid: eabd8239bb330244ab0862bb0e9264f6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e41d12c93dffe094face416a50bcc875, type: 2}
+      objectReference: {fileID: 2100000, guid: 581db2f59ebeda04f910dd8cba402299, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eabd8239bb330244ab0862bb0e9264f6, type: 3}
 --- !u!4 &81347622 stripped
@@ -577,7 +577,7 @@ PrefabInstance:
     - target: {fileID: -6662662513874999027, guid: 35bb03aac42a87741a66f226f1582404, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1ed691fb5ce4f17469edfab6a469f6d7, type: 2}
+      objectReference: {fileID: 2100000, guid: 5827a1084ee06dc44a9b49ac48d67d86, type: 2}
     - target: {fileID: 919132149155446097, guid: 35bb03aac42a87741a66f226f1582404, type: 3}
       propertyPath: m_Name
       value: stove
@@ -681,7 +681,7 @@ PrefabInstance:
     - target: {fileID: -41894280247872159, guid: 633dc1e642442e14bade5e62a3650c29, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 377c2053ebbc6e04eaa2d6df1fd31f12, type: 2}
+      objectReference: {fileID: 2100000, guid: 731e8d47a3325b0409baadd591caac05, type: 2}
     - target: {fileID: 919132149155446097, guid: 633dc1e642442e14bade5e62a3650c29, type: 3}
       propertyPath: m_Name
       value: wallDoor (2)
@@ -747,7 +747,7 @@ PrefabInstance:
     - target: {fileID: -7768226320377729400, guid: 09ef68a4c03f1f74f8cf61c1086c3413, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1ed691fb5ce4f17469edfab6a469f6d7, type: 2}
+      objectReference: {fileID: 2100000, guid: 5827a1084ee06dc44a9b49ac48d67d86, type: 2}
     - target: {fileID: 919132149155446097, guid: 09ef68a4c03f1f74f8cf61c1086c3413, type: 3}
       propertyPath: m_Name
       value: sewingMachine
@@ -849,7 +849,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b01a739bfb76e534095180c55ea2a760, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6d08452c360885e41a51c0aa9409f888, type: 2}
+      objectReference: {fileID: 2100000, guid: aed0293342407414cb1891e006fe2c75, type: 2}
     - target: {fileID: 919132149155446097, guid: b01a739bfb76e534095180c55ea2a760, type: 3}
       propertyPath: m_Name
       value: box (2)
@@ -915,7 +915,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: cc60c665b929c9247b9e47940c945c49, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1ed691fb5ce4f17469edfab6a469f6d7, type: 2}
+      objectReference: {fileID: 2100000, guid: 5827a1084ee06dc44a9b49ac48d67d86, type: 2}
     - target: {fileID: 919132149155446097, guid: cc60c665b929c9247b9e47940c945c49, type: 3}
       propertyPath: m_Name
       value: smelter
@@ -1585,7 +1585,7 @@ PrefabInstance:
     - target: {fileID: -1463751866203824457, guid: 74ab31230a5a62648aa7c2bc1bd82e36, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e41d12c93dffe094face416a50bcc875, type: 2}
+      objectReference: {fileID: 2100000, guid: fd711f721d505d64f9baee601d6fab9f, type: 2}
     - target: {fileID: 919132149155446097, guid: 74ab31230a5a62648aa7c2bc1bd82e36, type: 3}
       propertyPath: m_Name
       value: blanket
@@ -1783,6 +1783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 856211599}
   - component: {fileID: 856211598}
+  - component: {fileID: 856211600}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1867,6 +1868,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &856211600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856211597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1001 &864003152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1921,7 +1942,7 @@ PrefabInstance:
     - target: {fileID: -41894280247872159, guid: 633dc1e642442e14bade5e62a3650c29, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 377c2053ebbc6e04eaa2d6df1fd31f12, type: 2}
+      objectReference: {fileID: 2100000, guid: 731e8d47a3325b0409baadd591caac05, type: 2}
     - target: {fileID: 919132149155446097, guid: 633dc1e642442e14bade5e62a3650c29, type: 3}
       propertyPath: m_Name
       value: wallDoor (1)
@@ -1987,7 +2008,7 @@ PrefabInstance:
     - target: {fileID: -4319498291586762914, guid: 00bc33923d66860459ac5bfacc4f1fb2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 96cb7342e647e034798d78d26e42b492, type: 2}
+      objectReference: {fileID: 2100000, guid: 6e1a6cdb77f347947bd02a208811d19f, type: 2}
     - target: {fileID: 919132149155446097, guid: 00bc33923d66860459ac5bfacc4f1fb2, type: 3}
       propertyPath: m_Name
       value: tvTable
@@ -2155,7 +2176,7 @@ PrefabInstance:
     - target: {fileID: -5762646226046974246, guid: e7bcffed1e2305244b3046c28e5b754e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6e1a6cdb77f347947bd02a208811d19f, type: 2}
+      objectReference: {fileID: 2100000, guid: 96cb7342e647e034798d78d26e42b492, type: 2}
     - target: {fileID: 919132149155446097, guid: e7bcffed1e2305244b3046c28e5b754e, type: 3}
       propertyPath: m_Name
       value: kitchenCupboard (1)
@@ -2365,7 +2386,7 @@ PrefabInstance:
     - target: {fileID: -7939349843964351243, guid: 6b3a5206ea7020f4e99817b1432803ce, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 702b4ab70650cad4b88c04e5a38ed318, type: 2}
+      objectReference: {fileID: 2100000, guid: 76e3d19024e14bb44b7c88e684ba947f, type: 2}
     - target: {fileID: 919132149155446097, guid: 6b3a5206ea7020f4e99817b1432803ce, type: 3}
       propertyPath: m_Name
       value: bathroomWall
@@ -2435,7 +2456,7 @@ PrefabInstance:
     - target: {fileID: 6895779968339718305, guid: 6fc8e4fcc3ec9fa48af05e82684843c6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 377c2053ebbc6e04eaa2d6df1fd31f12, type: 2}
+      objectReference: {fileID: 2100000, guid: 731e8d47a3325b0409baadd591caac05, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fc8e4fcc3ec9fa48af05e82684843c6, type: 3}
 --- !u!4 &1059545487 stripped
@@ -2497,7 +2518,7 @@ PrefabInstance:
     - target: {fileID: 281553180497210988, guid: 6b1e698996632564dba6c742fc9ad991, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 377c2053ebbc6e04eaa2d6df1fd31f12, type: 2}
+      objectReference: {fileID: 2100000, guid: 731e8d47a3325b0409baadd591caac05, type: 2}
     - target: {fileID: 919132149155446097, guid: 6b1e698996632564dba6c742fc9ad991, type: 3}
       propertyPath: m_Name
       value: wallWindow2
@@ -2666,7 +2687,7 @@ PrefabInstance:
     - target: {fileID: 5718452754697264317, guid: 061891ee71c8f7a43a770d8a50a1bd23, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 702b4ab70650cad4b88c04e5a38ed318, type: 2}
+      objectReference: {fileID: 2100000, guid: 76e3d19024e14bb44b7c88e684ba947f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061891ee71c8f7a43a770d8a50a1bd23, type: 3}
 --- !u!4 &1169392806 stripped
@@ -2835,6 +2856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: sheet
       objectReference: {fileID: 0}
+    - target: {fileID: 4005348766783615775, guid: 65dcf9105a9ba9e449909fe0cc25607a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2f3740a1f14884408abea6955c3c53d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65dcf9105a9ba9e449909fe0cc25607a, type: 3}
 --- !u!4 &1278775754 stripped
@@ -3174,7 +3199,7 @@ PrefabInstance:
     - target: {fileID: -5595086368823023456, guid: 51a7b386c52ab3249889e2d6054108e1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 377c2053ebbc6e04eaa2d6df1fd31f12, type: 2}
+      objectReference: {fileID: 2100000, guid: 731e8d47a3325b0409baadd591caac05, type: 2}
     - target: {fileID: 919132149155446097, guid: 51a7b386c52ab3249889e2d6054108e1, type: 3}
       propertyPath: m_Name
       value: wallWindow1
@@ -3376,7 +3401,7 @@ PrefabInstance:
     - target: {fileID: 1521933820752994395, guid: faad9caf87686bc4abbf74e244dae758, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6e1a6cdb77f347947bd02a208811d19f, type: 2}
+      objectReference: {fileID: 2100000, guid: 96cb7342e647e034798d78d26e42b492, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faad9caf87686bc4abbf74e244dae758, type: 3}
 --- !u!4 &1336450478 stripped
@@ -3566,7 +3591,7 @@ PrefabInstance:
     - target: {fileID: -41894280247872159, guid: 633dc1e642442e14bade5e62a3650c29, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 377c2053ebbc6e04eaa2d6df1fd31f12, type: 2}
+      objectReference: {fileID: 2100000, guid: 731e8d47a3325b0409baadd591caac05, type: 2}
     - target: {fileID: 919132149155446097, guid: 633dc1e642442e14bade5e62a3650c29, type: 3}
       propertyPath: m_Name
       value: wallDoor (4)
@@ -3636,7 +3661,7 @@ PrefabInstance:
     - target: {fileID: -2937657265619014553, guid: 02138b8d68ed63448839c7746b300ac3, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 6e1a6cdb77f347947bd02a208811d19f, type: 2}
+      objectReference: {fileID: 2100000, guid: 96cb7342e647e034798d78d26e42b492, type: 2}
     - target: {fileID: 919132149155446097, guid: 02138b8d68ed63448839c7746b300ac3, type: 3}
       propertyPath: m_Name
       value: bathroomSink (1)
@@ -4028,7 +4053,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b01a739bfb76e534095180c55ea2a760, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6d08452c360885e41a51c0aa9409f888, type: 2}
+      objectReference: {fileID: 2100000, guid: 78a1e1a60fcb9994d846e8b4c747fbaa, type: 2}
     - target: {fileID: 919132149155446097, guid: b01a739bfb76e534095180c55ea2a760, type: 3}
       propertyPath: m_Name
       value: box
@@ -4094,7 +4119,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b01a739bfb76e534095180c55ea2a760, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6d08452c360885e41a51c0aa9409f888, type: 2}
+      objectReference: {fileID: 2100000, guid: 73d891ff0a2bce44691ff75d7b544c36, type: 2}
     - target: {fileID: 919132149155446097, guid: b01a739bfb76e534095180c55ea2a760, type: 3}
       propertyPath: m_Name
       value: box (3)
@@ -4160,7 +4185,7 @@ PrefabInstance:
     - target: {fileID: -6625833625214409067, guid: 1549f351ef6de5f40bc48e9f55b93770, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 377c2053ebbc6e04eaa2d6df1fd31f12, type: 2}
+      objectReference: {fileID: 2100000, guid: 731e8d47a3325b0409baadd591caac05, type: 2}
     - target: {fileID: 919132149155446097, guid: 1549f351ef6de5f40bc48e9f55b93770, type: 3}
       propertyPath: m_Name
       value: backWall (3)
@@ -4292,7 +4317,7 @@ PrefabInstance:
     - target: {fileID: -41894280247872159, guid: 633dc1e642442e14bade5e62a3650c29, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 377c2053ebbc6e04eaa2d6df1fd31f12, type: 2}
+      objectReference: {fileID: 2100000, guid: 731e8d47a3325b0409baadd591caac05, type: 2}
     - target: {fileID: 919132149155446097, guid: 633dc1e642442e14bade5e62a3650c29, type: 3}
       propertyPath: m_Name
       value: wallDoor (3)
@@ -4989,7 +5014,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: b01a739bfb76e534095180c55ea2a760, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6d08452c360885e41a51c0aa9409f888, type: 2}
+      objectReference: {fileID: 2100000, guid: 0c0433c94238fd043a61c18ae575ad39, type: 2}
     - target: {fileID: 919132149155446097, guid: b01a739bfb76e534095180c55ea2a760, type: 3}
       propertyPath: m_Name
       value: box (1)
@@ -5059,7 +5084,7 @@ PrefabInstance:
     - target: {fileID: 6794171955029542485, guid: c7a27ec40306bc94ea2747f08ffc5d36, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1ed691fb5ce4f17469edfab6a469f6d7, type: 2}
+      objectReference: {fileID: 2100000, guid: 5827a1084ee06dc44a9b49ac48d67d86, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7a27ec40306bc94ea2747f08ffc5d36, type: 3}
 --- !u!4 &2049260456 stripped
@@ -5121,7 +5146,7 @@ PrefabInstance:
     - target: {fileID: -5762646226046974246, guid: e7bcffed1e2305244b3046c28e5b754e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6e1a6cdb77f347947bd02a208811d19f, type: 2}
+      objectReference: {fileID: 2100000, guid: 96cb7342e647e034798d78d26e42b492, type: 2}
     - target: {fileID: 919132149155446097, guid: e7bcffed1e2305244b3046c28e5b754e, type: 3}
       propertyPath: m_Name
       value: kitchenCupboard (2)
@@ -5187,7 +5212,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2c7294c8b18913a40be98d60f99c3b57, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1ed691fb5ce4f17469edfab6a469f6d7, type: 2}
+      objectReference: {fileID: 2100000, guid: 5827a1084ee06dc44a9b49ac48d67d86, type: 2}
     - target: {fileID: 919132149155446097, guid: 2c7294c8b18913a40be98d60f99c3b57, type: 3}
       propertyPath: m_Name
       value: well
