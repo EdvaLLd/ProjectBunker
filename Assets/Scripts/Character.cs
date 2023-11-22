@@ -25,14 +25,8 @@ public class Character : MonoBehaviour
     bool isAlive = true;
 
 
-    public float maxHunger;
-    public float maxHealth;
-
-    bool createNewPath = false;
-    Vector3 newGoalPos;
-
-    //blir dubbla det här värdet
-    float maxDistToGroundCheck = 10;
+    float maxHunger;
+    float maxHealth;
 
     private void Start()
     {
@@ -47,12 +41,13 @@ public class Character : MonoBehaviour
             Move();
             HungerDecay();
         }
+
+        //print($"{hunger} | {health}");
     }
 
     void HungerDecay()
     {
-
-        float hungerConsumedModifier = 10f;
+        float hungerConsumedModifier = .3f;
         if(health != maxHealth && hunger > 80)
         {
             health += 5 * Time.deltaTime;
@@ -68,6 +63,7 @@ public class Character : MonoBehaviour
                 TextLog.AddLog("Unit died!");
             }
         }
+
         health = Mathf.Clamp(health, 0, maxHealth);
         hunger = Mathf.Clamp(hunger, 0, maxHunger);
     }
@@ -77,36 +73,14 @@ public class Character : MonoBehaviour
         itemInteractedWith = item;
         itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
 
-        if (move)
-        {
-            newGoalPos = item.transform.position;
-            createNewPath = true;
-        }
-        else
-        {
-            path = FindAndAdaptPath(transform.position, item.transform.position);
-            GetNextPosOnPath();
-            move = true;
-        }
-    }
+        path = Pathfinding.FindPath(transform.position, item.transform.position);
 
-    public void MoveToPos(Vector3 pos)
-    {
-        itemInteractedWith = null;
-        itemInteractedWithBoxCollider = null;
-        pos = ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue));
-
-        if (move)
+        if (!move)
         {
-            newGoalPos = pos;
-            createNewPath = true;
-        }
-        else
-        {
-            path = FindAndAdaptPath(transform.position, pos);
             GetNextPosOnPath();
-            move = true;
         }
+
+        move = true;
     }
 
     void OnMouseOver()
@@ -117,86 +91,28 @@ public class Character : MonoBehaviour
         }
     }
 
-    //ser till så alla punkter ligger på marknivå för karaktärens höjd. skulle kanske kunna göras i Pathfinding,
-    //men nu kan karaktärerna ha olika längder om man vill
-    List<Vector3> FindAndAdaptPath(Vector3 startPos, Vector3 goalPos)
-    {
-        List<Vector3> tempPath = Pathfinding.FindPath(startPos, goalPos);
-
-        for (int i = 0; i < tempPath.Count - 1; i++)
-        {
-            tempPath[i] = ConvertPosToBeOnGround(tempPath[i]);
-        }
-        if (WallBetweenPoints(startPos, tempPath[0]))
-        {
-            tempPath.InsertRange(0, FixPathBetweenPoints(startPos, tempPath[0]));
-        }
-        if (tempPath.Count > 1)
-        {
-            if (itemInteractedWithBoxCollider != null)
-            {
-                tempPath[tempPath.Count - 1] = itemInteractedWithBoxCollider.ClosestPoint(tempPath[tempPath.Count - 2]);
-            }
-            if (WallBetweenPoints(tempPath[tempPath.Count - 1], tempPath[tempPath.Count - 2]))
-            {
-                tempPath.InsertRange(tempPath.Count - 1, FixPathBetweenPoints(tempPath[tempPath.Count - 2], tempPath[tempPath.Count - 1]));
-                if (itemInteractedWithBoxCollider != null)
-                {
-                    tempPath[tempPath.Count - 1] = itemInteractedWithBoxCollider.ClosestPoint(tempPath[tempPath.Count - 2]);
-                }
-            }
-        }
-        return tempPath;
-    }
-
-    List<Vector3> FixPathBetweenPoints(Vector3 p1, Vector3 p2)
-    {
-        List<Vector3> result = new List<Vector3>();
-        Vector3 t = p1;
-        t.z = Pathfinding.zMoveValue;
-        t = ConvertPosToBeOnGround(t);
-        result.Add(t);
-
-        t = p2;
-        t.z = Pathfinding.zMoveValue;
-        t = ConvertPosToBeOnGround(t);
-        result.Add(t);
-        return result;
-    }
-
-    bool WallBetweenPoints(Vector3 p1, Vector3 p2)
-    {
-        Vector3 dir = (p2 - p1).normalized;
-        float length = Vector3.Distance(p1, p2);
-        return Physics.Raycast(p1, dir, length, 1 << 6);
-    }
-
-    Vector3 ConvertPosToBeOnGround(Vector3 pos)
-    {
-        RaycastHit hit;
-        if (Physics.BoxCast(pos, new Vector3(.5f, .01f, .5f), Vector3.down, out hit, Quaternion.identity, maxDistToGroundCheck, 1 << 6))
-        {
-            float groundPosY = hit.point.y;
-            float characterHeight = transform.lossyScale.y;
-            pos = new Vector3(pos.x, groundPosY + (characterHeight / 2), pos.z);
-        }
-        return pos;
-    }
-
     Vector3 GetNextPosOnPath()
     {
         if (path.Count > 0)
         {
-            posMovingTo = path[0];
-            path.RemoveAt(0);
+            if (path.Count == 1)
+            {
+                posMovingTo = itemInteractedWithBoxCollider.ClosestPoint(transform.position);
+                posMovingTo.y = itemInteractedWithBoxCollider.transform.position.y; //det här borde antagligen göras om
+                //till att gå på marken
+                path.RemoveAt(0);
+            }
+            else
+            {
+                posMovingTo = path[0];
+                path.RemoveAt(0);
+            }
             return posMovingTo;
         }
         print("Should never be here");
         return transform.position;
     }
 
-    //fortfarande lite konstig movement mellan punkter och fri movement
-    //borde vara så att den inte använder pathpoints om man är på samma våning som dit man ska
     private void Move()
     {
 
@@ -205,25 +121,14 @@ public class Character : MonoBehaviour
             if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed * Time.deltaTime)
             {
                 transform.position = posMovingTo;
-                if (createNewPath)
-                {
-                    path = FindAndAdaptPath(transform.position, newGoalPos);
-                    createNewPath = false;
-                    GetNextPosOnPath();
-                    return;
-                }
                 if (path.Count > 0)
                 {
                     GetNextPosOnPath();
                 }
                 else
                 {
-                    
                     move = false;
-                    if (itemInteractedWith != null)
-                    {
-                        onTaskCompletion?.Invoke(this); 
-                    }               
+                    onTaskCompletion?.Invoke(this);
                 }
             }
             else
