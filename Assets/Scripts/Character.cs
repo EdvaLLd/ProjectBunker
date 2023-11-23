@@ -81,24 +81,7 @@ public class Character : MonoBehaviour
         itemInteractedWith = item;
         itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
 
-        if (move)
-        {
-            newGoalPos = item.transform.position;
-            createNewPath = true;
-        }
-
-        else
-        {
-            path = FindAndAdaptPath(transform.position, item.transform.position);
-            GetNextPosOnPath();
-            move = true;
-
-            //Animation stuff
-            if (characterAnim != null)
-            {
-                characterAnim.StartMoving();
-            }
-        }    
+        UpdateMovement(item.transform.position);
     }
 
     public void MoveToPos(Vector3 pos)
@@ -107,16 +90,27 @@ public class Character : MonoBehaviour
         itemInteractedWithBoxCollider = null;
         pos = ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue));
 
+        UpdateMovement(pos);
+    }
+
+    void UpdateMovement(Vector3 goal)
+    {
         if (move)
         {
-            newGoalPos = pos;
+            newGoalPos = goal;
             createNewPath = true;
         }
         else
         {
-            path = FindAndAdaptPath(transform.position, pos);
+            path = FindAndAdaptPath(transform.position, goal);
             GetNextPosOnPath();
             move = true;
+
+            //Animation stuff
+            if (characterAnim != null)
+            {
+                characterAnim.StartMoving();
+            }
         }
     }
 
@@ -196,18 +190,8 @@ public class Character : MonoBehaviour
     {
         if (path.Count > 0)
         {
-            if (path.Count == 1)
-            {
-                posMovingTo = itemInteractedWithBoxCollider.ClosestPoint(transform.position);
-                posMovingTo.y = itemInteractedWithBoxCollider.transform.position.y; //det h�r borde antagligen g�ras om
-                //till att g� p� marken
-                path.RemoveAt(0);
-            }
-            else
-            {
-                posMovingTo = path[0];
-                path.RemoveAt(0);
-            }
+            posMovingTo = path[0];
+            path.RemoveAt(0);
             return posMovingTo;
         }
         print("Should never be here");
@@ -238,13 +222,13 @@ public class Character : MonoBehaviour
                 else
                 {
                     move = false;
+                    characterAnim.StopMoving();
                     if (itemInteractedWith != null)
                     {
                         onTaskCompletion?.Invoke(this);
                         //Animation stuff
                         if (characterAnim != null)
                         {
-                            characterAnim.StopMoving();
                             if (task == CharacterTasks.crafting)
                             {
                                 characterAnim.StartCrafting();
