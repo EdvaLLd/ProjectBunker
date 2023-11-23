@@ -7,11 +7,6 @@ using TMPro;
 public class CraftingWindow : MonoBehaviour
 {
     [SerializeField]
-    List<CraftingRecipe> recipes = new List<CraftingRecipe>(); //Borde vara unlockade recept sen
-    
-    //public CraftingMachine machine;
-
-    [SerializeField]
     GameObject recipePrefab, ingredientPrefab;
 
     [SerializeField]
