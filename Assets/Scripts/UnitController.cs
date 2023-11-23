@@ -36,6 +36,12 @@ public class UnitController : MonoBehaviour
     static Character selectedCharacter = null;
 
 
+    //(denna är nog anpassad för procent, så viktigt att variablerna går mellan 0 och 100)
+    //avgör hur ofta UIn uppdateras, 5 = var femte procent
+    int howOftenToUpdateStats = 5;
+
+
+    static GameObject characterStatsWindowStatic;
 
     private void Update()
     {
@@ -57,16 +63,26 @@ public class UnitController : MonoBehaviour
         if (selectedCharacter != null)
         {
             UpdateCharacterStatsUI();
+            if (Input.GetMouseButtonDown(1))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                float pos;
+                Plane plane = new Plane(Vector3.forward, -Pathfinding.zMoveValue);
+                if (plane.Raycast(ray, out pos))
+                {
+                    selectedCharacter.MoveToPos(ray.GetPoint(pos));
+                }
+                else
+                {
+                    print("något fucky med matten bakom vänster-klicks-movement");
+                }
+            }
         }
     }
-
-    [SerializeField]
-    GameObject characterStatsWindow;
-    static GameObject characterStatsWindowStatic;
     void UpdateCharacterStatsUI()
     {
-        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHealth(selectedCharacter.health);
-        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHunger(selectedCharacter.hunger);
+        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHealth(((int)(selectedCharacter.health / howOftenToUpdateStats) + 1) * howOftenToUpdateStats);
+        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHunger(((int)(selectedCharacter.hunger / howOftenToUpdateStats) + 1) * howOftenToUpdateStats);
     }
 
     public void FeedCharacter(Food food)
@@ -88,10 +104,8 @@ public class UnitController : MonoBehaviour
 
 
 
-        //temp
-        characterStatsWindow.GetComponent<CharacterStatsHandler>().SetUp();
-        characterStatsWindow.SetActive(false);
-        characterStatsWindowStatic = characterStatsWindow;
+        characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
+        characterStatsWindowStatic.SetActive(false);
     }
 
     public void TaskCompleted(Character character)
@@ -112,11 +126,12 @@ public class UnitController : MonoBehaviour
                 TextLog.AddLog($"Inspected item: {character.item.Description}");
                 break;
             case CharacterTasks.looting:
-                ChestContent chest = selectedCharacter.itemInteractedWith.GetComponent<ChestContent>();
+                ChestContent chest = character.itemInteractedWith.GetComponent<ChestContent>();
                 if (chest == null)
                 {
-                    chest = selectedCharacter.itemInteractedWith.gameObject.AddComponent<ChestContent>();
+                    chest = character.itemInteractedWith.gameObject.AddComponent<ChestContent>();
                 }
+                TextLog.AddLog("Interacted with item " + character.itemInteractedWith.name);
                 chest.CheckContent();
                 break;
             default:
@@ -152,6 +167,7 @@ public class UnitController : MonoBehaviour
             }
             selectedCharacter = newSelectedCharacter;
             setCharacterVisual(selectedCharacter, true);
+            characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().SetUp(selectedCharacter);
             characterStatsWindowStatic.SetActive(true);
         }
     }
