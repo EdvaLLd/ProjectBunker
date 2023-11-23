@@ -5888,8 +5888,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
     - {fileID: 11400000, guid: ae8556e8cd27c514d8153f040d0ba9d9, type: 2}
   - lootItems:
+    - {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
     - {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
-    - {fileID: 11400000, guid: ae8556e8cd27c514d8153f040d0ba9d9, type: 2}
   - lootItems:
     - {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
     - {fileID: 11400000, guid: ae8556e8cd27c514d8153f040d0ba9d9, type: 2}
