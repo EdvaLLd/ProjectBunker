@@ -26,8 +26,13 @@ public class Character : MonoBehaviour
     bool isAlive = true;
 
 
-    float maxHunger;
-    float maxHealth;
+    public float maxHunger;
+    public float maxHealth;
+    bool createNewPath = false;
+    Vector3 newGoalPos;
+
+    //blir dubbla det här värdet
+    float maxDistToGroundCheck = 10;
 
     private CharacterAnimation characterAnim;
 
@@ -46,8 +51,6 @@ public class Character : MonoBehaviour
             Move();
             HungerDecay();
         }
-
-        //print($"{hunger} | {health}");
     }
 
     void HungerDecay()
@@ -78,19 +81,43 @@ public class Character : MonoBehaviour
         itemInteractedWith = item;
         itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
 
-        path = Pathfinding.FindPath(transform.position, item.transform.position);
-
-        if (!move)
+        if (move)
         {
-            GetNextPosOnPath();
+            newGoalPos = item.transform.position;
+            createNewPath = true;
         }
 
-        move = true;
+        else
+        {
+            path = FindAndAdaptPath(transform.position, item.transform.position);
+            GetNextPosOnPath();
+            move = true;
 
-        //Animation stuff
-        if(characterAnim != null){
-            characterAnim.StartMoving();
-        }     
+            //Animation stuff
+            if (characterAnim != null)
+            {
+                characterAnim.StartMoving();
+            }
+        }    
+    }
+
+    public void MoveToPos(Vector3 pos)
+    {
+        itemInteractedWith = null;
+        itemInteractedWithBoxCollider = null;
+        pos = ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue));
+
+        if (move)
+        {
+            newGoalPos = pos;
+            createNewPath = true;
+        }
+        else
+        {
+            path = FindAndAdaptPath(transform.position, pos);
+            GetNextPosOnPath();
+            move = true;
+        }
     }
 
     void OnMouseOver()
@@ -99,6 +126,70 @@ public class Character : MonoBehaviour
         {
             UnitController.SwapSelectedCharacter(this);
         }
+    }
+
+    List<Vector3> FindAndAdaptPath(Vector3 startPos, Vector3 goalPos)
+    {
+        List<Vector3> tempPath = Pathfinding.FindPath(startPos, goalPos);
+
+        for (int i = 0; i < tempPath.Count - 1; i++)
+        {
+            tempPath[i] = ConvertPosToBeOnGround(tempPath[i]);
+        }
+        if (WallBetweenPoints(startPos, tempPath[0]))
+        {
+            tempPath.InsertRange(0, FixPathBetweenPoints(startPos, tempPath[0]));
+        }
+        if (tempPath.Count > 1)
+        {
+            if (itemInteractedWithBoxCollider != null)
+            {
+                tempPath[tempPath.Count - 1] = itemInteractedWithBoxCollider.ClosestPoint(tempPath[tempPath.Count - 2]);
+            }
+            if (WallBetweenPoints(tempPath[tempPath.Count - 1], tempPath[tempPath.Count - 2]))
+            {
+                tempPath.InsertRange(tempPath.Count - 1, FixPathBetweenPoints(tempPath[tempPath.Count - 2], tempPath[tempPath.Count - 1]));
+                if (itemInteractedWithBoxCollider != null)
+                {
+                    tempPath[tempPath.Count - 1] = itemInteractedWithBoxCollider.ClosestPoint(tempPath[tempPath.Count - 2]);
+                }
+            }
+        }
+        return tempPath;
+    }
+
+    List<Vector3> FixPathBetweenPoints(Vector3 p1, Vector3 p2)
+    {
+        List<Vector3> result = new List<Vector3>();
+        Vector3 t = p1;
+        t.z = Pathfinding.zMoveValue;
+        t = ConvertPosToBeOnGround(t);
+        result.Add(t);
+
+        t = p2;
+        t.z = Pathfinding.zMoveValue;
+        t = ConvertPosToBeOnGround(t);
+        result.Add(t);
+        return result;
+    }
+
+    bool WallBetweenPoints(Vector3 p1, Vector3 p2)
+    {
+        Vector3 dir = (p2 - p1).normalized;
+        float length = Vector3.Distance(p1, p2);
+        return Physics.Raycast(p1, dir, length, 1 << 6);
+    }
+
+    Vector3 ConvertPosToBeOnGround(Vector3 pos)
+    {
+        RaycastHit hit;
+        if (Physics.BoxCast(pos, new Vector3(.5f, .01f, .5f), Vector3.down, out hit, Quaternion.identity, maxDistToGroundCheck, 1 << 6))
+        {
+            float groundPosY = hit.point.y;
+            float characterHeight = transform.lossyScale.y;
+            pos = new Vector3(pos.x, groundPosY + (characterHeight / 2), pos.z);
+        }
+        return pos;
     }
 
     Vector3 GetNextPosOnPath()
@@ -133,6 +224,13 @@ public class Character : MonoBehaviour
             if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed * Time.deltaTime)
             {
                 transform.position = posMovingTo;
+                if (createNewPath)
+                {
+                    path = FindAndAdaptPath(transform.position, newGoalPos);
+                    createNewPath = false;
+                    GetNextPosOnPath();
+                    return;
+                }
                 if (path.Count > 0)
                 {
                     GetNextPosOnPath();
@@ -140,18 +238,21 @@ public class Character : MonoBehaviour
                 else
                 {
                     move = false;
-                    onTaskCompletion?.Invoke(this);
-
-                    //Animation stuff
-                    if(characterAnim != null){
-                        characterAnim.StopMoving();
-                        if(task == CharacterTasks.crafting)
+                    if (itemInteractedWith != null)
+                    {
+                        onTaskCompletion?.Invoke(this);
+                        //Animation stuff
+                        if (characterAnim != null)
                         {
-                            characterAnim.StartCrafting();
-                        }
-                        else
-                        {
-                            characterAnim.StopCrafting();
+                            characterAnim.StopMoving();
+                            if (task == CharacterTasks.crafting)
+                            {
+                                characterAnim.StartCrafting();
+                            }
+                            else
+                            {
+                                characterAnim.StopCrafting();
+                            }
                         }
                     }
                 }

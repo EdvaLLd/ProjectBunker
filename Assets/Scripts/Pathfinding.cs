@@ -18,7 +18,8 @@ public class Pathfinding : MonoBehaviour
 
     //hur stor skillnaden kan vara i y-led för att karaktären ska kunna
     //skippa pathpointsen och ta sig direkt till målet
-    static float acceptablePathCutYAxisValue = 1; 
+    public static float acceptablePathCutYAxisValue = 1;
+    public static float zMoveValue = 0.5f;
 
     private void Start()
     {
@@ -27,6 +28,11 @@ public class Pathfinding : MonoBehaviour
 
     public static List<Vector3> FindPath(Vector3 startPos, Vector3 goalPos)
     {
+        if (Mathf.Abs(startPos.y - goalPos.y) < acceptablePathCutYAxisValue)
+        {
+            TextLog.AddLog("Pathing on the same floor");
+            return new List<Vector3>() { goalPos };
+        }
         //Setup
         openList.Clear();
         closedList.Clear();
