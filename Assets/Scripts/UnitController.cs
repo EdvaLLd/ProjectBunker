@@ -61,12 +61,10 @@ public class UnitController : MonoBehaviour
         characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
         characterStatsWindowStatic.SetActive(false);
 
+        //Det här är temp och ska tas bort när man kan få recept på bättre sätt
         for (int i = 0; i < recipes.Length; i++)
         {
-            for (int q = 0; q < recipes[i].CraftableInMachine.Count; q++)
-            {
-                Inventory.AddRecipe(recipes[i].CraftableInMachine[q], recipes[i]);
-            }
+            Inventory.AddRecipeToMachines(recipes[i]);
         }
     }
 

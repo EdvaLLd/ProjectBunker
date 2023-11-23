@@ -31,6 +31,15 @@ public static class Inventory
         else recipesUnlocked.Add(machine, new List<CraftingRecipe>() { recipe});
     }
 
+    public static void AddRecipeToMachines(CraftingRecipe recipe)
+    {
+        for (int i = 0; i < recipe.CraftableInMachine.Count; i++)
+        {
+            if (recipesUnlocked.ContainsKey(recipe.CraftableInMachine[i])) recipesUnlocked[recipe.CraftableInMachine[i]].Add(recipe);
+            else recipesUnlocked.Add(recipe.CraftableInMachine[i], new List<CraftingRecipe>() { recipe });
+        }
+    }
+
     public static List<CraftingRecipe> GetRecipesForMachine(CraftingMachine machine)
     {
         if(recipesUnlocked.ContainsKey(machine)) return recipesUnlocked[machine];
