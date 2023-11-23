@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
+  m_Name: Bread
+  m_EditorClassIdentifier: 
+  ID: 03003
+  DisplayName: Bread
+  Description: A fluffy loaf of bread
+  Icon: {fileID: 21300000, guid: bae66d82a4096c446ae9c6b86ae4df1f, type: 3}
+  itemCrafted: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
+  itemAmount: 1
+  Ingredients:
+  - item: {fileID: 11400000, guid: ae8556e8cd27c514d8153f040d0ba9d9, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+    amount: 1
+  CraftableInMachine:
+  - {fileID: 11400000, guid: 6386acef30fedf049ba0443144822351, type: 2}

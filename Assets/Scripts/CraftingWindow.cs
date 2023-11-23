@@ -24,9 +24,10 @@ public class CraftingWindow : MonoBehaviour
     public void InitCraftingWindow(CraftingMachine machine)
     {
         ClearChilds(recipeList.transform);
-        for (int i = 0; i < recipes.Count; i++)
+        List<CraftingRecipe> recipesForMachine = Inventory.GetRecipesForMachine(machine);
+        for (int i = 0; i < recipesForMachine.Count; i++)
         {
-            CraftingRecipe recipe = recipes[i];
+            CraftingRecipe recipe = recipesForMachine[i];
             GameObject t;
             t = Instantiate(recipePrefab, recipeList.transform);
             t.transform.GetChild(0).GetComponent<Image>().sprite = recipe.Icon;
@@ -34,7 +35,7 @@ public class CraftingWindow : MonoBehaviour
             t.GetComponent<Button>().onClick.AddListener(() => RecipeClicked(recipe));
             craftingWindow.GetComponent<Image>().sprite = machine.Icon;
             transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = machine.name;
-            InitRecipeWindow(t, recipes[i]);
+            InitRecipeWindow(t, recipe);
         }
     }
 

@@ -43,6 +43,33 @@ public class UnitController : MonoBehaviour
 
     static GameObject characterStatsWindowStatic;
 
+
+    [SerializeField]
+    CraftingRecipe[] recipes;
+
+    private void Start()
+    {
+        unSelectedModifier = unSelectedModifierSetter;
+        selectedModifier = selectedModifierSetter;
+        movementSpeed = movementSpeedSetter;
+        Character.onTaskCompletion += TaskCompleted;
+
+        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+
+
+
+        characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
+        characterStatsWindowStatic.SetActive(false);
+
+        for (int i = 0; i < recipes.Length; i++)
+        {
+            for (int q = 0; q < recipes[i].CraftableInMachine.Count; q++)
+            {
+                Inventory.AddRecipe(recipes[i].CraftableInMachine[q], recipes[i]);
+            }
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
@@ -91,21 +118,6 @@ public class UnitController : MonoBehaviour
         {
             selectedCharacter.ConsumeFood(food);
         }
-    }
-
-    private void Start()
-    {
-        unSelectedModifier = unSelectedModifierSetter;
-        selectedModifier = selectedModifierSetter;
-        movementSpeed = movementSpeedSetter;
-        Character.onTaskCompletion += TaskCompleted;
-
-        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-
-
-
-        characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
-        characterStatsWindowStatic.SetActive(false);
     }
 
     public void TaskCompleted(Character character)

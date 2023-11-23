@@ -9403,6 +9403,10 @@ MonoBehaviour:
   selectedModifierSetter:
     material: {fileID: 2100000, guid: 48cc280ffe785b54588b10c0e033b24a, type: 2}
   movementSpeedSetter: 1
+  recipes:
+  - {fileID: 11400000, guid: 280e1d03894e9f74c96c57aa6b487e37, type: 2}
+  - {fileID: 11400000, guid: 5ddd8d6173761f24996dfdf5a72ae665, type: 2}
+  - {fileID: 11400000, guid: c42abdedcd4d85648b8ef8227394098d, type: 2}
 --- !u!114 &1656217149
 MonoBehaviour:
   m_ObjectHideFlags: 0
