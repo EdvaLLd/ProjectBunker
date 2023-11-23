@@ -1,4 +1,4 @@
 Item: 01xxx
-Interactables: 02xxx
+Machines: 02xxx
 Recipes: 03xxx
 Food: 04xxx

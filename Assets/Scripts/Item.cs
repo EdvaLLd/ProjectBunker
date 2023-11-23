@@ -5,7 +5,6 @@ using UnityEngine;
 public class Item : ItemBase
 {
     public SortingTypes SortingType;
-    public float lootProbabilityOverride = 0;
 }
 
 [System.Serializable]

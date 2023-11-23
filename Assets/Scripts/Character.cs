@@ -20,21 +20,11 @@ public class Character : MonoBehaviour
     public static event OnTaskCompletion onTaskCompletion;
 
 
-
     //karakt�rens stats
-    [Header("Character stats")]
-    
     public float hunger = 100;
     public float health = 100;
     bool isAlive = true;
 
-    [SerializeField]
-    private float hungerConsumedModifier = .3f;
-    [SerializeField]
-    private float notHungryTime = 4;
-
-
-    private bool isHungry = true;
 
     public float maxHunger;
     public float maxHealth;
@@ -45,7 +35,6 @@ public class Character : MonoBehaviour
     float maxDistToGroundCheck = 10;
 
     private CharacterAnimation characterAnim;
-
 
     private void Start()
     {
@@ -66,6 +55,7 @@ public class Character : MonoBehaviour
 
     void HungerDecay()
     {
+        float hungerConsumedModifier = .3f;
         if(health != maxHealth && hunger > 80)
         {
             health += 5 * Time.deltaTime;
@@ -266,38 +256,20 @@ public class Character : MonoBehaviour
 
     public void ConsumeFood(Food food)
     {
-        if(hunger != maxHunger)
+        TextLog.AddLog($"{food.DisplayName} eaten!");
+        if(maxHunger != hunger)
         {
-            TextLog.AddLog($"{food.DisplayName} eaten!");
             Inventory.RemoveItem(food);
             hunger = Mathf.Clamp(hunger + food.GetHungerRestoration(), 0, maxHunger);
         }
-        if(hunger >= maxHunger)
+        else
         {
-            if (isHungry) 
-            {
-                StartCoroutine(NotHungryEffect());
-            }
-            
-            TextLog.AddLog(FindObjectOfType<UnitController>().GetSelectedCharacter().name + "is not hungry.");
+            print("me no hungry");
         }
     }
-
-
-    private IEnumerator NotHungryEffect() 
-    {
-        isHungry = false;
-        float hungerConsumedModifierDefault = hungerConsumedModifier;
-        hungerConsumedModifier = 0;
-
-        yield return new WaitForSeconds(notHungryTime);
-
-        hungerConsumedModifier = hungerConsumedModifierDefault;
-        isHungry = true;
 
     public float GetCharacterDirectionX()
     {
         return transform.position.x - posMovingTo.x;
-
     }
 }

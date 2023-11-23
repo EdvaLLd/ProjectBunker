@@ -12,7 +12,7 @@ public class SelectionVisibilityModifier
 
 public enum CharacterTasks
 {
-    none, crafting, inspecting, looting, exploring
+    none, crafting, inspecting, looting
 }
 
 public class UnitController : MonoBehaviour
@@ -103,13 +103,6 @@ public class UnitController : MonoBehaviour
                 }
             }
         }
-        //selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
-
-        /*if (Input.GetKeyDown("space") && selectedCharacter != null)
-        {
-            //StartCoroutine(ExploringProcess());
-            selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
-        }*/
     }
     void UpdateCharacterStatsUI()
     {
@@ -151,11 +144,6 @@ public class UnitController : MonoBehaviour
                 TextLog.AddLog("Interacted with item " + character.itemInteractedWith.name);
                 chest.CheckContent();
                 break;
-            case CharacterTasks.exploring:
-                selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
-                UnitController.SwapSelectedCharacter(null);
-                break;
-            
             default:
                 break;
         }
@@ -204,10 +192,5 @@ public class UnitController : MonoBehaviour
         {
             character.GetComponent<MeshRenderer>().material = unSelectedModifier.material;
         }
-    }
-
-    public Character GetSelectedCharacter() 
-    {
-        return selectedCharacter;
     }
 }
