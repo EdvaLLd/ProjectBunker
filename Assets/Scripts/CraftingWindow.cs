@@ -7,6 +7,11 @@ using TMPro;
 public class CraftingWindow : MonoBehaviour
 {
     [SerializeField]
+    List<CraftingRecipe> recipes = new List<CraftingRecipe>(); //Borde vara unlockade recept sen
+    
+    //public CraftingMachine machine;
+
+    [SerializeField]
     GameObject recipePrefab, ingredientPrefab;
 
     [SerializeField]
@@ -19,10 +24,9 @@ public class CraftingWindow : MonoBehaviour
     public void InitCraftingWindow(CraftingMachine machine)
     {
         ClearChilds(recipeList.transform);
-        List<CraftingRecipe> recipesForMachine = Inventory.GetRecipesForMachine(machine);
-        for (int i = 0; i < recipesForMachine.Count; i++)
+        for (int i = 0; i < recipes.Count; i++)
         {
-            CraftingRecipe recipe = recipesForMachine[i];
+            CraftingRecipe recipe = recipes[i];
             GameObject t;
             t = Instantiate(recipePrefab, recipeList.transform);
             t.transform.GetChild(0).GetComponent<Image>().sprite = recipe.Icon;
@@ -30,7 +34,7 @@ public class CraftingWindow : MonoBehaviour
             t.GetComponent<Button>().onClick.AddListener(() => RecipeClicked(recipe));
             craftingWindow.GetComponent<Image>().sprite = machine.Icon;
             transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = machine.name;
-            InitRecipeWindow(t, recipe);
+            InitRecipeWindow(t, recipes[i]);
         }
     }
 
