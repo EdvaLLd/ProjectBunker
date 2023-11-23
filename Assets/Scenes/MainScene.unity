@@ -5879,12 +5879,23 @@ MonoBehaviour:
   difficulty: 0
   DayNightValue: 0
   cycleRate: 0.1
+  looting:
+    maxLootQuantity: 5
+    minLootQuantity: 1
+    lootProbabilityDefault: 75
   locationalLoot:
-  - lootItems: []
-  - lootItems: []
-  - lootItems: []
-  - lootItems: []
-  noLootProbabilityDefault: 0.75
+  - lootItems:
+    - {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
+    - {fileID: 11400000, guid: ae8556e8cd27c514d8153f040d0ba9d9, type: 2}
+  - lootItems:
+    - {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+    - {fileID: 11400000, guid: ae8556e8cd27c514d8153f040d0ba9d9, type: 2}
+  - lootItems:
+    - {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
+    - {fileID: 11400000, guid: ae8556e8cd27c514d8153f040d0ba9d9, type: 2}
+  - lootItems:
+    - {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
+    - {fileID: 11400000, guid: ae8556e8cd27c514d8153f040d0ba9d9, type: 2}
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0

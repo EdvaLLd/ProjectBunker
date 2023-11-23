@@ -24,16 +24,14 @@ public class GameManager : MonoBehaviour
 
     private GameObject skylight;
     
-    //[SerializeField, Header("Location")]
-    private static Location[] explorableLocations = new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
     
-    [/*SerializeField, */Header("Location"), ArrayElementTitle("money")]
+    private static Location[] explorableLocations = new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
+
+    [Header("Location")]
+    public Looting looting = new Looting();
+    
+    [Tooltip("0=Lake, 1=City, 2=Factory, 3=Forest")]
     public LootItems[] locationalLoot = new LootItems[System.Enum.GetNames(typeof(Location.environments)).Length-1];
-
-    //private float[] lootProbabilites = new float[System.Enum.GetNames(typeof(Location.environments)).Length-1];
-
-    [SerializeField, Tooltip("The higher the index in LootItems list, the lower is the probability for it appearing. This value is the probability at index 0.")]
-    private float noLootProbabilityDefault = .75f;
    
     private void Awake()
     {
@@ -45,16 +43,11 @@ public class GameManager : MonoBehaviour
 
     /*private void Start()
     {
-        //SetLocationList();
     }*/
 
     private void Update()
     {
-        //print("Gecko");
         DayAndNightCycle(cycleRate);
-        
-        //print(explorableLocations[index].locationName + " is " + explorableLocations[index].environment + " at a distance of " + explorableLocations[index].distanceToHome + " meters.");
-        //print(System.Enum.GetNames(typeof(Location.environments)).GetValue(2));
     }
 
     private void DayAndNightCycle(float rate)
@@ -91,7 +84,7 @@ public class GameManager : MonoBehaviour
 
             Location.environments[] locationArray = (Location.environments[])System.Enum.GetValues(typeof(Location.environments));
 
-            for (int arrayIndex = 0; arrayIndex < replaceArray.Length; arrayIndex++)
+            for (int arrayIndex = 0; arrayIndex < replaceArray.Length; arrayIndex++) // arrayIndex loops over the the Location class objects in the Location[] replaceArray.
             {
                 replaceArray[arrayIndex] = new Location();
                 replaceArray[arrayIndex].environment = locationArray[arrayIndex+1];
@@ -99,30 +92,38 @@ public class GameManager : MonoBehaviour
                 replaceArray[arrayIndex].distanceToHome = replaceArray[arrayIndex].RandomDistance();
                 replaceArray[arrayIndex].locationName += " No_" + arrayIndex;
                 replaceArray[arrayIndex].locationLoot = locationalLoot[arrayIndex].lootItems;
+                replaceArray[arrayIndex].lootProbabilities = new float[locationalLoot[arrayIndex].lootItems.Count];
                 
-                for (int probabilityIndex = 0; probabilityIndex < locationalLoot.Length; probabilityIndex++) 
+                for (int itemIndex = 0; itemIndex < locationalLoot[arrayIndex].lootItems.Count; itemIndex++) // itemIndex loops over lootable items in each Location class objects in replaceArray.
                 {
-                    //replaceArray[arrayIndex].lootProbabilites[probabilityIndex] = new float[locationalLoot[probabilityIndex].lootItems.Count];
-                     replaceArray[arrayIndex].noLootProbabilities[probabilityIndex] = noLootProbabilityDefault / (probabilityIndex+1) * 100/*Mathf.Pow(noLootProbabilityMultiplyer, probabilityIndex + 1)*/;
+                    float probabilityAtIndex = (looting.lootProbabilityDefault / (itemIndex + 1));
+
+                    if (replaceArray[arrayIndex].locationLoot[itemIndex].lootProbabilityOverride > 0)
+                    {
+                        replaceArray[arrayIndex].lootProbabilities[itemIndex] = replaceArray[arrayIndex].locationLoot[itemIndex].lootProbabilityOverride;
+                    }
+                    else 
+                    {
+                        replaceArray[arrayIndex].lootProbabilities[itemIndex] = probabilityAtIndex;
+                    }
                 }
-
-                //print(replaceArray[arrayIndex].environment);
             }
-
-            
         }
         return explorableLocations = replaceArray;
     }
 }
 
-/*[System.Serializable]
-public class ItemList 
-{
-    public List<Item> itemsList;
-}*/
-
 [System.Serializable]
 public class LootItems
 {
     public List<Item> lootItems;
+}
+
+[System.Serializable]
+public class Looting
+{
+    public int maxLootQuantity;
+    public int minLootQuantity;
+    [Tooltip("The higher the index in LootItems list, the lower is the probability for it appearing. This value is the probability at index 0 in percent.")]
+    public float lootProbabilityDefault = 75;
 }

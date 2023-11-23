@@ -34,11 +34,14 @@ public class Exploration : MonoBehaviour
     public IEnumerator ExploringProcess() 
     {
        // GameManager gameManager = FindObjectOfType<GameManager>();
-        int randomIndex = Random.Range(0, GameManager.GetExplorableLocations().Length);
-       
-        Location.environments exploreLocation = GameManager.GetExplorableLocations()[randomIndex].environment;
-        float distance = GameManager.GetExplorableLocations()[randomIndex].distanceToHome;
-        string locationName = GameManager.GetExplorableLocations()[randomIndex].locationName;
+        int randomLocationIndex = Random.Range(0, GameManager.GetExplorableLocations().Length);
+        Location randomLocation = GetRandomExplorableLocation(randomLocationIndex);
+        int randomItemIndex = GetRandomLocationItemIndex(randomLocation);
+        float noLootRandom = Random.Range(0, 100);
+
+        Location.environments exploreLocation = randomLocation.environment;
+        float distance = randomLocation.distanceToHome;
+        string locationName = randomLocation.locationName;
 
         string startMessage = gameObject.name + " went to explore " + locationName + " near the " + exploreLocation + ".";
         string endMessage = gameObject.name + " returned from their trip to " + locationName + " near the " + exploreLocation + ".";
@@ -63,23 +66,40 @@ public class Exploration : MonoBehaviour
         /*print*/
         TextLog.AddLog(endMessage);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(6);
 
         //float randomLocationIndex = Random.Range(0, GameManager.GetExplorableLocations().Length);
-        Location randomLocation = GetRandomExplorableLocation();
-        int randomItemIndex = GetRandomLocationItemIndex(randomLocation);
 
-        if (Random.Range(0, 100) <= randomLocation.noLootProbabilities[randomItemIndex])
+        if (randomItemIndex != -1) 
         {
-            /*print*/
-            TextLog.AddLog(noLootMessage);
+            print("Length: " + randomLocation.lootProbabilities.Length + ", i: " + randomItemIndex + ", Drop probability: " + randomLocation.lootProbabilities[randomItemIndex] + "%");
+            //print("Drop probability: " + randomLocation.lootProbabilities[randomItemIndex] + "%");
+
+            if (noLootRandom <= 100 - randomLocation.lootProbabilities[randomItemIndex] && noLootRandom < 100)
+            {
+                /*print*/
+                TextLog.AddLog(noLootMessage);
+            }
+            else /*if(Random.Range(0, 100) > noLootProbability)*/
+            {
+                /*print*/
+                GameManager gameManager = FindObjectOfType<GameManager>();
+
+                int maxQuantity = gameManager.looting.maxLootQuantity;
+                int minQuantity = gameManager.looting.minLootQuantity;
+                if ((maxQuantity <= 0 || minQuantity <= 0) || (maxQuantity <= 0 && minQuantity <= 0))
+                {
+                    TextLog.AddLog(lootMessage);
+                    Inventory.AddItem(GetRandomLocationItem(randomLocation, randomItemIndex));
+                }
+                else 
+                {
+                    TextLog.AddLog(lootMessage);
+                    Inventory.AddItem(GetRandomLocationItem(randomLocation, randomItemIndex), Random.Range(minQuantity, maxQuantity));
+                }
+            }
         }
-        else /*if(Random.Range(0, 100) > noLootProbability)*/
-        {
-            /*print*/
-            TextLog.AddLog(lootMessage);
-            Inventory.AddItem(randomLocation.locationLoot[randomItemIndex], Random.Range(1,4));
-        }
+
     }
 
     public Location.environments GetCurrentEnvironment() 
@@ -93,19 +113,37 @@ public class Exploration : MonoBehaviour
         StartCoroutine(ExploringProcess());
     }
 
-    private Location GetRandomExplorableLocation() 
+    private Location GetRandomExplorableLocation(int locationIndex) 
     {
-        return GameManager.GetExplorableLocations()[Random.Range(0, GameManager.GetExplorableLocations().Length)];
+        return GameManager.GetExplorableLocations()[locationIndex];
     }
 
     private int GetRandomLocationItemIndex(Location location)
     {
-        return (int)location.noLootProbabilities[Random.Range(0,location.locationLoot.Count)];
+        if (location.lootProbabilities.Length <= 0)
+        {
+            print("No items present in location loot list probably for location: " + location.environment + ".");
+            return -1;
+        }
+        else if (location.lootProbabilities.Length == 1) 
+        {
+            return 0;
+        }
+        return /*(int)location.lootProbabilities[Random.Range(0,location.locationLoot.Count-1)]*/Random.Range(0, location.locationLoot.Count);
+    }
+
+    private Item GetRandomLocationItem(/*int locationIndex, int itemIndex*/Location location, int itemIndex) 
+    {
+        //GameManager gameManager = FindObjectOfType<GameManager>();
+        Item output = location.locationLoot[/*Random.Range(0, location.locationLoot.Count)*/itemIndex];
+        print(location.environment + " " + output.name + " obtained." );
+
+        return output/*location.locationLoot[Random.Range(0, location.locationLoot.Count)]*/;
     }
 }
 
 [System.Serializable]
-public class Location : MonoBehaviour
+public class Location/* : MonoBehaviour*/
 {
     [SerializeField]
     private float maxDistance = 1500;
@@ -116,7 +154,7 @@ public class Location : MonoBehaviour
 
     public List<Item> locationLoot;
 
-    public float[] noLootProbabilities;
+    public float[] lootProbabilities;
     public float distanceToHome;
 
     public string locationName = "Unknown Location";
