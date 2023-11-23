@@ -32,9 +32,7 @@ public class IdleVariation : StateMachineBehaviour
 
             if (idleTime > timeUntilVariation && ((stateInfo.normalizedTime % 1) < 0.02f))
             {
-                Debug.Log("Nu varierar jag mig");
                 timeUntilVariation = Random.Range(minTimeBetweenVariations, maxTimeBetweenVariations);
-                Debug.Log("Ny tid: " + timeUntilVariation);
 
                 readyForVariation = true;
                 currentIdleVar = Random.Range(1, numberOfVariationAnimations + 1);

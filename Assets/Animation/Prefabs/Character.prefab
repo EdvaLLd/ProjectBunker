@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 2.2452616e-33
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 0.0008588051
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 0.0000001634421
 --- !u!1 &227951172906842312
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,8 +404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 2.5170863e-25
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 3.8632446e-32
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 2.837051e-13
 --- !u!1 &977441333995934536
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,8 +622,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 4.3418334e-37
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 0.12934145
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 0.00008426615
 --- !u!1 &2114725391082492727
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,8 +838,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 0.0000013888532
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 2.1067878e-12
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 0.00000003360311
 --- !u!1 &3204217993823684302
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,7 +948,7 @@ GameObject:
   - component: {fileID: 4291652692425078536}
   - component: {fileID: 4291652692425078539}
   m_Layer: 0
-  m_Name: Base
+  m_Name: HairBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1055,8 +1055,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 0.1804187
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 4.785464e-13
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 5.5478528e-11
 --- !u!1 &3878722695010271722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,7 +1178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CategoryHash: 0
   m_labelHash: 0
-  m_SpriteKey: 1.0889207e-28
+  m_SpriteKey: 4.1635725e-32
 --- !u!1 &4022489858996765012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1331,8 +1331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 0.0000031877405
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 0.00005605877
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 0.0000000110421245
 --- !u!1 &4208457601412960153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,7 +1454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CategoryHash: 0
   m_labelHash: 0
-  m_SpriteKey: 2.6442583e-14
+  m_SpriteKey: 0.0000018085321
 --- !u!1 &4273403497828757231
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,8 +1750,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 1.8603797e-34
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 5.972607e-15
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 9.7128156e-17
 --- !u!1 &4619029563997233312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1908,8 +1908,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 0.3343094
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 3.7331968e-37
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 5.937253e-33
 --- !u!1 &4677830724805783465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,7 +2031,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CategoryHash: 0
   m_labelHash: 0
-  m_SpriteKey: 9.178837e-16
+  m_SpriteKey: 0.000000013434854
 --- !u!1 &4679423807459150515
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,8 +2158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 2.2746471e-17
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 2.4452215e-17
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 0.032917798
 --- !u!1 &4724811794275527125
 GameObject:
   m_ObjectHideFlags: 0
@@ -2421,8 +2421,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 6.0060297e-19
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 1.0830385e-10
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 3.4610656e-19
 --- !u!1 &5782782057118373472
 GameObject:
   m_ObjectHideFlags: 0
@@ -2544,7 +2544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CategoryHash: 0
   m_labelHash: 0
-  m_SpriteKey: 4.0685692e-17
+  m_SpriteKey: 7.833783e-17
 --- !u!1 &5850193408922864705
 GameObject:
   m_ObjectHideFlags: 0
@@ -3690,7 +3690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CategoryHash: 0
   m_labelHash: 0
-  m_SpriteKey: 4.6359607e-11
+  m_SpriteKey: 1.8583522e-37
 --- !u!1 &6295719246454311538
 GameObject:
   m_ObjectHideFlags: 0
@@ -3819,8 +3819,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 3.965154e-38
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 0.0001906482
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 2.6606448e-16
 --- !u!1 &6550960403931025668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3943,8 +3943,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 4.944863e-26
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 3.8421525e-22
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 1.5999537e-19
 --- !u!1 &6555893669752468793
 GameObject:
   m_ObjectHideFlags: 0
@@ -4066,7 +4066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CategoryHash: 0
   m_labelHash: 0
-  m_SpriteKey: 1.2825667e-22
+  m_SpriteKey: 0.0038734155
 --- !u!1 &6759119063148994161
 GameObject:
   m_ObjectHideFlags: 0
@@ -4188,8 +4188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 0.0000004514088
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 0.0000000016723471
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 2.5440266e-28
 --- !u!1 &6899101731380980228
 GameObject:
   m_ObjectHideFlags: 0
@@ -4440,8 +4440,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 1.8161195e-10
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 5.130981e-11
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 2.7515887e-34
 --- !u!1 &7466497438262453086
 GameObject:
   m_ObjectHideFlags: 0
@@ -4659,8 +4659,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 4.7953295e-12
-  m_labelHash: 3.991422e-13
-  m_SpriteKey: 0.3769573
+  m_labelHash: 0.0000001489224
+  m_SpriteKey: 4.608065e-31
 --- !u!1 &7827176275099302325
 GameObject:
   m_ObjectHideFlags: 0
@@ -4813,7 +4813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CategoryHash: 0
   m_labelHash: 0
-  m_SpriteKey: 0.00000008453568
+  m_SpriteKey: 0.00013716354
 --- !u!1 &8594673614816388065
 GameObject:
   m_ObjectHideFlags: 0
@@ -4999,4 +4999,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CategoryHash: 0
   m_labelHash: 0
-  m_SpriteKey: 7.3469934e-31
+  m_SpriteKey: 0.0118991705
