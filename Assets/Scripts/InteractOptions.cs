@@ -7,13 +7,13 @@ using UnityEngine.EventSystems;
 public class InteractOptionsBools
 {
     [Tooltip("If crafting is checked the item has to be parsable to Crafting Machine")]
-    public bool crafting, inspect, loot;
+    public bool crafting, inspect, loot, explore;
 }
 public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     //public abstract void ButtonClicked(InteractableItem item);
     [SerializeField]
-    GameObject craftingGO, inspectGO, lootGO;
+    GameObject craftingGO, inspectGO, lootGO, exploreGO;
 
     [HideInInspector]
     public bool queueClose = false;
@@ -36,8 +36,8 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private void Update()
     {
         if (queueClose && !hoveringButtons)
-        { 
-            CloseAllWindows(); 
+        {
+            CloseAllWindows();
             queueClose = false;
         }
     }
@@ -61,9 +61,10 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OpenWindows(InteractOptionsBools bools, GameObject go)
     {
-        if(bools.crafting) craftingGO.SetActive(true);
-        if(bools.inspect) inspectGO.SetActive(true);
-        if(bools.loot) lootGO.SetActive(true);
+        if (bools.crafting) craftingGO.SetActive(true);
+        if (bools.inspect) inspectGO.SetActive(true);
+        if (bools.loot) lootGO.SetActive(true);
+        if (bools.explore) exploreGO.SetActive(true);
 
         MoveWindowsToObject(go);
     }
@@ -92,9 +93,17 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnLootClick()
     {
-        if(itemInteractedWith.item != null)
+        if (itemInteractedWith.item != null)
         {
             UnitController.InteractedWith(CharacterTasks.looting, itemInteractedWithType, itemInteractedWith);
+        }
+    }
+
+    public void OnExploreClick()
+    {
+        if (itemInteractedWith.item != null)
+        {
+            UnitController.InteractedWith(CharacterTasks.exploring, itemInteractedWithType, itemInteractedWith);
         }
     }
 }
