@@ -26,7 +26,7 @@ public class CraftingWindow : MonoBehaviour
             GameObject t;
             t = Instantiate(recipePrefab, recipeList.transform);
             t.transform.GetChild(0).GetComponent<Image>().sprite = recipe.Icon;
-            t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = recipe.name;
+            t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = recipe.DisplayName;
             t.GetComponent<Button>().onClick.AddListener(() => RecipeClicked(recipe));
             craftingWindow.GetComponent<Image>().sprite = machine.Icon;
             transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = machine.name;

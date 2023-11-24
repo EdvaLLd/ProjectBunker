@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject craftingWindow;
 
-
+    public static GameObject clearMistBtnGO;
 
 
     private void Awake()
@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
         inventoryBG = GameObject.FindGameObjectWithTag("Inventory");
         inventoryContentHolder = GameObject.FindGameObjectWithTag("InventoryContentHolder");
         craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow");
+        clearMistBtnGO = GameObject.FindGameObjectWithTag("ClearMistBtn");
     }
 
     private void Start()
@@ -32,6 +33,7 @@ public class UIManager : MonoBehaviour
         Inventory.onInventoryUpdate += UpdateInventoryDisplay;
         inventoryBG.SetActive(false);
         craftingWindow.SetActive(false);
+        clearMistBtnGO.SetActive(false);
 
         Inventory.AddItem(Database.GetItemWithID("01001"), 4);
         Inventory.AddItem(Database.GetItemWithID("01002"), 1);
