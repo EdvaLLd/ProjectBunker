@@ -27,12 +27,14 @@ public static class Inventory
 
     public static void AddRecipe(CraftingMachine machine, CraftingRecipe recipe)
     {
-        if(recipesUnlocked.ContainsKey(machine)) recipesUnlocked[machine].Add(recipe);
+        TextLog.AddLog($"Learned recipe: {recipe.DisplayName}!", Color.yellow);
+        if (recipesUnlocked.ContainsKey(machine)) recipesUnlocked[machine].Add(recipe);
         else recipesUnlocked.Add(machine, new List<CraftingRecipe>() { recipe});
     }
 
     public static void AddRecipeToMachines(CraftingRecipe recipe)
     {
+        TextLog.AddLog($"Learned recipe: {recipe.DisplayName}!", Color.yellow);
         for (int i = 0; i < recipe.CraftableInMachine.Count; i++)
         {
             if (recipesUnlocked.ContainsKey(recipe.CraftableInMachine[i])) recipesUnlocked[recipe.CraftableInMachine[i]].Add(recipe);

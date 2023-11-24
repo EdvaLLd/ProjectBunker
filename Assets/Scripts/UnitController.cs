@@ -90,17 +90,7 @@ public class UnitController : MonoBehaviour
             UpdateCharacterStatsUI();
             if (Input.GetMouseButtonDown(1))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                float pos;
-                Plane plane = new Plane(Vector3.forward, -Pathfinding.zMoveValue);
-                if (plane.Raycast(ray, out pos))
-                {
-                    selectedCharacter.MoveToPos(ray.GetPoint(pos));
-                }
-                else
-                {
-                    print("något fucky med matten bakom vänster-klicks-movement");
-                }
+                selectedCharacter.MoveToPos(HelperMethods.CursorToWorldCoord());
             }
         }
     }
@@ -139,10 +129,13 @@ public class UnitController : MonoBehaviour
                 ChestContent chest = character.itemInteractedWith.GetComponent<ChestContent>();
                 if (chest == null)
                 {
-                    chest = character.itemInteractedWith.gameObject.AddComponent<ChestContent>();
+                    TextLog.AddLog("Chest is empty");
                 }
-                TextLog.AddLog("Interacted with item " + character.itemInteractedWith.name);
-                chest.CheckContent();
+                else
+                {
+                    TextLog.AddLog("Interacted with item " + character.itemInteractedWith.name);
+                    chest.CheckContent();
+                }
                 break;
             default:
                 break;

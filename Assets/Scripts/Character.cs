@@ -31,8 +31,7 @@ public class Character : MonoBehaviour
     bool createNewPath = false;
     Vector3 newGoalPos;
 
-    //blir dubbla det här värdet
-    float maxDistToGroundCheck = 10;
+
 
     private CharacterAnimation characterAnim;
 
@@ -88,7 +87,7 @@ public class Character : MonoBehaviour
     {
         itemInteractedWith = null;
         itemInteractedWithBoxCollider = null;
-        pos = ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue));
+        pos = HelperMethods.ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue), transform.lossyScale.y);
 
         UpdateMovement(pos);
     }
@@ -102,12 +101,13 @@ public class Character : MonoBehaviour
         }
         else
         {
-            path = FindAndAdaptPath(transform.position, goal);
-            GetNextPosOnPath();
+            path = Pathfinding.FindPath(transform.position, goal, transform.lossyScale.y, itemInteractedWithBoxCollider);
             move = true;
+            GetNextPosOnPath();
 
+            //move behöver vara med här ifall pathen är tom
             //Animation stuff
-            if (characterAnim != null)
+            if (move && characterAnim != null)
             {
                 characterAnim.StartMoving();
             }
@@ -122,70 +122,6 @@ public class Character : MonoBehaviour
         }
     }
 
-    List<Vector3> FindAndAdaptPath(Vector3 startPos, Vector3 goalPos)
-    {
-        List<Vector3> tempPath = Pathfinding.FindPath(startPos, goalPos);
-
-        for (int i = 0; i < tempPath.Count - 1; i++)
-        {
-            tempPath[i] = ConvertPosToBeOnGround(tempPath[i]);
-        }
-        if (WallBetweenPoints(startPos, tempPath[0]))
-        {
-            tempPath.InsertRange(0, FixPathBetweenPoints(startPos, tempPath[0]));
-        }
-        if (tempPath.Count > 1)
-        {
-            if (itemInteractedWithBoxCollider != null)
-            {
-                tempPath[tempPath.Count - 1] = itemInteractedWithBoxCollider.ClosestPoint(tempPath[tempPath.Count - 2]);
-            }
-            if (WallBetweenPoints(tempPath[tempPath.Count - 1], tempPath[tempPath.Count - 2]))
-            {
-                tempPath.InsertRange(tempPath.Count - 1, FixPathBetweenPoints(tempPath[tempPath.Count - 2], tempPath[tempPath.Count - 1]));
-                if (itemInteractedWithBoxCollider != null)
-                {
-                    tempPath[tempPath.Count - 1] = itemInteractedWithBoxCollider.ClosestPoint(tempPath[tempPath.Count - 2]);
-                }
-            }
-        }
-        return tempPath;
-    }
-
-    List<Vector3> FixPathBetweenPoints(Vector3 p1, Vector3 p2)
-    {
-        List<Vector3> result = new List<Vector3>();
-        Vector3 t = p1;
-        t.z = Pathfinding.zMoveValue;
-        t = ConvertPosToBeOnGround(t);
-        result.Add(t);
-
-        t = p2;
-        t.z = Pathfinding.zMoveValue;
-        t = ConvertPosToBeOnGround(t);
-        result.Add(t);
-        return result;
-    }
-
-    bool WallBetweenPoints(Vector3 p1, Vector3 p2)
-    {
-        Vector3 dir = (p2 - p1).normalized;
-        float length = Vector3.Distance(p1, p2);
-        return Physics.Raycast(p1, dir, length, 1 << 6);
-    }
-
-    Vector3 ConvertPosToBeOnGround(Vector3 pos)
-    {
-        RaycastHit hit;
-        if (Physics.BoxCast(pos, new Vector3(.5f, .01f, .5f), Vector3.down, out hit, Quaternion.identity, maxDistToGroundCheck, 1 << 6))
-        {
-            float groundPosY = hit.point.y;
-            float characterHeight = transform.lossyScale.y;
-            pos = new Vector3(pos.x, groundPosY + (characterHeight / 2), pos.z);
-        }
-        return pos;
-    }
-
     Vector3 GetNextPosOnPath()
     {
         if (path.Count > 0)
@@ -194,7 +130,7 @@ public class Character : MonoBehaviour
             path.RemoveAt(0);
             return posMovingTo;
         }
-        print("Should never be here");
+        move = false;
         return transform.position;
     }
 
@@ -203,14 +139,12 @@ public class Character : MonoBehaviour
 
         if (move) //teoretiskt s�tt f�rlorar man range p� framen man kommer fram till en point, men spelar nog ingen roll
         {
-            
-
             if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed * Time.deltaTime)
             {
                 transform.position = posMovingTo;
                 if (createNewPath)
                 {
-                    path = FindAndAdaptPath(transform.position, newGoalPos);
+                    path = Pathfinding.FindPath(transform.position, newGoalPos, transform.lossyScale.y, itemInteractedWithBoxCollider);
                     createNewPath = false;
                     GetNextPosOnPath();
                     return;
