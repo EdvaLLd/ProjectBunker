@@ -24,7 +24,14 @@ public class Character : MonoBehaviour
     public float hunger = 100;
     public float health = 100;
     bool isAlive = true;
+    
+    private bool isHungry = true;
 
+    [SerializeField]
+    private float hungerConsumedModifier = .3f;
+
+    [SerializeField]
+    private float notHungryTime = 4;
 
     public float maxHunger;
     public float maxHealth;
@@ -54,7 +61,6 @@ public class Character : MonoBehaviour
 
     void HungerDecay()
     {
-        float hungerConsumedModifier = .3f;
         if(health != maxHealth && hunger > 80)
         {
             health += 5 * Time.deltaTime;
