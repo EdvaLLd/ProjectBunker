@@ -17,4 +17,4 @@ MonoBehaviour:
   Description: A fluffy loaf of bread
   Icon: {fileID: 21300000, guid: bae66d82a4096c446ae9c6b86ae4df1f, type: 3}
   SortingType: 2
-  hungerRestoration: 100
+  hungerRestoration: 25

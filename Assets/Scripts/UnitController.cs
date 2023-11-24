@@ -133,7 +133,7 @@ public class UnitController : MonoBehaviour
                 }
                 else
                 {
-                    TextLog.AddLog("Interacted with item " + character.itemInteractedWith.name);
+                    TextLog.AddLog("Interacted with item " + character.itemInteractedWith.item.DisplayName);
                     chest.CheckContent();
                 }
                 break;
@@ -179,11 +179,12 @@ public class UnitController : MonoBehaviour
     {
         if(isSelected)
         {
-            character.GetComponent<MeshRenderer>().material = selectedModifier.material;
+            //character.transform.GetChild(1).GetComponent<MeshRenderer>().material = selectedModifier.material;
         }
         else
         {
-            character.GetComponent<MeshRenderer>().material = unSelectedModifier.material;
+            //character.transform.GetChild(1).GetComponent<MeshRenderer>().material = unSelectedModifier.material;
         }
+        character.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = isSelected;
     }
 }

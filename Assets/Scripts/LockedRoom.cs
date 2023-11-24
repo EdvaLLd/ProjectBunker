@@ -12,6 +12,14 @@ public class LockedRoom : MonoBehaviour
     [SerializeField]
     Item decontaminationUnit;
 
+    private void Start()
+    {
+        for (int i = 0; i < roomEntrances.Length; i++)
+        {
+            roomEntrances[i].AddLockedFrom();
+        }
+    }
+
     private void OnMouseEnter()
     {
         if (Inventory.GetAmountOfItem(decontaminationUnit) > 0)
@@ -34,7 +42,7 @@ public class LockedRoom : MonoBehaviour
         { 
             for (int i = 0; i < roomEntrances.Length; i++)
             {
-                roomEntrances[i].isLocked = false;
+                roomEntrances[i].RemoveLockedFrom();
             }
             //borde antagligen göras snyggare
             if (mist != null)
@@ -43,7 +51,7 @@ public class LockedRoom : MonoBehaviour
             }
             Inventory.RemoveItem(decontaminationUnit);
             UIManager.clearMistBtnGO.gameObject.SetActive(false);
-            Destroy(this);
+            Destroy(transform.parent.gameObject);
         }
     }
 }

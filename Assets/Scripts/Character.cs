@@ -60,10 +60,10 @@ public class Character : MonoBehaviour
             health += 5 * Time.deltaTime;
             hungerConsumedModifier += 2;
         }
-        hunger -= (hungerConsumedModifier * Time.deltaTime)/3;
-        if (hunger < 20)
+        hunger -= (hungerConsumedModifier * Time.deltaTime);
+        if (hunger < 10)
         {
-            health -= (20 - hunger) * Time.deltaTime;
+            health -= (10 - hunger) * Time.deltaTime * 0.3f;
             if(health < 0)
             {
                 isAlive = false;
@@ -101,7 +101,7 @@ public class Character : MonoBehaviour
         }
         else
         {
-            path = Pathfinding.FindPath(transform.position, goal, transform.lossyScale.y, itemInteractedWithBoxCollider);
+            path = Pathfinding.FindPath(transform.position, goal, GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y, itemInteractedWithBoxCollider);
             move = true;
             GetNextPosOnPath();
 
@@ -130,6 +130,7 @@ public class Character : MonoBehaviour
             path.RemoveAt(0);
             return posMovingTo;
         }
+        characterAnim.StopMoving();
         move = false;
         return transform.position;
     }
@@ -144,7 +145,7 @@ public class Character : MonoBehaviour
                 transform.position = posMovingTo;
                 if (createNewPath)
                 {
-                    path = Pathfinding.FindPath(transform.position, newGoalPos, transform.lossyScale.y, itemInteractedWithBoxCollider);
+                    path = Pathfinding.FindPath(transform.position, newGoalPos, GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y, itemInteractedWithBoxCollider);
                     createNewPath = false;
                     GetNextPosOnPath();
                     return;
@@ -190,9 +191,9 @@ public class Character : MonoBehaviour
 
     public void ConsumeFood(Food food)
     {
-        TextLog.AddLog($"{food.DisplayName} eaten!");
-        if(maxHunger != hunger)
+        if(maxHunger - hunger > 15)
         {
+            TextLog.AddLog($"{food.DisplayName} eaten!");
             Inventory.RemoveItem(food);
             hunger = Mathf.Clamp(hunger + food.GetHungerRestoration(), 0, maxHunger);
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//det här fönstret borde resettas när man stänger det (iaf den lilla "machinebg")
 public class CraftingWindow : MonoBehaviour
 {
     [SerializeField]
@@ -18,6 +19,7 @@ public class CraftingWindow : MonoBehaviour
     CraftingRecipe recipeMarked;
     public void InitCraftingWindow(CraftingMachine machine)
     {
+        Time.timeScale = 0;
         ClearChilds(recipeList.transform);
         List<CraftingRecipe> recipesForMachine = Inventory.GetRecipesForMachine(machine);
         for (int i = 0; i < recipesForMachine.Count; i++)
@@ -32,6 +34,11 @@ public class CraftingWindow : MonoBehaviour
             transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = machine.name;
             InitRecipeWindow(t, recipe);
         }
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
     }
 
     void InitRecipeWindow(GameObject window, CraftingRecipe recipe)

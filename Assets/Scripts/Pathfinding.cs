@@ -34,6 +34,11 @@ public class Pathfinding : MonoBehaviour
         openList.Clear();
         closedList.Clear();
         Pathpoint startPoint = FindClosestPoint(startPos, characterHeight);
+        if(HelperMethods.WallBetweenPointsOnGround(startPoint.transform.position, startPos, characterHeight))
+        {
+            Debug.Log("no entrypoint");
+            return new List<Vector3>();
+        }
         for (int i = 0; i < allPoints.Length; i++)
         {
             allPoints[i].ResetPoint();
@@ -63,7 +68,7 @@ public class Pathfinding : MonoBehaviour
             closedList.Add(currentPoint);
             openList.Remove(currentPoint);
         }
-        print("no path");
+        Debug.Log("no path");
         return new List<Vector3>();
     }
 

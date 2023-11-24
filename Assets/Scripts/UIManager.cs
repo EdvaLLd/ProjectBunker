@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
         craftingWindow.SetActive(false);
         clearMistBtnGO.SetActive(false);
 
-        Inventory.AddItem(Database.GetItemWithID("01001"), 4);
+        Inventory.AddItem(Database.GetItemWithID("01001"), 5);
         Inventory.AddItem(Database.GetItemWithID("01002"), 1);
     }
 

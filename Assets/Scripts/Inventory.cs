@@ -25,20 +25,29 @@ public static class Inventory
         onInventoryUpdate?.Invoke();
     }
 
-    public static void AddRecipe(CraftingMachine machine, CraftingRecipe recipe)
-    {
-        TextLog.AddLog($"Learned recipe: {recipe.DisplayName}!", Color.yellow);
-        if (recipesUnlocked.ContainsKey(machine)) recipesUnlocked[machine].Add(recipe);
-        else recipesUnlocked.Add(machine, new List<CraftingRecipe>() { recipe});
-    }
 
     public static void AddRecipeToMachines(CraftingRecipe recipe)
     {
-        TextLog.AddLog($"Learned recipe: {recipe.DisplayName}!", Color.yellow);
+        bool recipeAdded = false;
         for (int i = 0; i < recipe.CraftableInMachine.Count; i++)
         {
-            if (recipesUnlocked.ContainsKey(recipe.CraftableInMachine[i])) recipesUnlocked[recipe.CraftableInMachine[i]].Add(recipe);
-            else recipesUnlocked.Add(recipe.CraftableInMachine[i], new List<CraftingRecipe>() { recipe });
+            if (recipesUnlocked.ContainsKey(recipe.CraftableInMachine[i]))
+            {
+                if (!recipesUnlocked[recipe.CraftableInMachine[i]].Contains(recipe))
+                {
+                    recipesUnlocked[recipe.CraftableInMachine[i]].Add(recipe);
+                    recipeAdded = true;
+                }
+            }
+            else
+            {
+                recipesUnlocked.Add(recipe.CraftableInMachine[i], new List<CraftingRecipe>() { recipe });
+                recipeAdded = true;
+            }
+        }
+        if(recipeAdded)
+        {
+            TextLog.AddLog($"Learned recipe: {recipe.DisplayName}!", Color.yellow);
         }
     }
 

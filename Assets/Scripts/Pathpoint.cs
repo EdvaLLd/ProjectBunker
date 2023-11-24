@@ -20,7 +20,21 @@ public class Pathpoint : MonoBehaviour
     [HideInInspector]
     public Pathpoint discoveryPoint = null;
 
-   
+    int lockedFromAmountOfRooms = 0;
+
+    public void AddLockedFrom()
+    {
+        lockedFromAmountOfRooms++;
+        isLocked = true;
+    }
+    public void RemoveLockedFrom()
+    {
+        lockedFromAmountOfRooms--;
+        if(lockedFromAmountOfRooms < 1)
+        {
+            isLocked = false;
+        }
+    }
 
     public void ResetPoint()
     {

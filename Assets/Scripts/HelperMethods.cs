@@ -5,7 +5,7 @@ using UnityEngine;
 public class HelperMethods
 {
     //blir dubbla det här värdet
-    static float maxDistToGroundCheck = 10;
+    static float maxDistToGroundCheck = Mathf.Infinity;
 
 
     public static Vector3 CursorToWorldCoord()
