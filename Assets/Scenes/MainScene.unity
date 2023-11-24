@@ -5485,6 +5485,7 @@ MonoBehaviour:
   craftingGO: {fileID: 2045343616}
   inspectGO: {fileID: 1380745265}
   lootGO: {fileID: 420108039}
+  exploreGO: {fileID: 0}
   queueClose: 0
 --- !u!114 &572202117
 MonoBehaviour:
@@ -6604,6 +6605,7 @@ MonoBehaviour:
     crafting: 1
     inspect: 1
     loot: 0
+    explore: 0
 --- !u!65 &699427034
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8213,7 +8215,6 @@ Transform:
   - {fileID: 609937048}
   - {fileID: 1975991980}
   - {fileID: 131990467}
-  - {fileID: 1476851338}
   - {fileID: 466208565}
   m_Father: {fileID: 802739034}
   m_RootOrder: 4
@@ -10000,8 +10001,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99f7e8ad206d3d4bb915ae1e47e444a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficulty: 0
   DayNightValue: 0
   cycleRate: 1
+  looting:
+    maxLootQuantity: 0
+    minLootQuantity: 0
+    lootProbabilityDefault: 75
+  locationalLoot:
+  - lootItems: []
+  - lootItems: []
+  - lootItems: []
+  - lootItems: []
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0
@@ -13437,23 +13448,23 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 973117353}
+    m_TransformParent: {fileID: 1666241912}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 107cc46336e3a8f4994116356cdd3b50, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 107cc46336e3a8f4994116356cdd3b50, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.2134647
+      value: 2.657331
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 107cc46336e3a8f4994116356cdd3b50, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8881074
+      value: -1.8206043
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 107cc46336e3a8f4994116356cdd3b50, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1289357
+      value: -0.43036973
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 107cc46336e3a8f4994116356cdd3b50, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13498,6 +13509,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 107cc46336e3a8f4994116356cdd3b50, type: 3}
   m_PrefabInstance: {fileID: 1476851337}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1476851339 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 107cc46336e3a8f4994116356cdd3b50, type: 3}
+  m_PrefabInstance: {fileID: 1476851337}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1476851340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476851339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee41b0eee67d8e54a9ec6ce4ec637ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableArea: {fileID: 0}
+  item: {fileID: 11400000, guid: d60d0ca617efd91439cfea12f7ccc69c, type: 2}
+  interactOptionsBools:
+    crafting: 0
+    inspect: 1
+    loot: 0
+    explore: 1
 --- !u!1 &1497074110
 GameObject:
   m_ObjectHideFlags: 0
@@ -14762,6 +14797,7 @@ Transform:
   - {fileID: 297580425}
   - {fileID: 1282077302}
   - {fileID: 992110659}
+  - {fileID: 1476851338}
   m_Father: {fileID: 802739034}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16561,6 +16597,7 @@ MonoBehaviour:
     crafting: 1
     inspect: 1
     loot: 0
+    explore: 0
 --- !u!1001 &1861436731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18408,6 +18445,7 @@ MonoBehaviour:
     crafting: 1
     inspect: 1
     loot: 0
+    explore: 0
 --- !u!65 &2049845527
 BoxCollider:
   m_ObjectHideFlags: 0
