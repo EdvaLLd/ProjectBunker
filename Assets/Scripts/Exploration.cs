@@ -53,7 +53,9 @@ public class Exploration : MonoBehaviour
 
         float timeToWait = distance / timeDivisor;
         currentEnvironment = exploreLocation;
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        //gameObject.GetComponent<MeshRenderer>().enabled = false;
 
         /*print*/
         TextLog.AddLog(startMessage);
@@ -61,7 +63,9 @@ public class Exploration : MonoBehaviour
         yield return new WaitForSeconds(timeToWait);
 
         currentEnvironment = Location.environments.Home;
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
+
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        // gameObject.GetComponent<MeshRenderer>().enabled = true;
 
         /*print*/
         TextLog.AddLog(endMessage);
@@ -122,7 +126,7 @@ public class Exploration : MonoBehaviour
     {
         if (location.lootProbabilities.Length <= 0)
         {
-            print("No items present in location loot list probably for location: " + location.environment + ".");
+            Debug.LogWarning("No items present in location loot list probably for location: " + location.environment + ".");
             return -1;
         }
         else if (location.lootProbabilities.Length == 1) 

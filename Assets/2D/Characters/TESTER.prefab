@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7780648542340397817}
   - component: {fileID: 7780648542340397831}
   - component: {fileID: 6372198396653535077}
+  - component: {fileID: 3779858556677083368}
   m_Layer: 0
   m_Name: TESTER
   m_TagString: Untagged
@@ -123,3 +124,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49242c0520e2c044fad394b4fea55b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  task: 0
+  itemInteractedWith: {fileID: 0}
+  hunger: 100
+  health: 100
+  hungerConsumedModifier: 0.3
+  notHungryTime: 4
+  maxHunger: 0
+  maxHealth: 0
+--- !u!114 &3779858556677083368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7780648542340397821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae178491bc92ec942b491895a8c6eba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeDivisor: 100
+  currentEnvironment: 0
