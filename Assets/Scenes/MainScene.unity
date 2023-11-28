@@ -10111,7 +10111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficulty: 0
   DayNightValue: 0
-  cycleRate: 1
+  cycleRate: 50
+  moonSunOppositionAngle: 0
   looting:
     maxLootQuantity: 2
     minLootQuantity: 1
