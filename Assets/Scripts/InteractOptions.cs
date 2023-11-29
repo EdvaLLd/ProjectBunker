@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 [System.Serializable]
 public class InteractOptionsBools
@@ -13,7 +14,7 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
     //public abstract void ButtonClicked(InteractableItem item);
     [SerializeField]
-    GameObject craftingGO, inspectGO, lootGO, exploreGO;
+    GameObject craftingGO, inspectGO, lootGO, exploreGO, paddingGO, buttonsGO, machineTextGO;
 
     [HideInInspector]
     public bool queueClose = false;
@@ -46,6 +47,11 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         CloseAllWindows();
         OpenWindows(bools, go.gameObject);
+        //paddingGO.transform.localScale = transform.localScale + new Vector3(0, 20, 0);
+        //paddingGO.GetComponent<RectTransform>().sizeDelta = buttonsGO.GetComponent<RectTransform>().sizeDelta + new Vector2(0, 10);
+
+        machineTextGO.GetComponent<TextMeshProUGUI>().text = itemInteractedWithTemp.DisplayName;
+
         queueClose = false;
         itemInteractedWithType = itemInteractedWithTemp;
         itemInteractedWith = go;
@@ -53,14 +59,18 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void CloseAllWindows()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        machineTextGO.SetActive(false);
+        paddingGO.SetActive(false);
+        for (int i = 0; i < buttonsGO.transform.childCount; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(false);
+            buttonsGO.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 
     public void OpenWindows(InteractOptionsBools bools, GameObject go)
     {
+        machineTextGO.SetActive(true);
+        paddingGO.SetActive(true);
         if (bools.crafting) craftingGO.SetActive(true);
         if (bools.inspect) inspectGO.SetActive(true);
         if (bools.loot) lootGO.SetActive(true);
@@ -73,6 +83,7 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         Vector3 pos = obj.GetComponent<BoxCollider>().ClosestPointOnBounds(new Vector3(obj.transform.position.x, Mathf.Infinity));
         transform.position = Camera.main.WorldToScreenPoint(pos);
+        
     }
 
     public void OnCraftingClick()

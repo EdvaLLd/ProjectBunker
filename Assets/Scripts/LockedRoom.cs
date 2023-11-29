@@ -29,11 +29,17 @@ public class LockedRoom : MonoBehaviour
             UIManager.clearMistBtnGO.GetComponent<Button>().onClick.RemoveAllListeners();
             UIManager.clearMistBtnGO.GetComponent<Button>().onClick.AddListener(UnlockRoom);
         }
+        else
+        {
+            UIManager.dangerTextGO.SetActive(true);
+            UIManager.dangerTextGO.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        }
     }
 
     private void OnMouseExit()
     {
         UIManager.clearMistBtnGO.SetActive(false);
+        UIManager.dangerTextGO.SetActive(false);
     }
 
     public void UnlockRoom()

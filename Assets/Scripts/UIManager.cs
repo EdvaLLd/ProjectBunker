@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     public GameObject craftingWindow;
 
     public static GameObject clearMistBtnGO;
+    public static GameObject dangerTextGO;
 
 
     private void Awake()
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
         craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow");
         clearMistBtnGO = GameObject.FindGameObjectWithTag("ClearMistBtn");
         buttonSelected = inventoryBG.transform.GetChild(0).GetChild(0).GetComponent<Button>();
+        dangerTextGO = GameObject.FindGameObjectWithTag("DangerTxt");
     }
 
     private void Start()
@@ -36,6 +38,7 @@ public class UIManager : MonoBehaviour
         inventoryBG.SetActive(false);
         craftingWindow.SetActive(false);
         clearMistBtnGO.SetActive(false);
+        dangerTextGO.SetActive(false);
 
         Inventory.AddItem(Database.GetItemWithID("01001"), 5);
         Inventory.AddItem(Database.GetItemWithID("01002"), 1);
