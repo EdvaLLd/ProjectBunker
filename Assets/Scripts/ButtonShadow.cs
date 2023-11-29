@@ -7,8 +7,9 @@ using UnityEngine.UI;
 //Emma
 public class ButtonShadow : MonoBehaviour
 {
-    public void StopShadow(Shadow shadow)
+    public void StopShadow()
     {
+        Shadow shadow = GetComponent<Shadow>();
         shadow.enabled = false;
         StartCoroutine(ShadowTimer(shadow));
     }

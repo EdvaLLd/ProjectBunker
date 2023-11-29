@@ -4,13 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//det här fönstret borde resettas när man stänger det (iaf den lilla "machinebg")
 public class CraftingWindow : MonoBehaviour
 {
-    [SerializeField]
-    List<CraftingRecipe> recipes = new List<CraftingRecipe>(); //Borde vara unlockade recept sen
-    
-    //public CraftingMachine machine;
-
     [SerializeField]
     GameObject recipePrefab, ingredientPrefab;
 
@@ -23,19 +19,26 @@ public class CraftingWindow : MonoBehaviour
     CraftingRecipe recipeMarked;
     public void InitCraftingWindow(CraftingMachine machine)
     {
+        Time.timeScale = 0;
         ClearChilds(recipeList.transform);
-        for (int i = 0; i < recipes.Count; i++)
+        List<CraftingRecipe> recipesForMachine = Inventory.GetRecipesForMachine(machine);
+        for (int i = 0; i < recipesForMachine.Count; i++)
         {
-            CraftingRecipe recipe = recipes[i];
+            CraftingRecipe recipe = recipesForMachine[i];
             GameObject t;
             t = Instantiate(recipePrefab, recipeList.transform);
             t.transform.GetChild(0).GetComponent<Image>().sprite = recipe.Icon;
-            t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = recipe.name;
+            t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = recipe.DisplayName;
             t.GetComponent<Button>().onClick.AddListener(() => RecipeClicked(recipe));
             craftingWindow.GetComponent<Image>().sprite = machine.Icon;
             transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = machine.name;
-            InitRecipeWindow(t, recipes[i]);
+            InitRecipeWindow(t, recipe);
         }
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
     }
 
     void InitRecipeWindow(GameObject window, CraftingRecipe recipe)

@@ -16,4 +16,4 @@ MonoBehaviour:
   DisplayName: Leather
   Description: A piece of Leather
   Icon: {fileID: 21300000, guid: d2622ee2d13f26749b9132b47a57e0e2, type: 3}
-  SortingType: 0
+  SortingType: 1

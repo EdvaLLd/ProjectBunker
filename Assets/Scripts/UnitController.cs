@@ -12,7 +12,7 @@ public class SelectionVisibilityModifier
 
 public enum CharacterTasks
 {
-    none, crafting, inspecting, looting
+    none, crafting, inspecting, looting, exploring
 }
 
 public class UnitController : MonoBehaviour
@@ -36,6 +36,37 @@ public class UnitController : MonoBehaviour
     static Character selectedCharacter = null;
 
 
+    //(denna är nog anpassad för procent, så viktigt att variablerna går mellan 0 och 100)
+    //avgör hur ofta UIn uppdateras, 5 = var femte procent
+    int howOftenToUpdateStats = 5;
+
+
+    static GameObject characterStatsWindowStatic;
+
+
+    [SerializeField]
+    CraftingRecipe[] recipes;
+
+    private void Start()
+    {
+        unSelectedModifier = unSelectedModifierSetter;
+        selectedModifier = selectedModifierSetter;
+        movementSpeed = movementSpeedSetter;
+        Character.onTaskCompletion += TaskCompleted;
+
+        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+
+
+
+        characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
+        characterStatsWindowStatic.SetActive(false);
+
+        //Det här är temp och ska tas bort när man kan få recept på bättre sätt
+        for (int i = 0; i < recipes.Length; i++)
+        {
+            Inventory.AddRecipeToMachines(recipes[i]);
+        }
+    }
 
     private void Update()
     {
@@ -57,16 +88,16 @@ public class UnitController : MonoBehaviour
         if (selectedCharacter != null)
         {
             UpdateCharacterStatsUI();
+            if (Input.GetMouseButtonDown(1))
+            {
+                selectedCharacter.MoveToPos(HelperMethods.CursorToWorldCoord());
+            }
         }
     }
-
-    [SerializeField]
-    GameObject characterStatsWindow;
-    static GameObject characterStatsWindowStatic;
     void UpdateCharacterStatsUI()
     {
-        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHealth(selectedCharacter.health);
-        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHunger(selectedCharacter.hunger);
+        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHealth(((int)(selectedCharacter.health / howOftenToUpdateStats) + 1) * howOftenToUpdateStats);
+        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHunger(((int)(selectedCharacter.hunger / howOftenToUpdateStats) + 1) * howOftenToUpdateStats);
     }
 
     public void FeedCharacter(Food food)
@@ -75,23 +106,6 @@ public class UnitController : MonoBehaviour
         {
             selectedCharacter.ConsumeFood(food);
         }
-    }
-
-    private void Start()
-    {
-        unSelectedModifier = unSelectedModifierSetter;
-        selectedModifier = selectedModifierSetter;
-        movementSpeed = movementSpeedSetter;
-        Character.onTaskCompletion += TaskCompleted;
-
-        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-
-
-
-        //temp
-        characterStatsWindow.GetComponent<CharacterStatsHandler>().SetUp();
-        characterStatsWindow.SetActive(false);
-        characterStatsWindowStatic = characterStatsWindow;
     }
 
     public void TaskCompleted(Character character)
@@ -112,13 +126,23 @@ public class UnitController : MonoBehaviour
                 TextLog.AddLog($"Inspected item: {character.item.Description}");
                 break;
             case CharacterTasks.looting:
-                ChestContent chest = selectedCharacter.itemInteractedWith.GetComponent<ChestContent>();
+                ChestContent chest = character.itemInteractedWith.GetComponent<ChestContent>();
                 if (chest == null)
                 {
-                    chest = selectedCharacter.itemInteractedWith.gameObject.AddComponent<ChestContent>();
+                    TextLog.AddLog("Chest is empty");
                 }
-                chest.CheckContent();
+                else
+                {
+                    TextLog.AddLog("Interacted with item " + character.itemInteractedWith.item.DisplayName);
+                    chest.CheckContent();
+                }
                 break;
+            case CharacterTasks.exploring:
+                selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
+                characterStatsWindowStatic.SetActive(false);
+                UnitController.SwapSelectedCharacter(null);
+                break;
+
             default:
                 break;
         }
@@ -152,6 +176,7 @@ public class UnitController : MonoBehaviour
             }
             selectedCharacter = newSelectedCharacter;
             setCharacterVisual(selectedCharacter, true);
+            characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().SetUp(selectedCharacter);
             characterStatsWindowStatic.SetActive(true);
         }
     }
@@ -160,11 +185,17 @@ public class UnitController : MonoBehaviour
     {
         if(isSelected)
         {
-            character.GetComponent<MeshRenderer>().material = selectedModifier.material;
+            //character.transform.GetChild(1).GetComponent<MeshRenderer>().material = selectedModifier.material;
         }
         else
         {
-            character.GetComponent<MeshRenderer>().material = unSelectedModifier.material;
+            //character.transform.GetChild(1).GetComponent<MeshRenderer>().material = unSelectedModifier.material;
         }
+        character.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = isSelected;
+    }
+
+    public Character GetSelectedCharacter()
+    {
+        return selectedCharacter;
     }
 }

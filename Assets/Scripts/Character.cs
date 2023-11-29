@@ -24,10 +24,21 @@ public class Character : MonoBehaviour
     public float hunger = 100;
     public float health = 100;
     bool isAlive = true;
+    
+    private bool isHungry = true;
+
+    [SerializeField]
+    private float hungerConsumedModifier = .3f;
+
+    [SerializeField]
+    private float notHungryTime = 4;
+
+    public float maxHunger;
+    public float maxHealth;
+    bool createNewPath = false;
+    Vector3 newGoalPos;
 
 
-    float maxHunger;
-    float maxHealth;
 
     private CharacterAnimation characterAnim;
 
@@ -46,22 +57,19 @@ public class Character : MonoBehaviour
             Move();
             HungerDecay();
         }
-
-        //print($"{hunger} | {health}");
     }
 
     void HungerDecay()
     {
-        float hungerConsumedModifier = .3f;
         if(health != maxHealth && hunger > 80)
         {
             health += 5 * Time.deltaTime;
             hungerConsumedModifier += 2;
         }
-        hunger -= (hungerConsumedModifier * Time.deltaTime)/3;
-        if (hunger < 20)
+        hunger -= (hungerConsumedModifier * Time.deltaTime);
+        if (hunger < 10)
         {
-            health -= (20 - hunger) * Time.deltaTime;
+            health -= (10 - hunger) * Time.deltaTime * 0.3f;
             if(health < 0)
             {
                 isAlive = false;
@@ -78,19 +86,38 @@ public class Character : MonoBehaviour
         itemInteractedWith = item;
         itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
 
-        path = Pathfinding.FindPath(transform.position, item.transform.position);
+        UpdateMovement(item.transform.position);
+    }
 
-        if (!move)
+    public void MoveToPos(Vector3 pos)
+    {
+        itemInteractedWith = null;
+        itemInteractedWithBoxCollider = null;
+        pos = HelperMethods.ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue), transform.lossyScale.y);
+
+        UpdateMovement(pos);
+    }
+
+    void UpdateMovement(Vector3 goal)
+    {
+        if (move)
         {
-            GetNextPosOnPath();
+            newGoalPos = goal;
+            createNewPath = true;
         }
+        else
+        {
+            path = Pathfinding.FindPath(transform.position, goal, GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y, itemInteractedWithBoxCollider);
+            move = true;
+            GetNextPosOnPath();
 
-        move = true;
-
-        //Animation stuff
-        if(characterAnim != null){
-            characterAnim.StartMoving();
-        }     
+            //move behöver vara med här ifall pathen är tom
+            //Animation stuff
+            if (move && characterAnim != null)
+            {
+                characterAnim.StartMoving();
+            }
+        }
     }
 
     void OnMouseOver()
@@ -105,21 +132,12 @@ public class Character : MonoBehaviour
     {
         if (path.Count > 0)
         {
-            if (path.Count == 1)
-            {
-                posMovingTo = itemInteractedWithBoxCollider.ClosestPoint(transform.position);
-                posMovingTo.y = itemInteractedWithBoxCollider.transform.position.y; //det h�r borde antagligen g�ras om
-                //till att g� p� marken
-                path.RemoveAt(0);
-            }
-            else
-            {
-                posMovingTo = path[0];
-                path.RemoveAt(0);
-            }
+            posMovingTo = path[0];
+            path.RemoveAt(0);
             return posMovingTo;
         }
-        print("Should never be here");
+        characterAnim.StopMoving();
+        move = false;
         return transform.position;
     }
 
@@ -128,11 +146,16 @@ public class Character : MonoBehaviour
 
         if (move) //teoretiskt s�tt f�rlorar man range p� framen man kommer fram till en point, men spelar nog ingen roll
         {
-            
-
             if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed * Time.deltaTime)
             {
                 transform.position = posMovingTo;
+                if (createNewPath)
+                {
+                    path = Pathfinding.FindPath(transform.position, newGoalPos, GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y, itemInteractedWithBoxCollider);
+                    createNewPath = false;
+                    GetNextPosOnPath();
+                    return;
+                }
                 if (path.Count > 0)
                 {
                     GetNextPosOnPath();
@@ -140,18 +163,21 @@ public class Character : MonoBehaviour
                 else
                 {
                     move = false;
-                    onTaskCompletion?.Invoke(this);
-
-                    //Animation stuff
-                    if(characterAnim != null){
-                        characterAnim.StopMoving();
-                        if(task == CharacterTasks.crafting)
+                    characterAnim.StopMoving();
+                    if (itemInteractedWith != null)
+                    {
+                        onTaskCompletion?.Invoke(this);
+                        //Animation stuff
+                        if (characterAnim != null)
                         {
-                            characterAnim.StartCrafting();
-                        }
-                        else
-                        {
-                            characterAnim.StopCrafting();
+                            if (task == CharacterTasks.crafting)
+                            {
+                                characterAnim.StartCrafting();
+                            }
+                            else
+                            {
+                                characterAnim.StopCrafting();
+                            }
                         }
                     }
                 }
@@ -171,16 +197,33 @@ public class Character : MonoBehaviour
 
     public void ConsumeFood(Food food)
     {
-        TextLog.AddLog($"{food.DisplayName} eaten!");
-        if(maxHunger != hunger)
+        if (maxHunger - hunger > 15)
         {
+            TextLog.AddLog($"{food.DisplayName} eaten!");
             Inventory.RemoveItem(food);
             hunger = Mathf.Clamp(hunger + food.GetHungerRestoration(), 0, maxHunger);
         }
-        else
+        if (hunger >= maxHunger)
         {
-            print("me no hungry");
+            if (isHungry)
+            {
+                StartCoroutine(NotHungryEffect());
+            }
+
+            TextLog.AddLog(FindObjectOfType<UnitController>().GetSelectedCharacter().name + "is not hungry.");
         }
+    }
+
+    private IEnumerator NotHungryEffect()
+    {
+        isHungry = false;
+        float hungerConsumedModifierDefault = hungerConsumedModifier;
+        hungerConsumedModifier = 0;
+
+        yield return new WaitForSeconds(notHungryTime);
+
+        hungerConsumedModifier = hungerConsumedModifierDefault;
+        isHungry = true;
     }
 
     public float GetCharacterDirectionX()
