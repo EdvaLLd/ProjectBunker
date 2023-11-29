@@ -285,7 +285,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a2180653b15146a48b8eb8020328c38b, type: 3}
   m_PrefabInstance: {fileID: 18410485}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &34892943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1170,7 +1169,6 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
   m_PrefabInstance: {fileID: 92489389}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &92489391 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4499155760850253288, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
@@ -1300,7 +1298,6 @@ BoxCollider:
   m_GameObject: {fileID: 94215510}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 4, y: 0.060000077, z: 1.8000001}
   m_Center: {x: -2, y: -0.030000057, z: -0.8999999}
@@ -2050,7 +2047,6 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -4.095, y: -0.63, z: -0.002}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 429506925}
   m_RootOrder: 5
@@ -2914,7 +2910,6 @@ Transform:
   m_LocalPosition: {x: -361.48242, y: 17.45956, z: -2.590273}
   m_LocalScale: {x: 1.4010507, y: 1.4010507, z: 1.4010507}
   m_ConstrainProportionsScale: 0
-  m_Children: []
   m_Father: {fileID: 208897488}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4654,7 +4649,6 @@ PrefabInstance:
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_fontSize
       value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -13161,7 +13155,6 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1892042789}
   - {fileID: 1338098481}
@@ -15669,7 +15662,6 @@ CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774323439}
   m_CullTransparentMesh: 1
 --- !u!1001 &1792651045
@@ -18024,7 +18016,6 @@ PrefabInstance:
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0

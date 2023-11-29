@@ -22,10 +22,15 @@ public class CharacterAnimation : MonoBehaviour
     {
         if(character.GetCharacterDirectionX() > 0)
         {
+            StopClimbing();
             transform.eulerAngles = new Vector3(0, 180, 0);
         }else if(character.GetCharacterDirectionX() < 0)
         {
+            StopClimbing();
             transform.eulerAngles = new Vector3(0, 0, 0);
+        }else if(character.GetCharacterDirectionX() == 0)
+        {
+            StartClimbing();
         }
         
     }
@@ -39,6 +44,16 @@ public class CharacterAnimation : MonoBehaviour
     public void StopMoving()
     {
         animator.SetBool("isMoving", false);
+    }
+
+    private void StartClimbing()
+    {
+        animator.SetBool("isClimbing", true);
+    }
+
+    private void StopClimbing()
+    {
+        animator.SetBool("isClimbing", false);
     }
 
     //Ansiktsanimationer kommer troligtvis få egna metoder sen, men det här är bara för testning
