@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     private GameObject sun;
     private GameObject moon;
 
-
     private static Location[] explorableLocations = new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
 
     [Header("Location")]
@@ -61,7 +60,7 @@ public class GameManager : MonoBehaviour
         DayNightValue += calculatedCycleRate;
 
         sun.transform.rotation = Quaternion.Euler(DayNightValue, -38, 0);
-        moon.transform.rotation = Quaternion.Euler(DayNightValue + 180 + moonAngle, -38, 0);
+        moon.transform.rotation = Quaternion.Euler(DayNightValue + 180 /*+ moonAngle*/, -38, 0);
 
        /* if (sun.transform.rotation.x == 30)
         {
@@ -132,3 +131,10 @@ public class Looting
     [Tooltip("The higher the index in LootItems list, the lower is the probability for it appearing. This value is the probability at index 0 in percent.")]
     public float lootProbabilityDefault = 75;
 }
+
+/*[System.Serializable]
+public static class LightTest 
+{
+    public static float moonDirection;
+    public static float viewDirection;
+}*/

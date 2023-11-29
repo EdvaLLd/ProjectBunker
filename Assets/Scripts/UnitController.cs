@@ -140,7 +140,7 @@ public class UnitController : MonoBehaviour
             case CharacterTasks.exploring:
                 selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
                 characterStatsWindowStatic.SetActive(false);
-                UnitController.SwapSelectedCharacter(null);
+                UnitController.SwapSelectedCharacter(selectedCharacter);
                 break;
 
             default:
@@ -183,14 +183,14 @@ public class UnitController : MonoBehaviour
 
     public static void setCharacterVisual(Character character, bool isSelected)
     {
-        if(isSelected)
+        /*if(isSelected)
         {
             //character.transform.GetChild(1).GetComponent<MeshRenderer>().material = selectedModifier.material;
         }
         else
         {
             //character.transform.GetChild(1).GetComponent<MeshRenderer>().material = unSelectedModifier.material;
-        }
+        }*/
         character.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = isSelected;
     }
 
