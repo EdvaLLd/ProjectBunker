@@ -17,14 +17,15 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private difficulties difficulty;
 
-    [SerializeField, Header("Day/Night cycle")]
-    private float DayNightValue = 0; //0.0f - 360.0f
-    [SerializeField]
-    private float cycleRate = 0.1f;
-    [SerializeField]
-    //private float angle = 0;
-    private float moonSunOppositionAngle = 0;
+    /*[SerializeField, Header("Day/Night cycle")]
+     private float DayNightValue = 0; //0.0f - 360.0f
+     [SerializeField]
+     private float cycleRate = 0.1f;
+     [SerializeField]
+     //private float angle = 0;
+     private float moonSunOppositionAngle = 0;*/
 
+    private SkyboxController skyboxManager;
     private GameObject sun;
     private GameObject moon;
 
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         
+        skyboxManager = GameObject.FindObjectOfType<SkyboxController>();
         sun = GameObject.Find("Sun");
         moon = GameObject.Find("Moon");
         SetExplorableLocations();
@@ -51,27 +53,27 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        DayAndNightCycle(cycleRate, moonSunOppositionAngle);
+        DayAndNightCycle(skyboxManager.cycleRate/*cycleRate, moonSunOppositionAngle*/);
         //moonSunOppositionAngle = moonSunOppositionAngle;
     }
 
-    private void DayAndNightCycle(float rate, float moonAngle)
+    private void DayAndNightCycle(float rate/*, float moonAngle*/)
     {
         float calculatedCycleRate = rate * Time.deltaTime;
 
-        DayNightValue += calculatedCycleRate;
+        skyboxManager.dayNightValue += calculatedCycleRate;
 
-        sun.transform.rotation = Quaternion.Euler(DayNightValue, -38, 0);
-        moon.transform.rotation = Quaternion.Euler(DayNightValue + 180 + moonAngle, -38, 0);
+        sun.transform.rotation = Quaternion.Euler(skyboxManager.dayNightValue, -38, 0);
+        moon.transform.rotation = Quaternion.Euler(skyboxManager.dayNightValue + 180 /*+ moonAngle*/, -38, 0);
 
        /* if (sun.transform.rotation.x == 30)
         {
 
         }*/
 
-        if (DayNightValue >= 360)
+        if (skyboxManager.dayNightValue >= 360)
         {
-            DayNightValue = 0;
+            skyboxManager.dayNightValue = 0;
         }
     }
 

@@ -9,6 +9,11 @@ public class SkyboxController : MonoBehaviour
     [SerializeField] Transform _Moon = default;
     [SerializeField] private Vector3 MoonPhaseVector; // A bit funky right now but we'll se how it goes.
 
+   
+    [Tooltip("Min=0, Max=360, 0=dawn, 180=dusk.")]
+    public float dayNightValue = 0; //0.0f - 360.0f
+    public float cycleRate = 1;
+
     private void CycleMoonPhase() 
     {
 

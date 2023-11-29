@@ -106,7 +106,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _MoonExposure: 1
-    - _MoonRadius: 0.05
+    - _MoonRadius: 0.025
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0

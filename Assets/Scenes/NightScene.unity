@@ -2164,7 +2164,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 687474483}
   m_HandleRect: {fileID: 687474482}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7599,9 +7599,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0
-  DayNightValue: 0
-  cycleRate: 50
-  moonSunOppositionAngle: -30
   looting:
     maxLootQuantity: 0
     minLootQuantity: 0
@@ -10872,6 +10869,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Sun: {fileID: 558002928}
   _Moon: {fileID: 1936010308}
+  MoonPhaseVector: {x: -10, y: 1, z: 1}
+  dayNightValue: 0
+  cycleRate: 1
 --- !u!1 &1585646999
 GameObject:
   m_ObjectHideFlags: 0
