@@ -46,14 +46,9 @@ public class CharacterAnimation : MonoBehaviour
         animator.SetBool("isMoving", false);
     }
 
-    private void StartClimbing()
+    public void Die()
     {
-        animator.SetBool("isClimbing", true);
-    }
-
-    private void StopClimbing()
-    {
-        animator.SetBool("isClimbing", false);
+        animator.SetTrigger("died");
     }
 
     //Ansiktsanimationer kommer troligtvis få egna metoder sen, men det här är bara för testning
@@ -73,5 +68,18 @@ public class CharacterAnimation : MonoBehaviour
     //{
     //    animator.SetTrigger("loot");
     //}
+
+    private void StartClimbing()
+    {
+        animator.SetBool("isClimbing", true);
+
+        //Om vi skulle vilja ha en skillnad mellan upp och ner
+        animator.SetFloat("climbingDirection", character.GetCharacterDirectionY());
+    }
+
+    private void StopClimbing()
+    {
+        animator.SetBool("isClimbing", false);
+    }
 
 }
