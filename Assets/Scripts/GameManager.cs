@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float cycleRate = 0.1f;
     [SerializeField]
+    //private float angle = 0;
     private float moonSunOppositionAngle = 0;
 
     private GameObject sun;
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         DayAndNightCycle(cycleRate, moonSunOppositionAngle);
+        //moonSunOppositionAngle = moonSunOppositionAngle;
     }
 
     private void DayAndNightCycle(float rate, float moonAngle)
@@ -60,7 +62,7 @@ public class GameManager : MonoBehaviour
         DayNightValue += calculatedCycleRate;
 
         sun.transform.rotation = Quaternion.Euler(DayNightValue, -38, 0);
-        moon.transform.rotation = Quaternion.Euler(DayNightValue + 180 /*+ moonAngle*/, -38, 0);
+        moon.transform.rotation = Quaternion.Euler(DayNightValue + 180 + moonAngle, -38, 0);
 
        /* if (sun.transform.rotation.x == 30)
         {

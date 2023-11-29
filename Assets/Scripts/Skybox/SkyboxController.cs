@@ -7,6 +7,12 @@ public class SkyboxController : MonoBehaviour
 {
     [SerializeField] Transform _Sun = default;
     [SerializeField] Transform _Moon = default;
+    [SerializeField] private Vector3 MoonPhaseVector; // A bit funky right now but we'll se how it goes.
+
+    private void CycleMoonPhase() 
+    {
+
+    }
 
     void LateUpdate()
     {
@@ -16,6 +22,8 @@ public class SkyboxController : MonoBehaviour
         Shader.SetGlobalVector("_SunDir", -_Sun.transform.forward);
 
         // Moon
-        Shader.SetGlobalVector("_MoonDir", -_Moon.transform.forward);
+        Shader.SetGlobalVector("_MoonDir", /*temp*/-_Moon.transform.forward);
+
+        Shader.SetGlobalVector("_MoonPhaseMask", MoonPhaseVector/*-_Moon.transform.forward*/);
     }
 }

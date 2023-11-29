@@ -50,6 +50,7 @@ Shader "Unlit/Skybox shader"
             TEXTURE2D(_SunViewGrad);        SAMPLER(sampler_SunViewGrad);
 
             float3 _SunDir, _MoonDir;
+            float3 _MoonPhaseMask;
             float _SunRadius, _MoonRadius;
             float _MoonExposure;
 
@@ -103,8 +104,8 @@ Shader "Unlit/Skybox shader"
                 // The moon
                 float moonIntersect = sphIntersect(viewDir, _MoonDir, _MoonRadius);
                 float moonMask = moonIntersect > -1 ? 1 : 0;
-                float3 moonNormal = normalize(_MoonDir - viewDir * moonIntersect);
-                float moonNdotL = saturate(dot(moonNormal, -_SunDir));
+                float3 moonNormal = normalize((_MoonDir - viewDir * moonIntersect)/* * _MoonPhaseMask*/);
+                float moonNdotL = saturate(dot(moonNormal, /*-_SunDir*/_MoonPhaseMask));
                 [SerializeField]float3 moonColor = moonMask * moonNdotL * exp2(_MoonExposure);
 
                 float3 col = skyColor + sunColor + moonColor;
