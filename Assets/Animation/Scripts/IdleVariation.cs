@@ -20,7 +20,6 @@ public class IdleVariation : StateMachineBehaviour
         animator.SetFloat("blendIdle", 0);
         currentIdleVar = 0;
         timeUntilVariation = Random.Range(timeUntilVariation, timeUntilVariation + 5);
-        Debug.Log(timeUntilVariation);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
