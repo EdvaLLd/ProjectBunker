@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
+    //[SerializeField] private GameObject ghost;
+
     private Character character;
     private Animator animator;
 
@@ -11,11 +13,15 @@ public class CharacterAnimation : MonoBehaviour
     {
         character = GetComponentInParent<Character>();
         animator = GetComponent<Animator>();
+        //ghost.SetActive(false);
     }
 
     void Update()
     {
-
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            Die();
+        }
     }
 
     public void Flip()
@@ -63,6 +69,11 @@ public class CharacterAnimation : MonoBehaviour
         animator.SetTrigger("isNeutral");
         animator.SetBool("isCrafting", false);
     }
+
+    //public void ShowGhost()
+    //{
+    //    ghost.SetActive(true);
+    //}
 
     //public void Loot()
     //{
