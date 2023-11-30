@@ -178,6 +178,7 @@ public class UnitController : MonoBehaviour
             setCharacterVisual(selectedCharacter, true);
             characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().SetUp(selectedCharacter);
             characterStatsWindowStatic.SetActive(true);
+            characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideUpTrigger");
         }
     }
 
