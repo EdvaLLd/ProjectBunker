@@ -10,6 +10,9 @@ public static class Inventory
     public delegate void OnInventoryUpdate();
     public static event OnInventoryUpdate onInventoryUpdate;
 
+    public delegate void OnRecipeAdded(CraftingRecipe recipe);
+    public static event OnRecipeAdded onRecipeAdded;
+
     /*public static void AddItem(Item item)
     {
         inventory.Add(item, 1);
@@ -23,6 +26,45 @@ public static class Inventory
         if(inventory.ContainsKey(item)) inventory[item] += amount;
         else inventory.Add(item, amount);
         onInventoryUpdate?.Invoke();
+    }
+
+    public static bool IsCraftable(CraftingRecipe recipe)
+    {
+        for (int i = 0; i < recipe.Ingredients.Count; i++)
+        {
+            if (GetAmountOfItem(recipe.Ingredients[i].item) < recipe.Ingredients[i].amount) return false;
+        }
+        return true;
+    }
+
+    public static bool IsCraftable(CraftingRecipe recipe, int amount)
+    {
+        for (int i = 0; i < recipe.Ingredients.Count; i++)
+        {
+            if (GetAmountOfItem(recipe.Ingredients[i].item) < recipe.Ingredients[i].amount * amount) return false;
+        }
+        return true;
+    }
+
+    public static int MaxAmountCraftable(CraftingRecipe recipe)
+    {
+        int amount = GetAmountOfItem(recipe.Ingredients[0].item) / recipe.Ingredients[0].amount;
+        for (int i = 1; i < recipe.Ingredients.Count; i++)
+        {
+            int t = GetAmountOfItem(recipe.Ingredients[i].item) / recipe.Ingredients[i].amount;
+            if (t < amount) amount = t;
+        }
+        return amount;
+    }
+
+    public static bool IsRecipeCraftableInMachine(CraftingMachine machine, CraftingRecipe recipe)
+    {
+        List<CraftingRecipe> recipesInMachine = GetRecipesForMachine(machine);
+        foreach (CraftingRecipe r in recipesInMachine)
+        {
+            if (r == recipe) return true;
+        }
+        return false;
     }
 
 
@@ -48,6 +90,7 @@ public static class Inventory
         if(recipeAdded)
         {
             TextLog.AddLog($"Learned recipe: {recipe.DisplayName}!", Color.yellow);
+            onRecipeAdded?.Invoke(recipe);
         }
     }
 

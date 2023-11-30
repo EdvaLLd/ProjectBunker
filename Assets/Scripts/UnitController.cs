@@ -116,11 +116,12 @@ public class UnitController : MonoBehaviour
                 print("shouldnt be here");
                 break;
             case CharacterTasks.crafting:
-                uiManager.ActivateWindow(uiManager.craftingWindow);
+                /*uiManager.ActivateWindow(uiManager.craftingWindow);
                 if (uiManager.craftingWindow.active)
                 {
                     uiManager.craftingWindow.GetComponent<CraftingWindow>().InitCraftingWindow(character.item as CraftingMachine);
-                }
+                }*/
+                character.itemInteractedWith.GetComponent<InteractableCraftingMachine>().InteractedWith(character);
                 break;
             case CharacterTasks.inspecting:
                 TextLog.AddLog($"Inspected item: {character.item.Description}");
@@ -140,7 +141,7 @@ public class UnitController : MonoBehaviour
             case CharacterTasks.exploring:
                 selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
                 characterStatsWindowStatic.SetActive(false);
-                UnitController.SwapSelectedCharacter(null);
+                SwapSelectedCharacter(selectedCharacter);
                 break;
 
             default:
