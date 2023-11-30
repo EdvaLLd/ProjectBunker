@@ -22,11 +22,11 @@ public class CharacterStatsHandler : MonoBehaviour
     {
         if(Inventory.GetAmountOfItem(Database.GetItemWithID("04001")) == 0)
         {
-            foodButton.interactable = false;
+            UIManager.SetButtonIsEnabled(foodButton, false);
         }
         else
         {
-            foodButton.interactable = true;
+            UIManager.SetButtonIsEnabled(foodButton, true);
         }
     }
 

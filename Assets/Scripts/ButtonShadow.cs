@@ -10,20 +10,36 @@ public class ButtonShadow : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 {
     Shadow shadow;
     bool clicked = false;
+
+    bool buttonActive = false;
+
     private void Start()
     {
         shadow = GetComponent<Shadow>();
+        UIManager.onButtonDisableChanged += ButtonDisabledChanged;
+    }
+
+    void ButtonDisabledChanged(Button button)
+    {
+        if(button == GetComponent<Button>())
+        {
+            buttonActive = button.enabled;
+            GetComponent<Shadow>().enabled = buttonActive;
+        }
     }
 
     IEnumerator ShadowTimer(Shadow shadow)
     {
         yield return new WaitForSeconds(0.05f);
-        shadow.enabled = true;
+        if (buttonActive)
+        {
+            shadow.enabled = true;
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (clicked)
+        if (clicked && buttonActive)
         {
             StartCoroutine(ShadowTimer(shadow));
         }
@@ -31,8 +47,10 @@ public class ButtonShadow : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        shadow.enabled = false;
-        clicked = true;
-        
+        if (buttonActive)
+        {
+            shadow.enabled = false;
+            clicked = true;
+        } 
     }
 }

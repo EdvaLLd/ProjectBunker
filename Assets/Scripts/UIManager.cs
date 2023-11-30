@@ -16,9 +16,13 @@ public class UIManager : MonoBehaviour
     public SortingTypes sortingTypeEnabled = SortingTypes.All;
     //-------------------------
 
-    public GameObject craftingWindow;
+    public static GameObject craftingWindow;
 
     public static GameObject clearMistBtnGO;
+
+
+    public delegate void OnButtonDisableChanged(Button disabledButton);
+    public static event OnButtonDisableChanged onButtonDisableChanged;
 
 
     private void Awake()
@@ -41,13 +45,22 @@ public class UIManager : MonoBehaviour
         Inventory.AddItem(Database.GetItemWithID("01002"), 1);
     }
 
+    public static void SetButtonIsEnabled(Button button, bool value)
+    {
+        if(value != button.interactable)
+        {
+            button.interactable = value;
+            onButtonDisableChanged?.Invoke(button);
+        }
+    }
+
     //Emma
-    public void ActivateWindow(GameObject windowToOpen)
+    public static void ActivateWindow(GameObject windowToOpen)
     {
         windowToOpen.SetActive(!windowToOpen.active);
     }
     //
-    public void CloseWindow(GameObject windowToOpen)
+    public static void CloseWindow(GameObject windowToOpen)
     {
         UIElementConsumeMouseOver.mouseOverIsAvailable = true;
         windowToOpen.SetActive(false);
@@ -66,9 +79,8 @@ public class UIManager : MonoBehaviour
     
     public void DisplayInventoryItems(SortingTypes sortingType, Button button)
     {
-        print(button.name);
-        buttonSelected.interactable = true;
-        button.interactable = false;
+        SetButtonIsEnabled(buttonSelected, true);
+        SetButtonIsEnabled(button, false);
         buttonSelected = button;
 
         sortingTypeEnabled = sortingType;
@@ -99,11 +111,6 @@ public class UIManager : MonoBehaviour
 
     void ClearInventory(Transform parent)
     {
-        /*for (int i = 0; i < parent.childCount; i++)
-        {
-            print(parent.GetChild(0).gameObject.name);
-            DestroyImmediate(parent.GetChild(0).gameObject);
-        }*/
         foreach (Transform child in parent.transform)
         {
             Destroy(child.gameObject);
