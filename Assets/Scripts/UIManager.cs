@@ -12,12 +12,18 @@ public class UIManager : MonoBehaviour
     GameObject inventorySlot;
     GameObject inventoryBG;
     GameObject inventoryContentHolder;
+    Button buttonSelected;
     public SortingTypes sortingTypeEnabled = SortingTypes.All;
     //-------------------------
 
-    public GameObject craftingWindow;
+    public static GameObject craftingWindow;
 
     public static GameObject clearMistBtnGO;
+    public static GameObject dangerTextGO;
+
+
+    public delegate void OnButtonDisableChanged(Button disabledButton);
+    public static event OnButtonDisableChanged onButtonDisableChanged;
 
 
     private void Awake()
@@ -26,6 +32,8 @@ public class UIManager : MonoBehaviour
         inventoryContentHolder = GameObject.FindGameObjectWithTag("InventoryContentHolder");
         craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow");
         clearMistBtnGO = GameObject.FindGameObjectWithTag("ClearMistBtn");
+        buttonSelected = inventoryBG.transform.GetChild(0).GetChild(0).GetComponent<Button>();
+        dangerTextGO = GameObject.FindGameObjectWithTag("DangerTxt");
     }
 
     private void Start()
@@ -34,34 +42,50 @@ public class UIManager : MonoBehaviour
         inventoryBG.SetActive(false);
         craftingWindow.SetActive(false);
         clearMistBtnGO.SetActive(false);
+        dangerTextGO.SetActive(false);
 
         Inventory.AddItem(Database.GetItemWithID("01001"), 5);
         Inventory.AddItem(Database.GetItemWithID("01002"), 1);
     }
 
+    public static void SetButtonIsEnabled(Button button, bool value)
+    {
+        if(value != button.interactable)
+        {
+            button.interactable = value;
+            onButtonDisableChanged?.Invoke(button);
+        }
+    }
+
     //Emma
-    public void ActivateWindow(GameObject windowToOpen)
+    public static void ActivateWindow(GameObject windowToOpen)
     {
         windowToOpen.SetActive(!windowToOpen.active);
     }
     //
-    public void CloseWindow(GameObject windowToOpen)
+    public static void CloseWindow(GameObject windowToOpen)
     {
         UIElementConsumeMouseOver.mouseOverIsAvailable = true;
         windowToOpen.SetActive(false);
     }
-    public void DisplayInventoryItems(EnumsToClassConverter param)
+    public void DisplayInventoryItems(Button button)
     {
-        DisplayInventoryItems(param.SortingType);
+        EnumsToClassConverter temp = button.GetComponent<EnumsToClassConverter>();
+        DisplayInventoryItems(temp.SortingType, button);
     }
 
     public void UpdateInventoryDisplay()
     {
-        DisplayInventoryItems(sortingTypeEnabled);
+        DisplayInventoryItems(buttonSelected);
     }
 
-    public void DisplayInventoryItems(SortingTypes sortingType)
+    
+    public void DisplayInventoryItems(SortingTypes sortingType, Button button)
     {
+        SetButtonIsEnabled(buttonSelected, true);
+        SetButtonIsEnabled(button, false);
+        buttonSelected = button;
+
         sortingTypeEnabled = sortingType;
         Transform parent = inventoryContentHolder.transform;
         ClearInventory(parent);
@@ -90,11 +114,6 @@ public class UIManager : MonoBehaviour
 
     void ClearInventory(Transform parent)
     {
-        /*for (int i = 0; i < parent.childCount; i++)
-        {
-            print(parent.GetChild(0).gameObject.name);
-            DestroyImmediate(parent.GetChild(0).gameObject);
-        }*/
         foreach (Transform child in parent.transform)
         {
             Destroy(child.gameObject);

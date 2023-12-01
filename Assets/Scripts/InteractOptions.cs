@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 [System.Serializable]
 public class InteractOptionsBools
@@ -13,7 +14,7 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
     //public abstract void ButtonClicked(InteractableItem item);
     [SerializeField]
-    GameObject craftingGO, inspectGO, lootGO, exploreGO;
+    GameObject craftingGO, inspectGO, lootGO, exploreGO, buttonsGO, machineTextGO;
 
     [HideInInspector]
     public bool queueClose = false;
@@ -45,7 +46,10 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void SetUp(InteractOptionsBools bools, InteractableItem go, ItemBase itemInteractedWithTemp)
     {
         CloseAllWindows();
+        machineTextGO.GetComponent<TextMeshProUGUI>().text = itemInteractedWithTemp.DisplayName;
         OpenWindows(bools, go.gameObject);
+
+
         queueClose = false;
         itemInteractedWithType = itemInteractedWithTemp;
         itemInteractedWith = go;
@@ -53,26 +57,32 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void CloseAllWindows()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        machineTextGO.SetActive(false);
+        for (int i = 0; i < buttonsGO.transform.childCount; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(false);
+            buttonsGO.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 
     public void OpenWindows(InteractOptionsBools bools, GameObject go)
     {
+        MoveWindowsToObject(go);
+        machineTextGO.SetActive(true);
         if (bools.crafting) craftingGO.SetActive(true);
         if (bools.inspect) inspectGO.SetActive(true);
         if (bools.loot) lootGO.SetActive(true);
         if (bools.explore) exploreGO.SetActive(true);
 
-        MoveWindowsToObject(go);
     }
 
     public void MoveWindowsToObject(GameObject obj)
     {
-        Vector3 pos = obj.GetComponent<BoxCollider>().ClosestPointOnBounds(new Vector3(obj.transform.position.x, Mathf.Infinity));
-        transform.position = Camera.main.WorldToScreenPoint(pos);
+        Vector3 dir = obj.transform.position - Camera.main.transform.position;
+        //kryssprodukt simplifierad om man alltid har vektorerna dir och (1,0,0)
+        dir = new Vector3(0, dir.z, dir.y);
+        if (dir.y <= 0) dir = -dir;
+        Vector3 pos = obj.GetComponent<BoxCollider>().ClosestPointOnBounds(obj.transform.position + dir*1000) - dir.normalized/10;
+        transform.position = Camera.main.WorldToScreenPoint(pos); 
     }
 
     public void OnCraftingClick()

@@ -14,13 +14,54 @@ public class CraftingWindow : MonoBehaviour
     GameObject recipeList;
 
     [SerializeField]
-    GameObject craftingWindow;
+    GameObject craftingWindow, recipeImg, recipeName;
 
     CraftingRecipe recipeMarked;
-    public void InitCraftingWindow(CraftingMachine machine)
+
+    InteractableCraftingMachine craftingMachine;
+
+    [SerializeField]
+    Button lowerAmountBtn, increaseAmountBtn;
+
+    [SerializeField]
+    GameObject amountTxt;
+    [SerializeField]
+    Slider progressSlider, amountSlider;
+
+    Character characterWhoOpenedWindow;
+
+    private void Start()
     {
-        Time.timeScale = 0;
+        Inventory.onInventoryUpdate += UpdateAmountSliderValues;
+        Inventory.onRecipeAdded += NewRecipeAdded;
+    }
+
+    void NewRecipeAdded(CraftingRecipe recipe)
+    {
+        print("New recipe!");
+        if(Inventory.IsRecipeCraftableInMachine(craftingMachine.item as CraftingMachine, recipe))
+        {
+            print("Affects current machine");
+            InitCraftingWindow(craftingMachine.item as CraftingMachine, craftingMachine, characterWhoOpenedWindow);
+        }
+    }
+
+    public void InitCraftingWindow(CraftingMachine machine, InteractableCraftingMachine physicalMachine, Character character)
+    {
+        craftingMachine = physicalMachine;
+        characterWhoOpenedWindow = character;
+        //Time.timeScale = 0;
         ClearChilds(recipeList.transform);
+        if(physicalMachine.GetProgress() != 0) //kommer inte det här göra så om man timear och avbryter tasken när timern är på EXAKT 0 så resettas den??
+        {
+            RecipeClicked(physicalMachine.GetRecipe());
+            SetCraftingValues();
+            setProgressSlider(physicalMachine.GetProgress());
+        }
+        else
+        {
+            craftingWindow.SetActive(false);
+        }
         List<CraftingRecipe> recipesForMachine = Inventory.GetRecipesForMachine(machine);
         for (int i = 0; i < recipesForMachine.Count; i++)
         {
@@ -30,15 +71,93 @@ public class CraftingWindow : MonoBehaviour
             t.transform.GetChild(0).GetComponent<Image>().sprite = recipe.Icon;
             t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = recipe.DisplayName;
             t.GetComponent<Button>().onClick.AddListener(() => RecipeClicked(recipe));
-            craftingWindow.GetComponent<Image>().sprite = machine.Icon;
+            //craftingWindow.GetComponent<Image>().sprite = machine.Icon;
             transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = machine.name;
             InitRecipeWindow(t, recipe);
         }
     }
 
-    public void UnPause()
+    public void ChangeCraftAmount(int changeValue = 1)
     {
-        Time.timeScale = 1;
+        craftingMachine.SetAmount(craftingMachine.GetAmount()+changeValue);
+        SetCraftingValues();
+        craftingMachine.SetIsCrafting(false);
+    }
+
+    void SetCraftAmount(int newValue)
+    {
+        int checkedValue = MakeSureAmountIsValid(newValue);
+        craftingMachine.SetAmount(checkedValue);
+        SetCraftingValues();
+        craftingMachine.SetIsCrafting(false);
+    }
+
+    int MakeSureAmountIsValid(int amount)
+    {
+        return Mathf.Clamp(amount, 1, Inventory.MaxAmountCraftable(recipeMarked));
+    }
+
+    public void SetCraftingValues(InteractableCraftingMachine machineTryingToSet)
+    {
+        if(machineTryingToSet == craftingMachine)
+        {
+            SetCraftingValues();
+        }
+    }
+
+    void UpdateAmountSliderValues()
+    {
+        if (recipeMarked != null)
+        {
+            amountSlider.maxValue = Inventory.MaxAmountCraftable(recipeMarked);
+        }
+    }
+
+    public void OnAmountSliderValueChange()
+    {
+        if (amountSlider.value != craftingMachine.GetAmount())
+        {
+            SetCraftAmount((int)amountSlider.value);
+        }
+    }
+
+    void SetCraftingValues()
+    {
+        int amount = craftingMachine.GetAmount();
+        if(amount < 2)
+        {
+            UIManager.SetButtonIsEnabled(lowerAmountBtn, false);
+        }
+        else
+        {
+            UIManager.SetButtonIsEnabled(lowerAmountBtn, true);
+        }
+
+        if(!Inventory.IsCraftable(recipeMarked, amount + 1))
+        {
+            UIManager.SetButtonIsEnabled(increaseAmountBtn, false);
+        }
+        else
+        {
+            UIManager.SetButtonIsEnabled(increaseAmountBtn, true);
+        }
+        amountTxt.GetComponent<TextMeshProUGUI>().text = amount.ToString();
+        amountSlider.value = amount;
+        setProgressSlider(craftingMachine.GetProgress());
+    }
+
+    void setProgressSlider(float value)
+    {
+        progressSlider.value = value;
+    }
+
+    public void CancelCraft()
+    {
+        if(craftingMachine != null)
+        {
+            craftingMachine.GetComponent<InteractableCraftingMachine>().CancelCraft();
+            craftingWindow.SetActive(false);
+        }
     }
 
     void InitRecipeWindow(GameObject window, CraftingRecipe recipe)
@@ -63,43 +182,26 @@ public class CraftingWindow : MonoBehaviour
 
     public void RecipeClicked(CraftingRecipe recipe)
     {
-        if(IsCraftable(recipe))
+        if(Inventory.IsCraftable(recipe)) //den här if-satsen ska kanske inte vara här
         {
             recipeMarked = recipe;
             craftingWindow.SetActive(true);
-            craftingWindow.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = recipe.DisplayName;
+            recipeName.GetComponent<TextMeshProUGUI>().text = recipe.DisplayName;
+            craftingMachine.GetComponent<InteractableCraftingMachine>().CancelCraft();
+            //lite fusklösning, men tror det fungerar i alla situationer?
+            amountSlider.value = 1;
+            SetCraftingValues();
+            UpdateAmountSliderValues();
+            //Den här ska kanske vara recipe.icon istället, men nu måste receptet i sig inte ha en ikon
+            recipeImg.GetComponent<Image>().sprite = recipe.itemCrafted.Icon;
         }
     }
 
     public void CraftItem()
     {
-        if(IsCraftable(recipeMarked)) //kanske onödig, men känns bra att dubbelkolla
+        if(Inventory.IsCraftable(recipeMarked)) //kanske onödig, men känns bra att dubbelkolla
         {
-            for (int i = 0; i < recipeMarked.Ingredients.Count; i++)
-            {
-                Inventory.RemoveItem(recipeMarked.Ingredients[i].item, recipeMarked.Ingredients[i].amount);
-            }
-            Inventory.AddItem(recipeMarked.itemCrafted, recipeMarked.itemAmount);
+            craftingMachine.GetComponent<InteractableCraftingMachine>().CraftItems(recipeMarked, characterWhoOpenedWindow);
         }
     }
-
-    bool IsCraftable(CraftingRecipe recipe)
-    {
-        for (int i = 0; i < recipe.Ingredients.Count; i++)
-        {
-            if (Inventory.GetAmountOfItem(recipe.Ingredients[i].item) < recipe.Ingredients[i].amount) return false;
-        }
-        return true;
-    }
-
-    /*CraftingRecipe GetRecipeByID(string ID)  //Behövs nog inte
-    {
-        for (int i = 0; i < recipes.Count; i++)
-        {
-            if (recipes[i].ID == ID) return recipes[i];
-        }
-        print("Shouldnt be here");
-        return null;
-    }*/
-
 }

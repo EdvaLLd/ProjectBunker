@@ -31,6 +31,7 @@ public class IdleVariation : StateMachineBehaviour
 
             if (idleTime > timeUntilVariation && ((stateInfo.normalizedTime % 1) < 0.02f))
             {
+
                 timeUntilVariation = Random.Range(minTimeBetweenVariations, maxTimeBetweenVariations);
 
                 readyForVariation = true;

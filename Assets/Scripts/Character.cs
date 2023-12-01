@@ -89,6 +89,7 @@ public class Character : MonoBehaviour
 
     public void InteractedWithItem(InteractableItem item)
     {
+        CharacterLeftTask();
         itemInteractedWith = item;
         itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
 
@@ -97,11 +98,25 @@ public class Character : MonoBehaviour
 
     public void MoveToPos(Vector3 pos)
     {
-        itemInteractedWith = null;
-        itemInteractedWithBoxCollider = null;
+        CharacterLeftTask();
         pos = HelperMethods.ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue), transform.lossyScale.y);
 
         UpdateMovement(pos);
+    }
+
+    void CharacterLeftTask()
+    {
+        if(itemInteractedWith != null)
+        {
+            InteractableCraftingMachine machine;
+            //borde kanske vara en generell klass och inte specifikt den här, men men
+            if (itemInteractedWith.gameObject.TryGetComponent(out machine))
+            {
+                machine.CharacterLeftStation(this);
+            }
+        }
+        itemInteractedWith = null;
+        itemInteractedWithBoxCollider = null;
     }
 
     void UpdateMovement(Vector3 goal)

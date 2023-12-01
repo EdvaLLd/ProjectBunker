@@ -17,18 +17,18 @@ public enum CharacterTasks
 
 public class UnitController : MonoBehaviour
 {
-    //Hur man ser skillnad om en karakt‰r ‰r markerad eller inte
+    //Hur man ser skillnad om en karakt√§r √§r markerad eller inte
     [SerializeField]
     SelectionVisibilityModifier unSelectedModifierSetter, selectedModifierSetter;
 
-    //Ska kanske finnas en speedmodifier pÂ varje karakt‰r?
+    //Ska kanske finnas en speedmodifier p√• varje karakt√§r?
     [SerializeField]
     float movementSpeedSetter = 1;
 
     UIManager uiManager;
 
 
-    //L‰gg till alla serializedfield-variabler h‰r som static och i start
+    //L√§gg till alla serializedfield-variabler h√§r som static och i start
     static SelectionVisibilityModifier unSelectedModifier, selectedModifier;
     public static float movementSpeed; 
 
@@ -36,8 +36,8 @@ public class UnitController : MonoBehaviour
     static Character selectedCharacter = null;
 
 
-    //(denna ‰r nog anpassad fˆr procent, sÂ viktigt att variablerna gÂr mellan 0 och 100)
-    //avgˆr hur ofta UIn uppdateras, 5 = var femte procent
+    //(denna √§r nog anpassad f√∂r procent, s√• viktigt att variablerna g√•r mellan 0 och 100)
+    //avg√∂r hur ofta UIn uppdateras, 5 = var femte procent
     int howOftenToUpdateStats = 5;
 
 
@@ -61,7 +61,7 @@ public class UnitController : MonoBehaviour
         characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
         characterStatsWindowStatic.SetActive(false);
 
-        //Det h‰r ‰r temp och ska tas bort n‰r man kan fÂ recept pÂ b‰ttre s‰tt
+        //Det h√§r √§r temp och ska tas bort n√§r man kan f√• recept p√• b√§ttre s√§tt
         for (int i = 0; i < recipes.Length; i++)
         {
             Inventory.AddRecipeToMachines(recipes[i]);
@@ -116,11 +116,12 @@ public class UnitController : MonoBehaviour
                 print("shouldnt be here");
                 break;
             case CharacterTasks.crafting:
-                uiManager.ActivateWindow(uiManager.craftingWindow);
+                /*uiManager.ActivateWindow(uiManager.craftingWindow);
                 if (uiManager.craftingWindow.active)
                 {
                     uiManager.craftingWindow.GetComponent<CraftingWindow>().InitCraftingWindow(character.item as CraftingMachine);
-                }
+                }*/
+                character.itemInteractedWith.GetComponent<InteractableCraftingMachine>().InteractedWith(character);
                 break;
             case CharacterTasks.inspecting:
                 TextLog.AddLog($"Inspected item: {character.item.Description}");
@@ -140,7 +141,8 @@ public class UnitController : MonoBehaviour
             case CharacterTasks.exploring:
                 selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
                 characterStatsWindowStatic.SetActive(false);
-                UnitController.SwapSelectedCharacter(selectedCharacter);
+                SwapSelectedCharacter(selectedCharacter);
+
                 break;
 
             default:
@@ -178,6 +180,7 @@ public class UnitController : MonoBehaviour
             setCharacterVisual(selectedCharacter, true);
             characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().SetUp(selectedCharacter);
             characterStatsWindowStatic.SetActive(true);
+            characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideUpTrigger");
         }
     }
 
