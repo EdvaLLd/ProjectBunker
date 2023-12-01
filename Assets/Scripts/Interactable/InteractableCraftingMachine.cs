@@ -27,13 +27,13 @@ public class InteractableCraftingMachine : InteractableItem
     }
     public void CraftItems(CraftingRecipe recipe, Character characterCrafting)
     {
-        if(recipe != currentRecipeBeingCrafted)
+        isCrafting = true;
+        characterOnStation = characterCrafting;
+        if (recipe != currentRecipeBeingCrafted)
         {
             currentRecipeBeingCrafted = recipe;
             RemoveItemsRequiredForCraft();
         }
-        isCrafting = true;
-        characterOnStation = characterCrafting;
     }
     public void CharacterLeftStation(Character character)
     {
@@ -77,9 +77,10 @@ public class InteractableCraftingMachine : InteractableItem
     public void CancelCraft()
     {
         progress = 0;
-        amountLeft = 1;
-        isCrafting=false;
+        //varför fuckar den här upp om den ligger under rad 82??????
+        isCrafting = false;
         RefundItemsForCraft();
+        amountLeft = 1;
         currentRecipeBeingCrafted=null;
     }
 
@@ -87,11 +88,11 @@ public class InteractableCraftingMachine : InteractableItem
     {
         if (currentRecipeBeingCrafted != null)
         {
-            if (Inventory.IsCraftable(currentRecipeBeingCrafted))
+            if (Inventory.IsCraftable(currentRecipeBeingCrafted, amountLeft))
             {
                 for (int i = 0; i < currentRecipeBeingCrafted.Ingredients.Count; i++)
                 {
-                    Inventory.RemoveItem(currentRecipeBeingCrafted.Ingredients[i].item, currentRecipeBeingCrafted.Ingredients[i].amount);
+                    Inventory.RemoveItem(currentRecipeBeingCrafted.Ingredients[i].item, currentRecipeBeingCrafted.Ingredients[i].amount * amountLeft);
                 }
                 return true;
             }
@@ -105,7 +106,7 @@ public class InteractableCraftingMachine : InteractableItem
         {
             for (int i = 0; i < currentRecipeBeingCrafted.Ingredients.Count; i++)
             {
-                Inventory.AddItem(currentRecipeBeingCrafted.Ingredients[i].item, currentRecipeBeingCrafted.Ingredients[i].amount);
+                Inventory.AddItem(currentRecipeBeingCrafted.Ingredients[i].item, currentRecipeBeingCrafted.Ingredients[i].amount * amountLeft);
             }
         }
     }
@@ -117,28 +118,31 @@ public class InteractableCraftingMachine : InteractableItem
             progress += Time.deltaTime / DEBUGCRAFTINGTIME;
             if(progress > 1)
             {
-                if (!Inventory.IsCraftable(currentRecipeBeingCrafted))
+                amountLeft--;
+                progress = 0;
+                Inventory.AddItem(currentRecipeBeingCrafted.itemCrafted, currentRecipeBeingCrafted.itemAmount);
+
+                if (amountLeft < 1)
                 {
-                    //varna UI-mässigt att det sket sig
-                    CharacterLeftStation(characterOnStation);
                     isCrafting = false;
+                    craftingWindow.FinishedCrafting(this);
+                    currentRecipeBeingCrafted = null;
+                    amountLeft = 1;
+                    //Kan även fixa med animationer och typ uigrejer här
                 }
-                else
+                /*else
                 {
-                    amountLeft--;
-                    progress = 0;
-                    Inventory.AddItem(currentRecipeBeingCrafted.itemCrafted, currentRecipeBeingCrafted.itemAmount);
-                    if (amountLeft < 1)
+                    if (!Inventory.IsCraftable(currentRecipeBeingCrafted))
                     {
+                        //varna UI-mässigt att det sket sig
+                        CharacterLeftStation(characterOnStation);
                         isCrafting = false;
-                        currentRecipeBeingCrafted = null;
-                        //Kan även fixa med animationer och typ uigrejer här
                     }
                     else
                     {
                         RemoveItemsRequiredForCraft();
                     }
-                }
+                }*/
             }
             craftingWindow.SetCraftingValues(this);
         }

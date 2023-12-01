@@ -38,8 +38,8 @@ public class CraftingWindow : MonoBehaviour
 
     void NewRecipeAdded(CraftingRecipe recipe)
     {
-        print("New recipe!");
-        if(Inventory.IsRecipeCraftableInMachine(craftingMachine.item as CraftingMachine, recipe))
+        print("New recipe! " + recipe.DisplayName);
+        if(craftingMachine != null && Inventory.IsRecipeCraftableInMachine(craftingMachine.item as CraftingMachine, recipe))
         {
             print("Affects current machine");
             InitCraftingWindow(craftingMachine.item as CraftingMachine, craftingMachine, characterWhoOpenedWindow);
@@ -107,9 +107,10 @@ public class CraftingWindow : MonoBehaviour
 
     void UpdateAmountSliderValues()
     {
-        if (recipeMarked != null)
+        if (recipeMarked != null && craftingMachine != null && !craftingMachine.GetIsCrafting())
         {
             amountSlider.maxValue = Inventory.MaxAmountCraftable(recipeMarked);
+            SetCraftingValues();
         }
     }
 
@@ -124,26 +125,29 @@ public class CraftingWindow : MonoBehaviour
     void SetCraftingValues()
     {
         int amount = craftingMachine.GetAmount();
-        if(amount < 2)
+        if (!craftingMachine.GetIsCrafting())
         {
-            UIManager.SetButtonIsEnabled(lowerAmountBtn, false);
-        }
-        else
-        {
-            UIManager.SetButtonIsEnabled(lowerAmountBtn, true);
-        }
+            if (amount < 2)
+            {
+                UIManager.SetButtonIsEnabled(lowerAmountBtn, false);
+            }
+            else
+            {
+                UIManager.SetButtonIsEnabled(lowerAmountBtn, true);
+            }
 
-        if(!Inventory.IsCraftable(recipeMarked, amount + 1))
-        {
-            UIManager.SetButtonIsEnabled(increaseAmountBtn, false);
+            if (!Inventory.IsCraftable(recipeMarked, amount + 1))
+            {
+                UIManager.SetButtonIsEnabled(increaseAmountBtn, false);
+            }
+            else
+            {
+                UIManager.SetButtonIsEnabled(increaseAmountBtn, true);
+            }
+            amountSlider.value = amount;
         }
-        else
-        {
-            UIManager.SetButtonIsEnabled(increaseAmountBtn, true);
-        }
-        amountTxt.GetComponent<TextMeshProUGUI>().text = amount.ToString();
-        amountSlider.value = amount;
         setProgressSlider(craftingMachine.GetProgress());
+        amountTxt.GetComponent<TextMeshProUGUI>().text = amount.ToString();
     }
 
     void setProgressSlider(float value)
@@ -155,8 +159,13 @@ public class CraftingWindow : MonoBehaviour
     {
         if(craftingMachine != null)
         {
-            craftingMachine.GetComponent<InteractableCraftingMachine>().CancelCraft();
-            craftingWindow.SetActive(false);
+            if (!craftingMachine.GetIsCrafting()) craftingWindow.SetActive(false);
+            else
+            {
+                craftingMachine.CancelCraft();
+                amountSlider.enabled = true;
+                SetCraftingValues();
+            }
         }
     }
 
@@ -199,9 +208,23 @@ public class CraftingWindow : MonoBehaviour
 
     public void CraftItem()
     {
-        if(Inventory.IsCraftable(recipeMarked)) //kanske onödig, men känns bra att dubbelkolla
+        if(Inventory.IsCraftable(recipeMarked, craftingMachine.GetAmount())) //kanske onödig, men känns bra att dubbelkolla
         {
+            UIManager.SetButtonIsEnabled(lowerAmountBtn, false);
+            UIManager.SetButtonIsEnabled(increaseAmountBtn, false);
+            amountSlider.enabled = false;
             craftingMachine.GetComponent<InteractableCraftingMachine>().CraftItems(recipeMarked, characterWhoOpenedWindow);
+        }
+    }
+
+    public void FinishedCrafting(InteractableCraftingMachine machine)
+    {
+        if(machine == craftingMachine)
+        {
+            if(Inventory.MaxAmountCraftable(craftingMachine.GetRecipe()) == 0)
+            {
+                craftingWindow.SetActive(false);
+            }
         }
     }
 }

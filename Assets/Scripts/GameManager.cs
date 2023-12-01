@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        DayAndNightCycle(skyboxManager.cycleRate/*cycleRate, moonSunOppositionAngle*/);
+        //DayAndNightCycle(skyboxManager.cycleRate/*cycleRate, moonSunOppositionAngle*/);
         //moonSunOppositionAngle = moonSunOppositionAngle;
     }
 

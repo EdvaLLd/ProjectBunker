@@ -47,6 +47,12 @@ public class UnitController : MonoBehaviour
     [SerializeField]
     CraftingRecipe[] recipes;
 
+    private void Awake()
+    {
+        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+        characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
+    }
+
     private void Start()
     {
         unSelectedModifier = unSelectedModifierSetter;
@@ -54,11 +60,9 @@ public class UnitController : MonoBehaviour
         movementSpeed = movementSpeedSetter;
         Character.onTaskCompletion += TaskCompleted;
 
-        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
 
 
 
-        characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
         characterStatsWindowStatic.SetActive(false);
 
         //Det här är temp och ska tas bort när man kan få recept på bättre sätt
