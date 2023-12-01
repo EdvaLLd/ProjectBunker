@@ -22,17 +22,20 @@ public class LockedRoom : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (Inventory.GetAmountOfItem(decontaminationUnit) > 0)
+        if (UIElementConsumeMouseOver.mouseOverIsAvailable)
         {
-            UIManager.clearMistBtnGO.SetActive(true);
-            UIManager.clearMistBtnGO.transform.position = Camera.main.WorldToScreenPoint(transform.position);
-            UIManager.clearMistBtnGO.GetComponent<Button>().onClick.RemoveAllListeners();
-            UIManager.clearMistBtnGO.GetComponent<Button>().onClick.AddListener(UnlockRoom);
-        }
-        else
-        {
-            UIManager.dangerTextGO.SetActive(true);
-            UIManager.dangerTextGO.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+            if (Inventory.GetAmountOfItem(decontaminationUnit) > 0)
+            {
+                UIManager.clearMistBtnGO.SetActive(true);
+                UIManager.clearMistBtnGO.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+                UIManager.clearMistBtnGO.GetComponent<Button>().onClick.RemoveAllListeners();
+                UIManager.clearMistBtnGO.GetComponent<Button>().onClick.AddListener(UnlockRoom);
+            }
+            else
+            {
+                UIManager.dangerTextGO.SetActive(true);
+                UIManager.dangerTextGO.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+            }
         }
     }
 
