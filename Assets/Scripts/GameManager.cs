@@ -117,18 +117,3 @@ public class GameManager : MonoBehaviour
         return explorableLocations = replaceArray;
     }
 }
-
-[System.Serializable]
-public class LootItems
-{
-    public List<Item> lootItems;
-}
-
-[System.Serializable]
-public class Looting
-{
-    public int maxLootQuantity;
-    public int minLootQuantity;
-    [Tooltip("The higher the index in LootItems list, the lower is the probability for it appearing. This value is the probability at index 0 in percent.")]
-    public float lootProbabilityDefault = 75;
-}

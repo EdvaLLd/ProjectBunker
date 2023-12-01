@@ -10125,11 +10125,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
   - lootItems:
     - {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
-  explorationEvents:
-  - subEvent:
-    - eventVariants: 0
-      damageRecieved: 0
-      damageDealt: 0
+  explorationEvents: []
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0
