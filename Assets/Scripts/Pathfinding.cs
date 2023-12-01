@@ -115,11 +115,10 @@ public class Pathfinding : MonoBehaviour
         {
             if (pathToFix[i].isLadder)
             {
-                if (i == 0 || !pathToFix[i-1].isLadder)
-                {
-                    result.Add(HelperMethods.ConvertPosToBeOnGround(pathToFix[i].transform.position, characterHeight));
-                }
-                if (i == pathToFix.Count-1 || !pathToFix[i + 1].isLadder)
+                if(i == 0 || i == pathToFix.Count-1 || 
+                    !pathToFix[i - 1].isLadder || !pathToFix[i + 1].isLadder ||
+                    !HelperMethods.IsCoordinatesOnAVerticalLine(pathToFix[i - 1].transform.position, pathToFix[i].transform.position) ||
+                    !HelperMethods.IsCoordinatesOnAVerticalLine(pathToFix[i].transform.position, pathToFix[i + 1].transform.position))
                 {
                     result.Add(HelperMethods.ConvertPosToBeOnGround(pathToFix[i].transform.position, characterHeight));
                 }
@@ -146,6 +145,31 @@ public class Pathfinding : MonoBehaviour
                 if (acceptableCharacterEndPlacement != null)
                 {
                     result[result.Count - 1] = acceptableCharacterEndPlacement.ClosestPoint(result[result.Count - 2]);
+                }
+            }
+
+            for (int i = 0; i < result.Count-1; i++)
+            {
+                if (!HelperMethods.WallBetweenPointsOnGround(result[i + 1], startPos, characterHeight))
+                {
+                    result.RemoveAt(i);
+                    i--;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            for (int i = result.Count-2; i > 1; i--)
+            {
+                if (!HelperMethods.WallBetweenPointsOnGround(result[i - 1], goalPos, characterHeight))
+                {
+                    result.RemoveAt(i);
+                    i--;
+                }
+                else
+                {
+                    break;
                 }
             }
         }

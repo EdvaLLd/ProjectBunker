@@ -74,6 +74,12 @@ public class Character : MonoBehaviour
             {
                 isAlive = false;
                 TextLog.AddLog("Unit died!");
+
+                //Prel animation stuff
+                if(characterAnim != null)
+                {
+                    characterAnim.Die();
+                }
             }
         }
 
@@ -244,5 +250,10 @@ public class Character : MonoBehaviour
     public float GetCharacterDirectionX()
     {
         return transform.position.x - posMovingTo.x;
+    }
+
+    public float GetCharacterDirectionY()
+    {
+        return transform.position.y - posMovingTo.y;
     }
 }
