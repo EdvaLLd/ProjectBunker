@@ -16,29 +16,31 @@ public class CharacterAnimation : MonoBehaviour
     {
         character = GetComponentInParent<Character>();
         animator = GetComponent<Animator>();
-        //ghost.SetActive(false);
+        ghost.SetActive(false);
+        book.SetActive(false);
+        guitar.SetActive(false);
     }
 
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            PlayGuitar();
-        }else if (Input.GetKeyUp(KeyCode.Alpha2))
-        {
-            Read();
-        }else if (Input.GetKeyUp(KeyCode.Alpha3))
-        {
-            Die();
-        }
-        else if (Input.GetKeyUp(KeyCode.Alpha4))
-        {
-            ShowGhost();
-        }else if (Input.GetKeyUp(KeyCode.Alpha5))
-        {
-            StopPlayingGuitar();
-            StopReading();
-        }
+        //if(Input.GetKeyUp(KeyCode.Alpha1))
+        //{
+        //    PlayGuitar();
+        //}else if (Input.GetKeyUp(KeyCode.Alpha2))
+        //{
+        //    Read();
+        //}else if (Input.GetKeyUp(KeyCode.Alpha3))
+        //{
+        //    Die();
+        //}
+        //else if (Input.GetKeyUp(KeyCode.Alpha4))
+        //{
+        //    ShowGhost();
+        //}else if (Input.GetKeyUp(KeyCode.Alpha5))
+        //{
+        //    StopPlayingGuitar();
+        //    StopReading();
+        //}
     }
 
     public void Flip()
@@ -88,7 +90,7 @@ public class CharacterAnimation : MonoBehaviour
 
     public void StartMoving()
     {
-        animator.SetTrigger("isNeutral");
+        //animator.SetTrigger("isNeutral");
         animator.SetBool("isMoving", true);
     }
 
@@ -105,13 +107,13 @@ public class CharacterAnimation : MonoBehaviour
     //Ansiktsanimationer kommer troligtvis få egna metoder sen, men det här är bara för testning
     public void StartCrafting()
     {
-        animator.SetTrigger("isHappy");
+        //animator.SetTrigger("isHappy");
         animator.SetBool("isCrafting", true);
     }
 
     public void StopCrafting()
     {
-        animator.SetTrigger("isNeutral");
+        //animator.SetTrigger("isNeutral");
         animator.SetBool("isCrafting", false);
     }
 
