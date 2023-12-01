@@ -174,7 +174,7 @@ public class Location/* : MonoBehaviour*/
 [System.Serializable]
 public class ExplorationEventTypes : Exploration
 {
-    public void LinnearEvent(float exploreTime) 
+    public void LinnearEventSequence(float exploreTime) 
     {
         if (isExploring) 
         {
@@ -183,13 +183,25 @@ public class ExplorationEventTypes : Exploration
         }
     }
 
-    public void TextEvent(string message) 
+    private void TextEvent(string message) 
     {
         TextLog.AddLog(message);
     }
 
-    public void ItemEvent(/*True = add item, False = remove item*/bool Add, Item item, int quantity) 
+    private void ItemEvent(/*True = add item, False = remove item*/bool Add, Item item, int quantity) 
     {
+        if (quantity == 0)
+        {
+            Debug.LogWarning("You added or subtracted 0 items. This does nothing: ItemEvent cancelled.");
+            return;
+        }
+        else if (quantity < 0) 
+        {
+            Debug.LogError("You added or subtracted a negataive value of items. This is not allowed: ItemEvent cancelled. If you are trying to subtract items, set bool parameter 'Add' to false and input a positive value.");
+            return;
+        }
+        
+
         if (Add)
         {
             Inventory.AddItem(item, quantity);
@@ -199,16 +211,77 @@ public class ExplorationEventTypes : Exploration
             Inventory.RemoveItem(item, quantity);
         }
     }
+
+    private void ItemEvent(/*True = add item, False = remove item*/bool Add, Item item)
+    {
+        if (Add)
+        {
+            Inventory.AddItem(item);
+        }
+        else
+        {
+            Inventory.RemoveItem(item);
+        }
+    }
+
+    private void DamageEvent(float damage) 
+    {
+
+    }
+
+    private void CombatEvent(float damageDealt, float damageRecieved, string message)
+    {
+        if (damageRecieved == 0 && damageRecieved == 0 && message == null || damageRecieved == 0 && damageRecieved == 0 && message == "") 
+        {
+            Debug.LogWarning("No values input. This does nothing: CombatEvent cancelled.");
+            return;
+        }
+
+
+    }
+
+    private void TakeDamage(float damage) 
+    {
+        Character character = gameObject.GetComponent<Character>();
+
+        if (!character) 
+        {
+            return;
+        }
+        if (character.health <= 0) 
+        {
+            return;
+        }
+
+        Mathf.Clamp(character.health -= damage, 0, character.maxHealth);
+    }
 }
 
 [System.Serializable]
 public class ExplorationEvent
 {
-    public List<ExplorationEventEnum.eventTypes> eventsWithinEvent;
+    public List</*ExplorationSubEvent*/ExplorationSubEvent> subEvent;
 }
 
 [System.Serializable]
-public class ExplorationEventEnum
+public class ExplorationSubEvent
 {
-    public enum eventTypes { Text, Item }
+    public enum eventTypes { Text, Item, Damage, Combat };
+    public eventTypes eventVariants;
+    
+    [Header("ItemEvent")]
+
+
+    [Header("Damage/Combat-Event")]
+    [Tooltip("Damage recieved during damage event. Will only take effect during eventType: Damage, Combat")]
+    public int damageRecieved;
+    [Tooltip("Damage dealt during combat event. Will only take effect during eventType: Combat")]
+    public int damageDealt;
 }
+
+/*[System.Serializable]
+public class ExplorationSubEvent
+{
+    public List<ExplorationEventEnum.eventTypes> subEvents;
+    public int nigger;
+}*/

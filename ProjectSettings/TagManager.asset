@@ -12,6 +12,8 @@ TagManager:
   - CharacterStatsWindow
   - TextLog
   - ClearMistBtn
+  - Sun
+  - Moon
   layers:
   - Default
   - TransparentFX

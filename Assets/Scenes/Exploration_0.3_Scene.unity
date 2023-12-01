@@ -5325,8 +5325,8 @@ GameObject:
   - component: {fileID: 558002927}
   - component: {fileID: 558002929}
   m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
+  m_Name: skylight
+  m_TagString: Sun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10125,7 +10125,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
   - lootItems:
     - {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
-  explorationEvents: []
+  explorationEvents:
+  - subEvent:
+    - eventVariants: 0
+      damageRecieved: 0
+      damageDealt: 0
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0

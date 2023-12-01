@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         
-        skylight = GameObject.Find("Directional Light");
+        skylight = GameObject.FindGameObjectWithTag("Sun");
         SetExplorableLocations();
     }
 
