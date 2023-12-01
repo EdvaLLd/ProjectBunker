@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Exploration : MonoBehaviour
 {
-    //private bool isExploring = false;
+    protected bool isExploring = false;
 
     [SerializeField]
     private int timeDivisor = 100;
@@ -59,6 +59,7 @@ public class Exploration : MonoBehaviour
 
         /*print*/
         TextLog.AddLog(startMessage);
+        isExploring = true;
         
         yield return new WaitForSeconds(timeToWait);
 
@@ -69,6 +70,7 @@ public class Exploration : MonoBehaviour
 
         /*print*/
         TextLog.AddLog(endMessage);
+        isExploring = false;
 
         yield return new WaitForSeconds(6);
 
@@ -167,4 +169,46 @@ public class Location/* : MonoBehaviour*/
     {
         return Random.Range(minDistance, maxDistance);
     }
+}
+
+[System.Serializable]
+public class ExplorationEventTypes : Exploration
+{
+    public void LinnearEvent(float exploreTime) 
+    {
+        if (isExploring) 
+        {
+            //Start event from the array of the appropriate index.
+            //These events are a class with enums that can be listed in order and quantity of desire in the inspector by others to grant grater flexibility in making events.
+        }
+    }
+
+    public void TextEvent(string message) 
+    {
+        TextLog.AddLog(message);
+    }
+
+    public void ItemEvent(/*True = add item, False = remove item*/bool Add, Item item, int quantity) 
+    {
+        if (Add)
+        {
+            Inventory.AddItem(item, quantity);
+        }
+        else 
+        {
+            Inventory.RemoveItem(item, quantity);
+        }
+    }
+}
+
+[System.Serializable]
+public class ExplorationEvent
+{
+    public List<ExplorationEventEnum.eventTypes> eventsWithinEvent;
+}
+
+[System.Serializable]
+public class ExplorationEventEnum
+{
+    public enum eventTypes { Text, Item }
 }

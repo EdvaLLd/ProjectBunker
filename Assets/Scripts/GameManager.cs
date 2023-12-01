@@ -23,16 +23,21 @@ public class GameManager : MonoBehaviour
     private float cycleRate = 0.1f;
 
     private GameObject skylight;
-    
-    
+
+
     private static Location[] explorableLocations = new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
 
     [Header("Location")]
     public Looting looting = new Looting();
-    
+
     [Tooltip("0=Lake, 1=City, 2=Factory, 3=Forest")]
-    public LootItems[] locationalLoot = new LootItems[System.Enum.GetNames(typeof(Location.environments)).Length-1];
-   
+    public LootItems[] locationalLoot = new LootItems[System.Enum.GetNames(typeof(Location.environments)).Length - 1];
+
+    [Header("Events")]
+    public static int eventIndex = 0;
+
+    public ExplorationEvent[] explorationEvents;
+
     private void Awake()
     {
         instance = this;
