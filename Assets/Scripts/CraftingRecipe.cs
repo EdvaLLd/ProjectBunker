@@ -14,6 +14,7 @@ public class CraftingRecipe : ItemBase //osäker om den här ska vara ItemBase ell
 {
     public Item itemCrafted;
     public int itemAmount = 1;
+    public int craftingTime = 5;
     public List<RecipeSlot> Ingredients;
     public List<CraftingMachine> CraftableInMachine;
 }

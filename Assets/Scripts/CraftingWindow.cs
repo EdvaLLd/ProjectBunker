@@ -54,8 +54,10 @@ public class CraftingWindow : MonoBehaviour
         ClearChilds(recipeList.transform);
         if(physicalMachine.GetProgress() != 0) //kommer inte det här göra så om man timear och avbryter tasken när timern är på EXAKT 0 så resettas den??
         {
+            print(physicalMachine.item.DisplayName + " " + physicalMachine.GetRecipe().DisplayName);
             RecipeClicked(physicalMachine.GetRecipe());
-            SetCraftingValues();
+            UpdateAmountSliderValues();
+            //SetCraftingValues();
             setProgressSlider(physicalMachine.GetProgress());
         }
         else
@@ -94,7 +96,7 @@ public class CraftingWindow : MonoBehaviour
 
     int MakeSureAmountIsValid(int amount)
     {
-        return Mathf.Clamp(amount, 1, Inventory.MaxAmountCraftable(recipeMarked));
+        return Mathf.Clamp(amount, 1, Inventory.MaxAmountCraftable(recipeMarked) + craftingMachine.GetPayedAmount());
     }
 
     public void SetCraftingValues(InteractableCraftingMachine machineTryingToSet)
@@ -109,7 +111,7 @@ public class CraftingWindow : MonoBehaviour
     {
         if (recipeMarked != null && craftingMachine != null && !craftingMachine.GetIsCrafting())
         {
-            amountSlider.maxValue = Inventory.MaxAmountCraftable(recipeMarked);
+            amountSlider.maxValue = Inventory.MaxAmountCraftable(recipeMarked) + craftingMachine.GetPayedAmount();
             SetCraftingValues();
         }
     }
@@ -136,7 +138,7 @@ public class CraftingWindow : MonoBehaviour
                 UIManager.SetButtonIsEnabled(lowerAmountBtn, true);
             }
 
-            if (!Inventory.IsCraftable(recipeMarked, amount + 1))
+            if (Inventory.MaxAmountCraftable(recipeMarked) + craftingMachine.GetPayedAmount() < amount + 1)
             {
                 UIManager.SetButtonIsEnabled(increaseAmountBtn, false);
             }
@@ -145,6 +147,7 @@ public class CraftingWindow : MonoBehaviour
                 UIManager.SetButtonIsEnabled(increaseAmountBtn, true);
             }
             amountSlider.value = amount;
+            amountSlider.enabled = true;
         }
         setProgressSlider(craftingMachine.GetProgress());
         amountTxt.GetComponent<TextMeshProUGUI>().text = amount.ToString();
@@ -159,11 +162,15 @@ public class CraftingWindow : MonoBehaviour
     {
         if(craftingMachine != null)
         {
-            if (!craftingMachine.GetIsCrafting()) craftingWindow.SetActive(false);
-            else
+            if (!craftingMachine.GetIsCrafting())
             {
                 craftingMachine.CancelCraft();
-                amountSlider.enabled = true;
+                craftingWindow.SetActive(false);
+            }
+            else
+            {
+                craftingMachine.SetIsCrafting(false);
+                UpdateAmountSliderValues();
                 SetCraftingValues();
             }
         }
@@ -191,30 +198,43 @@ public class CraftingWindow : MonoBehaviour
 
     public void RecipeClicked(CraftingRecipe recipe)
     {
-        if(Inventory.IsCraftable(recipe)) //den här if-satsen ska kanske inte vara här
+        if (recipe != craftingMachine.GetRecipe())
         {
-            recipeMarked = recipe;
-            craftingWindow.SetActive(true);
+            craftingMachine.CancelCraft();
+            if (Inventory.IsCraftable(recipe)) //den här if-satsen ska kanske inte vara här
+            {
+                recipeMarked = recipe;
+                UIManager.SetWindowActive(craftingWindow);
+                recipeName.GetComponent<TextMeshProUGUI>().text = recipe.DisplayName;
+                craftingMachine.CancelCraft();
+                //lite fusklösning, men tror det fungerar i alla situationer?
+                amountSlider.value = 1;
+                SetCraftingValues();
+                UpdateAmountSliderValues();
+                //Den här ska kanske vara recipe.icon istället, men nu måste receptet i sig inte ha en ikon
+                recipeImg.GetComponent<Image>().sprite = recipe.itemCrafted.Icon;
+            }
+            else
+            {
+                craftingWindow.SetActive(false);
+            }
+        }
+        else
+        {
+            recipeMarked = craftingMachine.GetRecipe();
+            UIManager.SetWindowActive(craftingWindow);
             recipeName.GetComponent<TextMeshProUGUI>().text = recipe.DisplayName;
-            craftingMachine.GetComponent<InteractableCraftingMachine>().CancelCraft();
-            //lite fusklösning, men tror det fungerar i alla situationer?
-            amountSlider.value = 1;
             SetCraftingValues();
-            UpdateAmountSliderValues();
-            //Den här ska kanske vara recipe.icon istället, men nu måste receptet i sig inte ha en ikon
             recipeImg.GetComponent<Image>().sprite = recipe.itemCrafted.Icon;
         }
     }
 
     public void CraftItem()
     {
-        if(Inventory.IsCraftable(recipeMarked, craftingMachine.GetAmount())) //kanske onödig, men känns bra att dubbelkolla
-        {
-            UIManager.SetButtonIsEnabled(lowerAmountBtn, false);
-            UIManager.SetButtonIsEnabled(increaseAmountBtn, false);
-            amountSlider.enabled = false;
-            craftingMachine.GetComponent<InteractableCraftingMachine>().CraftItems(recipeMarked, characterWhoOpenedWindow);
-        }
+        UIManager.SetButtonIsEnabled(lowerAmountBtn, false);
+        UIManager.SetButtonIsEnabled(increaseAmountBtn, false);
+        amountSlider.enabled = false;
+        craftingMachine.GetComponent<InteractableCraftingMachine>().CraftItems(recipeMarked, characterWhoOpenedWindow);
     }
 
     public void FinishedCrafting(InteractableCraftingMachine machine)
@@ -224,6 +244,11 @@ public class CraftingWindow : MonoBehaviour
             if(Inventory.MaxAmountCraftable(craftingMachine.GetRecipe()) == 0)
             {
                 craftingWindow.SetActive(false);
+            }
+            else
+            {
+                UpdateAmountSliderValues();
+                SetCraftingValues();
             }
         }
     }

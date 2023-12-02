@@ -58,11 +58,16 @@ public class UIManager : MonoBehaviour
     }
 
     //Emma
+    //kanske ett dåligt namn på den här men orkar inte koppla om alla knappar till en metod med annat namn
     public static void ActivateWindow(GameObject windowToOpen)
     {
         windowToOpen.SetActive(!windowToOpen.active);
     }
     //
+    public static void SetWindowActive(GameObject windowToOpen)
+    {
+        windowToOpen.SetActive(true);
+    }
     public static void CloseWindow(GameObject windowToOpen)
     {
         UIElementConsumeMouseOver.mouseOverIsAvailable = true;
