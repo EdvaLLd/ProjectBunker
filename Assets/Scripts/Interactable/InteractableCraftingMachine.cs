@@ -6,11 +6,10 @@ public class InteractableCraftingMachine : InteractableItem
 {
     CraftingRecipe currentRecipeBeingCrafted;
     int amountLeft = 1;
+    int amountPayedFor = 0;
     float progress; //0-1
     Character characterOnStation;
     bool isCrafting = false;
-
-    float DEBUGCRAFTINGTIME = 5;
 
     CraftingWindow craftingWindow;
 
@@ -21,18 +20,29 @@ public class InteractableCraftingMachine : InteractableItem
 
     public void InteractedWith(Character character)
     {
-        UIManager.ActivateWindow(UIManager.craftingWindow);
+        UIManager.SetWindowActive(UIManager.craftingWindow);
         UIManager.craftingWindow.GetComponent<CraftingWindow>().InitCraftingWindow(character.item as CraftingMachine, this, character);
         //characterOnStation = character;
     }
     public void CraftItems(CraftingRecipe recipe, Character characterCrafting)
     {
-        isCrafting = true;
+        SetIsCrafting(true);
         characterOnStation = characterCrafting;
         if (recipe != currentRecipeBeingCrafted)
         {
             currentRecipeBeingCrafted = recipe;
             RemoveItemsRequiredForCraft();
+        }
+        else
+        {
+            if(amountPayedFor < amountLeft)
+            {
+                RemoveItemsRequiredForCraft();
+            }
+            else if(amountPayedFor > amountLeft)
+            {
+                RefundItemsForCraft(amountPayedFor - amountLeft);
+            }
         }
     }
     public void CharacterLeftStation(Character character)
@@ -40,7 +50,7 @@ public class InteractableCraftingMachine : InteractableItem
         if (character == characterOnStation)
         {
             characterOnStation = null;
-            isCrafting = false;
+            SetIsCrafting(false);
         }
     }
 
@@ -52,6 +62,11 @@ public class InteractableCraftingMachine : InteractableItem
     public int GetAmount()
     {
         return amountLeft;
+    }
+
+    public int GetPayedAmount()
+    {
+        return amountPayedFor;
     }
 
     public bool GetIsCrafting()
@@ -78,9 +93,10 @@ public class InteractableCraftingMachine : InteractableItem
     {
         progress = 0;
         //varför fuckar den här upp om den ligger under rad 82??????
-        isCrafting = false;
+        SetIsCrafting(false);
         RefundItemsForCraft();
         amountLeft = 1;
+        amountPayedFor = 0;
         currentRecipeBeingCrafted=null;
     }
 
@@ -88,12 +104,13 @@ public class InteractableCraftingMachine : InteractableItem
     {
         if (currentRecipeBeingCrafted != null)
         {
-            if (Inventory.IsCraftable(currentRecipeBeingCrafted, amountLeft))
+            if (Inventory.IsCraftable(currentRecipeBeingCrafted, amountLeft - amountPayedFor))
             {
                 for (int i = 0; i < currentRecipeBeingCrafted.Ingredients.Count; i++)
                 {
-                    Inventory.RemoveItem(currentRecipeBeingCrafted.Ingredients[i].item, currentRecipeBeingCrafted.Ingredients[i].amount * amountLeft);
+                    Inventory.RemoveItem(currentRecipeBeingCrafted.Ingredients[i].item, currentRecipeBeingCrafted.Ingredients[i].amount * (amountLeft-amountPayedFor));
                 }
+                amountPayedFor = amountLeft;
                 return true;
             }
         }
@@ -102,12 +119,18 @@ public class InteractableCraftingMachine : InteractableItem
 
     void RefundItemsForCraft()
     {
+        RefundItemsForCraft(amountPayedFor);
+    }
+
+    void RefundItemsForCraft(int amountToRefund)
+    {
         if (currentRecipeBeingCrafted != null)
         {
             for (int i = 0; i < currentRecipeBeingCrafted.Ingredients.Count; i++)
             {
-                Inventory.AddItem(currentRecipeBeingCrafted.Ingredients[i].item, currentRecipeBeingCrafted.Ingredients[i].amount * amountLeft);
+                Inventory.AddItem(currentRecipeBeingCrafted.Ingredients[i].item, currentRecipeBeingCrafted.Ingredients[i].amount * amountToRefund);
             }
+            amountPayedFor -= amountToRefund;
         }
     }
 
@@ -115,16 +138,17 @@ public class InteractableCraftingMachine : InteractableItem
     {
         if(isCrafting)
         {
-            progress += Time.deltaTime / DEBUGCRAFTINGTIME;
+            progress += Time.deltaTime / currentRecipeBeingCrafted.craftingTime;
             if(progress > 1)
             {
                 amountLeft--;
+                amountPayedFor--;
                 progress = 0;
                 Inventory.AddItem(currentRecipeBeingCrafted.itemCrafted, currentRecipeBeingCrafted.itemAmount);
 
-                if (amountLeft < 1)
+                if (amountPayedFor < 1)
                 {
-                    isCrafting = false;
+                    SetIsCrafting(false);
                     craftingWindow.FinishedCrafting(this);
                     currentRecipeBeingCrafted = null;
                     amountLeft = 1;

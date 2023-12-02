@@ -89,10 +89,12 @@ public class Character : MonoBehaviour
 
     public void InteractedWithItem(InteractableItem item)
     {
-        CharacterLeftTask();
-        itemInteractedWith = item;
-        itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
-
+        if (item != itemInteractedWith)
+        {
+            CharacterLeftTask();
+            itemInteractedWith = item;
+            itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
+        }
         UpdateMovement(item.transform.position);
     }
 

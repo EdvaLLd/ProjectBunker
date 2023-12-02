@@ -84,7 +84,14 @@ public class Pathfinding : MonoBehaviour
 
         if(pathWithPoints.Count == 0)
         {
-            return new List<Vector3>() { goalPos};
+            if(acceptableCharacterEndPlacement != null)
+            {
+                return new List<Vector3>() { acceptableCharacterEndPlacement.ClosestPointOnBounds(startPos) };
+            }
+            else
+            {
+                return new List<Vector3>() { goalPos };
+            }
         }
         //Om avståndet mellan startpositionen och första pathnoden är större än första noden och startpointen
         if (Vector3.Distance(startPos, pathWithPoints[pathWithPoints.Count - 1].transform.position) >
@@ -102,7 +109,14 @@ public class Pathfinding : MonoBehaviour
         {
             if (!HelperMethods.WallBetweenPointsOnGround(startPos, goalPos, characterHeight))
             {
-                return new List<Vector3>() { goalPos };
+                if (acceptableCharacterEndPlacement != null)
+                {
+                    return new List<Vector3>() { acceptableCharacterEndPlacement.ClosestPointOnBounds(startPos) };
+                }
+                else
+                {
+                    return new List<Vector3>() { goalPos };
+                }
             }
         }
         return FixPath(pathWithPoints, startPos, goalPos, characterHeight, acceptableCharacterEndPlacement);
