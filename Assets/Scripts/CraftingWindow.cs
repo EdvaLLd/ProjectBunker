@@ -38,7 +38,7 @@ public class CraftingWindow : MonoBehaviour
 
     void NewRecipeAdded(CraftingRecipe recipe)
     {
-        print("New recipe! " + recipe.DisplayName);
+        print("New recipe! " + recipe.itemCrafted.DisplayName);
         if(craftingMachine != null && Inventory.IsRecipeCraftableInMachine(craftingMachine.item as CraftingMachine, recipe))
         {
             print("Affects current machine");
@@ -54,7 +54,7 @@ public class CraftingWindow : MonoBehaviour
         ClearChilds(recipeList.transform);
         if(physicalMachine.GetProgress() != 0) //kommer inte det här göra så om man timear och avbryter tasken när timern är på EXAKT 0 så resettas den??
         {
-            print(physicalMachine.item.DisplayName + " " + physicalMachine.GetRecipe().DisplayName);
+            print(physicalMachine.item.DisplayName + " " + physicalMachine.GetRecipe().itemCrafted.DisplayName);
             RecipeClicked(physicalMachine.GetRecipe());
             UpdateAmountSliderValues();
             //SetCraftingValues();
@@ -70,8 +70,19 @@ public class CraftingWindow : MonoBehaviour
             CraftingRecipe recipe = recipesForMachine[i];
             GameObject t;
             t = Instantiate(recipePrefab, recipeList.transform);
-            t.transform.GetChild(0).GetComponent<Image>().sprite = recipe.Icon;
-            t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = recipe.DisplayName;
+            t.transform.GetChild(0).GetComponent<Image>().sprite = recipe.itemCrafted.Icon;
+            t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = recipe.itemCrafted.DisplayName;
+            int timeConvertedSec = recipe.craftingTime % 60;
+            int timeConvertedMin = recipe.craftingTime / 60;
+            string finalTime = "";
+            if (timeConvertedMin > 0) finalTime = timeConvertedMin.ToString() + " min ";
+            if (timeConvertedSec > 0) finalTime += timeConvertedSec.ToString() + " s";
+            if (!Inventory.IsCraftable(recipe)) t.GetComponent<Button>().interactable = false;
+            else
+            {
+                t.transform.SetAsFirstSibling();
+            }
+            t.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = finalTime;
             t.GetComponent<Button>().onClick.AddListener(() => RecipeClicked(recipe));
             //craftingWindow.GetComponent<Image>().sprite = machine.Icon;
             transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = machine.name;
@@ -178,13 +189,22 @@ public class CraftingWindow : MonoBehaviour
 
     void InitRecipeWindow(GameObject window, CraftingRecipe recipe)
     {
-        GameObject ingredientList = window.transform.GetChild(2).gameObject; //super duper scary sätt att fixa på
+        GameObject ingredientList = window.transform.GetChild(3).gameObject; //super duper scary sätt att fixa på
         for (int i = 0; i < recipe.Ingredients.Count; i++)
         {
             GameObject t;
             t = Instantiate(ingredientPrefab, ingredientList.transform);
+            t.GetComponent<ItemHoverDesc>().item = recipe.itemCrafted;
             t.GetComponent<Image>().sprite = recipe.Ingredients[i].item.Icon;
             t.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = recipe.Ingredients[i].amount.ToString();
+            if(Inventory.GetAmountOfItem(recipe.Ingredients[i].item) < recipe.Ingredients[i].amount)
+            {
+                t.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
+            }
+            else
+            {
+                t.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.green;
+            }
         }
     }
 
@@ -205,7 +225,7 @@ public class CraftingWindow : MonoBehaviour
             {
                 recipeMarked = recipe;
                 UIManager.SetWindowActive(craftingWindow);
-                recipeName.GetComponent<TextMeshProUGUI>().text = recipe.DisplayName;
+                recipeName.GetComponent<TextMeshProUGUI>().text = recipe.itemCrafted.DisplayName;
                 craftingMachine.CancelCraft();
                 //lite fusklösning, men tror det fungerar i alla situationer?
                 amountSlider.value = 1;
@@ -223,7 +243,7 @@ public class CraftingWindow : MonoBehaviour
         {
             recipeMarked = craftingMachine.GetRecipe();
             UIManager.SetWindowActive(craftingWindow);
-            recipeName.GetComponent<TextMeshProUGUI>().text = recipe.DisplayName;
+            recipeName.GetComponent<TextMeshProUGUI>().text = recipe.itemCrafted.DisplayName;
             SetCraftingValues();
             recipeImg.GetComponent<Image>().sprite = recipe.itemCrafted.Icon;
         }
