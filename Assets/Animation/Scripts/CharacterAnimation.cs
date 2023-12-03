@@ -49,16 +49,13 @@ public class CharacterAnimation : MonoBehaviour
         {
             StopClimbing();
             transform.eulerAngles = new Vector3(0, 180, 0);
-            Debug.Log("Vänster!");
         }else if(character.GetCharacterDirectionX() < 0)
         {
             StopClimbing();
             transform.eulerAngles = new Vector3(0, 0, 0);
-            Debug.Log("Höger!");
         }else if(character.GetCharacterDirectionX() == 0)
         {
             StartClimbing();
-            Debug.Log("Jag rör mig inte i x-led");
         }
         
     }
