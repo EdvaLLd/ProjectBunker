@@ -10113,19 +10113,49 @@ MonoBehaviour:
   DayNightValue: 0
   cycleRate: 1
   looting:
-    maxLootQuantity: 2
-    minLootQuantity: 1
-    lootProbabilityDefault: 75
+    lootItem: {fileID: 0}
+    maxLootQuantity: 0
+    minLootQuantity: 0
+    lootProbability: 75
   locationalLoot:
-  - lootItems:
-    - {fileID: 11400000, guid: 173d677b5b788b7478da1b139c843cd0, type: 2}
-  - lootItems:
-    - {fileID: 11400000, guid: cffe802603e7a97469905f16e85b6a19, type: 2}
-  - lootItems:
-    - {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
-  - lootItems:
-    - {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
-  explorationEvents: []
+  - lootItems: []
+  - lootItems: []
+  - lootItems: []
+  - lootItems: []
+  explorationEvents:
+  - eventName: 
+    subEvent:
+    - eventType: 0
+      textEvent:
+        eventMessage: 
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        maxAmmount: 0
+        minAmmount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+      combatEvent:
+        damageDealt: 0
+        damageRecieved: 0
+        combatEventMessage: 
+        combatLoot:
+        - lootItem: {fileID: 0}
+          maxLootQuantity: 0
+          minLootQuantity: 0
+          lootProbability: 75
+          enemyFaction: 0
+        - lootItem: {fileID: 0}
+          maxLootQuantity: 0
+          minLootQuantity: 0
+          lootProbability: 75
+          enemyFaction: 0
+        - lootItem: {fileID: 0}
+          maxLootQuantity: 0
+          minLootQuantity: 0
+          lootProbability: 75
+          enemyFaction: 0
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0

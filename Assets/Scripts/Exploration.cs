@@ -13,25 +13,6 @@ public class Exploration : MonoBehaviour
     [SerializeField]
     private Location.environments currentEnvironment = Location.environments.Home;
 
-    /*[SerializeField]
-    private float noLootProbability = 100;*/
-
-    // Update is called once per frame
-    /*void Update()
-    {
-        SetExplorationState();
-    }*/
-
-    /*private void SetExplorationState() 
-    {
-        if (currentEnviornment != Location.environments.Home)
-        {
-            isExploring = true;
-           // return;
-        }
-        isExploring = false;
-    }*/
-
     public IEnumerator ExploringProcess() 
     {
        // GameManager gameManager = FindObjectOfType<GameManager>();
@@ -92,8 +73,8 @@ public class Exploration : MonoBehaviour
                 /*print*/
                 GameManager gameManager = FindObjectOfType<GameManager>();
 
-                int maxQuantity = gameManager.looting.maxLootQuantity;
-                int minQuantity = gameManager.looting.minLootQuantity;
+                int maxQuantity = /*gameManager.looting.maxLootQuantity;*/ randomLocation.locationLoot[randomItemIndex].maxLootQuantity;
+                int minQuantity = /*gameManager.looting.minLootQuantity;*/ randomLocation.locationLoot[randomItemIndex].minLootQuantity;
                 if ((maxQuantity <= 0 || minQuantity <= 0) || (maxQuantity <= 0 && minQuantity <= 0))
                 {
                     TextLog.AddLog(lootMessage);
@@ -142,7 +123,7 @@ public class Exploration : MonoBehaviour
     private Item GetRandomLocationItem(/*int locationIndex, int itemIndex*/Location location, int itemIndex) 
     {
         //GameManager gameManager = FindObjectOfType<GameManager>();
-        Item output = location.locationLoot[/*Random.Range(0, location.locationLoot.Count)*/itemIndex];
+        Item output = location.locationLoot[/*Random.Range(0, location.locationLoot.Count)*/itemIndex].lootItem;
         print(location.environment + " " + output.name + " obtained." );
 
         return output/*location.locationLoot[Random.Range(0, location.locationLoot.Count)]*/;
@@ -159,7 +140,7 @@ public class Location/* : MonoBehaviour*/
     public enum environments { Home, Lake, City, Factory, Forest };
     public environments environment;
 
-    public List<Item> locationLoot;
+    public List<Looting.LootItem> locationLoot;
 
     public float[] lootProbabilities;
     public float distanceToHome;
@@ -170,165 +151,4 @@ public class Location/* : MonoBehaviour*/
     {
         return Random.Range(minDistance, maxDistance);
     }
-}
-
-[System.Serializable]
-public class LootItems
-{
-    public List<Item> lootItems;
-}
-
-[System.Serializable]
-public class Looting
-{
-    public int maxLootQuantity;
-    public int minLootQuantity;
-    [Tooltip("The higher the index in LootItems list, the lower is the probability for it appearing. This value is the probability at index 0 in percent.")]
-    public float lootProbabilityDefault = 75;
-}
-
-[System.Serializable]
-public class ExplorationEventTypes : Exploration
-{
-    public void LinnearEventSequence(float exploreTime) 
-    {
-        if (isExploring) 
-        {
-            //Start event from the array of the appropriate index.
-            //These events are a class with enums that can be listed in order and quantity of desire in the inspector by others to grant grater flexibility in making events.
-        }
-    }
-
-    private void TextEvent(string message) 
-    {
-        TextLog.AddLog(message);
-    }
-
-    private void ItemEvent(/*True = add item, False = remove item*/bool Add, Item item, int quantity) 
-    {
-        if (quantity == 0)
-        {
-            Debug.LogWarning("You added or subtracted 0 items. This does nothing: ItemEvent cancelled.");
-            return;
-        }
-        else if (quantity < 0) 
-        {
-            Debug.LogError("You added or subtracted a negataive value of items. This is not allowed: ItemEvent cancelled. If you are trying to subtract items, set bool parameter 'Add' to false and input a positive value.");
-            return;
-        }
-        
-
-        if (Add)
-        {
-            Inventory.AddItem(item, quantity);
-        }
-        else 
-        {
-            Inventory.RemoveItem(item, quantity);
-        }
-    }
-
-    private void ItemEvent(/*True = add item, False = remove item*/bool Add, Item item)
-    {
-        if (item == null) 
-        {
-            return;
-        }
-        if (Add)
-        {
-            Inventory.AddItem(item);
-        }
-        else
-        {
-            Inventory.RemoveItem(item);
-        }
-    }
-
-    private void DamageEvent(float damage) 
-    {
-        TakeDamage(damage);
-        TextEvent(gameObject.name + " took " + damage + " damage to their health.");
-    }
-
-    private void CombatEvent(float damageDealt, float damageRecieved)
-    {
-        if (damageRecieved == 0 && damageRecieved == 0)
-        {
-            Debug.LogWarning("No values input. This does nothing: CombatEvent cancelled.");
-            return;
-        }
-
-        TextEvent(gameObject.name + " engaged in combat against hostile scavengers");
-        DamageEvent(Random.Range(0,30));
-    }
-    private void CombatEvent(float damageDealt, float damageRecieved, string message)
-    {
-        if (damageRecieved == 0 && damageRecieved == 0 && message == null || damageRecieved == 0 && damageRecieved == 0 && message == "") 
-        {
-            Debug.LogWarning("No values input. This does nothing: CombatEvent cancelled.");
-            return;
-        }
-
-
-    }
-
-    private void TakeDamage(float damage) 
-    {
-        Character character = gameObject.GetComponent<Character>();
-
-        if (!character) 
-        {
-            return;
-        }
-        if (character.health <= 0) 
-        {
-            return;
-        }
-
-        Mathf.Clamp(character.health -= damage, 0, character.maxHealth);
-    }
-}
-
-[System.Serializable]
-public class ExplorationEvent
-{
-    public string eventName;
-    public List</*ExplorationSubEvent*/ExplorationSubEvent> subEvent;
-}
-
-[System.Serializable]
-public class ExplorationSubEvent
-{
-    public enum eventTypes { Text, Item, Damage, Combat };
-    public eventTypes eventType;
-
-    public enum combatFactions { Scavengers, Mutated_dogs, Radioactive_lobsters };
-
-    [Header("TextEvent")]
-    [Tooltip("Displayed text message during text event.")]
-    public string eventMessage;
-
-    [Header("ItemEvent")]
-    [Tooltip("Items that can drop during item event.")]
-    public Item[] loot;
-
-    [Header("Damage/Combat-Event")]
-    [Tooltip("Damage recieved during damage event. Will only take effect during eventType: Damage, Combat")]
-    public int damageRecieved;
-
-    [Header("CombatEvent")]
-    [Tooltip("Damage dealt during combat event.")]
-    public int damageDealt;
-    [Tooltip("Displayed text message during combat event.")]
-    public string customCombatMessage;
-    [Tooltip("Items that can drop after combat event.")]
-    
-    public CombatLootItems[] combatLoot = new CombatLootItems[System.Enum.GetNames(typeof(combatFactions)).Length];
-}
-
-[System.Serializable]
-public class CombatLootItems
-{
-    public ExplorationSubEvent.combatFactions enemyFaction;
-    public List<Item> combatLootItems;
 }
