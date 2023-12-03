@@ -22,7 +22,6 @@ public class InteractableCraftingMachine : InteractableItem
     {
         UIManager.SetWindowActive(UIManager.craftingWindow);
         UIManager.craftingWindow.GetComponent<CraftingWindow>().InitCraftingWindow(character.item as CraftingMachine, this, character);
-        //characterOnStation = character;
     }
     public void CraftItems(CraftingRecipe recipe, Character characterCrafting)
     {

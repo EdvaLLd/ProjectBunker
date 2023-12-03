@@ -97,6 +97,7 @@ public class CharacterAnimation : MonoBehaviour
     public void StopMoving()
     {
         animator.SetBool("isMoving", false);
+        animator.SetBool("isClimbing", false);
     }
 
     public void Die()

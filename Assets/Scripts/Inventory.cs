@@ -89,7 +89,7 @@ public static class Inventory
         }
         if(recipeAdded)
         {
-            TextLog.AddLog($"Learned recipe: {recipe.DisplayName}!", Color.yellow);
+            TextLog.AddLog($"Learned recipe: {recipe.itemCrafted.DisplayName}!", Color.yellow);
             onRecipeAdded?.Invoke(recipe);
         }
     }
