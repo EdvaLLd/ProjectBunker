@@ -201,7 +201,7 @@ public class UnitController : MonoBehaviour
         character.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = isSelected;
     }
 
-    public Character GetSelectedCharacter()
+    public static Character GetSelectedCharacter()
     {
         return selectedCharacter;
     }
