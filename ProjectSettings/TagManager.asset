@@ -13,6 +13,7 @@ TagManager:
   - TextLog
   - ClearMistBtn
   - DangerTxt
+  - HoverWindow
   layers:
   - Default
   - TransparentFX
