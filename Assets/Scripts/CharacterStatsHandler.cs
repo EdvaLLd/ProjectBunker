@@ -41,13 +41,26 @@ public class CharacterStatsHandler : MonoBehaviour
     public void UpdateHunger(float hunger)
     {
         hungerSlider.value = hunger;
+        SliderShaker(hungerSlider);
         SetColor(hungerSlider.value / hungerSlider.maxValue, hungerSlider.transform.GetChild(1).GetChild(0).gameObject);
     }
     public void UpdateHealth(float health)
     {
         healthSlider.value = health;
-
+        SliderShaker(healthSlider);
         SetColor(healthSlider.value / healthSlider.maxValue, healthSlider.transform.GetChild(1).GetChild(0).gameObject);
+    }
+
+    void SliderShaker(Slider slider)
+    {
+        if (slider.value < slider.maxValue * 0.25f)
+        {
+            slider.GetComponent<Animator>().SetBool("Shaker", true);
+        }
+        else
+        {
+            slider.GetComponent<Animator>().SetBool("Shaker", false);
+        }
     }
 
     void SetColor(float value, GameObject o)

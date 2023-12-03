@@ -44,8 +44,8 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        maxHunger = hunger;
-        maxHealth = health;
+        //maxHunger = hunger;
+        //maxHealth = health;
 
         characterAnim = GetComponentInChildren<CharacterAnimation>();
     }
