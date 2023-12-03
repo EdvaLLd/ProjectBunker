@@ -74,7 +74,13 @@ public class Character : MonoBehaviour
             {
                 isAlive = false;
                 TextLog.AddLog("Unit died!");
+                if (UnitController.GetSelectedCharacter() == this)
+                {
+                    UnitController.SwapSelectedCharacter(this);
+                }
+                
             }
+
         }
 
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -225,7 +231,7 @@ public class Character : MonoBehaviour
                 StartCoroutine(NotHungryEffect());
             }
 
-            TextLog.AddLog(FindObjectOfType<UnitController>().GetSelectedCharacter().name + "is not hungry.");
+            TextLog.AddLog(UnitController.GetSelectedCharacter().name + "is not hungry.");
         }
     }
 
