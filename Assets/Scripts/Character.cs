@@ -157,9 +157,20 @@ public class Character : MonoBehaviour
         {
             posMovingTo = path[0];
             path.RemoveAt(0);
+
+            //Animation stuff
+            if(characterAnim != null)
+            {
+                characterAnim.Flip();
+            }
+
             return posMovingTo;
         }
-        characterAnim.StopMoving();
+        //Animation stuff
+        if(characterAnim != null)
+        {
+            characterAnim.StopMoving();
+        }
         move = false;
         return transform.position;
     }
@@ -181,7 +192,7 @@ public class Character : MonoBehaviour
                 }
                 if (path.Count > 0)
                 {
-                    GetNextPosOnPath();
+                    GetNextPosOnPath(); 
                 }
                 else
                 {
@@ -190,28 +201,23 @@ public class Character : MonoBehaviour
                     if (itemInteractedWith != null)
                     {
                         onTaskCompletion?.Invoke(this);
-                        //Animation stuff
-                        if (characterAnim != null)
-                        {
-                            if (task == CharacterTasks.crafting)
-                            {
-                                characterAnim.StartCrafting();
-                            }
-                            else
-                            {
-                                characterAnim.StopCrafting();
-                            }
-                        }
+                        //Animation stuff ----------------- Jag väntar lite med detta tills jag har craftingdelen
+                        //if (characterAnim != null)
+                        //{
+                        //    if (task == CharacterTasks.crafting)
+                        //    {
+                        //        characterAnim.StartCrafting();
+                        //    }
+                        //    else
+                        //    {
+                        //        characterAnim.StopCrafting();
+                        //    }
+                        //}
                     }
                 }
             }
             else
             {
-                //Animation stuff
-                if(characterAnim != null){
-                    characterAnim.Flip();
-                }
-
                 Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed * Time.deltaTime);
                 transform.position = newPos;
             }
