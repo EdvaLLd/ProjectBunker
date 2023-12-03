@@ -10,10 +10,11 @@ public class RecipeSlot
 }
 
 [CreateAssetMenu(menuName = "Crafting System/Crafting Recipe")]
-public class CraftingRecipe : ItemBase //osäker om den här ska vara ItemBase eller ScriptableObject
+public class CraftingRecipe : ScriptableObject //osäker om den här ska vara ItemBase eller ScriptableObject
 {
     public Item itemCrafted;
     public int itemAmount = 1;
+    public int craftingTime = 5;
     public List<RecipeSlot> Ingredients;
     public List<CraftingMachine> CraftableInMachine;
 }

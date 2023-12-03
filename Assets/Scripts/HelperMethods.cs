@@ -62,6 +62,19 @@ public class HelperMethods
         return pos;
     }
 
+    public static bool IsCoordinatesOnAVerticalLine(Vector3 pos1, Vector3 pos2)
+    {
+        float margin = 0.05f;
+        if(Mathf.Abs(pos1.x - pos2.x) < margin)
+        {
+            if (Mathf.Abs(pos1.z - pos2.z) < margin)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static GameObject[] FindGameObjectsWithLayer(int layer)
     {
         GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();

@@ -50,6 +50,7 @@ Shader "Unlit/Skybox shader"
             TEXTURE2D(_SunViewGrad);        SAMPLER(sampler_SunViewGrad);
 
             float3 _SunDir, _MoonDir;
+            float3 _MoonPhaseMask;
             float _SunRadius, _MoonRadius;
             float _MoonExposure;
 
@@ -60,15 +61,18 @@ Shader "Unlit/Skybox shader"
             }
 
             // From Inigo Quilez, https://www.iquilezles.org/www/articles/intersectors/intersectors.htm
-            float sphIntersect(float3 rayDir, float3 spherePos, float radius)
+            float sphIntersect(float3 rayDir/*ray direction*/, float3 spherePos/*ray origin, however Moon direction is put here?*/, float sphereRadius/*sphere radius*/)
             {
-                float3 oc = -spherePos;
-                float b = dot(oc, rayDir);
-                float c = dot(oc, oc) - radius * radius;
-                float h = b * b - c;
-                if(h < 0.0) return -1.0;
-                h = sqrt(h);
-                return -b - h;
+                float3 sphereRayOriginDistance = -spherePos; // (distance between ray origin and sphere origin on page) inversed ray origin (or in this case, inversed Moon direction)?
+                float sphereRayOriginDot = dot(sphereRayOriginDistance, rayDir); // dot value between sphere origin and ray direction.
+                
+                float intersectionDistance = dot(sphereRayOriginDistance, sphereRayOriginDistance) - sphereRadius * sphereRadius; //difference between magnitude squared and radius squared (distance from vector to intersectedSphereSurface(when all values are squared)).
+                // dot value between sphere origin and sphere origin (basically: dot(vector3(x,y,z)) = (x*x)+(y*y)+(z*z) which gives squared magnitude of vector3) subtracted with sphere radius squared to get difference between magnitude and radius squared?
+                
+                float sphereRayIntersectionDistance = sphereRayOriginDot * sphereRayOriginDot - intersectionDistance; // squared distance from the closest ray point to the sphere.
+                if(sphereRayIntersectionDistance < 0.0) return -1.0; // no intersection when sphereRayIntersectionDistance < 0.
+                sphereRayIntersectionDistance = sqrt(sphereRayIntersectionDistance);
+                return -sphereRayOriginDot - sphereRayIntersectionDistance; // return distance to closest intersection with ray.
             }
 
             float4 Fragment (v2f IN) : SV_TARGET
@@ -100,9 +104,9 @@ Shader "Unlit/Skybox shader"
                 // The moon
                 float moonIntersect = sphIntersect(viewDir, _MoonDir, _MoonRadius);
                 float moonMask = moonIntersect > -1 ? 1 : 0;
-                float3 moonNormal = normalize(_MoonDir - viewDir * moonIntersect);
-                float moonNdotL = saturate(dot(moonNormal, -_SunDir));
-                float3 moonColor = moonMask * moonNdotL * exp2(_MoonExposure);
+                float3 moonNormal = normalize((_MoonDir - viewDir * moonIntersect)/* * _MoonPhaseMask*/);
+                float moonNdotL = saturate(dot(moonNormal, /*-_SunDir*/_MoonPhaseMask));
+                [SerializeField]float3 moonColor = moonMask * moonNdotL * exp2(_MoonExposure);
 
                 float3 col = skyColor + sunColor + moonColor;
                 return float4(col, 1);

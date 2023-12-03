@@ -10,10 +10,18 @@ public class InteractableItem : MonoBehaviour
     //[SerializeField]
     public ItemBase item;
 
-    GameObject interactOptions;
+    static GameObject interactOptions;
 
     [SerializeField]
     InteractOptionsBools interactOptionsBools;
+
+    private void Awake()
+    {
+        if (interactOptions == null)
+        {
+            interactOptions = GameObject.FindGameObjectWithTag("InteractOptions");
+        }
+    }
 
     private void Start()
     {
@@ -30,7 +38,6 @@ public class InteractableItem : MonoBehaviour
             interactableArea.GetComponent<BoxCollider>().size = GetComponent<BoxCollider>().size + new Vector3(.3f, .3f, .3f);
             Debug.LogWarning($"Object \"{name}\" does not have a set interact area. Generated one based on presets");
         }
-        interactOptions = GameObject.FindGameObjectWithTag("InteractOptions");
     }
 
 
@@ -51,7 +58,7 @@ public class InteractableItem : MonoBehaviour
     {
         if (interactableArea == null)
         {
-            print("Shouldnt be here");
+            print("Shouldnt be here (on object "+name+")");
             return GetComponent<BoxCollider>();
         }
         return interactableArea.GetComponent<BoxCollider>();

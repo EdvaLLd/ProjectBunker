@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3118213294834403819}
   - component: {fileID: 6804303139261091714}
-  - component: {fileID: 2023792798585403563}
   - component: {fileID: 6421606250131383266}
   - component: {fileID: 3531574230500618982}
+  - component: {fileID: 5741941811487271850}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -87,24 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2023792798585403563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2963788469857011422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d340c3dcbff896c469a8f3125fc819b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableArea: {fileID: 0}
-  item: {fileID: 11400000, guid: 4a4c24d0070be5e498066b984a5cac6d, type: 2}
-  interactOptionsBools:
-    crafting: 0
-    inspect: 1
-    loot: 1
 --- !u!65 &6421606250131383266
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -141,3 +123,22 @@ MonoBehaviour:
     amount: 1
   recipes:
   - {fileID: 11400000, guid: d987e1143e6026848abb669cedc2c51b, type: 2}
+--- !u!114 &5741941811487271850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2963788469857011422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee41b0eee67d8e54a9ec6ce4ec637ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableArea: {fileID: 0}
+  item: {fileID: 11400000, guid: 4a4c24d0070be5e498066b984a5cac6d, type: 2}
+  interactOptionsBools:
+    crafting: 0
+    inspect: 1
+    loot: 1
+    explore: 0

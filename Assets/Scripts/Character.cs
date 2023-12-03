@@ -74,11 +74,17 @@ public class Character : MonoBehaviour
             {
                 isAlive = false;
                 TextLog.AddLog("Unit died!");
+
                 if (UnitController.GetSelectedCharacter() == this)
                 {
                     UnitController.SwapSelectedCharacter(this);
                 }
-                
+
+                //Prel animation stuff
+                if(characterAnim != null)
+                {
+                    characterAnim.Die();
+                }
             }
 
         }
@@ -89,10 +95,12 @@ public class Character : MonoBehaviour
 
     public void InteractedWithItem(InteractableItem item)
     {
-        CharacterLeftTask();
-        itemInteractedWith = item;
-        itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
-
+        if (item != itemInteractedWith)
+        {
+            CharacterLeftTask();
+            itemInteractedWith = item;
+            itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
+        }
         UpdateMovement(item.transform.position);
     }
 
@@ -155,9 +163,20 @@ public class Character : MonoBehaviour
         {
             posMovingTo = path[0];
             path.RemoveAt(0);
+
+            //Animation stuff
+            if(characterAnim != null)
+            {
+                characterAnim.Flip();
+            }
+
             return posMovingTo;
         }
-        characterAnim.StopMoving();
+        //Animation stuff
+        if(characterAnim != null)
+        {
+            characterAnim.StopMoving();
+        }
         move = false;
         return transform.position;
     }
@@ -179,7 +198,7 @@ public class Character : MonoBehaviour
                 }
                 if (path.Count > 0)
                 {
-                    GetNextPosOnPath();
+                    GetNextPosOnPath(); 
                 }
                 else
                 {
@@ -188,28 +207,23 @@ public class Character : MonoBehaviour
                     if (itemInteractedWith != null)
                     {
                         onTaskCompletion?.Invoke(this);
-                        //Animation stuff
-                        if (characterAnim != null)
-                        {
-                            if (task == CharacterTasks.crafting)
-                            {
-                                characterAnim.StartCrafting();
-                            }
-                            else
-                            {
-                                characterAnim.StopCrafting();
-                            }
-                        }
+                        //Animation stuff ----------------- Jag väntar lite med detta tills jag har craftingdelen
+                        //if (characterAnim != null)
+                        //{
+                        //    if (task == CharacterTasks.crafting)
+                        //    {
+                        //        characterAnim.StartCrafting();
+                        //    }
+                        //    else
+                        //    {
+                        //        characterAnim.StopCrafting();
+                        //    }
+                        //}
                     }
                 }
             }
             else
             {
-                //Animation stuff
-                if(characterAnim != null){
-                    characterAnim.Flip();
-                }
-
                 Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed * Time.deltaTime);
                 transform.position = newPos;
             }
@@ -250,5 +264,10 @@ public class Character : MonoBehaviour
     public float GetCharacterDirectionX()
     {
         return transform.position.x - posMovingTo.x;
+    }
+
+    public float GetCharacterDirectionY()
+    {
+        return transform.position.y - posMovingTo.y;
     }
 }

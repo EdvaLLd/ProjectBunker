@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
 
     public static GameObject clearMistBtnGO;
     public static GameObject dangerTextGO;
+    public static GameObject hoverWindow;
 
 
     public delegate void OnButtonDisableChanged(Button disabledButton);
@@ -34,6 +35,7 @@ public class UIManager : MonoBehaviour
         clearMistBtnGO = GameObject.FindGameObjectWithTag("ClearMistBtn");
         buttonSelected = inventoryBG.transform.GetChild(0).GetChild(0).GetComponent<Button>();
         dangerTextGO = GameObject.FindGameObjectWithTag("DangerTxt");
+        hoverWindow = GameObject.FindGameObjectWithTag("HoverWindow");
     }
 
     private void Start()
@@ -43,6 +45,7 @@ public class UIManager : MonoBehaviour
         craftingWindow.SetActive(false);
         clearMistBtnGO.SetActive(false);
         dangerTextGO.SetActive(false);
+        hoverWindow.SetActive(false);
 
         Inventory.AddItem(Database.GetItemWithID("01001"), 5);
         Inventory.AddItem(Database.GetItemWithID("01002"), 1);
@@ -58,11 +61,16 @@ public class UIManager : MonoBehaviour
     }
 
     //Emma
+    //kanske ett dåligt namn på den här men orkar inte koppla om alla knappar till en metod med annat namn
     public static void ActivateWindow(GameObject windowToOpen)
     {
         windowToOpen.SetActive(!windowToOpen.active);
     }
     //
+    public static void SetWindowActive(GameObject windowToOpen)
+    {
+        windowToOpen.SetActive(true);
+    }
     public static void CloseWindow(GameObject windowToOpen)
     {
         UIElementConsumeMouseOver.mouseOverIsAvailable = true;
@@ -108,6 +116,7 @@ public class UIManager : MonoBehaviour
     void AddSlot(Transform parent, Item item, int amount)
     {
         GameObject t = Instantiate(inventorySlot, parent);
+        t.GetComponent<ItemHoverDesc>().item = item;
         t.GetComponent<Image>().sprite = item.Icon;
         t.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = amount.ToString();
     }

@@ -17,14 +17,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private difficulties difficulty;
 
-    [SerializeField, Header("Day/Night cycle")]
-    private float DayNightValue = 0; //0.0f - 360.0f
-    [SerializeField]
-    private float cycleRate = 0.1f;
+    /*[SerializeField, Header("Day/Night cycle")]
+     private float DayNightValue = 0; //0.0f - 360.0f
+     [SerializeField]
+     private float cycleRate = 0.1f;
+     [SerializeField]
+     //private float angle = 0;
+     private float moonSunOppositionAngle = 0;*/
 
-    private GameObject skylight;
-    
-    
+    private SkyboxController skyboxManager;
+    private GameObject sun;
+    private GameObject moon;
+
     private static Location[] explorableLocations = new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
 
     [Header("Location")]
@@ -37,7 +41,9 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         
-        skylight = GameObject.Find("Directional Light");
+        skyboxManager = GameObject.FindObjectOfType<SkyboxController>();
+        sun = GameObject.Find("Sun");
+        moon = GameObject.Find("Moon");
         SetExplorableLocations();
     }
 
@@ -47,25 +53,27 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        DayAndNightCycle(cycleRate);
+        //DayAndNightCycle(skyboxManager.cycleRate/*cycleRate, moonSunOppositionAngle*/);
+        //moonSunOppositionAngle = moonSunOppositionAngle;
     }
 
-    private void DayAndNightCycle(float rate)
+    private void DayAndNightCycle(float rate/*, float moonAngle*/)
     {
         float calculatedCycleRate = rate * Time.deltaTime;
 
-        DayNightValue += calculatedCycleRate;
+        skyboxManager.dayNightValue += calculatedCycleRate;
 
-        skylight.transform.rotation = Quaternion.Euler(DayNightValue, -38, 0);
+        sun.transform.rotation = Quaternion.Euler(skyboxManager.dayNightValue, -38, 0);
+        moon.transform.rotation = Quaternion.Euler(skyboxManager.dayNightValue + 180 /*+ moonAngle*/, -38, 0);
 
-        if (skylight.transform.rotation.x == 30)
+       /* if (sun.transform.rotation.x == 30)
         {
 
-        }
+        }*/
 
-        if (DayNightValue >= 360)
+        if (skyboxManager.dayNightValue >= 360)
         {
-            DayNightValue = 0;
+            skyboxManager.dayNightValue = 0;
         }
     }
 
@@ -127,3 +135,10 @@ public class Looting
     [Tooltip("The higher the index in LootItems list, the lower is the probability for it appearing. This value is the probability at index 0 in percent.")]
     public float lootProbabilityDefault = 75;
 }
+
+/*[System.Serializable]
+public static class LightTest 
+{
+    public static float moonDirection;
+    public static float viewDirection;
+}*/
