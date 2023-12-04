@@ -11,7 +11,7 @@ public class ButtonShadow : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     Shadow shadow;
     bool clicked = false;
 
-    bool buttonActive = false;
+    bool buttonActive = true;
 
     private void Start()
     {
@@ -34,6 +34,11 @@ public class ButtonShadow : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if (buttonActive)
         {
             shadow.enabled = true;
+            Animator anim;
+            if (TryGetComponent<Animator>(out anim))
+            {
+                anim.SetTrigger("TriggerRelease");
+            }
         }
     }
 
@@ -42,6 +47,8 @@ public class ButtonShadow : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         if (clicked && buttonActive)
         {
             StartCoroutine(ShadowTimer(shadow));
+
+           
         }
     }
 
@@ -51,6 +58,12 @@ public class ButtonShadow : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         {
             shadow.enabled = false;
             clicked = true;
+
+            Animator anim;
+            if (TryGetComponent<Animator>(out anim))
+            {
+                anim.SetTrigger("TriggerPress");
+            }
         } 
     }
 }
