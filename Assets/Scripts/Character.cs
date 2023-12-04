@@ -286,10 +286,6 @@ public class Character : MonoBehaviour
                         //    {
                         //        characterAnim.StartCrafting();
                         //    }
-                        //    else
-                        //    {
-                        //        characterAnim.StopCrafting();
-                        //    }
                         //}
                     }
                 }
