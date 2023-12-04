@@ -46,6 +46,8 @@ public class UnitController : MonoBehaviour
 
     [SerializeField]
     CraftingRecipe[] recipes;
+    [SerializeField]
+    RecipeSlot[] items;
 
     private void Awake()
     {
@@ -65,29 +67,42 @@ public class UnitController : MonoBehaviour
 
         characterStatsWindowStatic.SetActive(false);
 
-        //Det här är temp och ska tas bort när man kan få recept på bättre sätt
+        //Det här är temp och ska tas bort när man kan få recept och items på bättre sätt
         for (int i = 0; i < recipes.Length; i++)
         {
             Inventory.AddRecipeToMachines(recipes[i]);
+        }
+        for (int i = 0; i < items.Length; i++)
+        {
+            Inventory.AddItem(items[i].item, items[i].amount);
         }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            Inventory.AddItem(Database.GetItemWithID("01001"));
+            Inventory.AddItem(Database.GetItemWithID("04001")); //bröd
         }
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            Inventory.AddItem(Database.GetItemWithID("04001"));
+            Inventory.AddItem(Database.GetItemWithID("01010")); //water
         }
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (selectedCharacter != null)
-            {
-                selectedCharacter.ConsumeFood(Database.GetItemWithID("04001") as Food);
-            }
+            Inventory.AddItem(Database.GetItemWithID("01004")); //electric cable
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Inventory.AddItem(Database.GetItemWithID("01001")); //wood
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Inventory.AddItem(Database.GetItemWithID("01008")); //metal
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Inventory.AddItem(Database.GetItemWithID("01002")); //leather
         }
         if (selectedCharacter != null)
         {
@@ -172,7 +187,8 @@ public class UnitController : MonoBehaviour
         {
             setCharacterVisual(selectedCharacter, false);
             selectedCharacter = null;
-            characterStatsWindowStatic.SetActive(false);
+            //characterStatsWindowStatic.SetActive(false);
+            characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideDownTrigger");
         }
         else
         {

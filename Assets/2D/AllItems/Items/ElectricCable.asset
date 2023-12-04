@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
   m_Name: ElectricCable
   m_EditorClassIdentifier: 
-  ID: 01007
+  ID: 01004
   DisplayName: Electric Cable
   Description: A piece of wiring used in electrical appliances
   Icon: {fileID: 21300000, guid: d042b34385ac47a4ebd8d7d67fe6e78f, type: 3}
   SortingType: 1
+  lootProbabilityOverride: 0

@@ -10,19 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
-  m_Name: Dissmister
+  m_Name: Crowbar
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 11400000, guid: 8526ae880b073864da544eb9f6542480, type: 2}
+  itemCrafted: {fileID: 11400000, guid: f57686131b2baa34fbc946fdb4e8204b, type: 2}
   itemAmount: 1
-  craftingTime: 20
+  craftingTime: 5
   Ingredients:
-  - item: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
-    amount: 2
   - item: {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
-    amount: 1
-  - item: {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
     amount: 2
-  - item: {fileID: 11400000, guid: cffe802603e7a97469905f16e85b6a19, type: 2}
-    amount: 1
   CraftableInMachine:
   - {fileID: 11400000, guid: 7e10bd6593929e74bad657a68a0943d8, type: 2}

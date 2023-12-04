@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38f1d8a626bbc3a48855296d1404db38, type: 3}
-  m_Name: Bread
+  m_Script: {fileID: 11500000, guid: 6fc42c55f8498da4996f58ec584f47f9, type: 3}
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  ID: 04001
-  DisplayName: Bread
-  Description: A fluffy loaf of bread
-  Icon: {fileID: 21300000, guid: bae66d82a4096c446ae9c6b86ae4df1f, type: 3}
-  SortingType: 2
+  ID: 03003
+  DisplayName: Sword
+  Description: Can easily sway people to agree with you
+  Icon: {fileID: 21300000, guid: 67ec250914842f040836d766de39716e, type: 3}
+  SortingType: 5
   lootProbabilityOverride: 0
-  hungerRestoration: 100
+  gearType: 3

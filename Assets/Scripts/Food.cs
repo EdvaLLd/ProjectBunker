@@ -7,6 +7,7 @@ public class Food : Item
     [SerializeField]
     float hungerRestoration;
 
+
     public float GetHungerRestoration()
     {
         return hungerRestoration;

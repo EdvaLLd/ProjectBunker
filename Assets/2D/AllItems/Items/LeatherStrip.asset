@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38f1d8a626bbc3a48855296d1404db38, type: 3}
-  m_Name: Bread
+  m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
+  m_Name: LeatherStrip
   m_EditorClassIdentifier: 
-  ID: 04001
-  DisplayName: Bread
-  Description: A fluffy loaf of bread
-  Icon: {fileID: 21300000, guid: bae66d82a4096c446ae9c6b86ae4df1f, type: 3}
-  SortingType: 2
+  ID: 01007
+  DisplayName: Leather strip
+  Description: A piece of leather, but made in to a strip
+  Icon: {fileID: 21300000, guid: 8d9b6eeaf2cc0cb448729577df436e9f, type: 3}
+  SortingType: 1
   lootProbabilityOverride: 0
-  hungerRestoration: 100

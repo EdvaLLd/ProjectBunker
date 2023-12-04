@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
   m_Name: Filter
   m_EditorClassIdentifier: 
-  ID: 01009
+  ID: 01003
   DisplayName: Filter
   Description: A filter that can be used to purify water
   Icon: {fileID: 21300000, guid: 352ae1baed5217b4fa880b5e0860d6ad, type: 3}
   SortingType: 1
+  lootProbabilityOverride: 0

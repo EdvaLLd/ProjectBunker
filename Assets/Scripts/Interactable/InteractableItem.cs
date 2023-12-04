@@ -15,6 +15,7 @@ public class InteractableItem : MonoBehaviour
     [SerializeField]
     InteractOptionsBools interactOptionsBools;
 
+
     private void Awake()
     {
         if (interactOptions == null)

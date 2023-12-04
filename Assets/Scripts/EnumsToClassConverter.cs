@@ -10,4 +10,5 @@ using UnityEngine;
 public class EnumsToClassConverter : MonoBehaviour 
 {
     public SortingTypes SortingType;
+    public GearTypes GearSortingType;
 }

@@ -2,8 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
+using System;
 
+[Serializable]
+public class EqippedGearSet
+{
+    public Equipment chest = null;
+    public Equipment legs = null;
+    public Equipment boots = null;
+    public Equipment weapon = null;
+}
 public class Character : MonoBehaviour
 {
     BoxCollider itemInteractedWithBoxCollider = null;
@@ -19,6 +27,7 @@ public class Character : MonoBehaviour
     public delegate void OnTaskCompletion(Character characterWhoFinishedTask);
     public static event OnTaskCompletion onTaskCompletion;
 
+    EqippedGearSet gearEquipped;
 
     //karakt�rens stats
     public float hunger = 100;
@@ -47,7 +56,46 @@ public class Character : MonoBehaviour
         //maxHunger = hunger;
         //maxHealth = health;
 
+        gearEquipped = new EqippedGearSet();
         characterAnim = GetComponentInChildren<CharacterAnimation>();
+    }
+
+    public void EquipGear(Equipment piece)
+    {
+        switch (piece.gearType)
+        {
+            case GearTypes.chest:
+                if(gearEquipped.chest != null)
+                {
+                    Inventory.AddItem(gearEquipped.chest);
+                    gearEquipped.chest = piece;
+                }
+                break;
+            case GearTypes.legs:
+                if (gearEquipped.legs != null)
+                {
+                    Inventory.AddItem(gearEquipped.boots);
+                    gearEquipped.legs = piece;
+                }
+                break;
+            case GearTypes.boots:
+                if (gearEquipped.boots != null)
+                {
+                    Inventory.AddItem(gearEquipped.boots);
+                    gearEquipped.boots = piece;
+                }
+                break;
+            case GearTypes.weapon:
+                if (gearEquipped.weapon != null)
+                {
+                    Inventory.AddItem(gearEquipped.weapon);
+                    gearEquipped.weapon = piece;
+                }
+                break;
+            default:
+                break;
+        }
+        Inventory.RemoveItem(piece);
     }
 
     private void Update()
@@ -64,7 +112,11 @@ public class Character : MonoBehaviour
         if(health != maxHealth && hunger > 80)
         {
             health += 5 * Time.deltaTime;
-            hungerConsumedModifier += 2;
+            hungerConsumedModifier = 2;
+        }
+        else
+        {
+            hungerConsumedModifier = 0.3f;//jätteskev lösning, vet inte riktigt vad tanken var här??+
         }
         hunger -= (hungerConsumedModifier * Time.deltaTime);
         if (hunger < 10)
@@ -72,25 +124,45 @@ public class Character : MonoBehaviour
             health -= (10 - hunger) * Time.deltaTime * 0.3f;
             if(health < 0)
             {
-                isAlive = false;
-                TextLog.AddLog("Unit died!");
-
-                if (UnitController.GetSelectedCharacter() == this)
-                {
-                    UnitController.SwapSelectedCharacter(this);
-                }
-
-                //Prel animation stuff
-                if(characterAnim != null)
-                {
-                    characterAnim.Die();
-                }
+                UnitDied();
             }
 
         }
 
         health = Mathf.Clamp(health, 0, maxHealth);
         hunger = Mathf.Clamp(hunger, 0, maxHunger);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        health = Mathf.Clamp(health, 0, maxHealth);
+        TextLog.AddLog($"Unit insert name took {damage} damage and has {health} health left", MessageTypes.used);
+        if(health < 0)
+        {
+            UnitDied();
+        }
+    }
+    public void UseHunger(float amount)
+    {
+        hunger -= amount;
+        hunger = Mathf.Clamp(hunger, 0, maxHunger);
+    }
+    void UnitDied()
+    {
+        isAlive = false;
+        TextLog.AddLog("Unit died!");
+
+        if (UnitController.GetSelectedCharacter() == this)
+        {
+            UnitController.SwapSelectedCharacter(this);
+        }
+
+        //Prel animation stuff
+        if (characterAnim != null)
+        {
+            characterAnim.Die();
+        }
     }
 
     public void InteractedWithItem(InteractableItem item)
@@ -151,7 +223,7 @@ public class Character : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && isAlive)
+        if (Input.GetMouseButtonDown(0) && isAlive && UIElementConsumeMouseOver.mouseOverIsAvailable)
         {
             UnitController.SwapSelectedCharacter(this);
         }

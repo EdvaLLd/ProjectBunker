@@ -85,4 +85,12 @@ public class HelperMethods
         }
         return objectsWithLayer.ToArray();
     }
+
+    public static void ClearChilds(Transform parent)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            Object.Destroy(child.gameObject);
+        }
+    }
 }

@@ -13,6 +13,7 @@ public class InteractableCraftingMachine : InteractableItem
 
     CraftingWindow craftingWindow;
 
+
     private void Awake()
     {
         craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow").GetComponent<CraftingWindow>();

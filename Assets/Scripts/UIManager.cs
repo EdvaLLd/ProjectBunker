@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.Events;
 
 public class UIManager : MonoBehaviour
 {
     //--------Inventory--------
     [SerializeField]
     GameObject inventorySlot;
+    static GameObject inventorySlotStatic;
     GameObject inventoryBG;
     GameObject inventoryContentHolder;
     Button buttonSelected;
@@ -36,6 +38,8 @@ public class UIManager : MonoBehaviour
         buttonSelected = inventoryBG.transform.GetChild(0).GetChild(0).GetComponent<Button>();
         dangerTextGO = GameObject.FindGameObjectWithTag("DangerTxt");
         hoverWindow = GameObject.FindGameObjectWithTag("HoverWindow");
+
+        inventorySlotStatic = inventorySlot;
     }
 
     private void Start()
@@ -46,9 +50,6 @@ public class UIManager : MonoBehaviour
         clearMistBtnGO.SetActive(false);
         dangerTextGO.SetActive(false);
         hoverWindow.SetActive(false);
-
-        Inventory.AddItem(Database.GetItemWithID("01001"), 5);
-        Inventory.AddItem(Database.GetItemWithID("01002"), 1);
     }
 
     public static void SetButtonIsEnabled(Button button, bool value)
@@ -96,36 +97,46 @@ public class UIManager : MonoBehaviour
 
         sortingTypeEnabled = sortingType;
         Transform parent = inventoryContentHolder.transform;
-        ClearInventory(parent);
-        if (sortingType == SortingTypes.All)
+        HelperMethods.ClearChilds(parent);
+        CreateInventory(sortingType, inventoryContentHolder);
+    }
+
+    public static GameObject CreateInventory(SortingTypes type, GameObject inventoryHolder)
+    {
+        if (type == SortingTypes.All)
         {
             foreach (KeyValuePair<Item, int> item in Inventory.inventory)
             {
-                AddSlot(parent, item.Key, item.Value);
+                AddSlot(inventoryHolder.transform, item.Key, item.Value);
             }
         }
         else
         {
-            Dictionary<Item, int> temp = Inventory.GetItemsOfType(sortingType);
+            Dictionary<Item, int> temp = Inventory.GetItemsOfType(type);
             foreach (KeyValuePair<Item, int> item in temp)
             {
-                AddSlot(parent, item.Key, item.Value);
+                AddSlot(inventoryHolder.transform, item.Key, item.Value);
             }
         }
+        return inventoryHolder;
     }
-    void AddSlot(Transform parent, Item item, int amount)
+
+    public static GameObject CreateInventory(GearTypes type, GameObject inventoryHolder)
     {
-        GameObject t = Instantiate(inventorySlot, parent);
+        Dictionary<Item, int> temp = Inventory.GetGearOfType(type);
+        foreach (KeyValuePair<Item, int> item in temp)
+        {
+            AddSlot(inventoryHolder.transform, item.Key, item.Value);
+        }
+        return inventoryHolder;
+    }
+
+    static GameObject AddSlot(Transform parent, Item item, int amount)
+    {
+        GameObject t = Instantiate(inventorySlotStatic, parent);
         t.GetComponent<ItemHoverDesc>().item = item;
         t.GetComponent<Image>().sprite = item.Icon;
         t.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = amount.ToString();
-    }
-
-    void ClearInventory(Transform parent)
-    {
-        foreach (Transform child in parent.transform)
-        {
-            Destroy(child.gameObject);
-        }
+        return t;
     }
 }

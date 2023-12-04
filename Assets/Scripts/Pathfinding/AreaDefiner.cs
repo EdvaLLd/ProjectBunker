@@ -21,12 +21,12 @@ public class AreaDefiner : MonoBehaviour
                 Vector3 posOnGround = HelperMethods.ConvertPosToBeOnGround(pos, 1, new Vector2(0.05f,0.05f));
                 if(pos != posOnGround)
                 {
-                    TextLog.AddLog("scan started", Color.blue);
+                    //TextLog.AddLog("scan started", Color.blue);
                     ScanBuilding(posOnGround);
                 }
                 else
                 {
-                    TextLog.AddLog("pos not in house", Color.blue);
+                    //TextLog.AddLog("pos not in house", Color.blue);
                 }
             }
         }
@@ -35,11 +35,11 @@ public class AreaDefiner : MonoBehaviour
             waitingForClick = !waitingForClick;
             if (waitingForClick)
             {
-                TextLog.AddLog("Click on an area within the building", Color.blue);
+                //TextLog.AddLog("Click on an area within the building", Color.blue);
             }
             else
             {
-                TextLog.AddLog("Pathmaking cancelled", Color.blue);
+                //TextLog.AddLog("Pathmaking cancelled", Color.blue);
             }
         }
     }

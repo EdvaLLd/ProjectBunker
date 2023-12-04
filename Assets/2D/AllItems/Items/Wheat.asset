@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
   m_Name: Wheat
   m_EditorClassIdentifier: 
-  ID: 01010
+  ID: 01011
   DisplayName: Wheat
   Description: Unprocessed wheat
   Icon: {fileID: 21300000, guid: ee4160409eb358544a927fbf2eb0e150, type: 3}
   SortingType: 1
+  lootProbabilityOverride: 0

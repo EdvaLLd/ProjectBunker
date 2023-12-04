@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
   m_Name: Metal
   m_EditorClassIdentifier: 
-  ID: 01002
+  ID: 01008
   DisplayName: Metal
   Description: A metal sheet
   Icon: {fileID: 21300000, guid: c71da908c538e8941869f0fadf7a1692, type: 3}
   SortingType: 1
+  lootProbabilityOverride: 0

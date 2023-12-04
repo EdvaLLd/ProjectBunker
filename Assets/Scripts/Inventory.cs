@@ -22,7 +22,7 @@ public static class Inventory
 
     public static void AddItem(Item item, int amount = 1)
     {
-        TextLog.AddLog($"Obtained {amount} {item.DisplayName}!", Color.green);
+        TextLog.AddLog($"Obtained {amount} {item.DisplayName}!", MessageTypes.looted);
         if(inventory.ContainsKey(item)) inventory[item] += amount;
         else inventory.Add(item, amount);
         onInventoryUpdate?.Invoke();
@@ -89,7 +89,7 @@ public static class Inventory
         }
         if(recipeAdded)
         {
-            TextLog.AddLog($"Learned recipe: {recipe.itemCrafted.DisplayName}!", Color.yellow);
+            TextLog.AddLog($"Learned recipe: {recipe.itemCrafted.DisplayName}!", MessageTypes.specialItem);
             onRecipeAdded?.Invoke(recipe);
         }
     }
@@ -116,7 +116,20 @@ public static class Inventory
         Dictionary<Item, int> temp = new Dictionary<Item, int>(); //Item|num
         foreach (KeyValuePair<Item, int> item in inventory)
         {
-            if(item.Key.SortingType == type)
+            if (item.Key.SortingType == type)
+            {
+                temp.Add(item.Key, item.Value);
+            }
+        }
+        return temp;
+    }
+
+    public static Dictionary<Item, int> GetGearOfType(GearTypes type)
+    {
+        Dictionary<Item, int> temp = new Dictionary<Item, int>(); //Item|num
+        foreach (KeyValuePair<Item, int> item in inventory)
+        {
+            if (item.Key.SortingType == SortingTypes.Gear && (item.Key as Equipment).gearType == type)
             {
                 temp.Add(item.Key, item.Value);
             }
@@ -128,7 +141,7 @@ public static class Inventory
     {
         if (inventory.ContainsKey(item) && inventory[item] >= amount)
         {
-            TextLog.AddLog($"Removed {amount} {item.DisplayName} from inventory!", Color.red);
+            TextLog.AddLog($"Removed {amount} {item.DisplayName} from inventory!", MessageTypes.used);
             inventory[item] -= amount;
             if (inventory[item] == 0) inventory.Remove(item);
             onInventoryUpdate?.Invoke();

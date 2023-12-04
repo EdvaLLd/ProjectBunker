@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LockedRoom : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class LockedRoom : MonoBehaviour
     [SerializeField]
     GameObject mist;
     [SerializeField]
-    Item decontaminationUnit;
+    Item itemToUnlockRoom;
 
     private void Start()
     {
@@ -24,7 +25,7 @@ public class LockedRoom : MonoBehaviour
     {
         if (UIElementConsumeMouseOver.mouseOverIsAvailable)
         {
-            if (Inventory.GetAmountOfItem(decontaminationUnit) > 0)
+            if (Inventory.GetAmountOfItem(itemToUnlockRoom) > 0)
             {
                 UIManager.clearMistBtnGO.SetActive(true);
                 UIManager.clearMistBtnGO.transform.position = Camera.main.WorldToScreenPoint(transform.position);
@@ -35,6 +36,14 @@ public class LockedRoom : MonoBehaviour
             {
                 UIManager.dangerTextGO.SetActive(true);
                 UIManager.dangerTextGO.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+                if (mist == null)
+                {
+                    UIManager.dangerTextGO.GetComponent<TextMeshProUGUI>().text = "LOCKED";
+                }
+                else
+                {
+                    UIManager.dangerTextGO.GetComponent<TextMeshProUGUI>().text = "DANGER!!";
+                }
             }
         }
     }
@@ -47,7 +56,7 @@ public class LockedRoom : MonoBehaviour
 
     public void UnlockRoom()
     {
-        if (Inventory.GetAmountOfItem(decontaminationUnit) > 0)
+        if (Inventory.GetAmountOfItem(itemToUnlockRoom) > 0)
         { 
             for (int i = 0; i < roomEntrances.Length; i++)
             {
@@ -58,7 +67,7 @@ public class LockedRoom : MonoBehaviour
             {
                 Destroy(mist);
             }
-            Inventory.RemoveItem(decontaminationUnit);
+            Inventory.RemoveItem(itemToUnlockRoom);
             UIManager.clearMistBtnGO.gameObject.SetActive(false);
             Destroy(transform.parent.gameObject);
         }
