@@ -35,7 +35,10 @@ public class UIManager : MonoBehaviour
         inventoryContentHolder = GameObject.FindGameObjectWithTag("InventoryContentHolder");
         craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow");
         clearMistBtnGO = GameObject.FindGameObjectWithTag("ClearMistBtn");
-        buttonSelected = inventoryBG.transform.GetChild(0).GetChild(0).GetComponent<Button>();
+        if (inventoryBG != null)
+        {
+            buttonSelected = inventoryBG.transform.GetChild(0).GetChild(0).GetComponent<Button>();
+        }
         dangerTextGO = GameObject.FindGameObjectWithTag("DangerTxt");
         hoverWindow = GameObject.FindGameObjectWithTag("HoverWindow");
 
