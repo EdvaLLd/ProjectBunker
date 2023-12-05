@@ -626,8 +626,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 323
-      y: 229
+      x: 144
+      y: 616
       width: 56
       height: 24
     spriteID: af48391b654c65d44b801a073b4cc01c
@@ -903,7 +903,7 @@ ScriptedImporter:
     - {x: 22, y: 23}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 323, y: 229}
+    uvTransform: {x: 144, y: 616}
     spritePosition: {x: 391, y: 345}
   - name: MouthSmile
     originalName: 
@@ -3681,8 +3681,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 387
-      y: 229
+      x: 212
+      y: 486
       width: 27
       height: 27
     spriteID: 802d99e9169846049a5f0cd5cb36281d
@@ -3832,7 +3832,7 @@ ScriptedImporter:
     - {x: 8, y: 9}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 387, y: 229}
+    uvTransform: {x: 212, y: 486}
     spritePosition: {x: 154, y: 170}
   - name: Torso
     originalName: 
@@ -7134,7 +7134,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 212
-      y: 486
+      y: 551
       width: 27
       height: 27
     spriteID: 0334b03d2c14cbc40853082d19e4e7ef
@@ -7284,7 +7284,7 @@ ScriptedImporter:
     - {x: 8, y: 9}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 212, y: 486}
+    uvTransform: {x: 212, y: 551}
     spritePosition: {x: 310, y: 153}
   characterData:
     bones:
@@ -7893,7 +7893,7 @@ ScriptedImporter:
     parentIndex: 2
     spriteID: af48391b654c65d44b801a073b4cc01c
     layerID: 32
-    mosaicPosition: {x: 323, y: 229}
+    mosaicPosition: {x: 144, y: 616}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -8033,7 +8033,7 @@ ScriptedImporter:
     parentIndex: 15
     spriteID: 802d99e9169846049a5f0cd5cb36281d
     layerID: 13
-    mosaicPosition: {x: 387, y: 229}
+    mosaicPosition: {x: 212, y: 486}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -8113,7 +8113,7 @@ ScriptedImporter:
     parentIndex: 15
     spriteID: 0334b03d2c14cbc40853082d19e4e7ef
     layerID: 12
-    mosaicPosition: {x: 212, y: 486}
+    mosaicPosition: {x: 212, y: 551}
     flatten: 0
     isImported: 1
     isVisible: 1
