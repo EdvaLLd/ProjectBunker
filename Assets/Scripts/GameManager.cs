@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         skyboxManager = GameObject.FindObjectOfType<SkyboxController>();
         sun = GameObject.Find("Sun");
         moon = GameObject.Find("Moon");
-        SetExplorableLocations();
+        explorableLocations = Locations.SetExplorableLocations();
     }
 
     /*private void Start()

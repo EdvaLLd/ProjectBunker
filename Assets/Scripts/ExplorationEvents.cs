@@ -32,7 +32,8 @@ public class ExplorationEvents : Exploration
             {
                 GameManager.eventIndex++;
             }
-            print("end");
+            
+            print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
         }
 
         private void SubEventSequence()
@@ -351,6 +352,7 @@ public class ExplorationEvents : Exploration
     public class ExploreEvent
     {
         public string eventName;
+        public bool replaceDefaultExplore = true;
         public List<ExploreSubEvent> subEvent;
         public float eventProbability = 10;
         public Timer timer;

@@ -7,7 +7,7 @@ public class Exploration : MonoBehaviour
     protected static bool executedEvent = false;
     protected static GameObject attachedGameObject;
 
-    [SerializeField]
+    //[SerializeField]
     private int timeDivisor = 100;
 
     [SerializeField]
@@ -77,7 +77,7 @@ public class Exploration : MonoBehaviour
 
         //float randomLocationIndex = Random.Range(0, GameManager.GetExplorableLocations().Length);
 
-        if (randomItemIndex != -1 && !executedEvent) 
+        if (randomItemIndex != -1 && !executedEvent && !gameManager.mainExploreEvents[GameManager.eventIndex].replaceDefaultExplore) 
         {
             print("Length: " + randomLocation.locationLoot.Count + ", i: " + randomItemIndex + ", Drop probability: " + randomLocation.locationLoot[randomItemIndex].lootProbability + "%");
             //print("Drop probability: " + randomLocation.lootProbabilities[randomItemIndex] + "%");
