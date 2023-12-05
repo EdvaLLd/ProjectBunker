@@ -20,9 +20,9 @@ public class Looting : MonoBehaviour
         public List<LootItem> lootItems;
     }
 
-    [System.Serializable]
+    /*[System.Serializable]
     public class CombatLootItem : LootItem
     {
         public ExplorationEvents.ExploreSubEvent.enemyFactions enemyFaction;
-    }
+    }*/
 }

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Timer/* : MonoBehaviour*/
 {
     public enum timeUnits { second, minute, hour };
     public timeUnits timeUnit;
     public float ammount;
 
-    IEnumerator CountDown()
+    public IEnumerator CountDown()
     {
         if (ammount > 0) 
         {

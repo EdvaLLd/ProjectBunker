@@ -25,25 +25,26 @@ public class GameManager : MonoBehaviour
     private GameObject skylight;
 
 
-    private static Location[] explorableLocations = new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
+    private static Locations.Location[] explorableLocations = new Locations.Location[System.Enum.GetNames(typeof(Locations.Location.environments)).Length];
 
     [Header("Location")]
-    public Looting.LootItem looting = new Looting.LootItem();
+    //public Looting.LootItem looting = new Looting.LootItem();
 
-    [Tooltip("0=Lake, 1=City, 2=Factory, 3=Forest")]
-    public Looting.LocationLootItems[] locationalLoot = new Looting.LocationLootItems[System.Enum.GetNames(typeof(Location.environments)).Length - 1];
+    [Tooltip("0=Lake, 1=City, 2=Factory, 3=Forest"), NonReorderable]
+    public Looting.LocationLootItems[] locationalLoot = new Looting.LocationLootItems[System.Enum.GetNames(typeof(Locations.Location.environments)).Length - 1];
+    
 
     [Header("Events")]
     public static int eventIndex = 0;
 
-    public ExplorationEvents.ExploreEvent[] explorationEvents;
+    public ExplorationEvents.ExploreEvent[] mainExploreEvents;
 
     private void Awake()
     {
         instance = this;
         
         skylight = GameObject.FindGameObjectWithTag("Sun");
-        SetExplorableLocations();
+        explorableLocations = Locations.SetExplorableLocations();
     }
 
     /*private void Start()
@@ -74,17 +75,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static Location[] GetExplorableLocations() 
+    public static Locations.Location[] GetExplorableLocations() 
     {
         return explorableLocations;
     }
 
-    private Location[] SetExplorableLocations()
+    /*private Location[] SetExplorableLocations()
     {
         Location[] replaceArray =  new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
         if (System.Enum.GetNames(typeof(Location.environments)).Length > 1)
         {
-            /*Location[] */replaceArray = new Location[System.Enum.GetNames(typeof(Location.environments)).Length - 1]; // -1 top reduce length by the first element (home).
+            replaceArray = new Location[System.Enum.GetNames(typeof(Location.environments)).Length - 1]; // -1 top reduce length by the first element (home).
 
 
             Location.environments[] locationArray = (Location.environments[])System.Enum.GetValues(typeof(Location.environments));
@@ -117,5 +118,5 @@ public class GameManager : MonoBehaviour
             }
         }
         return explorableLocations = replaceArray; // Outputs an array without the first element of the enum with the approriate length of quantity of enums - 1.
-    }
+    }*/
 }

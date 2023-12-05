@@ -3,40 +3,63 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ExplorationEvents
+public class ExplorationEvents : Exploration
 {
-    public class ExploreEventTypes : Exploration
+
+    public class ExploreEventTypes : ExplorationEvents
     {
         public void LinnearEventSequence()
         {
-            if (isExploring)
+            executedEvent = true;
+            GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+            
+            float eventRandom = Random.Range(0, 100);
+            float probability = gameManager.mainExploreEvents[GameManager.eventIndex].eventProbability;
+
+            if (eventRandom <= 100 - probability && eventRandom != 100) 
             {
-                //Start event from the array of the appropriate index.
-                //These events are a class with enums that can be listed in order and quantity of desire in the inspector by others to grant grater flexibility in making events.
+                print("cancel");
+                return;
             }
+
+            print("started event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
+
+            gameManager.mainExploreEvents[GameManager.eventIndex].timer.CountDown();
+
+            SubEventSequence();
+
+            if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
+            {
+                GameManager.eventIndex++;
+            }
+            print("end");
         }
 
-        private void SubEventSequence() 
+        private void SubEventSequence()
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
             //int subEventLength = GameManager.explorationEvents[GameManager.eventIndex].subEvent.Count;
-            for (int subEventIndex = 0; subEventIndex < gameManager.explorationEvents[GameManager.eventIndex].subEvent.Count/*Mathf.Clamp(subEventLength, 0,subEventLength)*/; subEventIndex++) 
+            for (int subEventIndex = 0; subEventIndex < gameManager.mainExploreEvents[GameManager.eventIndex].subEvent.Count/*Mathf.Clamp(subEventLength, 0,subEventLength)*/; subEventIndex++)
             {
-                ExploreSubEvent subEvent = gameManager.explorationEvents[GameManager.eventIndex].subEvent[subEventIndex];
-                switch (subEvent.eventType) 
+                ExploreSubEvent subEvent = gameManager.mainExploreEvents[GameManager.eventIndex].subEvent[subEventIndex];
+                switch (subEvent.eventType)
                 {
-                    case (ExploreSubEvent.eventTypes.Text): PlayTextEvent(subEvent.textEvent.eventMessage);
+                    case (ExploreSubEvent.eventTypes.Text):
+                        subEvent.textEvent.timer.CountDown();
+                        PlayTextEvent(subEvent.textEvent.eventMessage);
                         break;
                     case (ExploreSubEvent.eventTypes.Item):
-                        for (int itemIndex = 0; itemIndex < subEvent.itemEvent.loot.Length; itemIndex ++) 
-                        {
-                            PlayItemEvent(subEvent.itemEvent.addOrSubtract, subEvent.itemEvent.loot[itemIndex].lootItem, subEvent.itemEvent.maxAmmount);
-                        } 
-                        
+                            subEvent.itemEvent.timer.CountDown();
+                            PlayItemEvent(false, subEvent);
                         break;
-                    case (ExploreSubEvent.eventTypes.Damage): PlayDamageEvent(subEvent.damageEvent.damageRecieved);
+
+                    case (ExploreSubEvent.eventTypes.Damage):
+                        subEvent.damageEvent.timer.CountDown();
+                        PlayDamageEvent(subEvent, attachedGameObject.GetComponent<Character>());
                         break;
-                    case (ExploreSubEvent.eventTypes.Combat): PlayCombatEvent(subEvent.combatEvent.damageDealt, subEvent.combatEvent.damageRecieved);
+                    case (ExploreSubEvent.eventTypes.Combat):
+                        subEvent.combatEvent.timer.CountDown();
+                        PlayCombatEvent(subEvent, attachedGameObject.GetComponent<Character>());
                         break;
 
                     default:
@@ -44,21 +67,28 @@ public class ExplorationEvents
                 }
             }
         }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////// TextEvent    
-//------------------------------------------------------------------------------------------
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// TextEvent    
+        //------------------------------------------------------------------------------------------
         [System.Serializable]
         public class TextEvent
         {
             [Tooltip("Displayed text message during text event.")]
             public string eventMessage;
+
+            [Tooltip("Delay in ammount of time before event starts in selected units.")]
+            public Timer timer = new Timer();
         }
-//------------------------------------------------------------------------------------------
-        private void PlayTextEvent(string message)
+        //------------------------------------------------------------------------------------------
+
+        public void PlayTextEvent(string message)
         {
-            TextLog.AddLog(message);
+            if (message != "" || message != null)
+            {
+                TextLog.AddLog(message);
+            }
         }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////// ItemEvent    
-//------------------------------------------------------------------------------------------        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// ItemEvent    
+        //------------------------------------------------------------------------------------------        
         [System.Serializable]
         public class ItemEvent
         {
@@ -68,126 +98,262 @@ public class ExplorationEvents
             [Tooltip("True = Add items, False = Subtract items.")]
             public bool addOrSubtract;
 
-            [Tooltip("Maximum possible ammount of given items dropped (For now it is the only ammount).")]
-            public int maxAmmount;
+            [Tooltip("Toggle whether to select one random item from list or give the entire list of items.")]
+            public bool randomLoot;
 
-            [Tooltip("Minimum possible ammount of given items dropped.")]
-            public int minAmmount;
+            [Tooltip("Delay in ammount of time before event starts in selected units.")]
+            public Timer timer = new Timer();
 
             [Tooltip("Items that can drop during item event.")]
             public Looting.LootItem[] loot;
+
         }
-//------------------------------------------------------------------------------------------
-        private void PlayItemEvent(/*True = add item, False = remove item*/bool isAdding, Item item, int quantity)
+        //------------------------------------------------------------------------------------------
+        public void PlayItemEvent(bool isRandom, ExploreSubEvent subEvent)
         {
-            if (quantity == 0)
+            //GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+            bool isAdding = subEvent.itemEvent.addOrSubtract;
+
+            if (subEvent.itemEvent.eventMessage != "" || subEvent.itemEvent.eventMessage != null) 
             {
-                Debug.LogWarning("You added or subtracted 0 items. This does nothing: ItemEvent cancelled.");
-                return;
-            }
-            else if (quantity < 0)
-            {
-                Debug.LogError("You added or subtracted a negataive value of items. This is not allowed: ItemEvent cancelled. If you are trying to subtract items, set bool parameter 'Add' to false and input a positive value.");
-                return;
+                PlayTextEvent(subEvent.itemEvent.eventMessage);
             }
 
+            if (!isRandom)
+            {
+                for (int itemIndex = 0; itemIndex < subEvent.itemEvent.loot.Length; itemIndex++)
+                {
+                    Item item = subEvent.itemEvent.loot[itemIndex].lootItem;
+                    int quantity = Random.Range(subEvent.itemEvent.loot[itemIndex].minLootQuantity, subEvent.itemEvent.loot[itemIndex].maxLootQuantity);
 
-            if (isAdding)
-            {
-                Inventory.AddItem(item, quantity);
+                    if (quantity == 0)
+                    {
+                        Debug.LogWarning("You added or subtracted 0 items. This does nothing: ItemEvent cancelled.");
+                        return;
+                    }
+                    else if (quantity < 0)
+                    {
+                        Debug.LogError("You added or subtracted a negataive value of items. This is not allowed: ItemEvent cancelled. If you are trying to subtract items, set bool parameter 'Add' to false and input a positive value.");
+                        return;
+                    }
+
+                    float dropRandom = Random.Range(0, 100);
+                    float probability = subEvent.itemEvent.loot[itemIndex].lootProbability;
+
+                    if (item != null && dropRandom <= probability)
+                    {
+                        if (isAdding)
+                        {
+                            Inventory.AddItem(item, quantity);
+                        }
+                        else
+                        {
+                            Inventory.RemoveItem(item, quantity);
+                        }
+                    }
+
+                }
             }
-            else
+            else 
             {
-                Inventory.RemoveItem(item, quantity);
+                int randomIndex = Random.Range(0, subEvent.itemEvent.loot.Length-1);
+                Item item = subEvent.itemEvent.loot[randomIndex].lootItem;
+                int quantity = Random.Range(subEvent.itemEvent.loot[randomIndex].minLootQuantity, subEvent.itemEvent.loot[randomIndex].maxLootQuantity);
+
+                if (item != null)
+                {
+                    if (isAdding)
+                    {
+                        Inventory.AddItem(item, quantity);
+                    }
+                    else
+                    {
+                        Inventory.RemoveItem(item, quantity);
+                    }
+                }
             }
         }
 
-        private void PlayItemEvent(/*True = add item, False = remove item*/bool Add, Item item)
+        public void PlayLootItemLoopEvent(bool isAdding, bool isRandom, Looting.LootItem[] itemArray)
         {
-            if (item == null)
+            //GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+            if (!isRandom)
             {
-                return;
+                for (int itemIndex = 0; itemIndex < itemArray.Length; itemIndex++)
+                {
+                    Item item = itemArray[itemIndex].lootItem;
+                    int quantity = Random.Range(itemArray[itemIndex].minLootQuantity, itemArray[itemIndex].maxLootQuantity);
+
+                    if (quantity == 0)
+                    {
+                        Debug.LogWarning("You added or subtracted 0 items. This does nothing: ItemEvent cancelled.");
+                        return;
+                    }
+                    else if (quantity < 0)
+                    {
+                        Debug.LogError("You added or subtracted a negataive value of items. This is not allowed: ItemEvent cancelled. If you are trying to subtract items, set bool parameter 'Add' to false and input a positive value.");
+                        return;
+                    }
+
+
+                    float dropRandom = Random.Range(0, 100);
+                    float probability = itemArray[itemIndex].lootProbability;
+
+                    if (item != null && dropRandom <= probability)
+                    {
+                        if (isAdding)
+                        {
+                            Inventory.AddItem(item, quantity);
+                        }
+                        else
+                        {
+                            Inventory.RemoveItem(item, quantity);
+                        }
+                    }
+
+                }
             }
-            if (Add)
+            else 
             {
-                Inventory.AddItem(item);
-            }
-            else
-            {
-                Inventory.RemoveItem(item);
+                int randomIndex = Random.Range(0, itemArray.Length - 1);
+                Item item = itemArray[randomIndex].lootItem;
+                int quantity = Random.Range(itemArray[randomIndex].minLootQuantity, itemArray[randomIndex].maxLootQuantity);
+
+                if (item != null)
+                {
+                    if (isAdding)
+                    {
+                        Inventory.AddItem(item, quantity);
+                    }
+                    else
+                    {
+                        Inventory.RemoveItem(item, quantity);
+                    }
+                }
             }
         }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////// DamageEvent
-//------------------------------------------------------------------------------------------
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// DamageEvent
+        //------------------------------------------------------------------------------------------
         [System.Serializable]
         public class DamageEvent
         {
             [Tooltip("Damage recieved during damage event.")]
             public int damageRecieved;
+            
+            public Timer timer = new Timer();
         }
-//------------------------------------------------------------------------------------------
-        private void PlayDamageEvent(float damage)
+        //------------------------------------------------------------------------------------------
+        public void PlayDamageEvent(ExploreSubEvent subEvent, Character target)
         {
-            TakeDamage(damage);
-            PlayTextEvent(gameObject.name + " took " + damage + " damage to their health.");
+            float damage = subEvent.damageEvent.damageRecieved;
+
+            TakeDamage(damage, target);
+            PlayTextEvent(target.name + " took " + damage + " damage to their health!");
+
+            /*Timer localTimer = new Timer();
+            localTimer.timeUnit = Timer.timeUnits.second;
+            localTimer.ammount = 1;
+            StartCoroutine(localTimer.CountDown());*/
         }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////// CombatEvent
-//------------------------------------------------------------------------------------------
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// CombatEvent
+        //------------------------------------------------------------------------------------------
         [System.Serializable]
-        public class CombatEvent 
+        public class CombatEvent
         {
-            [Tooltip("Damage dealt during combat event.")]
-            public int damageDealt;
-            [Tooltip("Damage recieved during combat event.")]
-            public int damageRecieved;
+            [Tooltip("Hostile faction to be encountered during event.")]
+            public ExploreSubEvent.enemyFactions enemyFaction;
+
+            [Tooltip("Maximum possible damage dealt during combat event.")]
+            public int maxDamageDealt;
+            [Tooltip("Minimum possible damage dealt during combat event.")]
+            public int minDamageDealt;
+
+            [Tooltip("Maximum possible damage recieved during combat event.")]
+            public int maxDamageRecieved;
+            [Tooltip("Minimum possible damage recieved during combat event.")]
+            public int minDamageRecieved;
+
             [Tooltip("Displayed text message during combat event.")]
             public string combatEventMessage;
+            [Tooltip("Delay in ammount of time before event starts in selected units.")]
+            public Timer timer = new Timer();
             [Tooltip("Items that can drop after combat event.")]
-
-            public Looting.CombatLootItem[] combatLoot = new Looting.CombatLootItem[System.Enum.GetNames(typeof(ExploreSubEvent.enemyFactions)).Length];
+            public Looting./*Combat*/LootItem[] combatLoot/* = new Looting.CombatLootItem[System.Enum.GetNames(typeof(ExploreSubEvent.enemyFactions)).Length]*/;
         }
-//------------------------------------------------------------------------------------------
-        private void PlayCombatEvent(float damageDealt, float damageRecieved)
+        //------------------------------------------------------------------------------------------
+        public void PlayCombatEvent(ExploreSubEvent subEvent, Character character)
         {
-            if (damageDealt == 0 && damageRecieved == 0)
+            float randomRecievied = Random.Range(subEvent.combatEvent.minDamageRecieved, subEvent.combatEvent.maxDamageRecieved);
+            float randomDealt = Random.Range(subEvent.combatEvent.minDamageDealt, subEvent.combatEvent.maxDamageDealt);
+            string faction = System.Enum.GetName(typeof(ExploreSubEvent.enemyFactions), subEvent.combatEvent.enemyFaction);
+            faction.Replace("_", " ");
+            faction.ToLower();
+
+            print(faction);
+
+            //Make stuff happen here.
+            if (subEvent.combatEvent.combatEventMessage != "" || subEvent.combatEvent.combatEventMessage != null)
             {
-                Debug.LogWarning("No values input. This does nothing: CombatEvent cancelled.");
-                return;
+                PlayTextEvent(subEvent.combatEvent.combatEventMessage);
             }
 
-            PlayTextEvent(gameObject.name + " engaged in combat against hostile scavengers and dealt" + damageDealt + "damage to scavengers.");
-            PlayDamageEvent(Random.Range(1, damageRecieved));
+            //string faction = System.Enum.GetName(typeof(ExploreSubEvent.enemyFactions), subEvent.combatEvent.enemyFaction);
+            //print(faction);                
+
+            PlayTextEvent(character.name + " engaged hostile " + faction + " in combat!");
+            if (randomRecievied <= 0 && randomDealt <= 0)
+            {
+                PlayTextEvent("Neither side sustained any casulties and fled.");
+            }
+            if (randomDealt > 0) 
+            {
+                PlayTextEvent(character.name + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.");
+            }
+            if (randomRecievied > 0)
+            {
+                TakeDamage(randomRecievied, character);
+                if (character.health <= 0)
+                {
+                    PlayTextEvent(character.name + " was slained in battle by the " + faction + ".");
+                    //PlayLootItemLoopEvent(false, true, subEvent.combatEvent.combatLoot);
+                }
+                else 
+                {
+                    PlayTextEvent("Enemy " + faction + " cowardly fled from battle.");
+                    PlayTextEvent(character.name + " took " + randomRecievied + " damage from the enemy " + faction + " but lives to fight another day.");
+                    PlayLootItemLoopEvent(true, true, subEvent.combatEvent.combatLoot);
+                }
+                
+            }
+
+            //print("Combat");
         }
-        private void PlayCombatEvent(float damageDealt, float damageRecieved, string message)
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
+    private void TakeDamage(float damage, Character character)
+    {
+        if (!character)
         {
-            if (damageRecieved == 0 && damageRecieved == 0 && message == null || damageRecieved == 0 && damageRecieved == 0 && message == "")
-            {
-                Debug.LogWarning("No values input. This does nothing: CombatEvent cancelled.");
-                return;
-            }
+            return;
         }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void TakeDamage(float damage)
+        if (character.health <= 0)
         {
-            Character character = gameObject.GetComponent<Character>();
-
-            if (!character)
-            {
-                return;
-            }
-            if (character.health <= 0)
-            {
-                return;
-            }
-
-            Mathf.Clamp(character.health -= damage, 0, character.maxHealth);
+            return;
         }
-    }   
+
+        Mathf.Clamp(character.health -= damage, 0, character.maxHealth);
+    }
+
     [System.Serializable]
     public class ExploreEvent
     {
         public string eventName;
         public List<ExploreSubEvent> subEvent;
+        public float eventProbability = 10;
+        public Timer timer;
     }
 
     [System.Serializable]
@@ -204,4 +370,5 @@ public class ExplorationEvents
         public ExploreEventTypes.DamageEvent damageEvent;
         public ExploreEventTypes.CombatEvent combatEvent;
     }
+    
 }

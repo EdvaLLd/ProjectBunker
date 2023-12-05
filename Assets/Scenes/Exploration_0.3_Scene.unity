@@ -10112,50 +10112,56 @@ MonoBehaviour:
   difficulty: 0
   DayNightValue: 0
   cycleRate: 1
-  looting:
-    lootItem: {fileID: 0}
-    maxLootQuantity: 0
-    minLootQuantity: 0
-    lootProbability: 75
   locationalLoot:
   - lootItems: []
   - lootItems: []
   - lootItems: []
   - lootItems: []
-  explorationEvents:
-  - eventName: 
+  mainExploreEvents:
+  - eventName: test
     subEvent:
-    - eventType: 0
+    - eventType: 3
       textEvent:
         eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
       itemEvent:
-        eventMessage: 
-        addOrSubtract: 0
-        maxAmmount: 0
-        minAmmount: 0
-        loot: []
+        eventMessage: Got bread.
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
+          maxLootQuantity: 2
+          minLootQuantity: 1
+          lootProbability: 99
       damageEvent:
         damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
       combatEvent:
-        damageDealt: 0
-        damageRecieved: 0
+        enemyFaction: 0
+        maxDamageDealt: 2
+        minDamageDealt: 1
+        maxDamageRecieved: 2
+        minDamageRecieved: 1
         combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
         combatLoot:
-        - lootItem: {fileID: 0}
-          maxLootQuantity: 0
-          minLootQuantity: 0
-          lootProbability: 75
-          enemyFaction: 0
-        - lootItem: {fileID: 0}
-          maxLootQuantity: 0
-          minLootQuantity: 0
-          lootProbability: 75
-          enemyFaction: 0
-        - lootItem: {fileID: 0}
-          maxLootQuantity: 0
-          minLootQuantity: 0
-          lootProbability: 75
-          enemyFaction: 0
+        - lootItem: {fileID: 11400000, guid: 3d2cfa5e6b026e64e8fdee8dc421c72f, type: 2}
+          maxLootQuantity: 2
+          minLootQuantity: 1
+          lootProbability: 69
+    eventProbability: 99
+    timer:
+      timeUnit: 0
+      ammount: 5
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0
