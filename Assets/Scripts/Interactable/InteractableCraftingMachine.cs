@@ -33,7 +33,6 @@ public class InteractableCraftingMachine : InteractableItem
         if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
         {
             characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>().StartCrafting();
-            Debug.Log("Craftycraft");
         }
 
         if (recipe != currentRecipeBeingCrafted)
@@ -57,6 +56,12 @@ public class InteractableCraftingMachine : InteractableItem
     {
         if (character == characterOnStation)
         {
+            //Animation stuff
+            if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
+            {
+                characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>().StopCrafting();
+            }
+
             characterOnStation = null;
             SetIsCrafting(false);
         }
@@ -106,6 +111,7 @@ public class InteractableCraftingMachine : InteractableItem
         amountLeft = 1;
         amountPayedFor = 0;
         currentRecipeBeingCrafted=null;
+
     }
 
     bool RemoveItemsRequiredForCraft()
