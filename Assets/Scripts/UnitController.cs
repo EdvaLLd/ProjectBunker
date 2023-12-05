@@ -17,18 +17,18 @@ public enum CharacterTasks
 
 public class UnitController : MonoBehaviour
 {
-    //Hur man ser skillnad om en karaktär är markerad eller inte
+    //Hur man ser skillnad om en karakt�r �r markerad eller inte
     [SerializeField]
     SelectionVisibilityModifier unSelectedModifierSetter, selectedModifierSetter;
 
-    //Ska kanske finnas en speedmodifier på varje karaktär?
+    //Ska kanske finnas en speedmodifier p� varje karakt�r?
     [SerializeField]
     float movementSpeedSetter = 1;
 
     UIManager uiManager;
 
 
-    //Lägg till alla serializedfield-variabler här som static och i start
+    //L�gg till alla serializedfield-variabler h�r som static och i start
     static SelectionVisibilityModifier unSelectedModifier, selectedModifier;
     public static float movementSpeed; 
 
@@ -36,8 +36,8 @@ public class UnitController : MonoBehaviour
     static Character selectedCharacter = null;
 
 
-    //(denna är nog anpassad för procent, så viktigt att variablerna går mellan 0 och 100)
-    //avgör hur ofta UIn uppdateras, 5 = var femte procent
+    //(denna �r nog anpassad f�r procent, s� viktigt att variablerna g�r mellan 0 och 100)
+    //avg�r hur ofta UIn uppdateras, 5 = var femte procent
     int howOftenToUpdateStats = 5;
 
 
@@ -67,7 +67,7 @@ public class UnitController : MonoBehaviour
 
         characterStatsWindowStatic.SetActive(false);
 
-        //Det här är temp och ska tas bort när man kan få recept och items på bättre sätt
+        //Det h�r �r temp och ska tas bort n�r man kan f� recept och items p� b�ttre s�tt
         for (int i = 0; i < recipes.Length; i++)
         {
             Inventory.AddRecipeToMachines(recipes[i]);
@@ -82,7 +82,7 @@ public class UnitController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Inventory.AddItem(Database.GetItemWithID("04001")); //bröd
+            Inventory.AddItem(Database.GetItemWithID("04001")); //br�d
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
