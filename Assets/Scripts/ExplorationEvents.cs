@@ -10,39 +10,64 @@ public class ExplorationEvents : Exploration
     {
         public void LinnearEventSequence()
         {
-            executedEvent = true;
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
             
             float eventRandom = Random.Range(0, 100);
             float probability = gameManager.mainExploreEvents[GameManager.eventIndex].eventProbability;
-
-            if (eventRandom <= 100 - probability && eventRandom != 100) 
-            {
-                print("cancel");
-                return;
-            }
-
-            print("started event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
-
-            gameManager.mainExploreEvents[GameManager.eventIndex].timer.CountDown();
-
-            SubEventSequence();
-
-            if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
-            {
-                GameManager.eventIndex++;
-            }
             
-            print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
+            if (!MainEventsIsEmpty(gameManager.mainExploreEvents)) 
+            {
+                executedEvent = true;
+                if (eventRandom <= 100 - probability && eventRandom != 100) 
+                {
+                    print("cancel");
+                    return;
+                }
+
+                print("started event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
+
+                gameManager.mainExploreEvents[GameManager.eventIndex].timer.CountDown();
+
+                if (!SubEventsIsEmpty(gameManager.mainExploreEvents[GameManager.eventIndex].subEvents)) 
+                {
+                    SubEventSequence();
+                }
+
+                print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
+
+                if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
+                {
+                    GameManager.eventIndex++;
+                }
+            }
+        }
+
+        private bool MainEventsIsEmpty(ExploreEvent[] mainEvents)
+        {
+            if (mainEvents.Length <= 0)
+            {
+                Debug.LogWarning("No events present in event list. Add an event in 'Main Explore Events' in GameManager.");
+                return true;
+            }
+            return false;
+        }
+        private bool SubEventsIsEmpty(List<ExploreSubEvent> subEvents)
+        {
+            if (subEvents.Count <= 0)
+            {
+                Debug.LogWarning("No events present in sub event list. Add a sub event in 'Sub Event' in an element for 'Main Explore Events' list in GameManager.");
+                return true;
+            }
+            return false;
         }
 
         private void SubEventSequence()
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
             //int subEventLength = GameManager.explorationEvents[GameManager.eventIndex].subEvent.Count;
-            for (int subEventIndex = 0; subEventIndex < gameManager.mainExploreEvents[GameManager.eventIndex].subEvent.Count/*Mathf.Clamp(subEventLength, 0,subEventLength)*/; subEventIndex++)
+            for (int subEventIndex = 0; subEventIndex < gameManager.mainExploreEvents[GameManager.eventIndex].subEvents.Count/*Mathf.Clamp(subEventLength, 0,subEventLength)*/; subEventIndex++)
             {
-                ExploreSubEvent subEvent = gameManager.mainExploreEvents[GameManager.eventIndex].subEvent[subEventIndex];
+                ExploreSubEvent subEvent = gameManager.mainExploreEvents[GameManager.eventIndex].subEvents[subEventIndex];
                 switch (subEvent.eventType)
                 {
                     case (ExploreSubEvent.eventTypes.Text):
@@ -353,7 +378,7 @@ public class ExplorationEvents : Exploration
     {
         public string eventName;
         public bool replaceDefaultExplore = true;
-        public List<ExploreSubEvent> subEvent;
+        public List<ExploreSubEvent> subEvents;
         public float eventProbability = 10;
         public Timer timer;
     }
