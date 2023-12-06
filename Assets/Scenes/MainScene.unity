@@ -21568,7 +21568,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1281847022}
   m_HandleRect: {fileID: 1281847021}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -29443,14 +29443,6 @@ PrefabInstance:
     - target: {fileID: 3379313914352542688, guid: e86218d4d899d0441a866f7882a243df, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3379313914352542689, guid: e86218d4d899d0441a866f7882a243df, type: 3}
-      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.y
-      value: 0.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 3379313914352542690, guid: e86218d4d899d0441a866f7882a243df, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3379313914352542691, guid: e86218d4d899d0441a866f7882a243df, type: 3}
       propertyPath: m_IsActive
