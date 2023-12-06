@@ -88,11 +88,12 @@ public class Exploration : MonoBehaviour
 
                     if (lootRandom <= 100 - randomLocation.locationLoot[randomItemIndex].lootProbability && lootRandom != 100 || randomLocation.locationLoot[randomItemIndex].lootItem == null)
                     {
+                        TextLog.AddLog(noLootMessage);
+                        
                         if (randomLocation.locationLoot[randomItemIndex].lootItem == null) 
                         {
                             Debug.LogWarning("Item is null at element of index: " + randomItemIndex + " for location: " + exploreLocation + " ( element " + randomLocationIndex + " ). Check list for null items and remove elements or add item in 'Loot Item' slot.");
                         }
-                        TextLog.AddLog(noLootMessage);
                     }
                     else //if(Random.Range(0, 100) > noLootProbability)
                     {
