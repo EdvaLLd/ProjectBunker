@@ -16086,26 +16086,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficulty: 0
   locationalLoot:
-  - lootItems:
-    - lootItem: {fileID: 0}
-      maxLootQuantity: 0
-      minLootQuantity: 0
-      lootProbability: 75
-  - lootItems:
-    - lootItem: {fileID: 0}
-      maxLootQuantity: 0
-      minLootQuantity: 0
-      lootProbability: 75
-  - lootItems:
-    - lootItem: {fileID: 0}
-      maxLootQuantity: 0
-      minLootQuantity: 0
-      lootProbability: 75
-  - lootItems:
-    - lootItem: {fileID: 0}
-      maxLootQuantity: 0
-      minLootQuantity: 0
-      lootProbability: 75
+  - lootItems: []
+  - lootItems: []
+  - lootItems: []
+  - lootItems: []
   mainExploreEvents: []
 --- !u!4 &1171683974
 Transform:

@@ -77,32 +77,41 @@ public class Exploration : MonoBehaviour
 
         //float randomLocationIndex = Random.Range(0, GameManager.GetExplorableLocations().Length);
 
-        if (randomItemIndex != -1 && !executedEvent && !gameManager.mainExploreEvents[GameManager.eventIndex].replaceDefaultExplore) 
+        if (randomItemIndex != -1) 
         {
-            print("Length: " + randomLocation.locationLoot.Count + ", i: " + randomItemIndex + ", Drop probability: " + randomLocation.locationLoot[randomItemIndex].lootProbability + "%");
-            //print("Drop probability: " + randomLocation.lootProbabilities[randomItemIndex] + "%");
-
-            if (lootRandom <= 100 - randomLocation.locationLoot[randomItemIndex].lootProbability && lootRandom != 100)
+            if (gameManager.mainExploreEvents.Length <= 0 || !gameManager.mainExploreEvents[GameManager.eventIndex].replaceDefaultExplore) 
             {
-                //print
-                TextLog.AddLog(noLootMessage);
-            }
-            else //if(Random.Range(0, 100) > noLootProbability)
-            {
-                //print
-                //GameManager gameManager = FindObjectOfType<GameManager>();
+                if (!executedEvent) // Please forgive me for the ammount of if nestles. - Alexander Krasnov.
+                {
+                    print("Length: " + randomLocation.locationLoot.Count + ", i: " + randomItemIndex + ", Drop probability: " + randomLocation.locationLoot[randomItemIndex].lootProbability + "%");
+                    //print("Drop probability: " + randomLocation.lootProbabilities[randomItemIndex] + "%");
 
-                int maxQuantity = randomLocation.locationLoot[randomItemIndex].maxLootQuantity;
-                int minQuantity = randomLocation.locationLoot[randomItemIndex].minLootQuantity;
-                if ((maxQuantity <= 0 || minQuantity <= 0) || (maxQuantity <= 0 && minQuantity <= 0))
-                {
-                    TextLog.AddLog(lootMessage);
-                    Inventory.AddItem(GetRandomLocationItem(randomLocation, randomItemIndex));
-                }
-                else 
-                {
-                    TextLog.AddLog(lootMessage);
-                    Inventory.AddItem(GetRandomLocationItem(randomLocation, randomItemIndex), Random.Range(minQuantity, maxQuantity));
+                    if (lootRandom <= 100 - randomLocation.locationLoot[randomItemIndex].lootProbability && lootRandom != 100 || randomLocation.locationLoot[randomItemIndex].lootItem == null)
+                    {
+                        if (randomLocation.locationLoot[randomItemIndex].lootItem == null) 
+                        {
+                            Debug.LogWarning("Item is null at element of index: " + randomItemIndex + " for location: " + exploreLocation + " ( element " + randomLocationIndex + " ). Check list for null items and remove elements or add item in 'Loot Item' slot.");
+                        }
+                        TextLog.AddLog(noLootMessage);
+                    }
+                    else //if(Random.Range(0, 100) > noLootProbability)
+                    {
+                        //print
+                        //GameManager gameManager = FindObjectOfType<GameManager>();
+
+                        int maxQuantity = randomLocation.locationLoot[randomItemIndex].maxLootQuantity;
+                        int minQuantity = randomLocation.locationLoot[randomItemIndex].minLootQuantity;
+                        if ((maxQuantity <= 0 || minQuantity <= 0) || (maxQuantity <= 0 && minQuantity <= 0))
+                        {
+                            TextLog.AddLog(lootMessage);
+                            Inventory.AddItem(GetRandomLocationItem(randomLocation, randomItemIndex));
+                        }
+                        else
+                        {
+                            TextLog.AddLog(lootMessage);
+                            Inventory.AddItem(GetRandomLocationItem(randomLocation, randomItemIndex), Random.Range(minQuantity, maxQuantity));
+                        }
+                    }
                 }
             }
         }

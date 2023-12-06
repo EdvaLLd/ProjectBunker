@@ -12,12 +12,15 @@ public class ExplorationEvents : Exploration
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
             
-            float eventRandom = Random.Range(0, 100);
-            float probability = gameManager.mainExploreEvents[GameManager.eventIndex].eventProbability;
+            
             
             if (!MainEventsIsEmpty(gameManager.mainExploreEvents)) 
             {
+                float eventRandom = Random.Range(0, 100);
+                float probability = gameManager.mainExploreEvents[GameManager.eventIndex].eventProbability;
+
                 executedEvent = true;
+
                 if (eventRandom <= 100 - probability && eventRandom != 100) 
                 {
                     print("cancel");
