@@ -28,6 +28,13 @@ public class InteractableCraftingMachine : InteractableItem
     {
         SetIsCrafting(true);
         characterOnStation = characterCrafting;
+
+        //Animation stuff
+        if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
+        {
+            characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>().StartCrafting();
+        }
+
         if (recipe != currentRecipeBeingCrafted)
         {
             currentRecipeBeingCrafted = recipe;
@@ -49,6 +56,12 @@ public class InteractableCraftingMachine : InteractableItem
     {
         if (character == characterOnStation)
         {
+            //Animation stuff
+            if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
+            {
+                characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>().StopCrafting();
+            }
+
             characterOnStation = null;
             SetIsCrafting(false);
         }
@@ -98,6 +111,7 @@ public class InteractableCraftingMachine : InteractableItem
         amountLeft = 1;
         amountPayedFor = 0;
         currentRecipeBeingCrafted=null;
+
     }
 
     bool RemoveItemsRequiredForCraft()
@@ -139,7 +153,10 @@ public class InteractableCraftingMachine : InteractableItem
         if(isCrafting)
         {
             progress += Time.deltaTime / currentRecipeBeingCrafted.craftingTime;
-            if(progress > 1)
+
+            
+
+            if (progress > 1)
             {
                 amountLeft--;
                 amountPayedFor--;
@@ -153,6 +170,12 @@ public class InteractableCraftingMachine : InteractableItem
                     currentRecipeBeingCrafted = null;
                     amountLeft = 1;
                     //Kan även fixa med animationer och typ uigrejer här
+
+                    //Animation stuff
+                    if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
+                    {
+                        characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>().StopCrafting();
+                    }   
                 }
                 /*else
                 {

@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomEntrances: []
   mist: {fileID: 3379313914352542691}
-  decontaminationUnit: {fileID: 11400000, guid: 8526ae880b073864da544eb9f6542480, type: 2}
+  itemToUnlockRoom: {fileID: 0}
 --- !u!1 &2142692448788573573
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,12 +195,15 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 10
+        m_Name: Frame rate
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 1.5, y: 0.8, z: 1.5}
+      - m_Value: {x: 1.5, y: 0.26, z: 1.5}
         m_Name: Toxic Gas Size
         m_Overridden: 1
     m_Vector4f:
