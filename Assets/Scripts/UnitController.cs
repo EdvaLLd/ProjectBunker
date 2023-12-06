@@ -214,7 +214,7 @@ public class UnitController : MonoBehaviour
         {
             //character.transform.GetChild(1).GetComponent<MeshRenderer>().material = unSelectedModifier.material;
         }*/
-        character.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = isSelected;
+        character.transform.GetChild(1).gameObject.SetActive(isSelected);
     }
 
     public static Character GetSelectedCharacter()
