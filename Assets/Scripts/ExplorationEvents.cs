@@ -33,7 +33,7 @@ public class ExplorationEvents : Exploration
                 GameManager.eventIndex++;
             }
             
-            print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
+            print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex - 1].eventName);
         }
 
         private void SubEventSequence()
