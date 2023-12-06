@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
      private float moonSunOppositionAngle = 0;*/
 
     private SkyboxController skyboxManager;
-    private GameObject sun;
-    private GameObject moon;
+    //private GameObject sun;
+    //private GameObject moon;
 
     private static Locations.Location[] explorableLocations = new Locations.Location[System.Enum.GetNames(typeof(Locations.Location.environments)).Length];
 
@@ -48,40 +48,19 @@ public class GameManager : MonoBehaviour
         instance = this;
         
         skyboxManager = GameObject.FindObjectOfType<SkyboxController>();
-        sun = GameObject.Find("Sun");
-        moon = GameObject.Find("Moon");
+        /*sun = GameObject.Find("Sun");
+        moon = GameObject.Find("Moon");*/
         explorableLocations = Locations.SetExplorableLocations();
+    }
+
+    private void Update()
+    {
+        skyboxManager.DayAndNightCycle(skyboxManager.cycleRate);
     }
 
     /*private void Start()
     {
     }*/
-
-    private void Update()
-    {
-        //DayAndNightCycle(skyboxManager.cycleRate/*cycleRate, moonSunOppositionAngle*/);
-        //moonSunOppositionAngle = moonSunOppositionAngle;
-    }
-
-    private void DayAndNightCycle(float rate/*, float moonAngle*/)
-    {
-        float calculatedCycleRate = rate * Time.deltaTime;
-
-        skyboxManager.dayNightValue += calculatedCycleRate;
-
-        sun.transform.rotation = Quaternion.Euler(skyboxManager.dayNightValue, -38, 0);
-        moon.transform.rotation = Quaternion.Euler(skyboxManager.dayNightValue + 180 /*+ moonAngle*/, -38, 0);
-
-       /* if (sun.transform.rotation.x == 30)
-        {
-
-        }*/
-
-        if (skyboxManager.dayNightValue >= 360)
-        {
-            skyboxManager.dayNightValue = 0;
-        }
-    }
 
     public static Locations.Location[] GetExplorableLocations() 
     {
