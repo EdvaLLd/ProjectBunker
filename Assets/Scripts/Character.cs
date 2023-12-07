@@ -12,6 +12,15 @@ public class EqippedGearSet
     public Equipment boots = null;
     public Equipment weapon = null;
 }
+
+public enum Statuses
+{
+    ill,
+    injured,
+    happy,
+    sad,
+    hungry,
+}
 public class Character : MonoBehaviour
 {
     BoxCollider itemInteractedWithBoxCollider = null;
@@ -47,9 +56,14 @@ public class Character : MonoBehaviour
     bool createNewPath = false;
     Vector3 newGoalPos;
 
+    List<Desease> deseases = new List<Desease>();
+
+    Dictionary<Statuses, int> statuses = new Dictionary<Statuses, int>();
 
 
     private CharacterAnimation characterAnim;
+
+    public float workMultiplier { get; private set; } = 1;
 
     private void Start()
     {
@@ -98,12 +112,135 @@ public class Character : MonoBehaviour
         Inventory.RemoveItem(piece);
     }
 
+    public List<Desease> GetDeseases()
+    {
+        return deseases;
+    }
+
+    //för om vi medicerar olika deseases
+    public void TreatDesease(Desease desease)
+    {
+        Item med = Database.GetItemWithID("01013");
+        //farligt sätt att göra grejer
+        if (Inventory.GetAmountOfItem(med) > 0)
+        {
+            desease.Medicate();
+            Inventory.RemoveItem(med);
+        }
+    }
+
+    //för om vi medicerar alla deseases
+    public void TreatDesease()
+    {
+        Item med = Database.GetItemWithID("01013");
+        //farligt sätt att göra grejer
+        if (Inventory.GetAmountOfItem(med) > 0)
+        {
+            foreach (Desease desease in deseases)
+            {
+                desease.Medicate();
+            }
+            Inventory.RemoveItem(med);
+        }
+    }
+
     private void Update()
     {
         if (isAlive)
         {
             Move();
             HungerDecay();
+            DeseaseTick();
+        }
+    }
+
+
+    void DeseaseTick()
+    {
+        for (int i = deseases.Count - 1; i >= 0; i--)
+        {
+            deseases[i].Tick();
+        }
+    }
+
+    public void AddStatus(Statuses status)
+    {
+        if (statuses.ContainsKey(status)) statuses[status] += 1;
+        else 
+        { 
+            statuses.Add(status, 1);
+            TextLog.AddLog("\"insert character name\" is now " + status);
+        }
+        CheckWorkMultiplier();
+    }
+    public bool HasStatus(Statuses status)
+    {
+        if (statuses.ContainsKey(status)) return true;
+        return false;
+    }
+    public void RemoveStatus(Statuses status)
+    {
+        if (statuses.ContainsKey(status)) 
+        { 
+            statuses[status] -= 1;
+            if (statuses[status] < 1)
+            {
+                statuses.Remove(status);
+                TextLog.AddLog("\"insert character name\" is no longer " + status);
+            }
+        }
+        else Debug.LogError("shouldnt be here");
+
+        CheckWorkMultiplier();
+    }
+
+    public void AddDesease<T>() where T : Desease, new()
+    {
+        T desease;
+        if (HasDesease(out desease)) desease.RefreshDesease();
+        else
+        {
+            T d = new T();
+            d.SetCharacter(this);
+            deseases.Add(d);
+            TextLog.AddLog("\"insert character name\" contracted " + d.GetType() + "!");
+            AddStatus(Statuses.ill);
+        }
+    }
+    public void RemoveDesease(Desease desease)
+    {
+        if (desease.GetHealth() < 0)
+        {
+            TextLog.AddLog("\"insert character name\" survived her " + desease + " infection!");
+            deseases.Remove(desease);
+            RemoveStatus(Statuses.ill);
+        }
+    }
+
+    public bool HasDesease<T>(out T desease) where T : Desease
+    {
+        desease = null;
+        foreach (Desease d in deseases)
+        {
+            if(d.GetType() == typeof(T))
+            {
+                desease = d as T;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void CheckWorkMultiplier()
+    {
+        //sortera dessa på hur negativa de är (värre är överst)
+        if (HasStatus(Statuses.ill) || HasStatus(Statuses.injured) || HasStatus(Statuses.sad))
+        {
+            workMultiplier = 0.1f;
+        }
+        else
+        {
+            workMultiplier = 1;
         }
     }
 
@@ -121,12 +258,7 @@ public class Character : MonoBehaviour
         hunger -= (hungerConsumedModifier * Time.deltaTime);
         if (hunger < 10)
         {
-            health -= (10 - hunger) * Time.deltaTime * 0.3f;
-            if(health < 0)
-            {
-                UnitDied();
-            }
-
+            TakeDamage((10 - hunger) * Time.deltaTime * 0.3f);
         }
 
         health = Mathf.Clamp(health, 0, maxHealth);
@@ -137,8 +269,9 @@ public class Character : MonoBehaviour
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
-        TextLog.AddLog($"Unit insert name took {damage} damage and has {health} health left", MessageTypes.used);
-        if(health < 0)
+        //TextLog.AddLog($"Unit insert name took {damage} damage and has {health} health left", MessageTypes.used);
+        if(health < maxHealth/10) TextLog.AddLog($"Unit insert name is low on health", MessageTypes.used);
+        if (health < 0)
         {
             UnitDied();
         }
@@ -152,6 +285,7 @@ public class Character : MonoBehaviour
     {
         isAlive = false;
         TextLog.AddLog("Unit died!");
+        UnitController.RemoveCharacter(this);
 
         if (UnitController.GetSelectedCharacter() == this)
         {

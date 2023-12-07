@@ -49,6 +49,8 @@ public class UnitController : MonoBehaviour
     [SerializeField]
     RecipeSlot[] items;
 
+    static List<Character> allCharacters = new List<Character>();
+
     private void Awake()
     {
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
@@ -63,7 +65,15 @@ public class UnitController : MonoBehaviour
         Character.onTaskCompletion += TaskCompleted;
 
 
-
+        GameObject[] c = GameObject.FindGameObjectsWithTag("Character");
+        foreach (GameObject ch in c)
+        {
+            Character character;
+            if(ch.TryGetComponent(out character))
+            {
+                allCharacters.Add(character);
+            }
+        }
 
         characterStatsWindowStatic.SetActive(false);
 
@@ -104,14 +114,34 @@ public class UnitController : MonoBehaviour
         {
             Inventory.AddItem(Database.GetItemWithID("01002")); //leather
         }
+
         if (selectedCharacter != null)
         {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                selectedCharacter.AddDesease<Flu>();
+            }
             UpdateCharacterStatsUI();
             if (Input.GetMouseButtonDown(1))
             {
                 selectedCharacter.MoveToPos(HelperMethods.CursorToWorldCoord());
             }
         }
+    }
+
+    public static void AddCharacter(Character c)
+    {
+        allCharacters.Add(c);
+    }
+
+    public static void RemoveCharacter(Character c)
+    {
+        if(allCharacters.Contains(c)) allCharacters.Remove(c);
+    }
+
+    public static List<Character> GetCharacters()
+    {
+        return allCharacters;
     }
     void UpdateCharacterStatsUI()
     {

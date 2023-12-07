@@ -138,7 +138,7 @@ public class InteractableCraftingMachine : InteractableItem
     {
         if(isCrafting)
         {
-            progress += Time.deltaTime / currentRecipeBeingCrafted.craftingTime;
+            progress += Time.deltaTime / currentRecipeBeingCrafted.craftingTime * characterOnStation.workMultiplier;
             if(progress > 1)
             {
                 amountLeft--;

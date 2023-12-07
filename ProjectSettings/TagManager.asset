@@ -15,6 +15,7 @@ TagManager:
   - DangerTxt
   - HoverWindow
   - Canvas
+  - Character
   layers:
   - Default
   - TransparentFX

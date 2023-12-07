@@ -74,11 +74,11 @@ public class UIManager : MonoBehaviour
         Debug.DrawRay(start, Vector3.forward * 10, Color.red, 5);
         //start.z = Camera.main.transform.position.z;
         RaycastHit[] objectsHovered = Physics.RaycastAll(start, Vector3.forward, float.PositiveInfinity);
-        foreach (RaycastHit item in objectsHovered)
+        /*foreach (RaycastHit item in objectsHovered)
         {
             print(item.collider.name);
         }
-        print(objectsHovered.Length);
+        print(objectsHovered.Length);*/
     }
 
     void SetCanvasScale()
