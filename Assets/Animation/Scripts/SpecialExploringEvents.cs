@@ -33,6 +33,7 @@ public class SpecialExploringEvents : MonoBehaviour
     public void ShowSpecialEvent(string eventText)
     {
         Time.timeScale = 0; /*Det här fungerar inte optimalt så jag vet inte om vi borde ha det här eller inte*/
+        Debug.Log("Nu är jag här och fin");
         string editedText = eventText.Replace("name", eventName).Replace("Name", eventName);
         eventPanelText.text = editedText;
         eventPanel.SetActive(true);

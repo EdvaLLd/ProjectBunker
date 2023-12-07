@@ -42,8 +42,7 @@ public class ExplorationEvents : Exploration
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
 
-            //ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, gameManager.randomExploreEvents.Length)];
-            ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[2];
+            ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, gameManager.randomExploreEvents.Length)];
             float eventRandom = Random.Range(0, 100);
             float probability = randomEvent.eventProbability;
 
@@ -66,9 +65,9 @@ public class ExplorationEvents : Exploration
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
             //int subEventLength = GameManager.explorationEvents[GameManager.eventIndex].subEvent.Count;
-            for (int subEventIndex = 0; subEventIndex < exploreEvent.subEvent.Count/*Mathf.Clamp(subEventLength, 0,subEventLength)*/; subEventIndex++)
+            for (int subEventIndex = 0; subEventIndex < exploreEvent.subEvents.Count/*Mathf.Clamp(subEventLength, 0,subEventLength)*/; subEventIndex++)
             {
-                ExploreSubEvent subEvent = exploreEvent.subEvent[subEventIndex];
+                ExploreSubEvent subEvent = exploreEvent.subEvents[subEventIndex];
                 switch (subEvent.eventType)
                 {
                     case (ExploreSubEvent.eventTypes.Text):
@@ -286,7 +285,7 @@ public class ExplorationEvents : Exploration
             float damage = subEvent.damageEvent.damageRecieved;
 
             TakeDamage(damage, target);
-            PlayTextEvent(target.name + " took " + damage + " damage to their health!");
+            TextLog.AddLog(target.name + " took " + damage + " damage to their health!");
 
             /*Timer localTimer = new Timer();
             localTimer.timeUnit = Timer.timeUnits.second;
