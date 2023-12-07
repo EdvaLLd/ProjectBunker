@@ -46,11 +46,13 @@ public class Tutorial : MonoBehaviour
         if(currentSlide == tutorialImages.Length - 1)
         {
             b2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Finish tutorial";
+            b2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize = 20;
             changeScene.gameObject.SetActive(false);
         }
         else
         {
             b2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ">";
+            b2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize = 60;
             changeScene.gameObject.SetActive(true);
         }
         slideNRText.text = (currentSlide+1).ToString() + "/" + tutorialImages.Length.ToString();
