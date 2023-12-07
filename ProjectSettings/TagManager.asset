@@ -16,6 +16,7 @@ TagManager:
   - HoverWindow
   - Canvas
   - Character
+  - CharacterName
   layers:
   - Default
   - TransparentFX
