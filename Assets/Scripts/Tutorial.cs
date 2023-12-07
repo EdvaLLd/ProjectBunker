@@ -46,7 +46,7 @@ public class Tutorial : MonoBehaviour
         if(currentSlide == tutorialImages.Length - 1)
         {
             b2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Finish tutorial";
-            b2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize = 20;
+            b2.transform.GetChild(0).GetComponent<TextMeshProUGUI>().fontSize = 15;
             changeScene.gameObject.SetActive(false);
         }
         else
