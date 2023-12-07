@@ -10,6 +10,7 @@ public class TutorialImage
 {
     public Sprite image;
     public string text;
+    public bool hasImage = true;
 }
 
 public class Tutorial : MonoBehaviour
@@ -28,8 +29,6 @@ public class Tutorial : MonoBehaviour
     TutorialImage[] tutorialImages;
 
     int currentSlide = 0;
-
-    float scale;
 
     public void ChangeSlide(int amount)
     {
@@ -56,6 +55,8 @@ public class Tutorial : MonoBehaviour
         }
         slideNRText.text = (currentSlide+1).ToString() + "/" + tutorialImages.Length.ToString();
         text.text = tutorialImages[currentSlide].text;
+        if (tutorialImages[currentSlide].hasImage) image.gameObject.SetActive(true);
+        else image.gameObject.SetActive(false);
         image.sprite = tutorialImages[currentSlide].image;
         image.SetNativeSize();
     }
@@ -67,7 +68,6 @@ public class Tutorial : MonoBehaviour
 
     private void Start()
     {
-        scale = Camera.main.scaledPixelWidth / GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasScaler>().referenceResolution.x;
         ChangeSlide(0);
     }
 }
