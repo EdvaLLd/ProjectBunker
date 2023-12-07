@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 63027b511db940e4f9739571035b7ae5
+  - enabled: 1
+    path: Assets/Scenes/WinLoseScene.unity
+    guid: 0273fb0b37fcc0a4fb2ec23d12f74e9b
+  - enabled: 1
+    path: Assets/Scenes/EmmaUI.unity
+    guid: 6a5a2ba190c47434da359402e3390957
   m_configObjects: {}
