@@ -10,7 +10,7 @@ public class CharacterStatsHandler : MonoBehaviour
     Slider healthSlider, hungerSlider;
 
     [SerializeField]
-    Button foodButton;
+    Button medicineButton;
 
     [Header("Slider colors at different values")]
     [SerializeField]
@@ -18,17 +18,17 @@ public class CharacterStatsHandler : MonoBehaviour
     [SerializeField]
     Color halfFullColor, lowColor;
 
-    private void Update()
-    {
-        if(Inventory.GetAmountOfItem(Database.GetItemWithID("04001")) == 0)
-        {
-            UIManager.SetButtonIsEnabled(foodButton, false);
-        }
-        else
-        {
-            UIManager.SetButtonIsEnabled(foodButton, true);
-        }
-    }
+    //private void Update()
+    //{
+    //    if(Inventory.GetAmountOfItem(Database.GetItemWithID("04001")) == 0)
+    //    {
+    //        UIManager.SetButtonIsEnabled(foodButton, false);
+    //    }
+    //    else
+    //    {
+    //        UIManager.SetButtonIsEnabled(foodButton, true);
+    //    }
+    //}
 
     public void SetUp(Character c)
     {
