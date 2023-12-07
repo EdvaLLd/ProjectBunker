@@ -108,13 +108,11 @@ public class CharacterAnimation : MonoBehaviour
     //Ansiktsanimationer kommer troligtvis få egna metoder sen, men det här är bara för testning
     public void StartCrafting()
     {
-        //animator.SetTrigger("isHappy");
         animator.SetBool("isCrafting", true);
     }
 
     public void StopCrafting()
     {
-        //animator.SetTrigger("isNeutral");
         animator.SetBool("isCrafting", false);
     }
 
