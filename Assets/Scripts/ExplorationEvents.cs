@@ -36,6 +36,13 @@ public class ExplorationEvents : Exploration
             print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex - 1].eventName);
         }
 
+        //public void RandomSpecialEvent()
+        //{
+        //    Debug.Log("Yay, I am in the right place!");
+        //    GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+        //    Debug.Log(gameManager.randomExploreEvents[0].eventName);
+        //}
+
         private void SubEventSequence()
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
@@ -307,33 +314,33 @@ public class ExplorationEvents : Exploration
             //Make stuff happen here.
             if (subEvent.combatEvent.combatEventMessage != "" || subEvent.combatEvent.combatEventMessage != null)
             {
-                PlayTextEvent(subEvent.combatEvent.combatEventMessage);
+               TextLog.AddLog(subEvent.combatEvent.combatEventMessage);
             }
 
             //string faction = System.Enum.GetName(typeof(ExploreSubEvent.enemyFactions), subEvent.combatEvent.enemyFaction);
             //print(faction);                
 
-            PlayTextEvent(character.name + " engaged hostile " + faction + " in combat!");
+            TextLog.AddLog(character.name + " engaged hostile " + faction + " in combat!");
             if (randomRecievied <= 0 && randomDealt <= 0)
             {
-                PlayTextEvent("Neither side sustained any casulties and fled.");
+                TextLog.AddLog("Neither side sustained any casulties and fled.");
             }
             if (randomDealt > 0) 
             {
-                PlayTextEvent(character.name + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.");
+                TextLog.AddLog(character.name + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.");
             }
             if (randomRecievied > 0)
             {
                 TakeDamage(randomRecievied, character);
                 if (character.health <= 0)
                 {
-                    PlayTextEvent(character.name + " was slained in battle by the " + faction + ".");
+                    TextLog.AddLog(character.name + " was slained in battle by the " + faction + ".");
                     //PlayLootItemLoopEvent(false, true, subEvent.combatEvent.combatLoot);
                 }
                 else 
                 {
-                    PlayTextEvent("Enemy " + faction + " cowardly fled from battle.");
-                    PlayTextEvent(character.name + " took " + randomRecievied + " damage from the enemy " + faction + " but lives to fight another day.");
+                    TextLog.AddLog("Enemy " + faction + " cowardly fled from battle.");
+                    TextLog.AddLog(character.name + " took " + randomRecievied + " damage from the enemy " + faction + " but lives to fight another day.");
                     PlayLootItemLoopEvent(true, true, subEvent.combatEvent.combatLoot);
                 }
                 
@@ -408,7 +415,7 @@ public class ExplorationEvents : Exploration
         public enum eventTypes { Text, Item, Damage, Combat, Recipe, Sickness, Diary, Character };
         public eventTypes eventType;
 
-        public enum enemyFactions { Scavengers, Mutated_dogs, Radioactive_lobsters };
+        public enum enemyFactions { Scavengers, Mutated_dogs, Radioactive_lobsters, TwoheadedFoxes, GiantInsects };
 
         [Header("Event type variables")]
         public ExploreEventTypes.TextEvent textEvent;

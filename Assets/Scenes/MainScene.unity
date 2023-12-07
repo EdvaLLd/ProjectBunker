@@ -16925,7 +16925,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 100
+    eventProbability: 30
     timer:
       timeUnit: 0
       ammount: 0
@@ -16994,6 +16994,49 @@ MonoBehaviour:
         - lootItem: {fileID: 11400000, guid: 3d2cfa5e6b026e64e8fdee8dc421c72f, type: 2}
           maxLootQuantity: 1
           minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 34218deb45fb84a45a12e86cfaef3d92, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: "Jag \xE4r event 2!!!!!!!"
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: 951c622a828352b43b20f38abbea0203, type: 2}
+          maxLootQuantity: 2
+          minLootQuantity: 2
           lootProbability: 100
       damageEvent:
         damageRecieved: 0
@@ -17159,7 +17202,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 100
+    eventProbability: 20
     timer:
       timeUnit: 0
       ammount: 0
@@ -17209,7 +17252,58 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 100
+    - eventType: 3
+      textEvent:
+        eventMessage: Name finds a house that looks fairly intact and thinks they
+          might find some useful stuff in there. They try the door and are surprised
+          to find it locked. Scared that there might be people inside, name decides
+          to walk away, but accidentally steps on a string attached to some cans.
+          A booby trap! People sprint out of the door and attack name.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 50
+        minDamageDealt: 10
+        maxDamageRecieved: 30
+        minDamageRecieved: 5
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot:
+        - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 70
+        - lootItem: {fileID: 11400000, guid: 726a1189cb4ed3c4ab5b8a6228b247b3, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 70
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 20
     timer:
       timeUnit: 0
       ammount: 0
@@ -17356,7 +17450,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 100
+    eventProbability: 20
     timer:
       timeUnit: 0
       ammount: 0
@@ -17494,7 +17588,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 100
+    eventProbability: 20
     timer:
       timeUnit: 0
       ammount: 0
@@ -17545,7 +17639,63 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 100
+    - eventType: 1
+      textEvent:
+        eventMessage: "Name sees a woman dressed in black with her arms full of goods
+          sneak out of a big building. Name is intrigued. They find a way in and
+          quickly realize that it\u2019s a library. Some kind souls have left supplies
+          in the middle of the room for those in need and name searches the pile.
+          They grab some useful stuff to bring back home. On the way out they find
+          a note lodged between two books. It\u2019s a diary entry!"
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
+          maxLootQuantity: 2
+          minLootQuantity: 2
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: 5727eaa8ebf6d8940a28fbeb5dead961, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 20
     timer:
       timeUnit: 0
       ammount: 0
@@ -17592,7 +17742,99 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 100
+    - eventType: 4
+      textEvent:
+        eventMessage: Name is on their way home when they are suddenly face to face
+          with some mean looking bandits with axes in their hands.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: f84f547bee6555f47b42c2745fa77694, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 224caf76f5cfec349b9b838f44c0ecf9, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 3
+      textEvent:
+        eventMessage: Name is on their way home when they are suddenly face to face
+          with some mean looking bandits with axes in their hands.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: f84f547bee6555f47b42c2745fa77694, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 50
+        minDamageDealt: 10
+        maxDamageRecieved: 60
+        minDamageRecieved: 10
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot:
+        - lootItem: {fileID: 11400000, guid: f84f547bee6555f47b42c2745fa77694, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 20
     timer:
       timeUnit: 0
       ammount: 0
@@ -17605,7 +17847,7 @@ MonoBehaviour:
           them. A large bear is coming towards name! Name realizes they won\u2019t
           have a chance against the ferocious animal. Suddenly, a shadow attacks
           the bear from the side with a battle cry. After a few minutes of struggle,
-          the beast is dead. The savior turns out to be a man named James. He suggests
+          the beast is dead. The savior turns out to be a man called James. He suggests
           that name put on some better armor next time they venture into the woods.
           James teaches name how to make his favorite piece of clothing: trekking
           trousers."
@@ -17691,7 +17933,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 100
+    eventProbability: 20
     timer:
       timeUnit: 0
       ammount: 0
@@ -17771,6 +18013,102 @@ MonoBehaviour:
         combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 708f9fb3f007ceb4daa14d5f1a51a06d, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 20
+    timer:
+      timeUnit: 0
+      ammount: 0
+  randomExploreEvents:
+  - eventName: Animal attack
+    replaceDefaultExplore: 0
+    subEvent:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name is suddenly attacked by two-headed foxes when they are
+          foraging in the forest.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 0
+      textEvent:
+        eventMessage: Name is suddenly attacked by two-headed foxes when they are
+          foraging in the forest.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 3
+        maxDamageDealt: 50
+        minDamageDealt: 10
+        maxDamageRecieved: 50
+        minDamageRecieved: 10
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot:
+        - lootItem: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 70
+        - lootItem: {fileID: 11400000, guid: ba8b50297c55f7f42a43387a9e65a1a5, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 100
+      recipeEvent:
+        recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0

@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public static int eventIndex = 0;
 
     public ExplorationEvents.ExploreEvent[] mainExploreEvents;
+    public ExplorationEvents.ExploreEvent[] randomExploreEvents;
 
     private void Awake()
     {
