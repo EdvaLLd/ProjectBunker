@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
+  m_Name: Jelly
+  m_EditorClassIdentifier: 
+  itemCrafted: {fileID: 11400000, guid: b12588ec1a6af65498baa018006436c1, type: 2}
+  itemAmount: 1
+  craftingTime: 5
+  Ingredients:
+  - item: {fileID: 11400000, guid: ba8b50297c55f7f42a43387a9e65a1a5, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 726a1189cb4ed3c4ab5b8a6228b247b3, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: c1a176cb89c803548be78e77ec5ac6e7, type: 2}
+    amount: 3
+  CraftableInMachine:
+  - {fileID: 11400000, guid: 6386acef30fedf049ba0443144822351, type: 2}

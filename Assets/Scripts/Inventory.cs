@@ -107,7 +107,7 @@ public static class Inventory
 
     public static int GetAmountOfItem(Item item)
     {
-        if(inventory.ContainsKey(item)) return inventory[item];
+        if (inventory.ContainsKey(item)) { return inventory[item]; }
         return 0;
     }
 
