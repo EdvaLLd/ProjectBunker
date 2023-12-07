@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.27649876, g: 0.73827386, b: 1.068038, a: 1}
+  m_IndirectSpecularColor: {r: 0.54270124, g: 0.21226868, b: 0.18680474, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -44805,30 +44805,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6372198396653535077, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: hunger
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6372198396653535077, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6372198396653535077, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: maxHunger
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7780648542340397816, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: movementSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7780648542340397816, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: selectionStateMaterials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 48cc280ffe785b54588b10c0e033b24a, type: 2}
-    - target: {fileID: 7780648542340397817, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7780648542340397819, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -44876,22 +44852,6 @@ PrefabInstance:
     - target: {fileID: 7780648542340397821, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Name
       value: TESTER
-      objectReference: {fileID: 0}
-    - target: {fileID: 7780648542340397821, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7780648542340397831, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: m_Size.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7780648542340397831, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: m_Size.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7780648542340397831, guid: 061c2097df6214b489e327f16caca47a, type: 3}
-      propertyPath: m_Offset.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061c2097df6214b489e327f16caca47a, type: 3}

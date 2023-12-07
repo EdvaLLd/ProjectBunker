@@ -719,7 +719,7 @@ ParticleSystem:
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
-    donutRadius: 0.2
+    donutRadius: 1
     m_Position: {x: 0, y: 0.39, z: 0}
     m_Rotation: {x: 0, y: 90, z: 0}
     m_Scale: {x: 0.01, y: -0.01, z: 1}
@@ -920,7 +920,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
