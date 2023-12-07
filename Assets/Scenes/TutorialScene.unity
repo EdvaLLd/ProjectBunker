@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -138,7 +138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_fontSize
-      value: 21.7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_fontAsset
@@ -146,12 +146,16 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0145d5edc66fc3946b1c3c2dae000142, type: 2}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_fontSizeBase
-      value: 21.7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 3120219196230253450, guid: 0145d5edc66fc3946b1c3c2dae000142, type: 2}
+    - target: {fileID: 4499155760804009005, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.9
+      objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253288, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_Name
       value: PreviousSlide
@@ -326,11 +330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1501
+      value: 368
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 167.00003
+      value: 167
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -430,12 +434,45 @@ MonoBehaviour:
   slideNRText: {fileID: 1168274242}
   image: {fileID: 2082416789}
   tutorialImages:
-  - image: {fileID: 21300000, guid: 08ca00024d0e12a45a1c780f4e0c93c1, type: 3}
-    text: slide 1
-  - image: {fileID: 21300000, guid: f800fe28e9c26bb4fab271dc9d6e0276, type: 3}
-    text: slide 2
-  - image: {fileID: 21300000, guid: 63f55401de88058429ebb266ea2bb86a, type: 3}
-    text: slide 3
+  - image: {fileID: 21300000, guid: 2777864e723973b4095880317c465e7c, type: 3}
+    text: In a destroyed world where life has become a rarity, rumor has it, that
+      a paradise with fertile soil and clean air is somewhere to be found. Whether
+      or not this eldorado exists, no one knows, but the hope that it is real is
+      enough to keep the rumor going. A worker who has heard this rumor is forced
+      to abandon their pursuit of the dream due to a lack of resources and finds
+      an abandoned house that they choose to settle in. Raw materials are scarce,
+      poisonous fog is everywhere, and enemies are always lurking just around the
+      corner. In order to survive, this lonely worker must recruit more people who
+      can help turn this hump into a home. More and more workers move into the house
+      and their cooperation means that the production of raw materials becomes increasingly
+      efficient. They have learned from their mistakes and their knowledge of the
+      world simplifies the work. It's time to venture outside the safe walls to be
+      able to discover more of the world and all its mysteries. By exploring nearby
+      areas, people can find new technologies they can use and develop even more.
+      Will the colony ever manage to find the paradise they dream of or must they
+      settle for the everyday life they have managed to build for themselves?
+    hasImage: 0
+  - image: {fileID: 21300000, guid: b6d148bcef105ac4b8deb7e9fa214327, type: 3}
+    text: This is your crafting station! You will need certain items to be able to
+      craft specific tools to help your progression. Every tool takes a specific
+      time to craft but dont worry! You can put your workers to craft several tools
+      at a time, and you can cancel the crafting at any time and get all your invested
+      items back!
+    hasImage: 1
+  - image: {fileID: 21300000, guid: e54cac0ec75c41b42b6e5711017902ea, type: 3}
+    text: This is where you will recieve most of your items! It will be a SUPRISE
+    hasImage: 1
+  - image: {fileID: 21300000, guid: e3ff51283bf4d8d41b85a1ecc55a42c5, type: 3}
+    text: 'This is how you will see how your worker is feeling. Get energy by eating
+      at the dining table and use bandaid and medicine if your worker is ill or injured!
+      Here is also the place to change youre wardrobe! '
+    hasImage: 1
+  - image: {fileID: 21300000, guid: 6685eea4804b6dc47925aaf97b3ac394, type: 3}
+    text: You can walk threw the door when the time comes to explore outer areas.
+      But be careful! You might catch the flu or get injured on the journey! But
+      the risk might be worth it if you succeed to gather items you need for your
+      home and you might also find leads that get you closer to the rumorous paradise!
+    hasImage: 1
 --- !u!4 &348580688
 Transform:
   m_ObjectHideFlags: 0
@@ -733,7 +770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_fontSize
-      value: 21.7
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_fontAsset
@@ -741,7 +778,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0145d5edc66fc3946b1c3c2dae000142, type: 2}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_fontSizeBase
-      value: 21.7
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_sharedMaterial
@@ -861,11 +898,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 50
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_LocalScale.x
@@ -909,11 +946,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1681
+      value: 1860
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 264
+      value: 1031.2
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1013,7 +1050,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 369, y: 50}
+  m_SizeDelta: {x: 369, y: 106.457}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1168274241
 CanvasRenderer:
@@ -1045,8 +1082,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0145d5edc66fc3946b1c3c2dae000142, type: 2}
+  m_sharedMaterial: {fileID: 3120219196230253450, guid: 0145d5edc66fc3946b1c3c2dae000142, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1077,7 +1114,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1127,7 +1164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_fontSize
-      value: 21.7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_fontAsset
@@ -1135,12 +1172,20 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0145d5edc66fc3946b1c3c2dae000142, type: 2}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_fontSizeBase
-      value: 21.7
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 3120219196230253450, guid: 0145d5edc66fc3946b1c3c2dae000142, type: 2}
+    - target: {fileID: 4499155760804009004, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499155760804009005, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253288, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_Name
       value: NextSlide
@@ -1406,8 +1451,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -30.662, y: 12.973022}
-  m_SizeDelta: {x: 707.675, y: 399.027}
+  m_AnchoredPosition: {x: 0, y: 160}
+  m_SizeDelta: {x: 707.675, y: 391.154}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1356691322
 CanvasRenderer:
@@ -1439,8 +1484,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0145d5edc66fc3946b1c3c2dae000142, type: 2}
+  m_sharedMaterial: {fileID: 3120219196230253450, guid: 0145d5edc66fc3946b1c3c2dae000142, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1464,15 +1509,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 77.7
-  m_fontSizeBase: 77.7
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1664,7 +1709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
+  m_Color: {r: 0.26922393, g: 0.46334222, b: 0.4716981, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1724,7 +1769,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.000009, y: 16}
+  m_AnchoredPosition: {x: 0, y: 16}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2082416789
