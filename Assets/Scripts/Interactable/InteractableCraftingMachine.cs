@@ -105,7 +105,7 @@ public class InteractableCraftingMachine : InteractableItem
     public void CancelCraft()
     {
         progress = 0;
-        //varfˆr fuckar den h‰r upp om den ligger under rad 82??????
+        //varf√∂r fuckar den h√§r upp om den ligger under rad 82??????
         SetIsCrafting(false);
         RefundItemsForCraft();
         amountLeft = 1;
@@ -152,11 +152,9 @@ public class InteractableCraftingMachine : InteractableItem
     {
         if(isCrafting)
         {
-            progress += Time.deltaTime / currentRecipeBeingCrafted.craftingTime;
+            progress += Time.deltaTime / currentRecipeBeingCrafted.craftingTime * characterOnStation.workMultiplier;
+            if(progress > 1)
 
-            
-
-            if (progress > 1)
             {
                 amountLeft--;
                 amountPayedFor--;
@@ -169,7 +167,7 @@ public class InteractableCraftingMachine : InteractableItem
                     craftingWindow.FinishedCrafting(this);
                     currentRecipeBeingCrafted = null;
                     amountLeft = 1;
-                    //Kan ‰ven fixa med animationer och typ uigrejer h‰r
+                    //Kan √§ven fixa med animationer och typ uigrejer h√§r
 
                     //Animation stuff
                     if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
@@ -181,7 +179,7 @@ public class InteractableCraftingMachine : InteractableItem
                 {
                     if (!Inventory.IsCraftable(currentRecipeBeingCrafted))
                     {
-                        //varna UI-m‰ssigt att det sket sig
+                        //varna UI-m√§ssigt att det sket sig
                         CharacterLeftStation(characterOnStation);
                         isCrafting = false;
                     }
