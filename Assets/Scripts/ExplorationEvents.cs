@@ -62,6 +62,10 @@ public class ExplorationEvents : Exploration
                         subEvent.combatEvent.timer.CountDown();
                         PlayCombatEvent(subEvent, attachedGameObject.GetComponent<Character>());
                         break;
+                    case (ExploreSubEvent.eventTypes.Recipe):
+                        subEvent.recipeEvent.timer.CountDown();
+                        PlayRecipeEvent(subEvent);
+                        break;
 
                     default:
                         break;
@@ -85,7 +89,8 @@ public class ExplorationEvents : Exploration
         {
             if (message != "" || message != null)
             {
-                TextLog.AddLog(message);
+                //TextLog.AddLog(message);
+                FindObjectOfType<SpecialExploringEvents>().ShowSpecialEvent(message);
             }
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// ItemEvent    
@@ -115,10 +120,10 @@ public class ExplorationEvents : Exploration
             //GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
             bool isAdding = subEvent.itemEvent.addOrSubtract;
 
-            if (subEvent.itemEvent.eventMessage != "" || subEvent.itemEvent.eventMessage != null) 
-            {
-                PlayTextEvent(subEvent.itemEvent.eventMessage);
-            }
+            //if (subEvent.itemEvent.eventMessage != "" || subEvent.itemEvent.eventMessage != null) 
+            //{
+            //    PlayTextEvent(subEvent.itemEvent.eventMessage);
+            //}
 
             if (!isRandom)
             {
@@ -332,7 +337,27 @@ public class ExplorationEvents : Exploration
 
             //print("Combat");
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// RecipeEvent
+        //------------------------------------------------------------------------------------------
+        [System.Serializable]
+        public class RecipeEvent
+        {
+            [Tooltip("Recipe to learn")]
+            public CraftingRecipe recipe;
+
+            public Timer timer = new Timer();
+        }
+        //------------------------------------------------------------------------------------------
+        public void PlayRecipeEvent(ExploreSubEvent subEvent)
+        {
+            Inventory.AddRecipeToMachines(subEvent.recipeEvent.recipe);
+
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //------------------------------------------------------------------------------------------
+
+
     }
     private void TakeDamage(float damage, Character character)
     {
@@ -361,7 +386,7 @@ public class ExplorationEvents : Exploration
     [System.Serializable]
     public class ExploreSubEvent
     {
-        public enum eventTypes { Text, Item, Damage, Combat };
+        public enum eventTypes { Text, Item, Damage, Combat, Recipe, Sickness, Diary, Character };
         public eventTypes eventType;
 
         public enum enemyFactions { Scavengers, Mutated_dogs, Radioactive_lobsters };
@@ -371,6 +396,7 @@ public class ExplorationEvents : Exploration
         public ExploreEventTypes.ItemEvent itemEvent;
         public ExploreEventTypes.DamageEvent damageEvent;
         public ExploreEventTypes.CombatEvent combatEvent;
+        public ExploreEventTypes.RecipeEvent recipeEvent;
     }
     
 }

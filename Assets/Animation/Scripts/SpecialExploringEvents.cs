@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UIElements;
+using UnityEngine;
+using TMPro;
+
+public class SpecialExploringEvents : MonoBehaviour
+{
+    [SerializeField] private GameObject eventPanel;
+    [SerializeField] private TextMeshProUGUI eventPanelText;
+    [SerializeField] private string eventName;
+
+    void Start()
+    {
+        eventPanel.SetActive(false);
+    }
+
+    public void ShowSpecialEvent(string eventText)
+    {
+        Time.timeScale = 0; /*Det här fungerar inte optimalt så jag vet inte om vi borde ha det här eller inte*/
+        string editedText = eventText.Replace("name", eventName).Replace("Name", eventName);
+        eventPanelText.text = editedText;
+        eventPanel.SetActive(true);
+    }
+
+    public void UnpauseGame()
+    {
+        Time.timeScale = 1;
+    }
+}

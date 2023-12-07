@@ -3510,8 +3510,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 262112923}
+  - component: {fileID: 262112924}
   m_Layer: 0
-  m_Name: Events?
+  m_Name: SpecialEventHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3532,6 +3533,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262112924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262112922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e7d0ebd675cd344ab5cd459ccb8e90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventPanel: {fileID: 1060605241}
+  eventPanelText: {fileID: 1230500662}
+  eventName: Micke
 --- !u!1001 &263283672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7084,7 +7100,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 395.63235, y: -222.36139}
-  m_SizeDelta: {x: 300, y: 200}
+  m_SizeDelta: {x: 400, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &515367772
 MonoBehaviour:
@@ -14933,7 +14949,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1060605242
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16514,6 +16530,57 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: "Name searches for supplies in the forest and loses track of
+          time. They don\u2019t notice when dark clouds slowly fill the sky. A storm
+          is brewing. When the rain starts to pour it\u2019s already too late: name
+          won\u2019t be able to get home in time. To survive, name has to build a
+          shelter where they can hide from the storm. Luckily, they find a tarp stuck
+          in a tree, but it needs to be cut down. Name manages to construct a knife
+          from some leather and a piece of metal they found earlier today. The night
+          is rough, but name survives and returns home with new knowledge and a cold."
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
+          maxLootQuantity: 6
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 5ddd8d6173761f24996dfdf5a72ae665, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
     eventProbability: 100
     timer:
       timeUnit: 0
@@ -16557,7 +16624,12 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         combatLoot: []
-    - eventType: 1
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
       textEvent:
         eventMessage: "Jag \xE4r event 2!!!!!!!"
         timer:
@@ -16591,6 +16663,11 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 34218deb45fb84a45a12e86cfaef3d92, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
     eventProbability: 100
     timer:
       timeUnit: 0
@@ -16633,23 +16710,19 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         combatLoot: []
-    eventProbability: 100
-    timer:
-      timeUnit: 0
-      ammount: 0
-  - eventName: House with people
-    replaceDefaultExplore: 0
-    subEvent:
-    - eventType: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
       textEvent:
-        eventMessage: "Name finds a house that looks fairly intact and thinks they
-          might find some useful stuff in there. They try the door and are surprised
-          to find it locked. Scared that there might be people inside, name decides
-          to walk away, but accidentally steps on a string attached to some cans.
-          A booby trap! People sprint out of the door and attack name. WIN -> Name
-          defeats the group and is now able to explore the house. There isn\u2019t
-          really anything of value there, but they do find a diary entry in a drawer.
-          LOSE -> Name is severely injured and barely escapes."
+        eventMessage: "It\u2019s an unusually hot day and name finds cover from the
+          sun in a bus shelter. After a while, another person stumbles into the shade,
+          clearly dehydrated. Name offers some water and the person happily accepts.
+          When they feel a little bit stronger, they tell name about an old recipe
+          their grandmother used to make before all this, \u201Csmall pancakes\u201D.
+          Should name ask them to join the household?"
         timer:
           timeUnit: 0
           ammount: 0
@@ -16677,6 +16750,57 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 75e533ce39f887d4380fe0e903a60306, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 100
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: House with people
+    replaceDefaultExplore: 0
+    subEvent:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name finds a house that looks fairly intact and thinks they
+          might find some useful stuff in there. They try the door and are surprised
+          to find it locked. Scared that there might be people inside, name decides
+          to walk away, but accidentally steps on a string attached to some cans.
+          A booby trap! People sprint out of the door and attack name.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
     eventProbability: 100
     timer:
       timeUnit: 0
@@ -16719,6 +16843,99 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: "As name walks down the street, they are struck by a foul smell.
+          They see a dead body in a ditch a few steps away. The body is rotten, but
+          the leather jacket the corpse is wearing looks as good as new. Name carefully
+          slips the jacket off the body and puts it on. It feels quite sturdy. Name
+          puts their hands in the pockets and finds a piece of paper in one of them.
+          It\u2019s another diary entry!"
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: a1948912334abc94b858624fd6f3ec65, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: "As name walks down the street, they are struck by a foul smell.
+          They see a dead body in a ditch a few steps away. The body is rotten, but
+          the leather jacket the corpse is wearing looks as good as new. Name carefully
+          slips the jacket off the body and puts it on. It feels quite sturdy. Name
+          puts their hands in the pockets and finds a piece of paper in one of them.
+          It\u2019s another diary entry!"
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: a1948912334abc94b858624fd6f3ec65, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 60a1c6886ce573140bcc92c5f9cb3f20, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
     eventProbability: 100
     timer:
       timeUnit: 0
@@ -16758,6 +16975,93 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: "Name stumbles upon an abandoned clothing store. Among the
+          racks they find a pair of very fashionable shorts and can\u2019t help but
+          take them. "
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: 6fc9023bd6e0626469311856a86c7a79, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: "Name stumbles upon an abandoned clothing store. Among the
+          racks they find a pair of very fashionable shorts and can\u2019t help but
+          take them. "
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: 6fc9023bd6e0626469311856a86c7a79, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 6f5b22174bb0acb40b8c0aa81d3853a0, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
     eventProbability: 100
     timer:
       timeUnit: 0
@@ -16800,6 +17104,54 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 100
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: Axe bandits
+    replaceDefaultExplore: 0
+    subEvent:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name is on their way home when they are suddenly face to face
+          with some mean looking bandits with axes in their hands.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
     eventProbability: 100
     timer:
       timeUnit: 0
@@ -16844,6 +17196,53 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: "Name is picking berries in the forest when a growl interrupts
+          them. A large bear is coming towards name! Name realizes they won\u2019t
+          have a chance against the ferocious animal. Suddenly, a shadow attacks
+          the bear from the side with a battle cry. After a few minutes of struggle,
+          the beast is dead. The savior turns out to be a man named James. He suggests
+          that name put on some better armor next time they venture into the woods.
+          James teaches name how to make his favorite piece of clothing: trekking
+          trousers."
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: b43bed97aefaaac43bfa5431690bb28c, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
     eventProbability: 100
     timer:
       timeUnit: 0
@@ -16882,6 +17281,47 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: Name explores an empty house. They find an old recipe for meat
+          pie and a diary entry.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 708f9fb3f007ceb4daa14d5f1a51a06d, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
     eventProbability: 100
     timer:
       timeUnit: 0
@@ -17365,12 +17805,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 13
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 20
+  m_fontSizeMin: 10
+  m_fontSizeMax: 13
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -18658,6 +19098,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 262112924}
+        m_TargetAssemblyTypeName: SpecialExploringEvents, Assembly-CSharp
+        m_MethodName: UnpauseGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
-  m_Name: Knife
+  m_Name: Plastic
   m_EditorClassIdentifier: 
-  ID: 010016
-  DisplayName: kNOIFE
-  Description: Description
-  Icon: {fileID: 21300000, guid: 4b40d405bc67afb4e8856d9e7c7db250, type: 3}
-  SortingType: 0
+  ID: 01015
+  DisplayName: Plastic
+  Description: A remnant from the old days.
+  Icon: {fileID: 21300000, guid: afb918d061ee8674ea1f9e7394782bfc, type: 3}
+  SortingType: 1
   lootProbabilityOverride: 0

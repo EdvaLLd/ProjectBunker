@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
-  m_Name: Knife
+  m_Script: {fileID: 11500000, guid: 38f1d8a626bbc3a48855296d1404db38, type: 3}
+  m_Name: SmallPancakes
   m_EditorClassIdentifier: 
-  ID: 010016
-  DisplayName: kNOIFE
-  Description: Description
-  Icon: {fileID: 21300000, guid: 4b40d405bc67afb4e8856d9e7c7db250, type: 3}
-  SortingType: 0
+  ID: 04002
+  DisplayName: Small pancakes
+  Description: Tiny and tasy.
+  Icon: {fileID: 21300000, guid: add597862c856d3428ce4dc754f38aea, type: 3}
+  SortingType: 2
   lootProbabilityOverride: 0
+  hungerRestoration: 100
