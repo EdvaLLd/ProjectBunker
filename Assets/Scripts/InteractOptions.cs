@@ -81,7 +81,8 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
         //kryssprodukt simplifierad om man alltid har vektorerna dir och (1,0,0)
         dir = new Vector3(0, dir.z, dir.y);
         if (dir.y <= 0) dir = -dir;
-        Vector3 pos = obj.GetComponent<BoxCollider>().ClosestPointOnBounds(obj.transform.position + dir*1000) - dir.normalized/10;
+        print(dir);
+        Vector3 pos = obj.GetComponent<BoxCollider>().ClosestPointOnBounds(obj.transform.position + dir*1000) - dir.normalized / 10;
         transform.position = Camera.main.WorldToScreenPoint(pos); 
     }
 

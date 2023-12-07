@@ -71,7 +71,7 @@ public class CraftingWindow : MonoBehaviour
             GameObject t;
             t = Instantiate(recipePrefab, recipeList.transform);
             t.transform.GetChild(0).GetComponent<Image>().sprite = recipe.itemCrafted.Icon;
-            t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = recipe.itemCrafted.DisplayName;
+            t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = recipe.itemCrafted.DisplayName + " .";
             int timeConvertedSec = recipe.craftingTime % 60;
             int timeConvertedMin = recipe.craftingTime / 60;
             string finalTime = "";

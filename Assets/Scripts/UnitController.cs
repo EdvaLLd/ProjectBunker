@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using TMPro;
 
 [Serializable]
 public class SelectionVisibilityModifier
@@ -43,6 +44,9 @@ public class UnitController : MonoBehaviour
 
     static GameObject characterStatsWindowStatic;
 
+    //namn på karaktärerna
+    static TextMeshProUGUI characterName;
+
 
     [SerializeField]
     CraftingRecipe[] recipes;
@@ -53,6 +57,7 @@ public class UnitController : MonoBehaviour
     {
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
+        characterName = GameObject.FindGameObjectWithTag("CharacterName").GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -201,6 +206,7 @@ public class UnitController : MonoBehaviour
             characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().SetUp(selectedCharacter);
             characterStatsWindowStatic.SetActive(true);
             characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideUpTrigger");
+            characterName.text = selectedCharacter.name;
         }
     }
 
