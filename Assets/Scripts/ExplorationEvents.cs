@@ -66,6 +66,10 @@ public class ExplorationEvents : Exploration
                         subEvent.recipeEvent.timer.CountDown();
                         PlayRecipeEvent(subEvent);
                         break;
+                    case (ExploreSubEvent.eventTypes.Character):
+                        subEvent.recipeEvent.timer.CountDown();
+                        PlayCharacterEvent();
+                        break;
 
                     default:
                         break;
@@ -354,6 +358,21 @@ public class ExplorationEvents : Exploration
 
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// CharacterEvent
+        //------------------------------------------------------------------------------------------
+
+        //------------------------------------------------------------------------------------------
+        [System.Serializable]
+        public class CharacterEvent
+        {
+            public Timer timer = new Timer();
+        }
+        public void PlayCharacterEvent()
+        {
+            FindObjectOfType<SpecialExploringEvents>().ShowCharacterChoice();
+
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //------------------------------------------------------------------------------------------
 
@@ -397,6 +416,7 @@ public class ExplorationEvents : Exploration
         public ExploreEventTypes.DamageEvent damageEvent;
         public ExploreEventTypes.CombatEvent combatEvent;
         public ExploreEventTypes.RecipeEvent recipeEvent;
+        public ExploreEventTypes.CharacterEvent characterEvent;
     }
     
 }

@@ -17,50 +17,52 @@ public class PartsChanger : MonoBehaviour
         new int[] {0, 1, 2 }, new int[] {18, 19, 16 }, new int[] {17, 20 }, new int[] {11} };
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         resolvers = GetComponentsInChildren<SpriteResolver>();
-        bodyPartCollection = RandomizeCharacter();
+        //bodyPartCollection = RandomizeArr();
         ponytail.GetComponent<LineRenderer>().enabled = false;
 
         //Jag fattar verkligen inte varför, men om man inte väntar lite efter start med SetUpCharacter så är det några munnar och ögon som inte byter sprite.
         //Det borde verkligen funka, men av någon vill den inte gå med på det. 
-        StartCoroutine(ChillOut());
+        //StartCoroutine(ChillOut());
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            bodyPartCollection = RandomizeCharacter();
+            bodyPartCollection = RandomizeArr();
             SetUpCharacter();
         }
     }
 
-    private void ChangePants(int version)
+    public void ChangePants(int version)
     {
         ChangeVersionOnCollection(4, version);
         bodyPartCollection[4] = version;
     }
 
-    private void ChangeShirt(int version)
+    public void ChangeShirt(int version)
     {
         ChangeVersionOnCollection(1, version);
         bodyPartCollection[1] = version;
     }
 
-    private void ChangeShoes(int version)
+    public void ChangeShoes(int version)
     {
         ChangeVersionOnCollection(5, version);
         bodyPartCollection[5] = version;
     }
 
-    private void ChangeAPart(int bodyPart, int version)
+    
+    public void RandomizeCharacter()
     {
-        resolvers[bodyPart].SetCategoryAndLabel(resolvers[bodyPart].GetCategory(), "Entry_" + version);
+        bodyPartCollection = RandomizeArr();
+        SetUpCharacter();
     }
 
-    private void SetUpCharacter()
+    public void SetUpCharacter()
     {
         for(int i = 0; i < bodyParts.Length; i++)
         {
@@ -84,7 +86,7 @@ public class PartsChanger : MonoBehaviour
         }
     }
 
-    private int[] RandomizeCharacter()
+    private int[] RandomizeArr()
     {
         int[] rndArr = new int[7];
         for(int i = 0;  i < 7; i++)
@@ -92,6 +94,11 @@ public class PartsChanger : MonoBehaviour
             rndArr[i] = Random.Range(0, amountOfVersions);
         }
         return rndArr;
+    }
+
+    private void ChangeAPart(int bodyPart, int version)
+    {
+        resolvers[bodyPart].SetCategoryAndLabel(resolvers[bodyPart].GetCategory(), "Entry_" + version);
     }
 
     private IEnumerator ChillOut()
