@@ -16806,22 +16806,22 @@ MonoBehaviour:
   difficulty: 0
   locationalLoot:
   - lootItems:
-    - lootItem: {fileID: 0}
+    - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
       maxLootQuantity: 0
       minLootQuantity: 0
       lootProbability: 75
   - lootItems:
-    - lootItem: {fileID: 0}
+    - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
       maxLootQuantity: 0
       minLootQuantity: 0
       lootProbability: 75
   - lootItems:
-    - lootItem: {fileID: 0}
+    - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
       maxLootQuantity: 0
       minLootQuantity: 0
       lootProbability: 75
   - lootItems:
-    - lootItem: {fileID: 0}
+    - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
       maxLootQuantity: 0
       minLootQuantity: 0
       lootProbability: 75
