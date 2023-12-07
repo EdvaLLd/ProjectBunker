@@ -16806,25 +16806,57 @@ MonoBehaviour:
   difficulty: 0
   locationalLoot:
   - lootItems:
-    - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
-      maxLootQuantity: 0
-      minLootQuantity: 0
-      lootProbability: 75
+    - lootItem: {fileID: 11400000, guid: 3d2cfa5e6b026e64e8fdee8dc421c72f, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
+    - lootItem: {fileID: 11400000, guid: 173d677b5b788b7478da1b139c843cd0, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
+    - lootItem: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+      maxLootQuantity: 1
+      minLootQuantity: 1
+      lootProbability: 25
   - lootItems:
     - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
-      maxLootQuantity: 0
-      minLootQuantity: 0
-      lootProbability: 75
+      maxLootQuantity: 2
+      minLootQuantity: 1
+      lootProbability: 30
+    - lootItem: {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
+    - lootItem: {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
+  - lootItems:
+    - lootItem: {fileID: 11400000, guid: 9571247f75639d14a87f2b5efb1f6f32, type: 2}
+      maxLootQuantity: 2
+      minLootQuantity: 1
+      lootProbability: 30
+    - lootItem: {fileID: 11400000, guid: 3d2cfa5e6b026e64e8fdee8dc421c72f, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
+    - lootItem: {fileID: 11400000, guid: 173d677b5b788b7478da1b139c843cd0, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
   - lootItems:
     - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
-      maxLootQuantity: 0
-      minLootQuantity: 0
+      maxLootQuantity: 1
+      minLootQuantity: 1
       lootProbability: 75
-  - lootItems:
-    - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
-      maxLootQuantity: 0
-      minLootQuantity: 0
-      lootProbability: 75
+    - lootItem: {fileID: 11400000, guid: 726a1189cb4ed3c4ab5b8a6228b247b3, type: 2}
+      maxLootQuantity: 2
+      minLootQuantity: 1
+      lootProbability: 30
+    - lootItem: {fileID: 11400000, guid: 5727eaa8ebf6d8940a28fbeb5dead961, type: 2}
+      maxLootQuantity: 2
+      minLootQuantity: 1
+      lootProbability: 30
   mainExploreEvents:
   - eventName: Knife storm
     replaceDefaultExplore: 0
@@ -16925,7 +16957,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 0
+    eventProbability: 20
     timer:
       timeUnit: 0
       ammount: 0
@@ -17202,7 +17234,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 20
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -17303,7 +17335,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 20
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -17450,7 +17482,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 20
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -17588,7 +17620,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 20
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -17695,7 +17727,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 20
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -17834,7 +17866,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 20
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -17933,7 +17965,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 20
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -18020,7 +18052,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 20
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -18116,7 +18148,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 50
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -18211,7 +18243,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 50
+    eventProbability: 20
     timer:
       timeUnit: 0
       ammount: 0
@@ -18354,7 +18386,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 100
+    eventProbability: 5
     timer:
       timeUnit: 0
       ammount: 0
