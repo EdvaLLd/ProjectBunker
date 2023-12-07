@@ -47,9 +47,14 @@ public class Character : MonoBehaviour
     bool createNewPath = false;
     Vector3 newGoalPos;
 
-
+    public string characterName;
 
     private CharacterAnimation characterAnim;
+
+    private void Awake() 
+    {
+        characterName = SetCharacterName(FindObjectOfType<GameManager>().characterNames);
+    }
 
     private void Start()
     {
@@ -58,6 +63,12 @@ public class Character : MonoBehaviour
 
         gearEquipped = new EqippedGearSet();
         characterAnim = GetComponentInChildren<CharacterAnimation>();
+    }
+
+    private string SetCharacterName(string[] names)
+    {
+        int randomNameIndex = UnityEngine.Random.Range(0, Mathf.Clamp(names.Length, 0, names.Length - 1));
+        return names[randomNameIndex];
     }
 
     public void EquipGear(Equipment piece)

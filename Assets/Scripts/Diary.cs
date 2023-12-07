@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Diary : MonoBehaviour
+[System.Serializable]
+public class Diary
 {
-    List<string> DiaryEntries;
+    public List<string> diaryEntries;
 }

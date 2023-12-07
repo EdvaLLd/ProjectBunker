@@ -11,15 +11,19 @@ public class ExplorationEvents : Exploration
         public void LinnearEventSequence()
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-            
-            
-            
-            if (!MainEventsIsEmpty(gameManager.mainExploreEvents)) 
+            if (MainEventsIsEmpty(gameManager.mainExploreEvents)) 
             {
+                return;
+            }
+
+            if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
+            {
+                //if (!MainEventsIsEmpty(gameManager.mainExploreEvents)) 
+                //{
                 float eventRandom = Random.Range(0, 100);
                 float probability = gameManager.mainExploreEvents[GameManager.eventIndex].eventProbability;
 
-                executedEvent = true;
+                //executedEvent = true;
 
                 if (eventRandom <= 100 - probability && eventRandom != 100) 
                 {
@@ -42,7 +46,9 @@ public class ExplorationEvents : Exploration
                 {
                     GameManager.eventIndex++;
                 }
+                //}
             }
+            
         }
 
         private bool MainEventsIsEmpty(ExploreEvent[] mainEvents)
@@ -389,7 +395,7 @@ public class ExplorationEvents : Exploration
     [System.Serializable]
     public class ExploreSubEvent
     {
-        public enum eventTypes { Text, Item, Damage, Combat };
+        public enum eventTypes { Text, Item, Damage, Combat, Diary };
         public eventTypes eventType;
 
         public enum enemyFactions { Scavengers, Mutated_dogs, Radioactive_lobsters };

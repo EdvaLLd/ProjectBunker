@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,12 +37,38 @@ public class GameManager : MonoBehaviour
 
     [Tooltip("0=Lake, 1=City, 2=Factory, 3=Forest"), NonReorderable]
     public Looting.LocationLootItems[] locationalLoot = new Looting.LocationLootItems[System.Enum.GetNames(typeof(Locations.Location.environments)).Length - 1];
-    
+
+    private Diary gameDiary = new Diary();
+    public List<string> gameDiaryEntries;
 
     [Header("Events")]
     public static int eventIndex = 0;
 
     public ExplorationEvents.ExploreEvent[] mainExploreEvents;
+
+    [Header("Characters")]
+    public string[] characterNames =
+    {
+        "Gonzalez",
+        "John",
+        "Emily",
+        "Michael",
+        "Sarah",
+        "David",
+        "Awe",
+        "Jessica",
+        "Matthew",
+        "Amanda",
+        "Christopher",
+        "Elizabeth",
+        "Emma",
+        "Edvard",
+        "Ella",
+        "Cassandra",
+        "Alexander",
+        "Thomas",
+        "Patricia",
+    };
 
     private void Awake()
     {
@@ -51,16 +78,36 @@ public class GameManager : MonoBehaviour
         /*sun = GameObject.Find("Sun");
         moon = GameObject.Find("Moon");*/
         explorableLocations = Locations.SetExplorableLocations();
+
+        gameDiaryEntries = gameDiary.diaryEntries;
     }
 
     private void Update()
     {
         skyboxManager.DayAndNightCycle(skyboxManager.cycleRate);
+        DigitalClock();
     }
 
-    /*private void Start()
+    private void DigitalClock() 
     {
-    }*/
+        SkyboxController skyboxManager = GameObject.FindObjectOfType<SkyboxController>();
+       
+       
+
+        string displayTime = Mathf.FloorToInt(hour).ToString("00") + ":" + Mathf.FloorToInt(minute).ToString("00");
+
+        GameObject.Find("DayTimeStamp").transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = displayTime;
+    }
+
+    private float GetMinutes(SkyboxController skyboxManager)
+    {
+        return (skyboxManager.dayNightValue * 60*60);
+    }
+
+    private float GetHours(SkyboxController skyboxManager) 
+    {
+
+    }
 
     public static Locations.Location[] GetExplorableLocations() 
     {
