@@ -8,6 +8,7 @@ public class TextLog : MonoBehaviour
     static GameObject logHolder;
     [SerializeField]
     GameObject logGO;
+    
 
     static GameObject logGoStatic;
 
@@ -24,7 +25,16 @@ public class TextLog : MonoBehaviour
         {
             GameObject item = logs[i];
             Color newColor = item.GetComponent<TextMeshProUGUI>().color;
-            newColor.a -= .1f * Time.deltaTime;
+            if (newColor.a > 0.9f) 
+            {
+
+                newColor.a -= 0.03f * Time.deltaTime;
+
+            } else
+            {
+                newColor.a -= .1f * Time.deltaTime;
+            }
+            
             if (newColor.a < 0.5f)
             {
                 logs.RemoveAt(i);

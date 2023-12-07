@@ -14,6 +14,9 @@ TagManager:
   - ClearMistBtn
   - DangerTxt
   - HoverWindow
+  - Canvas
+  - Character
+  - CharacterName
   layers:
   - Default
   - TransparentFX
@@ -22,8 +25,8 @@ TagManager:
   - Water
   - UI
   - Rooms
-  - 
-  - 
+  - UIParticles
+  - BG
   - 
   - 
   - 

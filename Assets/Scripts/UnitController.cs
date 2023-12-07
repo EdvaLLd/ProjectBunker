@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using TMPro;
 
 [Serializable]
 public class SelectionVisibilityModifier
@@ -49,10 +50,17 @@ public class UnitController : MonoBehaviour
     [SerializeField]
     RecipeSlot[] items;
 
+    static List<Character> allCharacters = new List<Character>();
+
+
+    //namn på karaktärerna
+    static TextMeshProUGUI characterName;
+
     private void Awake()
     {
         uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
+        characterName = GameObject.FindGameObjectWithTag("CharacterName").GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -63,7 +71,15 @@ public class UnitController : MonoBehaviour
         Character.onTaskCompletion += TaskCompleted;
 
 
-
+        GameObject[] c = GameObject.FindGameObjectsWithTag("Character");
+        foreach (GameObject ch in c)
+        {
+            Character character;
+            if(ch.TryGetComponent(out character))
+            {
+                allCharacters.Add(character);
+            }
+        }
 
         characterStatsWindowStatic.SetActive(false);
 
@@ -104,14 +120,34 @@ public class UnitController : MonoBehaviour
         {
             Inventory.AddItem(Database.GetItemWithID("01002")); //leather
         }
+
         if (selectedCharacter != null)
         {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                selectedCharacter.AddDesease<Flu>();
+            }
             UpdateCharacterStatsUI();
             if (Input.GetMouseButtonDown(1))
             {
                 selectedCharacter.MoveToPos(HelperMethods.CursorToWorldCoord());
             }
         }
+    }
+
+    public static void AddCharacter(Character c)
+    {
+        allCharacters.Add(c);
+    }
+
+    public static void RemoveCharacter(Character c)
+    {
+        if(allCharacters.Contains(c)) allCharacters.Remove(c);
+    }
+
+    public static List<Character> GetCharacters()
+    {
+        return allCharacters;
     }
     void UpdateCharacterStatsUI()
     {
@@ -201,6 +237,7 @@ public class UnitController : MonoBehaviour
             characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().SetUp(selectedCharacter);
             characterStatsWindowStatic.SetActive(true);
             characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideUpTrigger");
+            characterName.text = selectedCharacter.name;
         }
     }
 
@@ -214,7 +251,7 @@ public class UnitController : MonoBehaviour
         {
             //character.transform.GetChild(1).GetComponent<MeshRenderer>().material = unSelectedModifier.material;
         }*/
-        character.transform.GetChild(1).GetComponent<MeshRenderer>().enabled = isSelected;
+        character.transform.GetChild(1).gameObject.SetActive(isSelected);
     }
 
     public static Character GetSelectedCharacter()

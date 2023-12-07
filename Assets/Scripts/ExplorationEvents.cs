@@ -10,13 +10,13 @@ public class ExplorationEvents : Exploration
     {
         public void LinnearEventSequence()
         {
-            
+
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-            
+
             float eventRandom = Random.Range(0, 100);
             float probability = gameManager.mainExploreEvents[GameManager.eventIndex].eventProbability;
 
-            if (eventRandom <= 100 - probability && eventRandom != 100) 
+            if (eventRandom <= 100 - probability && eventRandom != 100)
             {
                 print("cancel");
                 return;
@@ -34,7 +34,7 @@ public class ExplorationEvents : Exploration
             {
                 GameManager.eventIndex++;
             }
-            
+
             print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex - 1].eventName);
         }
 
@@ -102,7 +102,7 @@ public class ExplorationEvents : Exploration
                 }
             }
         }
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// TextEvent    
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// TextEvent
         //------------------------------------------------------------------------------------------
         [System.Serializable]
         public class TextEvent
@@ -123,8 +123,8 @@ public class ExplorationEvents : Exploration
                 FindObjectOfType<SpecialExploringEvents>().ShowSpecialEvent(message);
             }
         }
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// ItemEvent    
-        //------------------------------------------------------------------------------------------        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// ItemEvent
+        //------------------------------------------------------------------------------------------
         [System.Serializable]
         public class ItemEvent
         {
@@ -150,7 +150,7 @@ public class ExplorationEvents : Exploration
             //GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
             bool isAdding = subEvent.itemEvent.addOrSubtract;
 
-            //if (subEvent.itemEvent.eventMessage != "" || subEvent.itemEvent.eventMessage != null) 
+            //if (subEvent.itemEvent.eventMessage != "" || subEvent.itemEvent.eventMessage != null)
             //{
             //    PlayTextEvent(subEvent.itemEvent.eventMessage);
             //}
@@ -190,7 +190,7 @@ public class ExplorationEvents : Exploration
 
                 }
             }
-            else 
+            else
             {
                 int randomIndex = Random.Range(0, subEvent.itemEvent.loot.Length-1);
                 Item item = subEvent.itemEvent.loot[randomIndex].lootItem;
@@ -250,7 +250,7 @@ public class ExplorationEvents : Exploration
 
                 }
             }
-            else 
+            else
             {
                 int randomIndex = Random.Range(0, itemArray.Length - 1);
                 Item item = itemArray[randomIndex].lootItem;
@@ -277,7 +277,7 @@ public class ExplorationEvents : Exploration
         {
             [Tooltip("Damage recieved during damage event.")]
             public int damageRecieved;
-            
+
             public Timer timer = new Timer();
         }
         //------------------------------------------------------------------------------------------
@@ -337,14 +337,14 @@ public class ExplorationEvents : Exploration
             }
 
             //string faction = System.Enum.GetName(typeof(ExploreSubEvent.enemyFactions), subEvent.combatEvent.enemyFaction);
-            //print(faction);                
+            //print(faction);
 
             TextLog.AddLog(character.name + " engaged hostile " + faction + " in combat!");
             if (randomRecievied <= 0 && randomDealt <= 0)
             {
                 TextLog.AddLog("Neither side sustained any casulties and fled.");
             }
-            if (randomDealt > 0) 
+            if (randomDealt > 0)
             {
                 TextLog.AddLog(character.name + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.");
             }
@@ -356,13 +356,13 @@ public class ExplorationEvents : Exploration
                     TextLog.AddLog(character.name + " was slained in battle by the " + faction + ".");
                     //PlayLootItemLoopEvent(false, true, subEvent.combatEvent.combatLoot);
                 }
-                else 
+                else
                 {
                     TextLog.AddLog("Enemy " + faction + " cowardly fled from battle.");
                     TextLog.AddLog(character.name + " took " + randomRecievied + " damage from the enemy " + faction + " but lives to fight another day.");
                     PlayLootItemLoopEvent(true, true, subEvent.combatEvent.combatLoot);
                 }
-                
+
             }
 
             //print("Combat");
@@ -423,7 +423,7 @@ public class ExplorationEvents : Exploration
     {
         public string eventName;
         public bool replaceDefaultExplore = true;
-        public List<ExploreSubEvent> subEvent;
+        public List<ExploreSubEvent> subEvents;
         public float eventProbability = 10;
         public Timer timer;
     }
@@ -444,5 +444,5 @@ public class ExplorationEvents : Exploration
         public ExploreEventTypes.RecipeEvent recipeEvent;
         public ExploreEventTypes.CharacterEvent characterEvent;
     }
-    
+
 }
