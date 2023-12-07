@@ -10,7 +10,7 @@ public class ExplorationEvents : Exploration
     {
         public void LinnearEventSequence()
         {
-            executedEvent = true;
+            
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
             
             float eventRandom = Random.Range(0, 100);
@@ -21,6 +21,8 @@ public class ExplorationEvents : Exploration
                 print("cancel");
                 return;
             }
+
+            executedEvent = true;
 
             print("started event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
 

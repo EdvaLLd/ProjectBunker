@@ -57,6 +57,7 @@ public class Exploration : MonoBehaviour
         yield return new WaitForSeconds(timeToWait * 3/4);
 
         mainEvents.LinnearEventSequence();
+        Debug.Log(executedEvent);
 
         yield return new WaitForSeconds(timeToWait * 1/4);
 
