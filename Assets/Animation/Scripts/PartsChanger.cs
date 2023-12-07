@@ -20,12 +20,7 @@ public class PartsChanger : MonoBehaviour
     void Awake()
     {
         resolvers = GetComponentsInChildren<SpriteResolver>();
-        //bodyPartCollection = RandomizeArr();
         ponytail.GetComponent<LineRenderer>().enabled = false;
-
-        //Jag fattar verkligen inte varför, men om man inte väntar lite efter start med SetUpCharacter så är det några munnar och ögon som inte byter sprite.
-        //Det borde verkligen funka, men av någon vill den inte gå med på det. 
-        //StartCoroutine(ChillOut());
     }
 
     void Update()
@@ -99,11 +94,5 @@ public class PartsChanger : MonoBehaviour
     private void ChangeAPart(int bodyPart, int version)
     {
         resolvers[bodyPart].SetCategoryAndLabel(resolvers[bodyPart].GetCategory(), "Entry_" + version);
-    }
-
-    private IEnumerator ChillOut()
-    {
-        yield return new WaitForSeconds(0.1f);
-        SetUpCharacter();
     }
 }

@@ -5676,6 +5676,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 262112924}
+        m_TargetAssemblyTypeName: SpecialExploringEvents, Assembly-CSharp
+        m_MethodName: UnpauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 180641865}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -5703,18 +5715,6 @@ MonoBehaviour:
       - m_Target: {fileID: 262112924}
         m_TargetAssemblyTypeName: SpecialExploringEvents, Assembly-CSharp
         m_MethodName: CreateNewCharacter
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 262112924}
-        m_TargetAssemblyTypeName: SpecialExploringEvents, Assembly-CSharp
-        m_MethodName: UnpauseGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16925,7 +16925,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 30
+    eventProbability: 0
     timer:
       timeUnit: 0
       ammount: 0
@@ -18068,7 +18068,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    - eventType: 0
+    - eventType: 3
       textEvent:
         eventMessage: Name is suddenly attacked by two-headed foxes when they are
           foraging in the forest.
@@ -18093,6 +18093,244 @@ MonoBehaviour:
         maxDamageDealt: 50
         minDamageDealt: 10
         maxDamageRecieved: 50
+        minDamageRecieved: 10
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot:
+        - lootItem: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 70
+        - lootItem: {fileID: 11400000, guid: ba8b50297c55f7f42a43387a9e65a1a5, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 100
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 50
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: Animal attack 2
+    replaceDefaultExplore: 0
+    subEvent:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name is suddenly attacked by giant insects when they are foraging
+          in the forest.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 3
+      textEvent:
+        eventMessage: Name is suddenly attacked by two-headed foxes when they are
+          foraging in the forest.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 4
+        maxDamageDealt: 30
+        minDamageDealt: 10
+        maxDamageRecieved: 30
+        minDamageRecieved: 10
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot:
+        - lootItem: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 70
+        - lootItem: {fileID: 11400000, guid: ba8b50297c55f7f42a43387a9e65a1a5, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 100
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 50
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: Save person
+    replaceDefaultExplore: 0
+    subEvent:
+    - eventType: 0
+      textEvent:
+        eventMessage: 'Name sees a person getting attacked by a pack of feral dogs
+          and decide to help them. '
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 3
+      textEvent:
+        eventMessage: Name is suddenly attacked by two-headed foxes when they are
+          foraging in the forest.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 1
+        maxDamageDealt: 40
+        minDamageDealt: 10
+        maxDamageRecieved: 40
+        minDamageRecieved: 10
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot:
+        - lootItem: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 70
+        - lootItem: {fileID: 11400000, guid: ba8b50297c55f7f42a43387a9e65a1a5, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 100
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 7
+      textEvent:
+        eventMessage: Name is suddenly attacked by two-headed foxes when they are
+          foraging in the forest.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 1
+        maxDamageDealt: 40
+        minDamageDealt: 10
+        maxDamageRecieved: 40
         minDamageRecieved: 10
         combatEventMessage: 
         timer:

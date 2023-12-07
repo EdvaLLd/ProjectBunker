@@ -28,7 +28,7 @@ public class ExplorationEvents : Exploration
 
             gameManager.mainExploreEvents[GameManager.eventIndex].timer.CountDown();
 
-            SubEventSequence();
+            SubEventSequence(gameManager.mainExploreEvents[GameManager.eventIndex]);
 
             if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
             {
@@ -38,20 +38,37 @@ public class ExplorationEvents : Exploration
             print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex - 1].eventName);
         }
 
-        //public void RandomSpecialEvent()
-        //{
-        //    Debug.Log("Yay, I am in the right place!");
-        //    GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-        //    Debug.Log(gameManager.randomExploreEvents[0].eventName);
-        //}
+        public void RandomSpecialEvent()
+        {
+            GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
 
-        private void SubEventSequence()
+            //ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, gameManager.randomExploreEvents.Length)];
+            ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[2];
+            float eventRandom = Random.Range(0, 100);
+            float probability = randomEvent.eventProbability;
+
+            if (eventRandom <= 100 - probability)
+            {
+                Debug.Log("no random" + eventRandom);
+                return;
+            }
+
+            executedEvent = true;
+
+            randomEvent.timer.CountDown();
+
+            SubEventSequence(randomEvent);
+
+            print("ended event named: " + randomEvent.eventName);
+        }
+
+        private void SubEventSequence(ExplorationEvents.ExploreEvent exploreEvent)
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
             //int subEventLength = GameManager.explorationEvents[GameManager.eventIndex].subEvent.Count;
-            for (int subEventIndex = 0; subEventIndex < gameManager.mainExploreEvents[GameManager.eventIndex].subEvent.Count/*Mathf.Clamp(subEventLength, 0,subEventLength)*/; subEventIndex++)
+            for (int subEventIndex = 0; subEventIndex < exploreEvent.subEvent.Count/*Mathf.Clamp(subEventLength, 0,subEventLength)*/; subEventIndex++)
             {
-                ExploreSubEvent subEvent = gameManager.mainExploreEvents[GameManager.eventIndex].subEvent[subEventIndex];
+                ExploreSubEvent subEvent = exploreEvent.subEvent[subEventIndex];
                 switch (subEvent.eventType)
                 {
                     case (ExploreSubEvent.eventTypes.Text):
