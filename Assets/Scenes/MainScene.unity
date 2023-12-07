@@ -6248,7 +6248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431029761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.88, y: 0.47, z: 1.11}
+  m_LocalPosition: {x: -0.88, y: 0.47, z: 0.75}
   m_LocalScale: {x: 9.840664, y: 8.723, z: 0.14693}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16284,8 +16284,6 @@ MonoBehaviour:
   - Ella
   - Cassandra
   - Alexander
-  clockMinutes: 0
-  clockHours: 0
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0
@@ -28357,6 +28355,7 @@ MonoBehaviour:
   _Sun: {fileID: 2018546877}
   _Moon: {fileID: 1701228486}
   moonPhase: 1
+  dayNightValue: 0
   cycleRate: 1
 --- !u!4 &2013416952
 Transform:
