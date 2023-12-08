@@ -53,7 +53,7 @@ public class HelperMethods
     public static Vector3 ConvertPosToBeOnGround(Vector3 pos, float height, Vector2 rayDimensions)
     {
         RaycastHit hit;
-        if (Physics.BoxCast(pos, new Vector3(rayDimensions.x, .01f, rayDimensions.y), Vector3.down, out hit, Quaternion.identity, maxDistToGroundCheck, 1 << 6))
+        if (Physics.BoxCast(pos + new Vector3(0,0.5f,0), new Vector3(rayDimensions.x, .01f, rayDimensions.y), Vector3.down, out hit, Quaternion.identity, maxDistToGroundCheck, 1 << 6))
         {
             float groundPosY = hit.point.y;
             float characterHeight = height;
@@ -90,6 +90,10 @@ public class HelperMethods
     {
         foreach (Transform child in parent.transform)
         {
+            if(child.gameObject == ItemHoverDesc.windowHovering)
+            {
+                child.GetComponent<ItemHoverDesc>().OnPointerExit(null); //kanske en skev lösning?
+            }
             Object.Destroy(child.gameObject);
         }
     }

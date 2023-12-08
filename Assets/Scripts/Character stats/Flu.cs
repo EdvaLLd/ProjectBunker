@@ -6,8 +6,8 @@ public class Flu : SpreadableDesease
 {
     public Flu()
     {
-        SetSpreadFrequency(.1f);
-        SetSpreadChance(0.01f);
+        SetSpreadFrequency(1f);
+        SetSpreadChance(0.05f);
     }
     public override void Tick()
     {
@@ -18,11 +18,11 @@ public class Flu : SpreadableDesease
     protected override void Affect<T>()
     {
         base.Affect<T>();
-        characterAffected.TakeDamage(3 * Time.deltaTime);
+        characterAffected.TakeDamage(.5f * Time.deltaTime);
     }
 
     protected override void Recover()
     {
-        ChangeDeseaseHealth(-5 * Time.deltaTime);
+        ChangeDeseaseHealth(-2 * Time.deltaTime);
     }
 }

@@ -241,11 +241,18 @@ public class Pathfinding : MonoBehaviour
         {
             if (!allPoints[i].isLocked)
             {
-                if (Vector3.Distance(closestPoint.transform.position, currentPos) > Vector3.Distance(allPoints[i].transform.position, currentPos))
+                if (!HelperMethods.WallBetweenPointsOnGround(allPoints[i].transform.position, currentPos, characterHeight))
                 {
-                    if (!HelperMethods.WallBetweenPointsOnGround(allPoints[i].transform.position, currentPos, characterHeight))
+                    if(HelperMethods.WallBetweenPointsOnGround(closestPoint.transform.position, currentPos, characterHeight))
                     {
                         closestPoint = allPoints[i];
+                    }
+                    else
+                    {
+                        if (Vector3.Distance(closestPoint.transform.position, currentPos) > Vector3.Distance(allPoints[i].transform.position, currentPos))
+                        {
+                            closestPoint = allPoints[i];
+                        }
                     }
                 }
             }

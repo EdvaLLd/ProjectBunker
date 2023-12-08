@@ -9,9 +9,8 @@ using UnityEngine.Events;
 public class UIManager : MonoBehaviour
 {
     //--------Inventory--------
-    [SerializeField]
-    GameObject inventorySlot;
-    static GameObject inventorySlotStatic;
+    public GameObject inventorySlot;
+    public static GameObject inventorySlotStatic;
     GameObject inventoryBG;
     GameObject inventoryContentHolder;
     Button buttonSelected;
@@ -36,6 +35,9 @@ public class UIManager : MonoBehaviour
 
     RaycastHit[] gameObjectHoveredLastFrame;
 
+    [SerializeField]
+    GameObject warningImage;
+    static GameObject warningImageStatic;
 
     private void Awake()
     {
@@ -52,6 +54,7 @@ public class UIManager : MonoBehaviour
         canvas = GameObject.FindGameObjectWithTag("Canvas");
 
         inventorySlotStatic = inventorySlot;
+        warningImageStatic = warningImage;
     }
 
     private void Start()
@@ -127,6 +130,13 @@ public class UIManager : MonoBehaviour
         DisplayInventoryItems(buttonSelected);
     }
 
+    public static GameObject InstantiateWarningAtPos(GameObject toFollow, float margin, bool shouldFadeAfterTime, float duration = 1)
+    {
+        GameObject g = Instantiate(warningImageStatic, canvas.transform);
+        g.transform.SetAsFirstSibling();
+        g.AddComponent<UIMarker>().Init(toFollow, margin,shouldFadeAfterTime, duration);
+        return g;
+    }
     
     public void DisplayInventoryItems(SortingTypes sortingType, Button button)
     {
@@ -140,22 +150,30 @@ public class UIManager : MonoBehaviour
         CreateInventory(sortingType, inventoryContentHolder);
     }
 
+    public static GameObject InitInventorySlot(Item item, int amount, Transform parent)
+    {
+        GameObject t;
+        t = Instantiate(inventorySlotStatic, parent);
+        t.GetComponent<ItemHoverDesc>().item = item;
+        t.GetComponent<Image>().sprite = item.Icon;
+        t.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = amount.ToString();
+        return t;
+    }
+
     public static GameObject CreateInventory(SortingTypes type, GameObject inventoryHolder)
     {
+        Dictionary<Item, int> temp;
         if (type == SortingTypes.All)
         {
-            foreach (KeyValuePair<Item, int> item in Inventory.inventory)
-            {
-                AddSlot(inventoryHolder.transform, item.Key, item.Value);
-            }
+            temp = Inventory.inventory;
         }
         else
         {
-            Dictionary<Item, int> temp = Inventory.GetItemsOfType(type);
-            foreach (KeyValuePair<Item, int> item in temp)
-            {
-                AddSlot(inventoryHolder.transform, item.Key, item.Value);
-            }
+            temp = Inventory.GetItemsOfType(type);
+        }
+        foreach (KeyValuePair<Item, int> item in temp)
+        {
+            InitInventorySlot(item.Key, item.Value, inventoryHolder.transform);
         }
         return inventoryHolder;
     }
@@ -201,17 +219,8 @@ public class UIManager : MonoBehaviour
         Dictionary<Item, int> temp = Inventory.GetGearOfType(type);
         foreach (KeyValuePair<Item, int> item in temp)
         {
-            AddSlot(inventoryHolder.transform, item.Key, item.Value);
+            InitInventorySlot(item.Key, item.Value, inventoryHolder.transform);
         }
         return inventoryHolder;
-    }
-
-    static GameObject AddSlot(Transform parent, Item item, int amount)
-    {
-        GameObject t = Instantiate(inventorySlotStatic, parent);
-        t.GetComponent<ItemHoverDesc>().item = item;
-        t.GetComponent<Image>().sprite = item.Icon;
-        t.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = amount.ToString();
-        return t;
     }
 }

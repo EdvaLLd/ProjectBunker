@@ -17,6 +17,7 @@ TagManager:
   - Canvas
   - Character
   - CharacterName
+  - StatusHolder
   layers:
   - Default
   - TransparentFX

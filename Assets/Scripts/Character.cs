@@ -42,6 +42,8 @@ public class Character : MonoBehaviour
     public float hunger = 100;
     public float health = 100;
     bool isAlive = true;
+
+    bool lowHealthWarningShowed = false;
     
     private bool isHungry = true;
 
@@ -64,6 +66,10 @@ public class Character : MonoBehaviour
     private CharacterAnimation characterAnim;
 
     public float workMultiplier { get; private set; } = 1;
+
+
+    GameObject marker;
+    int reasonsToWarn = 0;
 
     private void Start()
     {
@@ -134,11 +140,11 @@ public class Character : MonoBehaviour
     {
         Item med = Database.GetItemWithID("01013");
         //farligt sätt att göra grejer
-        if (Inventory.GetAmountOfItem(med) > 0)
+        if (Inventory.GetAmountOfItem(med) > 0 && deseases.Count > 0)
         {
-            foreach (Desease desease in deseases)
+            for (int i = deseases.Count-1; i >= 0; i--)
             {
-                desease.Medicate();
+                deseases[i].Medicate();
             }
             Inventory.RemoveItem(med);
         }
@@ -170,6 +176,8 @@ public class Character : MonoBehaviour
         { 
             statuses.Add(status, 1);
             TextLog.AddLog("\"insert character name\" is now " + status);
+            UnitController.SetCharacterStatusVisuals(this);
+            WarnPlayer(true);
         }
         CheckWorkMultiplier();
     }
@@ -186,6 +194,7 @@ public class Character : MonoBehaviour
             if (statuses[status] < 1)
             {
                 statuses.Remove(status);
+                UnitController.SetCharacterStatusVisuals(this);
                 TextLog.AddLog("\"insert character name\" is no longer " + status);
             }
         }
@@ -196,9 +205,10 @@ public class Character : MonoBehaviour
 
     public void AddDesease<T>() where T : Desease, new()
     {
-        T desease;
+        /*T desease;
         if (HasDesease(out desease)) desease.RefreshDesease();
-        else
+        else*/
+        if(!HasDesease<T>(out _))
         {
             T d = new T();
             d.SetCharacter(this);
@@ -248,7 +258,7 @@ public class Character : MonoBehaviour
     {
         if(health != maxHealth && hunger > 80)
         {
-            health += 5 * Time.deltaTime;
+            TakeDamage(-5 * Time.deltaTime);
             hungerConsumedModifier = 2;
         }
         else
@@ -270,8 +280,24 @@ public class Character : MonoBehaviour
         health -= damage;
         health = Mathf.Clamp(health, 0, maxHealth);
         //TextLog.AddLog($"Unit insert name took {damage} damage and has {health} health left", MessageTypes.used);
-        if(health < maxHealth/10) TextLog.AddLog($"Unit insert name is low on health", MessageTypes.used);
-        if (health < 0)
+        if (health < maxHealth / 5)
+        {
+            if (!lowHealthWarningShowed)
+            {
+                TextLog.AddLog($"Unit insert name is low on health", MessageTypes.used);
+                lowHealthWarningShowed = true;
+                WarnPlayer(false);
+            }
+        }
+        else
+        {
+            if (lowHealthWarningShowed)
+            {
+                lowHealthWarningShowed = false;
+                RemoveWarning();
+            }
+        }
+        if (health == 0)
         {
             UnitDied();
         }
@@ -286,6 +312,8 @@ public class Character : MonoBehaviour
         isAlive = false;
         TextLog.AddLog("Unit died!");
         UnitController.RemoveCharacter(this);
+        reasonsToWarn = 0;
+        RemoveWarning();
 
         if (UnitController.GetSelectedCharacter() == this)
         {
@@ -316,6 +344,40 @@ public class Character : MonoBehaviour
         pos = HelperMethods.ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue), transform.lossyScale.y);
 
         UpdateMovement(pos);
+    }
+
+    void WarnPlayer(bool shouldFade)
+    {
+        if(marker != null)
+        {
+            if(shouldFade)
+            {
+                marker.GetComponent<UIMarker>().SetShouldFade(true);
+                reasonsToWarn++;
+            }
+            else
+            {
+                marker.GetComponent<UIMarker>().SetDuration(5);
+            }
+        }
+        else
+        {
+            marker = UIManager.InstantiateWarningAtPos(gameObject, .6f, shouldFade, 5);
+        }
+
+
+        if (marker == null)
+        {
+            marker = UIManager.InstantiateWarningAtPos(gameObject, .6f, shouldFade, 5);
+        }
+        if(!shouldFade)  reasonsToWarn++;
+    }
+
+    void RemoveWarning()
+    {
+        reasonsToWarn--;
+        if(reasonsToWarn < 0) reasonsToWarn = 0;
+        if (reasonsToWarn == 0 && marker != null) Destroy(marker);
     }
 
     void CharacterLeftTask()

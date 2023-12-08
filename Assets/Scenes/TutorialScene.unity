@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -460,7 +460,7 @@ MonoBehaviour:
       items back!
     hasImage: 1
   - image: {fileID: 21300000, guid: e54cac0ec75c41b42b6e5711017902ea, type: 3}
-    text: This is where you will recieve most of your items! It will be a SUPRISE
+    text: This is where you will recieve most of your items! It will be a SURPRISE
     hasImage: 1
   - image: {fileID: 21300000, guid: e3ff51283bf4d8d41b85a1ecc55a42c5, type: 3}
     text: 'This is how you will see how your worker is feeling. Get energy by eating
