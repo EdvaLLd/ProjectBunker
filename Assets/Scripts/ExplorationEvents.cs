@@ -285,7 +285,7 @@ public class ExplorationEvents : Exploration
             float damage = subEvent.damageEvent.damageRecieved;
 
             TakeDamage(damage, target);
-            PlayTextEvent(target.name + " took " + damage + " damage to their health!");
+            PlayTextEvent(target.characterName + " took " + damage + " damage to their health!");
 
             /*Timer localTimer = new Timer();
             localTimer.timeUnit = Timer.timeUnits.second;
@@ -338,21 +338,21 @@ public class ExplorationEvents : Exploration
             //string faction = System.Enum.GetName(typeof(ExploreSubEvent.enemyFactions), subEvent.combatEvent.enemyFaction);
             //print(faction);                
 
-            PlayTextEvent(character.name + " engaged hostile " + faction + " in combat!");
+            PlayTextEvent(character.characterName + " engaged hostile " + faction + " in combat!");
             if (randomRecievied <= 0 && randomDealt <= 0)
             {
                 PlayTextEvent("Neither side sustained any casulties and fled.");
             }
             if (randomDealt > 0) 
             {
-                PlayTextEvent(character.name + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.");
+                PlayTextEvent(character.characterName + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.");
             }
             if (randomRecievied > 0)
             {
                 TakeDamage(randomRecievied, character);
                 if (character.health <= 0)
                 {
-                    PlayTextEvent(character.name + " was slained in battle by the " + faction + ".");
+                    PlayTextEvent(character.characterName + " was slained in battle by the " + faction + ".");
                     //PlayLootItemLoopEvent(false, true, subEvent.combatEvent.combatLoot);
                 }
                 else 
@@ -366,6 +366,19 @@ public class ExplorationEvents : Exploration
 
             //print("Combat");
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// Diary event
+        //------------------------------------------------------------------------------------------
+        [System.Serializable]
+        public class DiaryEvent
+        {
+            public string entryTitle;
+            [Tooltip("Displayed text message in diary entry.")]
+            public string diaryEntryText;
+            [Tooltip("Delay in ammount of time before event starts in selected units.")]
+            public Timer timer = new Timer();
+        }
+        //------------------------------------------------------------------------------------------
+        public void PlayDiaryEvent(); 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
     private void TakeDamage(float damage, Character character)
