@@ -44,6 +44,10 @@ public class ExplorationEvents : Exploration
                 {
                     GameManager.eventIndex++;
                 }
+                else 
+                {
+                    return;
+                }
                 //}
             }
             

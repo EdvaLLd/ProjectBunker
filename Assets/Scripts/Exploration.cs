@@ -63,14 +63,15 @@ public class Exploration : MonoBehaviour
         }
 
         yield return new WaitForSeconds(timeToWait * 1/4);
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
-        
+
         currentEnvironment = Locations.Location.environments.Home;
         /*if (gameObject.GetComponent<Character>().health <= 0) 
         {
             gameObject.SetActive(false);
         }*/
-        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        
         // gameObject.GetComponent<MeshRenderer>().enabled = true;
 
         //print
@@ -123,6 +124,7 @@ public class Exploration : MonoBehaviour
         }
         //}
         //}
+        //gameObject.transform.GetChild(0).gameObject.SetActive(true);
         if (executedEvent) {executedEvent = false; }
     }
     
