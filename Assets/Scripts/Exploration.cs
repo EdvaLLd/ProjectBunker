@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Exploration : MonoBehaviour
 {
-    //protected static bool executedEvent = false;
+    protected static bool executedEvent = false;
     protected static GameObject attachedGameObject;
 
     //[SerializeField]
@@ -60,6 +60,7 @@ public class Exploration : MonoBehaviour
         if (!executedEvent)
         {
             mainEvents.RandomSpecialEvent();
+            executedEvent = false;
         }
 
         yield return new WaitForSeconds(timeToWait * 1/4);

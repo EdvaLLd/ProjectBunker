@@ -12,7 +12,7 @@ public class ExplorationEvents : Exploration
         {
 
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-            if (MainEventsIsEmpty(gameManager.mainExploreEvents)) 
+            if (gameManager.mainExploreEvents.Length <= 0) 
             {
                 return;
             }

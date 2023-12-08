@@ -61,7 +61,8 @@ public class GameManager : MonoBehaviour
         "Patricia",
     };
 
-    private float hour, minute;
+    private float hour = 6;
+    private float minute;
 
     private void Awake()
     {
