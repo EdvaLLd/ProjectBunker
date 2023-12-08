@@ -18,17 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private difficulties difficulty;
 
-    /*[SerializeField, Header("Day/Night cycle")]
-     private float DayNightValue = 0; //0.0f - 360.0f
-     [SerializeField]
-     private float cycleRate = 0.1f;
-     [SerializeField]
-     //private float angle = 0;
-     private float moonSunOppositionAngle = 0;*/
-
     private SkyboxController skyboxManager;
-    //private GameObject sun;
-    //private GameObject moon;
 
     private static Locations.Location[] explorableLocations = new Locations.Location[System.Enum.GetNames(typeof(Locations.Location.environments)).Length];
 
@@ -38,8 +28,8 @@ public class GameManager : MonoBehaviour
     [Tooltip("0=Lake, 1=City, 2=Factory, 3=Forest"), NonReorderable]
     public Looting.LocationLootItems[] locationalLoot = new Looting.LocationLootItems[System.Enum.GetNames(typeof(Locations.Location.environments)).Length - 1];
 
-    private Diary gameDiary = new Diary();
-    public List<string> gameDiaryEntries;
+    [HideInInspector]
+    public Diary gameDiary = new Diary();
 
     [Header("Events")]
     public static int eventIndex = 0;
@@ -77,11 +67,8 @@ public class GameManager : MonoBehaviour
         instance = this;
         
         skyboxManager = GameObject.FindObjectOfType<SkyboxController>();
-        /*sun = GameObject.Find("Sun");
-        moon = GameObject.Find("Moon");*/
-        explorableLocations = Locations.SetExplorableLocations();
 
-        gameDiaryEntries = gameDiary.diaryEntries;
+        explorableLocations = Locations.SetExplorableLocations();
     }
 
     private void Update()
@@ -108,58 +95,8 @@ public class GameManager : MonoBehaviour
         GameObject.Find("DayTimeStamp").transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = displayTime;
     }
 
-    /*private void SetMinute(SkyboxController skyboxManager)
-    {
-        
-    }
-
-    private void SetHour(SkyboxController skyboxManager) 
-    {
-        
-    }*/
-
     public static Locations.Location[] GetExplorableLocations() 
     {
         return explorableLocations;
     }
-
-    /*private Location[] SetExplorableLocations()
-    {
-        Location[] replaceArray =  new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
-        if (System.Enum.GetNames(typeof(Location.environments)).Length > 1)
-        {
-            replaceArray = new Location[System.Enum.GetNames(typeof(Location.environments)).Length - 1]; // -1 top reduce length by the first element (home).
-
-
-            Location.environments[] locationArray = (Location.environments[])System.Enum.GetValues(typeof(Location.environments));
-
-            for (int arrayIndex = 0; arrayIndex < replaceArray.Length; arrayIndex++) // arrayIndex loops over the the Location class objects in the Location[] replaceArray.
-            {
-                replaceArray[arrayIndex] = new Location();
-                replaceArray[arrayIndex].environment = locationArray[arrayIndex+1]; // +1 to not loop over first element (home) and begin with the second one instead.
-
-                // Sets up variables within the class.
-                replaceArray[arrayIndex].distanceToHome = replaceArray[arrayIndex].RandomDistance();
-                replaceArray[arrayIndex].locationName += " No_" + arrayIndex;
-                replaceArray[arrayIndex].locationLoot = locationalLoot[arrayIndex].lootItems;
-                replaceArray[arrayIndex].lootProbabilities = new float[locationalLoot[arrayIndex].lootItems.Count];
-                
-                //Sets up the probablity for the loot to drop if the RNG selected this item.
-                for (int itemIndex = 0; itemIndex < locationalLoot[arrayIndex].lootItems.Count; itemIndex++) // itemIndex loops over lootable items in each Location class objects in replaceArray.
-                {
-                    //float probabilityAtIndex = (looting.lootProbabilityDefault / (itemIndex + 1)); // +1 because you can't divide by zero (I mean you can but you wouldn't get a usable number).
-
-                    if (replaceArray[arrayIndex].locationLoot[itemIndex].lootItem.lootProbabilityOverride > 0) 
-                    {
-                        replaceArray[arrayIndex].lootProbabilities[itemIndex] = replaceArray[arrayIndex].locationLoot[itemIndex].lootItem.lootProbabilityOverride; // Overrides default probablity with value within item.
-                    }
-                    else 
-                    {
-                        replaceArray[arrayIndex].lootProbabilities[itemIndex] = replaceArray[arrayIndex].locationLoot[itemIndex].lootProbability; // assigned probability in inspector list for each item.
-                    }
-                }
-            }
-        }
-        return explorableLocations = replaceArray; // Outputs an array without the first element of the enum with the approriate length of quantity of enums - 1.
-    }*/
 }

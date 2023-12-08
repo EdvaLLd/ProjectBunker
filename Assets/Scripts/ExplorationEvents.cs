@@ -96,6 +96,10 @@ public class ExplorationEvents : Exploration
                         subEvent.combatEvent.timer.CountDown();
                         PlayCombatEvent(subEvent, attachedGameObject.GetComponent<Character>());
                         break;
+                    case (ExploreSubEvent.eventTypes.Diary):
+                        subEvent.diaryEvent.timer.CountDown();
+                        PlayDiaryEvent(attachedGameObject.GetComponent<Character>(), subEvent.diaryEvent.diaryEntryTitle, subEvent.diaryEvent.diaryEntryText, subEvent.diaryEvent.diaryEntryAuthor, subEvent.diaryEvent.diaryEntryDate);
+                        break;
 
                     default:
                         break;
@@ -371,14 +375,26 @@ public class ExplorationEvents : Exploration
         [System.Serializable]
         public class DiaryEvent
         {
-            public string entryTitle;
+            [Tooltip("Title of the diary entry, unless you leave it empty.")]
+            public string diaryEntryTitle;
             [Tooltip("Displayed text message in diary entry.")]
             public string diaryEntryText;
+            [Tooltip("Name of the author of the diary entry.")]
+            public string diaryEntryAuthor;
+            [Tooltip("Date when the entry was written (in game lore that is).")]
+            public string diaryEntryDate;
+
             [Tooltip("Delay in ammount of time before event starts in selected units.")]
             public Timer timer = new Timer();
         }
         //------------------------------------------------------------------------------------------
-        public void PlayDiaryEvent(); 
+        public void PlayDiaryEvent(Character character, string title, string text, string author, string date) 
+        {
+            GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+            PlayTextEvent(character.characterName + " picked up a piece of paper that seems to be and old diary entry.");
+            gameManager.gameDiary.AddEntry(title, text, author, date);
+        } 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
     private void TakeDamage(float damage, Character character)
@@ -418,6 +434,7 @@ public class ExplorationEvents : Exploration
         public ExploreEventTypes.ItemEvent itemEvent;
         public ExploreEventTypes.DamageEvent damageEvent;
         public ExploreEventTypes.CombatEvent combatEvent;
+        public ExploreEventTypes.DiaryEvent diaryEvent;
     }
     
 }
