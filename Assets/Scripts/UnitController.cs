@@ -237,7 +237,7 @@ public class UnitController : MonoBehaviour
             characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().SetUp(selectedCharacter);
             characterStatsWindowStatic.SetActive(true);
             characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideUpTrigger");
-            characterName.text = selectedCharacter.name;
+            characterName.text = selectedCharacter.characterName;
         }
     }
 

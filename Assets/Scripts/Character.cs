@@ -179,7 +179,7 @@ public class Character : MonoBehaviour
         else 
         { 
             statuses.Add(status, 1);
-            TextLog.AddLog("\"insert character name\" is now " + status);
+            TextLog.AddLog(characterName + " is now " + status);
         }
         CheckWorkMultiplier();
     }
@@ -196,7 +196,7 @@ public class Character : MonoBehaviour
             if (statuses[status] < 1)
             {
                 statuses.Remove(status);
-                TextLog.AddLog("\"insert character name\" is no longer " + status);
+                TextLog.AddLog(characterName + " is no longer " + status);
             }
         }
         else Debug.LogError("shouldnt be here");
@@ -213,7 +213,7 @@ public class Character : MonoBehaviour
             T d = new T();
             d.SetCharacter(this);
             deseases.Add(d);
-            TextLog.AddLog("\"insert character name\" contracted " + d.GetType() + "!");
+            TextLog.AddLog(characterName + " contracted " + d.GetType() + "!");
             AddStatus(Statuses.ill);
         }
     }
@@ -221,7 +221,7 @@ public class Character : MonoBehaviour
     {
         if (desease.GetHealth() < 0)
         {
-            TextLog.AddLog("\"insert character name\" survived her " + desease + " infection!");
+            TextLog.AddLog(characterName + " survived her " + desease + " infection!");
             deseases.Remove(desease);
             RemoveStatus(Statuses.ill);
         }
