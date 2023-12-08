@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
         "Patricia",
     };
 
+    private float hour, minute;
+
     private void Awake()
     {
         instance = this;
@@ -91,23 +93,30 @@ public class GameManager : MonoBehaviour
     private void DigitalClock() 
     {
         SkyboxController skyboxManager = GameObject.FindObjectOfType<SkyboxController>();
-       
-       
+
+        //SetMinute(skyboxManager);
+        //SetHour(skyboxManager);
+        
+        minute += skyboxManager.cycleRate * 24/360 * 60 * Time.deltaTime;
+        if (minute >= 60) { minute = 0; hour++; }
+        
+        //hour += skyboxManager.cycleRate / 60;
+        if (hour >= 24) { hour = 0; }
 
         string displayTime = Mathf.FloorToInt(hour).ToString("00") + ":" + Mathf.FloorToInt(minute).ToString("00");
 
         GameObject.Find("DayTimeStamp").transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = displayTime;
     }
 
-    private float GetMinutes(SkyboxController skyboxManager)
+    /*private void SetMinute(SkyboxController skyboxManager)
     {
-        return (skyboxManager.dayNightValue * 60*60);
+        
     }
 
-    private float GetHours(SkyboxController skyboxManager) 
+    private void SetHour(SkyboxController skyboxManager) 
     {
-
-    }
+        
+    }*/
 
     public static Locations.Location[] GetExplorableLocations() 
     {
