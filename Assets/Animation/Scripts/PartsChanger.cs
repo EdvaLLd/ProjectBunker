@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
@@ -11,6 +12,7 @@ public class PartsChanger : MonoBehaviour
     private SpriteResolver[] resolvers;
 
     private int[] bodyPartCollection;
+    private Renderer[] renderers;
 
     //Skinparts ------- Torso --------- Ögon --------- Mun ------- Ben -------- Fötter ---------- Hår
     private int[][] bodyParts = { new int[] {14, 21, 12}, new int[] {15, 22, 13 }, new int[] {3, 4, 5, 6, 7, 8, 9, 10 },
@@ -21,6 +23,7 @@ public class PartsChanger : MonoBehaviour
     {
         resolvers = GetComponentsInChildren<SpriteResolver>();
         ponytail.GetComponent<LineRenderer>().enabled = false;
+        renderers = GetComponentsInChildren<Renderer>();
     }
 
     void Update()
@@ -71,6 +74,7 @@ public class PartsChanger : MonoBehaviour
         {
             ponytail.GetComponent<LineRenderer>().enabled = false;
         }
+        ChangeSortingLayer();
     }
 
     private void ChangeVersionOnCollection(int collectionNumber, int version)
@@ -94,5 +98,19 @@ public class PartsChanger : MonoBehaviour
     private void ChangeAPart(int bodyPart, int version)
     {
         resolvers[bodyPart].SetCategoryAndLabel(resolvers[bodyPart].GetCategory(), "Entry_" + version);
+    }
+
+    private void ChangeSortingLayer()
+    {
+        int countClones = Regex.Matches(gameObject.GetComponentInParent<Character>().name, "Clone").Count;
+        if(countClones <= 10)
+        {
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].sortingLayerName = "Character " + countClones;
+            }
+        }
+        
+        Debug.Log("Clones: "+countClones);
     }
 }
