@@ -12,30 +12,41 @@ public class ExplorationEvents : Exploration
         {
 
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-
-            float eventRandom = Random.Range(0, 100);
-            float probability = gameManager.mainExploreEvents[GameManager.eventIndex].eventProbability;
-
-            if (eventRandom <= 100 - probability && eventRandom != 100)
+            if (MainEventsIsEmpty(gameManager.mainExploreEvents)) 
             {
-                print("cancel");
                 return;
             }
 
-            executedEvent = true;
+            if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
+            {
+                //if (!MainEventsIsEmpty(gameManager.mainExploreEvents)) 
+                //{
+                float eventRandom = Random.Range(0, 100);
+                float probability = gameManager.mainExploreEvents[GameManager.eventIndex].eventProbability;
 
-            print("started event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
+                //executedEvent = true;
+
+                if (eventRandom <= 100 - probability && eventRandom != 100) 
+                {
+                    print("cancel");
+                    return;
+                }
+
+                print("started event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
 
             gameManager.mainExploreEvents[GameManager.eventIndex].timer.CountDown();
 
             SubEventSequence(gameManager.mainExploreEvents[GameManager.eventIndex]);
 
-            if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
-            {
-                GameManager.eventIndex++;
-            }
+                print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
 
-            print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex - 1].eventName);
+                if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
+                {
+                    GameManager.eventIndex++;
+                }
+                //}
+            }
+            
         }
 
         public void RandomSpecialEvent()
@@ -94,6 +105,10 @@ public class ExplorationEvents : Exploration
                     case (ExploreSubEvent.eventTypes.Character):
                         subEvent.recipeEvent.timer.CountDown();
                         PlayCharacterEvent();
+                        break;
+                    case (ExploreSubEvent.eventTypes.Diary):
+                        subEvent.diaryEvent.timer.CountDown();
+                        PlayDiaryEvent(attachedGameObject.GetComponent<Character>(), subEvent.diaryEvent.diaryEntryTitle, subEvent.diaryEvent.diaryEntryText, subEvent.diaryEvent.diaryEntryAuthor, subEvent.diaryEvent.diaryEntryDate);
                         break;
 
                     default:
@@ -285,7 +300,7 @@ public class ExplorationEvents : Exploration
             float damage = subEvent.damageEvent.damageRecieved;
 
             TakeDamage(damage, target);
-            TextLog.AddLog(target.name + " took " + damage + " damage to their health!");
+            PlayTextEvent(target.characterName + " took " + damage + " damage to their health!");
 
             /*Timer localTimer = new Timer();
             localTimer.timeUnit = Timer.timeUnits.second;
@@ -338,21 +353,21 @@ public class ExplorationEvents : Exploration
             //string faction = System.Enum.GetName(typeof(ExploreSubEvent.enemyFactions), subEvent.combatEvent.enemyFaction);
             //print(faction);
 
-            TextLog.AddLog(character.name + " engaged hostile " + faction + " in combat!");
+            PlayTextEvent(character.characterName + " engaged hostile " + faction + " in combat!");
             if (randomRecievied <= 0 && randomDealt <= 0)
             {
                 TextLog.AddLog("Neither side sustained any casulties and fled.");
             }
             if (randomDealt > 0)
             {
-                TextLog.AddLog(character.name + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.");
+                PlayTextEvent(character.characterName + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.");
             }
             if (randomRecievied > 0)
             {
                 TakeDamage(randomRecievied, character);
                 if (character.health <= 0)
                 {
-                    TextLog.AddLog(character.name + " was slained in battle by the " + faction + ".");
+                    PlayTextEvent(character.characterName + " was slained in battle by the " + faction + ".");
                     //PlayLootItemLoopEvent(false, true, subEvent.combatEvent.combatLoot);
                 }
                 else
@@ -366,6 +381,31 @@ public class ExplorationEvents : Exploration
 
             //print("Combat");
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// Diary event
+        //------------------------------------------------------------------------------------------
+        [System.Serializable]
+        public class DiaryEvent
+        {
+            [Tooltip("Title of the diary entry, unless you leave it empty.")]
+            public string diaryEntryTitle;
+            [Tooltip("Displayed text message in diary entry.")]
+            public string diaryEntryText;
+            [Tooltip("Name of the author of the diary entry.")]
+            public string diaryEntryAuthor;
+            [Tooltip("Date when the entry was written (in game lore that is).")]
+            public string diaryEntryDate;
+
+            [Tooltip("Delay in ammount of time before event starts in selected units.")]
+            public Timer timer = new Timer();
+        }
+        //------------------------------------------------------------------------------------------
+        public void PlayDiaryEvent(Character character, string title, string text, string author, string date) 
+        {
+            GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+            PlayTextEvent(character.characterName + " picked up a piece of paper that seems to be and old diary entry.");
+            gameManager.gameDiary.AddEntry(title, text, author, date);
+        } 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// RecipeEvent
         //------------------------------------------------------------------------------------------
         [System.Serializable]
@@ -385,22 +425,22 @@ public class ExplorationEvents : Exploration
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// CharacterEvent
         //------------------------------------------------------------------------------------------
-
-        //------------------------------------------------------------------------------------------
         [System.Serializable]
         public class CharacterEvent
         {
             public Timer timer = new Timer();
         }
+        //------------------------------------------------------------------------------------------
+
         public void PlayCharacterEvent()
         {
             FindObjectOfType<SpecialExploringEvents>().ShowCharacterChoice();
 
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         //------------------------------------------------------------------------------------------
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     }
     private void TakeDamage(float damage, Character character)
@@ -442,6 +482,7 @@ public class ExplorationEvents : Exploration
         public ExploreEventTypes.CombatEvent combatEvent;
         public ExploreEventTypes.RecipeEvent recipeEvent;
         public ExploreEventTypes.CharacterEvent characterEvent;
+        public ExploreEventTypes.DiaryEvent diaryEvent;
     }
 
 }
