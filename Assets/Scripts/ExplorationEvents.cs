@@ -48,9 +48,7 @@ public class ExplorationEvents : Exploration
                 {
                     return;
                 }
-                //}
-            }
-            
+            }     
         }
 
         public void RandomSpecialEvent()

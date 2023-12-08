@@ -46,6 +46,7 @@ public class Exploration : MonoBehaviour
         float timeToWait = distance / timeDivisor;
         currentEnvironment = exploreLocation;
 
+
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         //gameObject.GetComponent<MeshRenderer>().enabled = false;
 
