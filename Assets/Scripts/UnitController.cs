@@ -13,7 +13,7 @@ public class SelectionVisibilityModifier
 
 public enum CharacterTasks
 {
-    none, crafting, inspecting, looting, exploring
+    none, crafting, inspecting, looting, exploring, eating
 }
 
 public class UnitController : MonoBehaviour
@@ -25,8 +25,6 @@ public class UnitController : MonoBehaviour
     //Ska kanske finnas en speedmodifier p� varje karakt�r?
     [SerializeField]
     float movementSpeedSetter = 1;
-
-    UIManager uiManager;
 
 
     //L�gg till alla serializedfield-variabler h�r som static och i start
@@ -56,11 +54,18 @@ public class UnitController : MonoBehaviour
     //namn på karaktärerna
     static TextMeshProUGUI characterName;
 
+    static GameObject statusHolderGO;
+
+
+    //Speltesttimer
+    float timerForPlaytest = 30;
+    bool randomDesease = false;
+
     private void Awake()
     {
-        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
         characterName = GameObject.FindGameObjectWithTag("CharacterName").GetComponent<TextMeshProUGUI>();
+        statusHolderGO = GameObject.FindGameObjectWithTag("StatusHolder");
     }
 
     private void Start()
@@ -96,6 +101,16 @@ public class UnitController : MonoBehaviour
 
     private void Update()
     {
+        if (!randomDesease)
+        {
+            timerForPlaytest -= Time.deltaTime;
+            if (timerForPlaytest < 0)
+            {
+                allCharacters[UnityEngine.Random.Range(0, allCharacters.Count - 1)].AddDesease<Flu>();
+                randomDesease = true;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Inventory.AddItem(Database.GetItemWithID("04001")); //br�d
@@ -127,6 +142,10 @@ public class UnitController : MonoBehaviour
             {
                 selectedCharacter.AddDesease<Flu>();
             }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                selectedCharacter.ConsumeFood(Database.GetItemWithID("04001") as Food);
+            }
             UpdateCharacterStatsUI();
             if (Input.GetMouseButtonDown(1))
             {
@@ -155,11 +174,34 @@ public class UnitController : MonoBehaviour
         characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHunger(((int)(selectedCharacter.hunger / howOftenToUpdateStats) + 1) * howOftenToUpdateStats);
     }
 
-    public void FeedCharacter(Food food)
+    public static void FeedCharacter(Food food, Character character = null)
+    {
+        if (character == null)
+        {
+            if (selectedCharacter != null)
+            {
+                selectedCharacter.ConsumeFood(food);
+            }
+        }
+        else
+        {
+            character.ConsumeFood(food);
+        }
+    }
+
+    public void UseMedicine()
+    {
+        if(selectedCharacter != null)
+        {
+            selectedCharacter.TreatDesease();
+        }
+    }
+
+    public void UseBandaid()
     {
         if (selectedCharacter != null)
         {
-            selectedCharacter.ConsumeFood(food);
+            //implementera när skador finns
         }
     }
 
@@ -171,11 +213,6 @@ public class UnitController : MonoBehaviour
                 print("shouldnt be here");
                 break;
             case CharacterTasks.crafting:
-                /*uiManager.ActivateWindow(uiManager.craftingWindow);
-                if (uiManager.craftingWindow.active)
-                {
-                    uiManager.craftingWindow.GetComponent<CraftingWindow>().InitCraftingWindow(character.item as CraftingMachine);
-                }*/
                 character.itemInteractedWith.GetComponent<InteractableCraftingMachine>().InteractedWith(character);
                 break;
             case CharacterTasks.inspecting:
@@ -194,9 +231,13 @@ public class UnitController : MonoBehaviour
                 }
                 break;
             case CharacterTasks.exploring:
-                selectedCharacter.gameObject.GetComponent<Exploration>().Explore();
-                characterStatsWindowStatic.SetActive(false);
-                SwapSelectedCharacter(selectedCharacter);
+                character.gameObject.GetComponent<Exploration>().Explore();
+                //characterStatsWindowStatic.SetActive(false);
+                if(character == selectedCharacter) SwapSelectedCharacter(selectedCharacter);
+
+                break;
+            case CharacterTasks.eating:
+                character.itemInteractedWith.GetComponent<DiningArea>().OpenUI(character);
 
                 break;
 
@@ -238,7 +279,26 @@ public class UnitController : MonoBehaviour
             characterStatsWindowStatic.SetActive(true);
             characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideUpTrigger");
             characterName.text = selectedCharacter.name;
+            SetCharacterStatusVisuals(selectedCharacter);
         }
+    }
+
+    public static void SetCharacterStatusVisuals(Character c)
+    {
+        if (c == selectedCharacter)
+        {
+            for (int i = 0; i < statusHolderGO.transform.childCount; i++)
+            {
+                if (selectedCharacter.HasStatus(statusHolderGO.transform.GetChild(i).GetComponent<StatusType>().status))
+                {
+                    statusHolderGO.transform.GetChild(i).gameObject.SetActive(true);
+                }
+                else
+                {
+                    statusHolderGO.transform.GetChild(i).gameObject.SetActive(false);
+                }
+            }
+    }
     }
 
     public static void setCharacterVisual(Character character, bool isSelected)

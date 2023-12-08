@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
-  m_Name: Herb
+  m_Script: {fileID: 11500000, guid: 83164b82e216c8d40987e3f214482d10, type: 3}
+  m_Name: DiningTable
   m_EditorClassIdentifier: 
-  ID: 01017
-  DisplayName: Herb
-  Description: A medicinal herb.
-  Icon: {fileID: 21300000, guid: 98f22c9b8fab9d84a903d1da1140352c, type: 3}
-  SortingType: 4
-  lootProbabilityOverride: 0
+  ID: 02007
+  DisplayName: Dining table
+  Description: A place to eat
+  Icon: {fileID: 0}

@@ -31,6 +31,14 @@ public class LockedRoom : MonoBehaviour
                 UIManager.clearMistBtnGO.transform.position = Camera.main.WorldToScreenPoint(transform.position);
                 UIManager.clearMistBtnGO.GetComponent<Button>().onClick.RemoveAllListeners();
                 UIManager.clearMistBtnGO.GetComponent<Button>().onClick.AddListener(UnlockRoom);
+                if (mist == null)
+                {
+                    UIManager.clearMistBtnGO.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Force entry";
+                }
+                else
+                {
+                    UIManager.clearMistBtnGO.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Clear mist";
+                }
             }
             else
             {
