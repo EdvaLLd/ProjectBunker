@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 01003
   DisplayName: Filter
-  Description: A filter that can be used to purify water
+  Description: dirty water -> no dirty
   Icon: {fileID: 21300000, guid: 352ae1baed5217b4fa880b5e0860d6ad, type: 3}
   SortingType: 1
   lootProbabilityOverride: 0

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 01013
   DisplayName: Medicine
-  Description: Useful to treat infections and other nastinesses you contract during
-    your adventures
+  Description: Make no sick. happy :)
   Icon: {fileID: 21300000, guid: d33735c1b30a3fa45bcb4e13f89728f2, type: 3}
   SortingType: 4
   lootProbabilityOverride: 0

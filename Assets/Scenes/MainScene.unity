@@ -29190,6 +29190,10 @@ MonoBehaviour:
       maxLootQuantity: 2
       minLootQuantity: 1
       lootProbability: 30
+    - lootItem: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+      maxLootQuantity: 2
+      minLootQuantity: 1
+      lootProbability: 50
   mainExploreEvents:
   - eventName: Knife storm
     replaceDefaultExplore: 0
@@ -30450,7 +30454,7 @@ MonoBehaviour:
         - lootItem: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
           maxLootQuantity: 3
           minLootQuantity: 1
-          lootProbability: 50
+          lootProbability: 100
         - lootItem: {fileID: 11400000, guid: ba8b50297c55f7f42a43387a9e65a1a5, type: 2}
           maxLootQuantity: 3
           minLootQuantity: 1
@@ -30480,7 +30484,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 10
+    eventProbability: 100
     timer:
       timeUnit: 0
       ammount: 0

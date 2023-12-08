@@ -21,15 +21,6 @@ public class SpecialExploringEvents : MonoBehaviour
         Debug.Log(birthPos);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyUp(KeyCode.Space))
-        {
-            ShowSpecialEvent("hej");
-            ShowCharacterChoice();
-        }
-    }
-
     public void ShowSpecialEvent(string eventText)
     {
         Time.timeScale = 0; /*Det här fungerar inte optimalt så jag vet inte om vi borde ha det här eller inte*/

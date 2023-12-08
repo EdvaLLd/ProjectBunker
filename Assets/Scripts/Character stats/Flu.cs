@@ -18,7 +18,7 @@ public class Flu : SpreadableDesease
     protected override void Affect<T>()
     {
         base.Affect<T>();
-        characterAffected.TakeDamage(.5f * Time.deltaTime);
+        characterAffected.TakeDamage(50f * Time.deltaTime);
     }
 
     protected override void Recover()
