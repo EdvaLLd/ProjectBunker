@@ -60,7 +60,6 @@ public class Exploration : MonoBehaviour
         if (!executedEvent)
         {
             mainEvents.RandomSpecialEvent();
-            executedEvent = false;
         }
 
         yield return new WaitForSeconds(timeToWait * 1/4);
@@ -124,7 +123,7 @@ public class Exploration : MonoBehaviour
         }
         //}
         //}
-        //if (executedEvent) {executedEvent = false; }
+        if (executedEvent) {executedEvent = false; }
     }
     
     private Locations.Location GetRandomExplorableLocation(int locationIndex) 
