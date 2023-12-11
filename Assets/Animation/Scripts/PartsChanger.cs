@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text.RegularExpressions;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
@@ -102,15 +104,43 @@ public class PartsChanger : MonoBehaviour
 
     private void ChangeSortingLayer()
     {
-        int countClones = Regex.Matches(gameObject.GetComponentInParent<Character>().name, "Clone").Count;
-        if(countClones <= 10)
+
+        for(int i = 0; i < GetSortingLayerNames().Length; i++)
         {
-            for (int i = 0; i < renderers.Length; i++)
+            bool nameAvailable = true;
+            string currentName = "";
+            for(int a = 0; a < UnitController.GetCharacters().Count; a++)
             {
-                renderers[i].sortingLayerName = "Character " + countClones;
+                currentName = UnitController.GetCharacters()[a].transform.GetChild(0).GetComponent<Renderer>().sortingLayerName;
+             
+                if(currentName == GetSortingLayerNames()[i] || GetSortingLayerNames()[i] == "Default")
+                {                    
+                    nameAvailable = false;
+                }
+                
+            }
+            if (nameAvailable)
+            {
+                ChangeSortingLayerOnAllParts(GetSortingLayerNames()[i]);
+                return;
             }
         }
-        
-        Debug.Log("Clones: "+countClones);
+    }
+
+    private void ChangeSortingLayerOnAllParts(string sortingLayerName)
+    {
+        GetComponent<Renderer>().sortingLayerName = sortingLayerName;
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].sortingLayerName = sortingLayerName;
+            Debug.Log("Current layer: " + renderers[i].sortingLayerName + " New layer: " + sortingLayerName);
+        }
+    }
+
+    private string[] GetSortingLayerNames()
+    {
+        System.Type internalEditorUtilityType = typeof(InternalEditorUtility);
+        PropertyInfo sortingLayersProperty = internalEditorUtilityType.GetProperty("sortingLayerNames", BindingFlags.Static | BindingFlags.NonPublic);
+        return (string[])sortingLayersProperty.GetValue(null, new object[0]);
     }
 }
