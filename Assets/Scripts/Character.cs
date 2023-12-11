@@ -23,6 +23,9 @@ public enum Statuses
 }
 public class Character : MonoBehaviour
 {
+
+    #region Variables
+
     BoxCollider itemInteractedWithBoxCollider = null;
 
     List<Vector3> path;
@@ -71,6 +74,8 @@ public class Character : MonoBehaviour
     GameObject marker;
     int reasonsToWarn = 0;
 
+    #endregion
+
     private void Start()
     {
         //maxHunger = hunger;
@@ -80,37 +85,60 @@ public class Character : MonoBehaviour
         characterAnim = GetComponentInChildren<CharacterAnimation>();
     }
 
-    public void EquipGear(Equipment piece)
+
+    public void UnEquipGear(GearTypes gt)
     {
-        switch (piece.gearType)
+        switch (gt)
         {
             case GearTypes.chest:
-                if(gearEquipped.chest != null)
+                if (gearEquipped.chest != null)
                 {
                     Inventory.AddItem(gearEquipped.chest);
-                    gearEquipped.chest = piece;
+                    gearEquipped.chest = null;
                 }
                 break;
             case GearTypes.legs:
                 if (gearEquipped.legs != null)
                 {
                     Inventory.AddItem(gearEquipped.boots);
-                    gearEquipped.legs = piece;
+                    gearEquipped.legs = null;
                 }
                 break;
             case GearTypes.boots:
                 if (gearEquipped.boots != null)
                 {
                     Inventory.AddItem(gearEquipped.boots);
-                    gearEquipped.boots = piece;
+                    gearEquipped.chest = null;
                 }
                 break;
             case GearTypes.weapon:
                 if (gearEquipped.weapon != null)
                 {
                     Inventory.AddItem(gearEquipped.weapon);
-                    gearEquipped.weapon = piece;
+                    gearEquipped.weapon = null;
                 }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void EquipGear(Equipment piece)
+    {
+        UnEquipGear(piece.gearType);
+        switch (piece.gearType)
+        {
+            case GearTypes.chest:
+                gearEquipped.chest = piece;
+                break;
+            case GearTypes.legs:
+                gearEquipped.legs = piece;
+                break;
+            case GearTypes.boots:
+                gearEquipped.boots = piece;
+                break;
+            case GearTypes.weapon:
+                gearEquipped.weapon = piece;
                 break;
             default:
                 break;
@@ -118,36 +146,39 @@ public class Character : MonoBehaviour
         Inventory.RemoveItem(piece);
     }
 
-    public List<Desease> GetDeseases()
+    public GearScore GetGearScore()
     {
-        return deseases;
+        GearScore totalScore = new GearScore();
+        Equipment e;
+        if (GearEquippedInSlot(out e, GearTypes.chest)) totalScore.armor += (e as Armor).GetDefence();
+        if (GearEquippedInSlot(out e, GearTypes.legs)) totalScore.armor += (e as Armor).GetDefence();
+        if (GearEquippedInSlot(out e, GearTypes.boots)) totalScore.armor += (e as Armor).GetDefence();
+        if (GearEquippedInSlot(out e, GearTypes.weapon)) totalScore.attack += (e as Weapon).GetAttack();
+        return totalScore;
     }
 
-    //för om vi medicerar olika deseases
-    public void TreatDesease(Desease desease)
+    public bool GearEquippedInSlot(out Equipment e, GearTypes gt)
     {
-        Item med = Database.GetItemWithID("01013");
-        //farligt sätt att göra grejer
-        if (Inventory.GetAmountOfItem(med) > 0)
+        switch (gt)
         {
-            desease.Medicate();
-            Inventory.RemoveItem(med);
+            case GearTypes.chest:
+                e = gearEquipped.chest;
+                break;
+            case GearTypes.legs:
+                e = gearEquipped.legs;
+                break;
+            case GearTypes.boots:
+                e = gearEquipped.boots;
+                break;
+            case GearTypes.weapon:
+                e = gearEquipped.weapon;
+                break;
+            default:
+                e = null;
+                break;
         }
-    }
-
-    //för om vi medicerar alla deseases
-    public void TreatDesease()
-    {
-        Item med = Database.GetItemWithID("01013");
-        //farligt sätt att göra grejer
-        if (Inventory.GetAmountOfItem(med) > 0 && deseases.Count > 0)
-        {
-            for (int i = deseases.Count-1; i >= 0; i--)
-            {
-                deseases[i].Medicate();
-            }
-            Inventory.RemoveItem(med);
-        }
+        if (e == null) return false;
+        return true;
     }
 
     private void Update()
@@ -161,14 +192,9 @@ public class Character : MonoBehaviour
     }
 
 
-    void DeseaseTick()
-    {
-        for (int i = deseases.Count - 1; i >= 0; i--)
-        {
-            deseases[i].Tick();
-        }
-    }
 
+
+    #region Statuses
     public void AddStatus(Statuses status)
     {
         if (statuses.ContainsKey(status)) statuses[status] += 1;
@@ -203,11 +229,18 @@ public class Character : MonoBehaviour
         CheckWorkMultiplier();
     }
 
+    #endregion
+
+    #region Deseases
+    void DeseaseTick()
+    {
+        for (int i = deseases.Count - 1; i >= 0; i--)
+        {
+            deseases[i].Tick();
+        }
+    }
     public void AddDesease<T>() where T : Desease, new()
     {
-        /*T desease;
-        if (HasDesease(out desease)) desease.RefreshDesease();
-        else*/
         if(!HasDesease<T>(out _))
         {
             T d = new T();
@@ -241,18 +274,170 @@ public class Character : MonoBehaviour
         return false;
     }
 
-    void CheckWorkMultiplier()
+    public List<Desease> GetDeseases()
     {
-        //sortera dessa på hur negativa de är (värre är överst)
-        if (HasStatus(Statuses.ill) || HasStatus(Statuses.injured) || HasStatus(Statuses.sad))
+        return deseases;
+    }
+
+    //för om vi medicerar olika deseases
+    public void TreatDesease(Desease desease)
+    {
+        Item med = Database.GetItemWithID("01013");
+        //farligt sätt att göra grejer
+        if (Inventory.GetAmountOfItem(med) > 0)
         {
-            workMultiplier = 0.1f;
+            desease.Medicate();
+            Inventory.RemoveItem(med);
+        }
+    }
+
+    //för om vi medicerar alla deseases
+    public void TreatDesease()
+    {
+        Item med = Database.GetItemWithID("01013");
+        //farligt sätt att göra grejer
+        if (Inventory.GetAmountOfItem(med) > 0 && deseases.Count > 0)
+        {
+            for (int i = deseases.Count - 1; i >= 0; i--)
+            {
+                deseases[i].Medicate();
+            }
+            Inventory.RemoveItem(med);
+        }
+    }
+
+    #endregion
+
+    #region Movement and Interactions
+
+    public void InteractedWithItem(InteractableItem item)
+    {
+        if (item != itemInteractedWith)
+        {
+            CharacterLeftTask();
+            itemInteractedWith = item;
+            itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
+        }
+        UpdateMovement(item.transform.position);
+    }
+
+    public void MoveToPos(Vector3 pos)
+    {
+        CharacterLeftTask();
+        pos = HelperMethods.ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue), transform.lossyScale.y);
+
+        UpdateMovement(pos);
+    }
+
+    void CharacterLeftTask()
+    {
+        if (itemInteractedWith != null)
+        {
+            InteractableCraftingMachine machine;
+            //borde kanske vara en generell klass och inte specifikt den här, men men
+            if (itemInteractedWith.gameObject.TryGetComponent(out machine))
+            {
+                machine.CharacterLeftStation(this);
+            }
+        }
+        itemInteractedWith = null;
+        itemInteractedWithBoxCollider = null;
+    }
+
+    void UpdateMovement(Vector3 goal)
+    {
+        if (move)
+        {
+            newGoalPos = goal;
+            createNewPath = true;
         }
         else
         {
-            workMultiplier = 1;
+            path = Pathfinding.FindPath(transform.position, goal, GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y, itemInteractedWithBoxCollider);
+            move = true;
+            GetNextPosOnPath();
+
+            //move behöver vara med här ifall pathen är tom
+            //Animation stuff
+            if (move && characterAnim != null)
+            {
+                characterAnim.StartMoving();
+            }
         }
     }
+
+    Vector3 GetNextPosOnPath()
+    {
+        if (path.Count > 0)
+        {
+            posMovingTo = path[0];
+            path.RemoveAt(0);
+
+            //Animation stuff
+            if (characterAnim != null)
+            {
+                characterAnim.Flip();
+            }
+
+            return posMovingTo;
+        }
+        //Animation stuff
+        if (characterAnim != null)
+        {
+            characterAnim.StopMoving();
+        }
+        move = false;
+        return transform.position;
+    }
+
+    private void Move()
+    {
+
+        if (move) //teoretiskt s�tt f�rlorar man range p� framen man kommer fram till en point, men spelar nog ingen roll
+        {
+            if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed * Time.deltaTime)
+            {
+                transform.position = posMovingTo;
+                if (createNewPath)
+                {
+                    path = Pathfinding.FindPath(transform.position, newGoalPos, GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y, itemInteractedWithBoxCollider);
+                    createNewPath = false;
+                    GetNextPosOnPath();
+                    return;
+                }
+                if (path.Count > 0)
+                {
+                    GetNextPosOnPath();
+                }
+                else
+                {
+                    move = false;
+                    characterAnim.StopMoving();
+                    if (itemInteractedWith != null)
+                    {
+                        onTaskCompletion?.Invoke(this);
+                        //Animation stuff ----------------- Jag väntar lite med detta tills jag har craftingdelen
+                        //if (characterAnim != null)
+                        //{
+                        //    if (task == CharacterTasks.crafting)
+                        //    {
+                        //        characterAnim.StartCrafting();
+                        //    }
+                        //}
+                    }
+                }
+            }
+            else
+            {
+                Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed * Time.deltaTime);
+                transform.position = newPos;
+            }
+        }
+    }
+
+    #endregion
+
+    #region Hunger and Health
 
     void HungerDecay()
     {
@@ -327,173 +512,6 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void InteractedWithItem(InteractableItem item)
-    {
-        if (item != itemInteractedWith)
-        {
-            CharacterLeftTask();
-            itemInteractedWith = item;
-            itemInteractedWithBoxCollider = item.GetInteractableAreaCollider();
-        }
-        UpdateMovement(item.transform.position);
-    }
-
-    public void MoveToPos(Vector3 pos)
-    {
-        CharacterLeftTask();
-        pos = HelperMethods.ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue), transform.lossyScale.y);
-
-        UpdateMovement(pos);
-    }
-
-    void WarnPlayer(bool shouldFade)
-    {
-        if(marker != null)
-        {
-            if(shouldFade)
-            {
-                marker.GetComponent<UIMarker>().SetShouldFade(true);
-                reasonsToWarn++;
-            }
-            else
-            {
-                marker.GetComponent<UIMarker>().SetDuration(5);
-            }
-        }
-        else
-        {
-            marker = UIManager.InstantiateWarningAtPos(gameObject, .6f, shouldFade, 5);
-        }
-
-
-        if (marker == null)
-        {
-            marker = UIManager.InstantiateWarningAtPos(gameObject, .6f, shouldFade, 5);
-        }
-        if(!shouldFade)  reasonsToWarn++;
-    }
-
-    void RemoveWarning()
-    {
-        reasonsToWarn--;
-        if(reasonsToWarn < 0) reasonsToWarn = 0;
-        if (reasonsToWarn == 0 && marker != null) Destroy(marker);
-    }
-
-    void CharacterLeftTask()
-    {
-        if(itemInteractedWith != null)
-        {
-            InteractableCraftingMachine machine;
-            //borde kanske vara en generell klass och inte specifikt den här, men men
-            if (itemInteractedWith.gameObject.TryGetComponent(out machine))
-            {
-                machine.CharacterLeftStation(this);
-            }
-        }
-        itemInteractedWith = null;
-        itemInteractedWithBoxCollider = null;
-    }
-
-    void UpdateMovement(Vector3 goal)
-    {
-        if (move)
-        {
-            newGoalPos = goal;
-            createNewPath = true;
-        }
-        else
-        {
-            path = Pathfinding.FindPath(transform.position, goal, GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y, itemInteractedWithBoxCollider);
-            move = true;
-            GetNextPosOnPath();
-
-            //move behöver vara med här ifall pathen är tom
-            //Animation stuff
-            if (move && characterAnim != null)
-            {
-                characterAnim.StartMoving();
-            }
-        }
-    }
-
-    void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(0) && isAlive && UIElementConsumeMouseOver.mouseOverIsAvailable)
-        {
-            UnitController.SwapSelectedCharacter(this);
-        }
-    }
-
-    Vector3 GetNextPosOnPath()
-    {
-        if (path.Count > 0)
-        {
-            posMovingTo = path[0];
-            path.RemoveAt(0);
-
-            //Animation stuff
-            if(characterAnim != null)
-            {
-                characterAnim.Flip();
-            }
-
-            return posMovingTo;
-        }
-        //Animation stuff
-        if(characterAnim != null)
-        {
-            characterAnim.StopMoving();
-        }
-        move = false;
-        return transform.position;
-    }
-
-    private void Move()
-    {
-
-        if (move) //teoretiskt s�tt f�rlorar man range p� framen man kommer fram till en point, men spelar nog ingen roll
-        {
-            if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed * Time.deltaTime)
-            {
-                transform.position = posMovingTo;
-                if (createNewPath)
-                {
-                    path = Pathfinding.FindPath(transform.position, newGoalPos, GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y, itemInteractedWithBoxCollider);
-                    createNewPath = false;
-                    GetNextPosOnPath();
-                    return;
-                }
-                if (path.Count > 0)
-                {
-                    GetNextPosOnPath(); 
-                }
-                else
-                {
-                    move = false;
-                    characterAnim.StopMoving();
-                    if (itemInteractedWith != null)
-                    {
-                        onTaskCompletion?.Invoke(this);
-                        //Animation stuff ----------------- Jag väntar lite med detta tills jag har craftingdelen
-                        //if (characterAnim != null)
-                        //{
-                        //    if (task == CharacterTasks.crafting)
-                        //    {
-                        //        characterAnim.StartCrafting();
-                        //    }
-                        //}
-                    }
-                }
-            }
-            else
-            {
-                Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed * Time.deltaTime);
-                transform.position = newPos;
-            }
-        }
-    }
-
     public void ConsumeFood(Food food)
     {
         if (maxHunger - hunger > 15)
@@ -525,11 +543,63 @@ public class Character : MonoBehaviour
         isHungry = true;
     }
 
+    #endregion
+
+    void CheckWorkMultiplier()
+    {
+        //sortera dessa på hur negativa de är (värre är överst)
+        if (HasStatus(Statuses.ill) || HasStatus(Statuses.injured) || HasStatus(Statuses.sad))
+        {
+            workMultiplier = 0.1f;
+        }
+        else
+        {
+            workMultiplier = 1;
+        }
+    }
+    void WarnPlayer(bool shouldFade)
+    {
+        if(marker != null)
+        {
+            if(shouldFade)
+            {
+                marker.GetComponent<UIMarker>().SetShouldFade(true);
+                reasonsToWarn++;
+            }
+            else
+            {
+                marker.GetComponent<UIMarker>().SetDuration(5);
+            }
+        }
+        else
+        {
+            marker = UIManager.InstantiateWarningAtPos(gameObject, .6f, shouldFade, 5);
+        }
+
+
+        if (marker == null)
+        {
+            marker = UIManager.InstantiateWarningAtPos(gameObject, .6f, shouldFade, 5);
+        }
+        if(!shouldFade)  reasonsToWarn++;
+    }
+    void RemoveWarning()
+    {
+        reasonsToWarn--;
+        if(reasonsToWarn < 0) reasonsToWarn = 0;
+        if (reasonsToWarn == 0 && marker != null) Destroy(marker);
+    }
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0) && isAlive && UIElementConsumeMouseOver.mouseOverIsAvailable)
+        {
+            UnitController.SwapSelectedCharacter(this);
+        }
+    }
     public float GetCharacterDirectionX()
     {
         return transform.position.x - posMovingTo.x;
     }
-
     public float GetCharacterDirectionY()
     {
         return transform.position.y - posMovingTo.y;

@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c6f61fa770eb459673b9a0ad667a0, type: 3}
-  m_Name: Sword
+  m_Script: {fileID: 11500000, guid: 6fc42c55f8498da4996f58ec584f47f9, type: 3}
+  m_Name: Axe
   m_EditorClassIdentifier: 
-  ID: 03012
-  DisplayName: svod
-  Description: stabby
-  Icon: {fileID: 21300000, guid: 0c2bff6d9a8da024fabfca44ce20949c, type: 3}
+  ID: 03006
+  DisplayName: Axe
+  Description: Cuts flesh better than wood.
+  Icon: {fileID: 21300000, guid: 29d294e1e0d9706498e71935be1ce56d, type: 3}
   SortingType: 5
   lootProbabilityOverride: 0
   gearType: 3
-  attack: 50

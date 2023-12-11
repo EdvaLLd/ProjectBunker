@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c6f61fa770eb459673b9a0ad667a0, type: 3}
-  m_Name: Sword
+  m_Script: {fileID: 11500000, guid: d858a93de3d53cb45b015885e11660fd, type: 3}
+  m_Name: Leather Jacket
   m_EditorClassIdentifier: 
-  ID: 03012
-  DisplayName: svod
-  Description: stabby
-  Icon: {fileID: 21300000, guid: 0c2bff6d9a8da024fabfca44ce20949c, type: 3}
+  ID: 03011
+  DisplayName: 
+  Description: 
+  Icon: {fileID: 0}
   SortingType: 5
   lootProbabilityOverride: 0
-  gearType: 3
-  attack: 50
+  gearType: 0
+  defence: 0

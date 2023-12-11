@@ -72,7 +72,7 @@ public class ExplorationEvents : Exploration
                 {
                     case (ExploreSubEvent.eventTypes.Text):
                         subEvent.textEvent.timer.CountDown();
-                        PlayTextEvent(subEvent.textEvent.eventMessage);
+                        PlayTextEvent(subEvent.textEvent.eventMessage, attachedGameObject.GetComponent<Character>());
                         break;
                     case (ExploreSubEvent.eventTypes.Item):
                             subEvent.itemEvent.timer.CountDown();
@@ -95,6 +95,10 @@ public class ExplorationEvents : Exploration
                         subEvent.recipeEvent.timer.CountDown();
                         PlayCharacterEvent();
                         break;
+                    case (ExploreSubEvent.eventTypes.Illness):
+                        subEvent.illnessEvent.timer.CountDown();
+                        PlayIllnessEvent(attachedGameObject.GetComponent<Character>());
+                        break;
 
                     default:
                         break;
@@ -114,12 +118,12 @@ public class ExplorationEvents : Exploration
         }
         //------------------------------------------------------------------------------------------
 
-        public void PlayTextEvent(string message)
+        public void PlayTextEvent(string message, Character character)
         {
             if (message != "" || message != null)
             {
                 //TextLog.AddLog(message);
-                FindObjectOfType<SpecialExploringEvents>().ShowSpecialEvent(message);
+                FindObjectOfType<SpecialExploringEvents>().ShowSpecialEvent(message, character.gameObject.name);
             }
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// ItemEvent
@@ -399,7 +403,19 @@ public class ExplorationEvents : Exploration
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// IllnessEvent
         //------------------------------------------------------------------------------------------
+
+        [System.Serializable]
+        public class IllnessEvent
+        {
+            public Timer timer = new Timer();
+        }
+        public void PlayIllnessEvent(Character character)
+        {
+            character.AddDesease<Flu>();
+        }
 
 
     }
@@ -430,7 +446,7 @@ public class ExplorationEvents : Exploration
     [System.Serializable]
     public class ExploreSubEvent
     {
-        public enum eventTypes { Text, Item, Damage, Combat, Recipe, Sickness, Diary, Character };
+        public enum eventTypes { Text, Item, Damage, Combat, Recipe, Illness, Diary, Character };
         public eventTypes eventType;
 
         public enum enemyFactions { Scavengers, Mutated_dogs, Radioactive_lobsters, TwoheadedFoxes, GiantInsects };
@@ -442,6 +458,7 @@ public class ExplorationEvents : Exploration
         public ExploreEventTypes.CombatEvent combatEvent;
         public ExploreEventTypes.RecipeEvent recipeEvent;
         public ExploreEventTypes.CharacterEvent characterEvent;
+        public ExploreEventTypes.IllnessEvent illnessEvent;
     }
 
 }

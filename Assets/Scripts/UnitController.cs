@@ -40,7 +40,7 @@ public class UnitController : MonoBehaviour
     int howOftenToUpdateStats = 5;
 
 
-    static GameObject characterStatsWindowStatic;
+    
 
 
     [SerializeField]
@@ -51,22 +51,12 @@ public class UnitController : MonoBehaviour
     static List<Character> allCharacters = new List<Character>();
 
 
-    //namn på karaktärerna
-    static TextMeshProUGUI characterName;
-
-    static GameObject statusHolderGO;
 
 
     //Speltesttimer
     float timerForPlaytest = 30;
     bool randomDesease = false;
 
-    private void Awake()
-    {
-        characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
-        characterName = GameObject.FindGameObjectWithTag("CharacterName").GetComponent<TextMeshProUGUI>();
-        statusHolderGO = GameObject.FindGameObjectWithTag("StatusHolder");
-    }
 
     private void Start()
     {
@@ -86,7 +76,7 @@ public class UnitController : MonoBehaviour
             }
         }
 
-        characterStatsWindowStatic.SetActive(false);
+        UIManager.characterStatsWindowStatic.SetActive(false);
 
         //Det h�r �r temp och ska tas bort n�r man kan f� recept och items p� b�ttre s�tt
         for (int i = 0; i < recipes.Length; i++)
@@ -170,8 +160,8 @@ public class UnitController : MonoBehaviour
     }
     void UpdateCharacterStatsUI()
     {
-        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHealth(((int)(selectedCharacter.health / howOftenToUpdateStats) + 1) * howOftenToUpdateStats);
-        characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHunger(((int)(selectedCharacter.hunger / howOftenToUpdateStats) + 1) * howOftenToUpdateStats);
+        UIManager.characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHealth(((int)(selectedCharacter.health / howOftenToUpdateStats) + 1) * howOftenToUpdateStats);
+        UIManager.characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHunger(((int)(selectedCharacter.hunger / howOftenToUpdateStats) + 1) * howOftenToUpdateStats);
     }
 
     public static void FeedCharacter(Food food, Character character = null)
@@ -265,7 +255,7 @@ public class UnitController : MonoBehaviour
             setCharacterVisual(selectedCharacter, false);
             selectedCharacter = null;
             //characterStatsWindowStatic.SetActive(false);
-            characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideDownTrigger");
+            UIManager.characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideDownTrigger");
         }
         else
         {
@@ -275,10 +265,10 @@ public class UnitController : MonoBehaviour
             }
             selectedCharacter = newSelectedCharacter;
             setCharacterVisual(selectedCharacter, true);
-            characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().SetUp(selectedCharacter);
-            characterStatsWindowStatic.SetActive(true);
-            characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideUpTrigger");
-            characterName.text = selectedCharacter.name;
+            UIManager.characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().SetUp(selectedCharacter);
+            UIManager.characterStatsWindowStatic.SetActive(true);
+            UIManager.characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideUpTrigger");
+            UIManager.characterName.text = selectedCharacter.name;
             SetCharacterStatusVisuals(selectedCharacter);
         }
     }
@@ -287,15 +277,15 @@ public class UnitController : MonoBehaviour
     {
         if (c == selectedCharacter)
         {
-            for (int i = 0; i < statusHolderGO.transform.childCount; i++)
+            for (int i = 0; i < UIManager.statusHolderGO.transform.childCount; i++)
             {
-                if (selectedCharacter.HasStatus(statusHolderGO.transform.GetChild(i).GetComponent<StatusType>().status))
+                if (selectedCharacter.HasStatus(UIManager.statusHolderGO.transform.GetChild(i).GetComponent<StatusType>().status))
                 {
-                    statusHolderGO.transform.GetChild(i).gameObject.SetActive(true);
+                    UIManager.statusHolderGO.transform.GetChild(i).gameObject.SetActive(true);
                 }
                 else
                 {
-                    statusHolderGO.transform.GetChild(i).gameObject.SetActive(false);
+                    UIManager.statusHolderGO.transform.GetChild(i).gameObject.SetActive(false);
                 }
             }
     }

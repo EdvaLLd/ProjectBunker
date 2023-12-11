@@ -10,7 +10,6 @@ public class SpecialExploringEvents : MonoBehaviour
     [SerializeField] private GameObject characterChoicePanel;
     [SerializeField] private TextMeshProUGUI eventPanelText;
     [SerializeField] private GameObject newCharacter;
-    [SerializeField] private string eventName;
 
     [SerializeField] private Transform birthPos;
 
@@ -18,14 +17,21 @@ public class SpecialExploringEvents : MonoBehaviour
     {
         eventPanel.SetActive(false);
         characterChoicePanel.SetActive(false);
-        Debug.Log(birthPos);
     }
 
-    public void ShowSpecialEvent(string eventText)
+    private void Update()
+    {
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            ShowSpecialEvent("Hejdå", "Sture");
+            ShowCharacterChoice();
+        }
+    }
+
+    public void ShowSpecialEvent(string eventText, string characterName)
     {
         Time.timeScale = 0; /*Det här fungerar inte optimalt så jag vet inte om vi borde ha det här eller inte*/
-        Debug.Log("Nu är jag här och fin");
-        string editedText = eventText.Replace("name", eventName).Replace("Name", eventName);
+        string editedText = eventText.Replace("name", characterName).Replace("Name", characterName);
         eventPanelText.text = editedText;
         eventPanel.SetActive(true);
     }
@@ -45,7 +51,7 @@ public class SpecialExploringEvents : MonoBehaviour
         newCharacter = Instantiate(newCharacter, birthPos.position, Quaternion.identity);
         newCharacter.transform.GetChild(0).gameObject.SetActive(true);
 
-        newCharacter.GetComponentInChildren<PartsChanger>().RandomizeCharacter(); 
-
+        newCharacter.GetComponentInChildren<PartsChanger>().RandomizeCharacter();
+        UnitController.AddCharacter(newCharacter.GetComponent<Character>());
     }
 }

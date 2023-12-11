@@ -39,6 +39,15 @@ public class UIManager : MonoBehaviour
     GameObject warningImage;
     static GameObject warningImageStatic;
 
+
+
+    public static GameObject characterStatsWindowStatic;
+    //namn på karaktärerna
+    public static TextMeshProUGUI characterName;
+
+    public static GameObject statusHolderGO;
+
+
     private void Awake()
     {
         inventoryBG = GameObject.FindGameObjectWithTag("Inventory");
@@ -55,6 +64,10 @@ public class UIManager : MonoBehaviour
 
         inventorySlotStatic = inventorySlot;
         warningImageStatic = warningImage;
+
+        characterStatsWindowStatic = GameObject.FindGameObjectWithTag("CharacterStatsWindow");
+        characterName = GameObject.FindGameObjectWithTag("CharacterName").GetComponent<TextMeshProUGUI>();
+        statusHolderGO = GameObject.FindGameObjectWithTag("StatusHolder");
     }
 
     private void Start()
