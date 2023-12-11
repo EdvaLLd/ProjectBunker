@@ -333,7 +333,7 @@ public class ExplorationEvents : Exploration
             [Tooltip("Delay in ammount of time before event starts in selected units.")]
             public Timer timer = new Timer();
             [Tooltip("Items that can drop after combat event.")]
-            public Looting./*Combat*/LootItem[] combatLoot/* = new Looting.CombatLootItem[System.Enum.GetNames(typeof(ExploreSubEvent.enemyFactions)).Length]*/;
+            public Looting./*Combat*/LootItem[] combatLoot;
         }
         //------------------------------------------------------------------------------------------
         public void PlayCombatEvent(ExploreSubEvent subEvent, Character character)
