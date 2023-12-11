@@ -221,7 +221,7 @@ public class UnitController : MonoBehaviour
                 }
                 break;
             case CharacterTasks.exploring:
-                character.gameObject.GetComponent<Exploration>().Explore();
+                character.gameObject.GetComponent<CharacterExploration>().StartExploration();
                 //characterStatsWindowStatic.SetActive(false);
                 if(character == selectedCharacter) SwapSelectedCharacter(selectedCharacter);
 

@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
     public ExplorationEvents.ExploreEvent[] mainExploreEvents;
     public ExplorationEvents.ExploreEvent[] randomExploreEvents;
 
+    //FIXA DETTA INNAN 
+    public ExplorationEventsElla.ExploreEvent[] testingEvents;
+
     private void Awake()
     {
         instance = this;

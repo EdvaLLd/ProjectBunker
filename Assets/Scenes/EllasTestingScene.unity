@@ -507,6 +507,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a2180653b15146a48b8eb8020328c38b, type: 3}
   m_PrefabInstance: {fileID: 18410485}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &24431771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7780648542340397821, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+  m_PrefabInstance: {fileID: 1971334737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &24431772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24431771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1112a1f9028ae7a4392ae71685a47b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minExploreTime: 4
+  maxExploreTime: 7
 --- !u!1 &31004941
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,6 +993,7 @@ MonoBehaviour:
   item: {fileID: 0}
   header: Status
   description: The character is hungry
+  paddingToCursor: {x: 5, y: 5, z: 0}
   descDir: 0
 --- !u!1 &50403217
 GameObject:
@@ -11932,6 +11952,7 @@ MonoBehaviour:
   item: {fileID: 0}
   header: Status
   description: The character is ill
+  paddingToCursor: {x: 5, y: 5, z: 0}
   descDir: 0
 --- !u!1 &441118224
 GameObject:
@@ -24325,6 +24346,10 @@ MonoBehaviour:
   fullColor: {r: 0.21552305, g: 0.5188679, b: 0.20314167, a: 1}
   halfFullColor: {r: 0.754717, g: 0.55264336, b: 0, a: 1}
   lowColor: {r: 0.4245283, g: 0.13817194, b: 0.13817194, a: 1}
+  chestBtn: {fileID: 0}
+  legsBtn: {fileID: 0}
+  bootsBtn: {fileID: 0}
+  weaponBtn: {fileID: 0}
 --- !u!1 &974117439
 GameObject:
   m_ObjectHideFlags: 0
@@ -24431,6 +24456,7 @@ MonoBehaviour:
   item: {fileID: 0}
   header: Status
   description: The character is sad
+  paddingToCursor: {x: 5, y: 5, z: 0}
   descDir: 0
 --- !u!1001 &974921279
 PrefabInstance:
@@ -31121,6 +31147,57 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
     eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+  testingEvents:
+  - eventName: Gilbert
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: "Hej ahll\xE5 "
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 100
     timer:
       timeUnit: 0
       ammount: 0
@@ -38199,6 +38276,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492410630}
   m_CullTransparentMesh: 1
+--- !u!1 &1495556314 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7780648542340397821, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+  m_PrefabInstance: {fileID: 230025514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1495556321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495556314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1112a1f9028ae7a4392ae71685a47b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minExploreTime: 2
+  maxExploreTime: 7
 --- !u!1001 &1498028938
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39932,6 +40028,7 @@ MonoBehaviour:
   item: {fileID: 0}
   header: Status
   description: The character is happy
+  paddingToCursor: {x: 5, y: 5, z: 0}
   descDir: 0
 --- !u!1 &1577923158
 GameObject:
@@ -44157,6 +44254,10 @@ MonoBehaviour:
   fullColor: {r: 0.21552305, g: 0.5188679, b: 0.20314167, a: 1}
   halfFullColor: {r: 0.754717, g: 0.55264336, b: 0, a: 1}
   lowColor: {r: 0.4245283, g: 0.13817194, b: 0.13817194, a: 1}
+  chestBtn: {fileID: 0}
+  legsBtn: {fileID: 0}
+  bootsBtn: {fileID: 0}
+  weaponBtn: {fileID: 0}
 --- !u!1 &1749888643
 GameObject:
   m_ObjectHideFlags: 0
@@ -50868,6 +50969,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3891047409674012876, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9915785
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891047409674012876, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.12950718
+      objectReference: {fileID: 0}
     - target: {fileID: 4022489857605595219, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -51320,6 +51429,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -2126769043
       objectReference: {fileID: 0}
+    - target: {fileID: 7780648542340397817, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7780648542340397819, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -51371,6 +51484,10 @@ PrefabInstance:
     - target: {fileID: 7780648542340397821, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780648542340397831, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7798327901042459291, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Layer

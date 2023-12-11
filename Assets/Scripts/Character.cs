@@ -416,14 +416,7 @@ public class Character : MonoBehaviour
                     if (itemInteractedWith != null)
                     {
                         onTaskCompletion?.Invoke(this);
-                        //Animation stuff ----------------- Jag väntar lite med detta tills jag har craftingdelen
-                        //if (characterAnim != null)
-                        //{
-                        //    if (task == CharacterTasks.crafting)
-                        //    {
-                        //        characterAnim.StartCrafting();
-                        //    }
-                        //}
+
                     }
                 }
             }
@@ -604,4 +597,5 @@ public class Character : MonoBehaviour
     {
         return transform.position.y - posMovingTo.y;
     }
+
 }
