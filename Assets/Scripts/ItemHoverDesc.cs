@@ -25,6 +25,7 @@ public class ItemHoverDesc : MonoBehaviour, IPointerEnterHandler, IPointerMoveHa
     [SerializeField]
     string header, description;
 
+    [SerializeField]
     Vector3 paddingToCursor = new Vector3(5, 5, 0);
 
     [SerializeField]
