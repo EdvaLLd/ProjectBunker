@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
@@ -11,6 +14,7 @@ public class PartsChanger : MonoBehaviour
     private SpriteResolver[] resolvers;
 
     private int[] bodyPartCollection;
+    private Renderer[] renderers;
 
     //Skinparts ------- Torso --------- Ögon --------- Mun ------- Ben -------- Fötter ---------- Hår
     private int[][] bodyParts = { new int[] {14, 21, 12}, new int[] {15, 22, 13 }, new int[] {3, 4, 5, 6, 7, 8, 9, 10 },
@@ -21,6 +25,7 @@ public class PartsChanger : MonoBehaviour
     {
         resolvers = GetComponentsInChildren<SpriteResolver>();
         ponytail.GetComponent<LineRenderer>().enabled = false;
+        renderers = GetComponentsInChildren<Renderer>();
     }
 
     void Update()
@@ -71,6 +76,7 @@ public class PartsChanger : MonoBehaviour
         {
             ponytail.GetComponent<LineRenderer>().enabled = false;
         }
+        ChangeSortingLayer();
     }
 
     private void ChangeVersionOnCollection(int collectionNumber, int version)
@@ -94,5 +100,47 @@ public class PartsChanger : MonoBehaviour
     private void ChangeAPart(int bodyPart, int version)
     {
         resolvers[bodyPart].SetCategoryAndLabel(resolvers[bodyPart].GetCategory(), "Entry_" + version);
+    }
+
+    private void ChangeSortingLayer()
+    {
+
+        for(int i = 0; i < GetSortingLayerNames().Length; i++)
+        {
+            bool nameAvailable = true;
+            string currentName = "";
+            for(int a = 0; a < UnitController.GetCharacters().Count; a++)
+            {
+                currentName = UnitController.GetCharacters()[a].transform.GetChild(0).GetComponent<Renderer>().sortingLayerName;
+             
+                if(currentName == GetSortingLayerNames()[i] || GetSortingLayerNames()[i] == "Default")
+                {                    
+                    nameAvailable = false;
+                }
+                
+            }
+            if (nameAvailable)
+            {
+                ChangeSortingLayerOnAllParts(GetSortingLayerNames()[i]);
+                return;
+            }
+        }
+    }
+
+    private void ChangeSortingLayerOnAllParts(string sortingLayerName)
+    {
+        GetComponent<Renderer>().sortingLayerName = sortingLayerName;
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].sortingLayerName = sortingLayerName;
+            Debug.Log("Current layer: " + renderers[i].sortingLayerName + " New layer: " + sortingLayerName);
+        }
+    }
+
+    private string[] GetSortingLayerNames()
+    {
+        System.Type internalEditorUtilityType = typeof(InternalEditorUtility);
+        PropertyInfo sortingLayersProperty = internalEditorUtilityType.GetProperty("sortingLayerNames", BindingFlags.Static | BindingFlags.NonPublic);
+        return (string[])sortingLayersProperty.GetValue(null, new object[0]);
     }
 }
