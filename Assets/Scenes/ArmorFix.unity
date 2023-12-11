@@ -44399,10 +44399,10 @@ MonoBehaviour:
   fullColor: {r: 0.21552305, g: 0.5188679, b: 0.20314167, a: 1}
   halfFullColor: {r: 0.754717, g: 0.55264336, b: 0, a: 1}
   lowColor: {r: 0.4245283, g: 0.13817194, b: 0.13817194, a: 1}
-  chestBtn: {fileID: 597017159}
-  legsBtn: {fileID: 712225982}
-  bootsBtn: {fileID: 1587664451}
-  weaponBtn: {fileID: 208350356}
+  chestBtn: {fileID: 0}
+  legsBtn: {fileID: 0}
+  bootsBtn: {fileID: 0}
+  weaponBtn: {fileID: 0}
 --- !u!1 &1749888643
 GameObject:
   m_ObjectHideFlags: 0
