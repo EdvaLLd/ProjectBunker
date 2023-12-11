@@ -29516,7 +29516,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    - eventType: 5
+    - eventType: 1
       textEvent:
         eventMessage: 
         timer:
@@ -29846,7 +29846,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 10
+    eventProbability: 5
     timer:
       timeUnit: 0
       ammount: 0
@@ -29943,7 +29943,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 10
+    eventProbability: 5
     timer:
       timeUnit: 0
       ammount: 0
@@ -30088,7 +30088,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 10
+    eventProbability: 5
     timer:
       timeUnit: 0
       ammount: 0
@@ -30234,7 +30234,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 10
+    eventProbability: 5
     timer:
       timeUnit: 0
       ammount: 0
@@ -30344,7 +30344,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 10
+    eventProbability: 5
     timer:
       timeUnit: 0
       ammount: 0
@@ -30528,7 +30528,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 10
+    eventProbability: 5
     timer:
       timeUnit: 0
       ammount: 0
@@ -30628,7 +30628,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 10
+    eventProbability: 5
     timer:
       timeUnit: 0
       ammount: 0
@@ -30722,12 +30722,12 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 10
+    eventProbability: 5
     timer:
       timeUnit: 0
       ammount: 0
   randomExploreEvents:
-  - eventName: Animal attack
+  - eventName: Two-headed foxes
     replaceDefaultExplore: 0
     subEvents:
     - eventType: 0
@@ -30868,11 +30868,12 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 100
+    eventProbability: 20
     timer:
       timeUnit: 0
       ammount: 0
-  - eventName: Animal attack 2
+    cooldown: 2
+  - eventName: Giant insects
     replaceDefaultExplore: 0
     subEvents:
     - eventType: 0
@@ -31013,7 +31014,158 @@ MonoBehaviour:
     timer:
       timeUnit: 0
       ammount: 0
-  - eventName: Save person
+    cooldown: 0
+  limitedExploreEvents:
+  - eventName: Diary Entry
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name found a diary entry hidden under a rock.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 100
+    timer:
+      timeUnit: 0
+      ammount: 0
+    cooldown: 0
+    maxTurns: 4
+    bringsNewCharacter: 0
+  - eventName: New character
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: 'Name finds a lonely person who wishes to join the household. '
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 7
+      textEvent:
+        eventMessage: 'Name finds a lonely person who wishes to join the household. '
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        maxDamageDealt: 0
+        minDamageDealt: 0
+        maxDamageRecieved: 0
+        minDamageRecieved: 0
+        combatEventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+        combatLoot: []
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+    cooldown: 5
+    maxTurns: 0
+    bringsNewCharacter: 1
+  - eventName: Save character
     replaceDefaultExplore: 0
     subEvents:
     - eventType: 0
@@ -31060,103 +31212,9 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    - eventType: 2
-      textEvent:
-        eventMessage: 
-        timer:
-          timeUnit: 0
-          ammount: 0
-      itemEvent:
-        eventMessage: 
-        addOrSubtract: 0
-        randomLoot: 0
-        timer:
-          timeUnit: 0
-          ammount: 0
-        loot: []
-      damageEvent:
-        damageRecieved: 20
-        timer:
-          timeUnit: 0
-          ammount: 0
-      combatEvent:
-        enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
-        timer:
-          timeUnit: 0
-          ammount: 0
-        combatLoot: []
-      recipeEvent:
-        recipe: {fileID: 0}
-        timer:
-          timeUnit: 0
-          ammount: 0
-      characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      illnessEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
     - eventType: 7
       textEvent:
-        eventMessage: 
-        timer:
-          timeUnit: 0
-          ammount: 0
-      itemEvent:
-        eventMessage: 
-        addOrSubtract: 0
-        randomLoot: 0
-        timer:
-          timeUnit: 0
-          ammount: 0
-        loot: []
-      damageEvent:
-        damageRecieved: 20
-        timer:
-          timeUnit: 0
-          ammount: 0
-      combatEvent:
-        enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
-        timer:
-          timeUnit: 0
-          ammount: 0
-        combatLoot: []
-      recipeEvent:
-        recipe: {fileID: 0}
-        timer:
-          timeUnit: 0
-          ammount: 0
-      characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      illnessEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-    eventProbability: 5
-    timer:
-      timeUnit: 0
-      ammount: 0
-  testingEvents:
-  - eventName: Gilbert
-    replaceDefaultExplore: 0
-    subEvents:
-    - eventType: 0
-      textEvent:
-        eventMessage: "Hej ahll\xE5 "
+        eventMessage: 'Name finds a lonely person who wishes to join the household. '
         timer:
           timeUnit: 0
           ammount: 0
@@ -31197,10 +31255,13 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 100
+    eventProbability: 5
     timer:
       timeUnit: 0
       ammount: 0
+    cooldown: 5
+    maxTurns: 0
+    bringsNewCharacter: 1
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0
@@ -51561,7 +51622,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -2126769043
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3779858556677083368, guid: 061c2097df6214b489e327f16caca47a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 061c2097df6214b489e327f16caca47a, type: 3}
 --- !u!1 &1972508549
 GameObject:

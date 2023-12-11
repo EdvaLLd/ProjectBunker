@@ -6,7 +6,7 @@ public class ExplorationEventsElla : MonoBehaviour
 {
     public class ExploreEventTypes : ExplorationEvents
     {
-        public bool LinnearEventSequence()
+        public bool LinnearEventSequence(Character character)
         {
 
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
@@ -24,9 +24,8 @@ public class ExplorationEventsElla : MonoBehaviour
 
             print("started event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
 
-            //gameManager.mainExploreEvents[GameManager.eventIndex].timer.CountDown();
 
-            SubEventSequence(gameManager.mainExploreEvents[GameManager.eventIndex]);
+            SubEventSequence(gameManager.mainExploreEvents[GameManager.eventIndex], character);
 
             if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
             {
@@ -38,66 +37,101 @@ public class ExplorationEventsElla : MonoBehaviour
             return true;
         }
 
-        public void RandomSpecialEvent()
+        public bool RandomSpecialEvent(Character character)
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
 
-            ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, gameManager.randomExploreEvents.Length)];
+            ExplorationEventsElla.RandomExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, gameManager.randomExploreEvents.Length)];
             float eventRandom = Random.Range(0, 100);
             float probability = randomEvent.eventProbability;
 
-            if (eventRandom <= 100 - probability)
+            if (!randomEvent.CanBeActivated())
             {
-                Debug.Log("no random" + eventRandom);
-                return;
+                return false;
             }
 
-            //executedEvent = true;
+            if (eventRandom <= 100 - probability)
+            {
+                return false;
+            }
 
-            //randomEvent.timer.CountDown();
-
-            SubEventSequence(randomEvent);
+            randomEvent.ActivateEvent();
+            SubEventSequence(randomEvent, character);
 
             print("ended event named: " + randomEvent.eventName);
+
+            return true;
         }
 
-        private void SubEventSequence(ExplorationEvents.ExploreEvent exploreEvent)
+        public bool LimitedEvent(Character character)
+        {
+            GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+            ExplorationEventsElla.LimitedExploreEvent randomEvent = gameManager.limitedExploreEvents[Random.Range(0, gameManager.limitedExploreEvents.Length)];
+            float eventRandom = Random.Range(0, 100);
+            float probability = randomEvent.eventProbability;
+            randomEvent = gameManager.limitedExploreEvents[0];
+
+            if (!randomEvent.CanBeActivated())
+            {
+                return false;
+            }
+
+            if(randomEvent.bringsNewCharacter && UnitController.GetCharacters().Count > 10)
+            {
+                return false;
+            }
+
+            if (eventRandom <= 100 - probability)
+            {
+                return false;
+            }
+
+            randomEvent.ActivateEvent();
+            SubEventSequence(randomEvent, character);
+
+            print("ended event named: " + randomEvent.eventName);
+
+            return true;
+        }
+
+        private void SubEventSequence(ExplorationEventsElla.ExploreEvent exploreEvent, Character character)
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
             //int subEventLength = GameManager.explorationEvents[GameManager.eventIndex].subEvent.Count;
             for (int subEventIndex = 0; subEventIndex < exploreEvent.subEvents.Count/*Mathf.Clamp(subEventLength, 0,subEventLength)*/; subEventIndex++)
             {
-                ExploreSubEvent subEvent = exploreEvent.subEvents[subEventIndex];
+                ExplorationEventsElla.ExploreSubEvent subEvent = exploreEvent.subEvents[subEventIndex];
                 switch (subEvent.eventType)
                 {
-                    case (ExploreSubEvent.eventTypes.Text):
+                    case (ExplorationEventsElla.ExploreSubEvent.eventTypes.Text):
                         subEvent.textEvent.timer.CountDown();
-                        PlayTextEvent(subEvent.textEvent.eventMessage, attachedGameObject.GetComponent<Character>());
+                        PlayTextEvent(subEvent.textEvent.eventMessage, character);
                         break;
-                    case (ExploreSubEvent.eventTypes.Item):
+                    case (ExplorationEventsElla.ExploreSubEvent.eventTypes.Item):
                         subEvent.itemEvent.timer.CountDown();
                         PlayItemEvent(false, subEvent);
                         break;
 
-                    case (ExploreSubEvent.eventTypes.Damage):
+                    case (ExplorationEventsElla.ExploreSubEvent.eventTypes.Damage):
                         subEvent.damageEvent.timer.CountDown();
-                        PlayDamageEvent(subEvent, attachedGameObject.GetComponent<Character>());
+                        PlayDamageEvent(subEvent, character);
                         break;
-                    case (ExploreSubEvent.eventTypes.Combat):
+                    case (ExplorationEventsElla.ExploreSubEvent.eventTypes.Combat):
                         subEvent.combatEvent.timer.CountDown();
-                        PlayCombatEvent(subEvent, attachedGameObject.GetComponent<Character>());
+                        PlayCombatEvent(subEvent, character);
                         break;
-                    case (ExploreSubEvent.eventTypes.Recipe):
+                    case (ExplorationEventsElla.ExploreSubEvent.eventTypes.Recipe):
                         subEvent.recipeEvent.timer.CountDown();
                         PlayRecipeEvent(subEvent);
                         break;
-                    case (ExploreSubEvent.eventTypes.Character):
+                    case (ExplorationEventsElla.ExploreSubEvent.eventTypes.Character):
                         subEvent.recipeEvent.timer.CountDown();
                         PlayCharacterEvent();
                         break;
-                    case (ExploreSubEvent.eventTypes.Illness):
+                    case (ExplorationEventsElla.ExploreSubEvent.eventTypes.Illness):
                         subEvent.illnessEvent.timer.CountDown();
-                        PlayIllnessEvent(attachedGameObject.GetComponent<Character>());
+                        PlayIllnessEvent(character);
                         break;
 
                     default:
@@ -148,7 +182,7 @@ public class ExplorationEventsElla : MonoBehaviour
 
         }
         //------------------------------------------------------------------------------------------
-        public void PlayItemEvent(bool isRandom, ExploreSubEvent subEvent)
+        public void PlayItemEvent(bool isRandom, ExplorationEventsElla.ExploreSubEvent subEvent)
         {
             //GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
             bool isAdding = subEvent.itemEvent.addOrSubtract;
@@ -284,7 +318,7 @@ public class ExplorationEventsElla : MonoBehaviour
             public Timer timer = new Timer();
         }
         //------------------------------------------------------------------------------------------
-        public void PlayDamageEvent(ExploreSubEvent subEvent, Character target)
+        public void PlayDamageEvent(ExplorationEventsElla.ExploreSubEvent subEvent, Character target)
         {
             float damage = subEvent.damageEvent.damageRecieved;
 
@@ -303,7 +337,7 @@ public class ExplorationEventsElla : MonoBehaviour
         public class CombatEvent
         {
             [Tooltip("Hostile faction to be encountered during event.")]
-            public ExploreSubEvent.enemyFactions enemyFaction;
+            public ExplorationEventsElla.ExploreSubEvent.enemyFactions enemyFaction;
 
             [Tooltip("Maximum possible damage dealt during combat event.")]
             public int maxDamageDealt;
@@ -323,11 +357,11 @@ public class ExplorationEventsElla : MonoBehaviour
             public Looting./*Combat*/LootItem[] combatLoot/* = new Looting.CombatLootItem[System.Enum.GetNames(typeof(ExploreSubEvent.enemyFactions)).Length]*/;
         }
         //------------------------------------------------------------------------------------------
-        public void PlayCombatEvent(ExploreSubEvent subEvent, Character character)
+        public void PlayCombatEvent(ExplorationEventsElla.ExploreSubEvent subEvent, Character character)
         {
             float randomRecievied = Random.Range(subEvent.combatEvent.minDamageRecieved, subEvent.combatEvent.maxDamageRecieved);
             float randomDealt = Random.Range(subEvent.combatEvent.minDamageDealt, subEvent.combatEvent.maxDamageDealt);
-            string faction = System.Enum.GetName(typeof(ExploreSubEvent.enemyFactions), subEvent.combatEvent.enemyFaction);
+            string faction = System.Enum.GetName(typeof(ExplorationEventsElla.ExploreSubEvent.enemyFactions), subEvent.combatEvent.enemyFaction);
             faction.Replace("_", " ");
             faction.ToLower();
 
@@ -381,7 +415,7 @@ public class ExplorationEventsElla : MonoBehaviour
             public Timer timer = new Timer();
         }
         //------------------------------------------------------------------------------------------
-        public void PlayRecipeEvent(ExploreSubEvent subEvent)
+        public void PlayRecipeEvent(ExplorationEventsElla.ExploreSubEvent subEvent)
         {
             Inventory.AddRecipeToMachines(subEvent.recipeEvent.recipe);
 
@@ -438,9 +472,81 @@ public class ExplorationEventsElla : MonoBehaviour
     {
         public string eventName;
         public bool replaceDefaultExplore = true;
-        public List<ExploreSubEvent> subEvents;
+        public List<ExplorationEventsElla.ExploreSubEvent> subEvents;
         public float eventProbability = 10;
         public Timer timer;
+    }
+
+    [System.Serializable]
+    public class RandomExploreEvent : ExploreEvent
+    {
+        public int cooldown;
+        protected bool canBeActivated = true;
+        protected int turnsSinceActivation = 0;
+
+        public virtual void ActivateEvent()
+        {
+            canBeActivated = false;
+        }
+
+        public bool CanBeActivated()
+        {
+            return canBeActivated;
+        }
+
+        public virtual void IncreaseTurnsSinceActivated()
+        {
+            if (!canBeActivated)
+            {
+                turnsSinceActivation++;
+            }
+            if(turnsSinceActivation > cooldown)
+            {
+                canBeActivated = true;
+                turnsSinceActivation = 0;
+                Debug.Log(this.eventName + " är nu redo att köras igen!");
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class LimitedExploreEvent : RandomExploreEvent
+    {
+        public int maxTurns;
+        public bool bringsNewCharacter = false;
+        private int timesActivated;
+
+        public override void ActivateEvent()
+        {
+            base.ActivateEvent();
+            timesActivated++;
+        }
+        public override void IncreaseTurnsSinceActivated()
+        {
+            if(timesActivated < maxTurns || maxTurns == 0)
+            {
+                if (!canBeActivated)
+                {
+                    turnsSinceActivation++;
+                }
+                if (turnsSinceActivation > cooldown)
+                {
+                    canBeActivated = true;
+                    turnsSinceActivation = 0;
+                    Debug.Log(this.eventName + " är nu redo att köras igen!");
+                }
+            }
+            else
+            {
+                TurnOffEvent();
+            }
+            
+        }
+
+        public void TurnOffEvent()
+        {
+            canBeActivated = false;
+        }
     }
 
     [System.Serializable]

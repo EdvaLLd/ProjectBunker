@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterExploration : MonoBehaviour
 {
@@ -8,8 +9,8 @@ public class CharacterExploration : MonoBehaviour
     
     [SerializeField] private int minExploreTime;
     [SerializeField] private int maxExploreTime;
-    private bool eventActivated = false;
     private GameManager gameManager;
+    private UnityEvent eventActivated = new UnityEvent();
 
     private void Awake()
     {
@@ -23,30 +24,65 @@ public class CharacterExploration : MonoBehaviour
     }
     private void TryActivateMainEvent()
     {
-        if (GetComponent<ExplorationEventsElla.ExploreEventTypes>().LinnearEventSequence())
+        ExplorationEventsElla.ExploreEventTypes mainEvents = new ExplorationEventsElla.ExploreEventTypes();
+        bool eventDone = mainEvents.LinnearEventSequence(GetComponent<Character>());
+        if (eventDone)
         {
-            eventActivated = true;
+            EndExploration();
         }
         else
         {
-            eventActivated = false;
+            TryActivateLimitedEvent();
+        }
+    }
+
+    private void TryActivateLimitedEvent()
+    {
+        ExplorationEventsElla.ExploreEventTypes mainEvents = new ExplorationEventsElla.ExploreEventTypes();
+        bool eventDone = mainEvents.LimitedEvent(GetComponent<Character>());
+        if (eventDone)
+        {
+            EndExploration();
+        }
+        else
+        {
+            TryActivateRandomEvent();
         }
     }
 
     private void TryActivateRandomEvent()
     {
-
+        ExplorationEventsElla.ExploreEventTypes mainEvents = new ExplorationEventsElla.ExploreEventTypes();
+        bool eventDone = mainEvents.RandomSpecialEvent(GetComponent<Character>());
+        if(eventDone)
+        {
+            EndExploration();
+        }
+        else
+        {
+            ActivateStandardEvent();
+        }
     }
 
     private void ActivateStandardEvent()
     {
-
+        Debug.Log("Aktivera standardevent");
+        EndExploration();
     }
 
-    private void ResetValues()
+    private void EndExploration()
     {
         transform.GetChild(0).gameObject.SetActive(true);
         GetComponent<BoxCollider2D>().enabled = true;
+
+        for(int i = 0; i < gameManager.randomExploreEvents.Length; i++)
+        {
+            gameManager.randomExploreEvents[i].IncreaseTurnsSinceActivated();
+        }
+        for(int i = 0; i < gameManager.limitedExploreEvents.Length; i++)
+        {
+            gameManager.limitedExploreEvents[i].IncreaseTurnsSinceActivated();
+        }
     }
 
     private IEnumerator ExploreWait()

@@ -28,7 +28,7 @@ public class ExplorationEvents : Exploration
 
             gameManager.mainExploreEvents[GameManager.eventIndex].timer.CountDown();
 
-            SubEventSequence(gameManager.mainExploreEvents[GameManager.eventIndex]);
+            //SubEventSequence(gameManager.mainExploreEvents[GameManager.eventIndex]);
 
             if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
             {
@@ -42,7 +42,8 @@ public class ExplorationEvents : Exploration
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
 
-            ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, gameManager.randomExploreEvents.Length)];
+            //ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, gameManager.randomExploreEvents.Length)];
+            ExplorationEvents.ExploreEvent randomEvent = new ExplorationEvents.ExploreEvent();
             float eventRandom = Random.Range(0, 100);
             float probability = randomEvent.eventProbability;
 
