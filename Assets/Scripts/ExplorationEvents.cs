@@ -55,7 +55,16 @@ public class ExplorationEvents : Exploration
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
 
-            ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, gameManager.randomExploreEvents.Length)];
+            int length = gameManager.randomExploreEvents.Length;
+            int maxIndex = Mathf.Clamp(length, 0, length - 1);
+
+            if (length <= 0)
+            {
+                Debug.LogWarning("No random events in array");
+                return;
+            }
+
+            ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, maxIndex)];
             float eventRandom = Random.Range(0, 100);
             float probability = randomEvent.eventProbability;
 
