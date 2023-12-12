@@ -82,6 +82,7 @@ public class ItemHoverDesc : MonoBehaviour, IPointerEnterHandler, IPointerMoveHa
             UIManager.hoverWindow.transform.position = Input.mousePosition;
             UIManager.hoverWindow.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.DisplayName;
             UIManager.hoverWindow.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = item.Description;
+            GetComponent<Animator>().SetTrigger("Hover");
         }
         else
         {
@@ -93,6 +94,7 @@ public class ItemHoverDesc : MonoBehaviour, IPointerEnterHandler, IPointerMoveHa
     {
         isHovering = false;
         UIManager.CloseWindow(UIManager.hoverWindow);
+        GetComponent<Animator>().SetTrigger("Release");
     }
 
     public void OnPointerMove(PointerEventData eventData)

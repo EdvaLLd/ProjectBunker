@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214418331294781157}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.46, y: 0.35, z: 0}
-  m_LocalScale: {x: 0.5863841, y: 0.5863841, z: 0.43245828}
+  m_LocalPosition: {x: -1.46, y: 0.4, z: 0}
+  m_LocalScale: {x: 0.4723617, y: 0.4723617, z: 0.34836677}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3118213294834403819}
@@ -4852,6 +4852,7 @@ GameObject:
   - component: {fileID: 6421606250131383266}
   - component: {fileID: 3531574230500618982}
   - component: {fileID: 5741941811487271850}
+  - component: {fileID: 6285938306861049180}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -4868,7 +4869,7 @@ Transform:
   m_GameObject: {fileID: 2963788469857011422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.94, y: 2.661, z: 0.058}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8343516247402763808}
@@ -4982,3 +4983,23 @@ MonoBehaviour:
     inspect: 1
     loot: 1
     explore: 0
+--- !u!95 &6285938306861049180
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2963788469857011422}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5a9f3e5cbb6af74ca63dd11718aff96, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
