@@ -974,6 +974,7 @@ MonoBehaviour:
   item: {fileID: 0}
   header: Status
   description: The character is hungry
+  paddingToCursor: {x: 5, y: 5, z: 0}
   descDir: 0
 --- !u!1 &50403217
 GameObject:
@@ -5952,6 +5953,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1663687923
       objectReference: {fileID: 0}
+    - target: {fileID: 6372198396653535077, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 14fe9981078c2fb4fb6d743dc44e1a5c, type: 3}
     - target: {fileID: 6443093253347434773, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -8646,6 +8651,8 @@ MonoBehaviour:
   - {fileID: 138789591}
   mist: {fileID: 0}
   itemToUnlockRoom: {fileID: 11400000, guid: f57686131b2baa34fbc946fdb4e8204b, type: 2}
+  mistClip: {fileID: 8300000, guid: 548b4474d14f14244b3455b5e1d5ae64, type: 3}
+  lockClip: {fileID: 8300000, guid: f78d351ded02f414585d19ed3d0a4073, type: 3}
 --- !u!65 &324240228
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11932,6 +11939,7 @@ MonoBehaviour:
   item: {fileID: 0}
   header: Status
   description: The character is ill
+  paddingToCursor: {x: 5, y: 5, z: 0}
   descDir: 0
 --- !u!1 &441118224
 GameObject:
@@ -11985,6 +11993,8 @@ MonoBehaviour:
   - {fileID: 1881506888}
   mist: {fileID: 0}
   itemToUnlockRoom: {fileID: 11400000, guid: f57686131b2baa34fbc946fdb4e8204b, type: 2}
+  mistClip: {fileID: 8300000, guid: 548b4474d14f14244b3455b5e1d5ae64, type: 3}
+  lockClip: {fileID: 8300000, guid: f78d351ded02f414585d19ed3d0a4073, type: 3}
 --- !u!65 &441118227
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12930,6 +12940,8 @@ MonoBehaviour:
   - {fileID: 1754053369}
   mist: {fileID: 0}
   itemToUnlockRoom: {fileID: 11400000, guid: f57686131b2baa34fbc946fdb4e8204b, type: 2}
+  mistClip: {fileID: 8300000, guid: 548b4474d14f14244b3455b5e1d5ae64, type: 3}
+  lockClip: {fileID: 8300000, guid: f78d351ded02f414585d19ed3d0a4073, type: 3}
 --- !u!65 &487256205
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17313,6 +17325,7 @@ MonoBehaviour:
     loot: 0
     explore: 0
     eat: 0
+  audioClip: {fileID: 8300000, guid: a8ebcf3e0398b1f46bbfe60907ee70de, type: 3}
 --- !u!65 &690372037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17520,6 +17533,7 @@ MonoBehaviour:
     loot: 0
     explore: 0
     eat: 0
+  audioClip: {fileID: 8300000, guid: f822630617af34240b80cbce9663c103, type: 3}
 --- !u!65 &699427034
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24325,6 +24339,10 @@ MonoBehaviour:
   fullColor: {r: 0.21552305, g: 0.5188679, b: 0.20314167, a: 1}
   halfFullColor: {r: 0.754717, g: 0.55264336, b: 0, a: 1}
   lowColor: {r: 0.4245283, g: 0.13817194, b: 0.13817194, a: 1}
+  chestBtn: {fileID: 0}
+  legsBtn: {fileID: 0}
+  bootsBtn: {fileID: 0}
+  weaponBtn: {fileID: 0}
 --- !u!1 &974117439
 GameObject:
   m_ObjectHideFlags: 0
@@ -24431,6 +24449,7 @@ MonoBehaviour:
   item: {fileID: 0}
   header: Status
   description: The character is sad
+  paddingToCursor: {x: 5, y: 5, z: 0}
   descDir: 0
 --- !u!1001 &974921279
 PrefabInstance:
@@ -28482,6 +28501,134 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortingType: 0
   GearSortingType: 1
+--- !u!1 &1129760230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1129760231}
+  - component: {fileID: 1129760232}
+  m_Layer: 0
+  m_Name: AmbiencePlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1129760231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129760230}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.9999839, y: 1.3394502, z: -0.5160055}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 32
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1129760232
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129760230}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7ed15e60f86988944b20f73b19a24fbb, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.076
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1153141328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38898,6 +39045,8 @@ MonoBehaviour:
   - {fileID: 1881506888}
   mist: {fileID: 0}
   itemToUnlockRoom: {fileID: 11400000, guid: f57686131b2baa34fbc946fdb4e8204b, type: 2}
+  mistClip: {fileID: 8300000, guid: 548b4474d14f14244b3455b5e1d5ae64, type: 3}
+  lockClip: {fileID: 8300000, guid: f78d351ded02f414585d19ed3d0a4073, type: 3}
 --- !u!65 &1541406016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39932,6 +40081,7 @@ MonoBehaviour:
   item: {fileID: 0}
   header: Status
   description: The character is happy
+  paddingToCursor: {x: 5, y: 5, z: 0}
   descDir: 0
 --- !u!1 &1577923158
 GameObject:
@@ -44157,6 +44307,10 @@ MonoBehaviour:
   fullColor: {r: 0.21552305, g: 0.5188679, b: 0.20314167, a: 1}
   halfFullColor: {r: 0.754717, g: 0.55264336, b: 0, a: 1}
   lowColor: {r: 0.4245283, g: 0.13817194, b: 0.13817194, a: 1}
+  chestBtn: {fileID: 0}
+  legsBtn: {fileID: 0}
+  bootsBtn: {fileID: 0}
+  weaponBtn: {fileID: 0}
 --- !u!1 &1749888643
 GameObject:
   m_ObjectHideFlags: 0
@@ -46291,6 +46445,7 @@ MonoBehaviour:
     loot: 0
     explore: 0
     eat: 0
+  audioClip: {fileID: 8300000, guid: 901aa35bf3ad99f49a23e522614aa89b, type: 3}
 --- !u!1 &1839475869
 GameObject:
   m_ObjectHideFlags: 0
@@ -53547,6 +53702,7 @@ MonoBehaviour:
     loot: 0
     explore: 0
     eat: 0
+  audioClip: {fileID: 8300000, guid: 0c5e0c548e9bd1e4e8bfb0188cc7f64b, type: 3}
 --- !u!65 &2049845527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55398,6 +55554,8 @@ MonoBehaviour:
   - {fileID: 138789591}
   mist: {fileID: 0}
   itemToUnlockRoom: {fileID: 11400000, guid: f57686131b2baa34fbc946fdb4e8204b, type: 2}
+  mistClip: {fileID: 8300000, guid: 548b4474d14f14244b3455b5e1d5ae64, type: 3}
+  lockClip: {fileID: 8300000, guid: f78d351ded02f414585d19ed3d0a4073, type: 3}
 --- !u!1 &8106592800681471031
 GameObject:
   m_ObjectHideFlags: 0

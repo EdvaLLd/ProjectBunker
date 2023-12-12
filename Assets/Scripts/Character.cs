@@ -74,6 +74,10 @@ public class Character : MonoBehaviour
     GameObject marker;
     int reasonsToWarn = 0;
 
+    [SerializeField]
+    private AudioClip audioClip;
+    private AudioSource audioSource;
+
     #endregion
 
     private void Start()
@@ -83,6 +87,14 @@ public class Character : MonoBehaviour
 
         gearEquipped = new EqippedGearSet();
         characterAnim = GetComponentInChildren<CharacterAnimation>();
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.spatialBlend = 1.0f;
+        audioSource.loop = false;
+        if (audioClip != null)
+        {
+            audioSource.clip = audioClip;
+        }
     }
 
 
@@ -519,6 +531,7 @@ public class Character : MonoBehaviour
             TextLog.AddLog($"{food.DisplayName} eaten!");
             Inventory.RemoveItem(food);
             hunger = Mathf.Clamp(hunger + food.GetHungerRestoration(), 0, maxHunger);
+            audioSource.Play();
         }
         if (hunger >= maxHunger)
         {

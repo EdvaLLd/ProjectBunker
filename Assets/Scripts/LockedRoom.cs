@@ -13,12 +13,27 @@ public class LockedRoom : MonoBehaviour
     [SerializeField]
     Item itemToUnlockRoom;
 
+    [SerializeField]
+    private AudioClip mistClip, lockClip;
+    private AudioSource audioSource;
+
     private void Start()
     {
         for (int i = 0; i < roomEntrances.Length; i++)
         {
             roomEntrances[i].AddLockedFrom();
         }
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.loop = false;
+        if(mistClip != null && mist != null)
+        {
+            audioSource.clip = mistClip;
+        }else if(lockClip != null && mist == null)
+        {
+            audioSource.clip = lockClip;
+        }
+        audioSource.spatialBlend = 1.0f;
     }
 
     private void OnMouseEnter()
@@ -70,14 +85,24 @@ public class LockedRoom : MonoBehaviour
             {
                 roomEntrances[i].RemoveLockedFrom();
             }
-            //borde antagligen göras snyggare
-            if (mist != null)
-            {
-                Destroy(mist);
-            }
+ 
             Inventory.RemoveItem(itemToUnlockRoom);
             UIManager.clearMistBtnGO.gameObject.SetActive(false);
-            Destroy(transform.parent.gameObject);
+            StartCoroutine(WaitForSound(audioSource.clip));
+            
         }
+    }
+
+    private IEnumerator WaitForSound(AudioClip audio)
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(audio.length);
+
+        //borde antagligen göras snyggare
+        if (mist != null)
+        {
+            Destroy(mist);
+        }
+        Destroy(transform.parent.gameObject);
     }
 }
