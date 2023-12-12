@@ -49,7 +49,7 @@ public class Diary
         }
         
         int pageIndex_Left = GameManager.leftPageIndex;
-        int pageIndex_Right = pageIndex_Left+1;
+        int pageIndex_Right = Mathf.Clamp(pageIndex_Left+1, 0, gameManager.gameDiary.entries.Count);
 
         if (pageIndex_Left >= gameManager.gameDiary.entries.Count ) 
         {
