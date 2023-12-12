@@ -91,15 +91,15 @@ public class UnitController : MonoBehaviour
 
     private void Update()
     {
-        if (!randomDesease)
-        {
-            timerForPlaytest -= Time.deltaTime;
-            if (timerForPlaytest < 0)
-            {
-                allCharacters[UnityEngine.Random.Range(0, allCharacters.Count - 1)].AddDesease<Flu>();
-                randomDesease = true;
-            }
-        }
+        //if (!randomDesease)
+        //{
+        //    timerForPlaytest -= Time.deltaTime;
+        //    if (timerForPlaytest < 0)
+        //    {
+        //        allCharacters[UnityEngine.Random.Range(0, allCharacters.Count - 1)].AddDesease<Flu>();
+        //        randomDesease = true;
+        //    }
+        //}
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -221,7 +221,7 @@ public class UnitController : MonoBehaviour
                 }
                 break;
             case CharacterTasks.exploring:
-                character.gameObject.GetComponent<Exploration>().Explore();
+                character.gameObject.GetComponent<CharacterExploration>().StartExploration();
                 //characterStatsWindowStatic.SetActive(false);
                 if(character == selectedCharacter) SwapSelectedCharacter(selectedCharacter);
 

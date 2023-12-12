@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -41,8 +44,11 @@ public class GameManager : MonoBehaviour
     [Header("Events")]
     public static int eventIndex = 0;
 
-    public ExplorationEvents.ExploreEvent[] mainExploreEvents;
-    public ExplorationEvents.ExploreEvent[] randomExploreEvents;
+    public ExplorationBase.StandardExploreEvent[] standardExploreEvents;
+    public ExplorationBase.ExploreEvent[] mainExploreEvents;
+    public ExplorationBase.RandomExploreEvent[] randomExploreEvents;
+    public ExplorationBase.LimitedExploreEvent[] limitedExploreEvents;
+
 
     private void Awake()
     {
