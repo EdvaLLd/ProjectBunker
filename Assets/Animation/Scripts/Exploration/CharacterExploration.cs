@@ -25,8 +25,8 @@ public class CharacterExploration : MonoBehaviour
     }
     private void TryActivateMainEvent()
     {
-        ExplorationBase.ExploreEventTypes mainEvents = new ExplorationBase.ExploreEventTypes();
-        bool eventDone = mainEvents.LinnearEventSequence(GetComponent<Character>());
+        ExplorationBase.ExploreEventTypes baseEvent = new ExplorationBase.ExploreEventTypes();
+        bool eventDone = baseEvent.LinnearEventSequence(GetComponent<Character>());
         if (eventDone)
         {
             EndExploration();
@@ -39,8 +39,8 @@ public class CharacterExploration : MonoBehaviour
 
     private void TryActivateLimitedEvent()
     {
-        ExplorationBase.ExploreEventTypes mainEvents = new ExplorationBase.ExploreEventTypes();
-        bool eventDone = mainEvents.LimitedEvent(GetComponent<Character>());
+        ExplorationBase.ExploreEventTypes baseEvent = new ExplorationBase.ExploreEventTypes();
+        bool eventDone = baseEvent.LimitedEvent(GetComponent<Character>());
         if (eventDone)
         {
             EndExploration();
@@ -53,8 +53,8 @@ public class CharacterExploration : MonoBehaviour
 
     private void TryActivateRandomEvent()
     {
-        ExplorationBase.ExploreEventTypes mainEvents = new ExplorationBase.ExploreEventTypes();
-        bool eventDone = mainEvents.RandomSpecialEvent(GetComponent<Character>());
+        ExplorationBase.ExploreEventTypes baseEvent = new ExplorationBase.ExploreEventTypes();
+        bool eventDone = baseEvent.RandomSpecialEvent(GetComponent<Character>());
         if(eventDone)
         {
             EndExploration();

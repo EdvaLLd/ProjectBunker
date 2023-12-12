@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Mathematics;
 using System;
 
-public class ExplorationBase : MonoBehaviour
+public class ExplorationBase
 {
     public class ExploreEventTypes : ExplorationEvents
     {
@@ -18,11 +18,8 @@ public class ExplorationBase : MonoBehaviour
 
             if (eventRandom <= 100 - probability && eventRandom != 100)
             {
-                print("cancel");
                 return false;
             }
-
-            
 
             print("started event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
 
@@ -383,10 +380,6 @@ public class ExplorationBase : MonoBehaviour
             
             int rounds = (int)Math.Ceiling(enemyHealth / (double)(charStrength - enemyDefense));
             character.TakeDamage(rounds * (enemyStrength - charDefense));
-            Debug.Log("Såhär många rundor tog det: " + rounds);
-            Debug.Log("Såhär mycket liv hade fienden: " + enemyHealth);
-            Debug.Log("Såhär mycket def hade fienden: " + enemyDefense);
-            Debug.Log("Såhär stark var karaktären: " + charStrength);
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// RecipeEvent
         //------------------------------------------------------------------------------------------

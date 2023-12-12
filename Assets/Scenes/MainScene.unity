@@ -588,7 +588,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &31004941
 GameObject:
@@ -1084,7 +1084,7 @@ Transform:
   - {fileID: 959329675}
   - {fileID: 434102638}
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &57974234
 GameObject:
@@ -4548,7 +4548,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &193550587
 MonoBehaviour:
@@ -4828,7 +4828,7 @@ RectTransform:
   - {fileID: 829409905}
   - {fileID: 1060605242}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4866,7 +4866,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &197930897
 MeshRenderer:
@@ -5687,7 +5687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.060918838
+      value: 0.06091878
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -5903,7 +5903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537715813394, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000036954866
+      value: 0.0000037550917
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537978475376, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5991,7 +5991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7780648542340397819, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7780648542340397819, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6260,7 +6260,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6779,7 +6779,7 @@ Transform:
   m_Children:
   - {fileID: 1019096619}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &262112924
 MonoBehaviour:
@@ -8147,7 +8147,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &314646829
 GameObject:
@@ -12446,7 +12446,7 @@ RectTransform:
   - {fileID: 103986712}
   - {fileID: 1947729013}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13201,7 +13201,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &515840247
 GameObject:
@@ -14092,7 +14092,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &569212288
 PrefabInstance:
@@ -16153,7 +16153,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &654643173
 GameObject:
@@ -19082,7 +19082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3118213294834403819, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3118213294834403819, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19352,7 +19352,7 @@ Transform:
   - {fileID: 1755921534}
   - {fileID: 1711735947}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &804494987
 GameObject:
@@ -23253,7 +23253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3118213294834403819, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3118213294834403819, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27306,6 +27306,1823 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1115463391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1115463393}
+  - component: {fileID: 1115463392}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: 9eff477e4332346818c96745043dae9e, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1115463392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115463391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b99f7e8ad206d3d4bb915ae1e47e444a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: 0
+  locationalLoot:
+  - lootItems:
+    - lootItem: {fileID: 11400000, guid: 3d2cfa5e6b026e64e8fdee8dc421c72f, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
+    - lootItem: {fileID: 11400000, guid: 173d677b5b788b7478da1b139c843cd0, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
+    - lootItem: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+      maxLootQuantity: 1
+      minLootQuantity: 1
+      lootProbability: 25
+  - lootItems:
+    - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
+      maxLootQuantity: 2
+      minLootQuantity: 1
+      lootProbability: 30
+    - lootItem: {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
+    - lootItem: {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
+  - lootItems:
+    - lootItem: {fileID: 11400000, guid: 9571247f75639d14a87f2b5efb1f6f32, type: 2}
+      maxLootQuantity: 2
+      minLootQuantity: 1
+      lootProbability: 30
+    - lootItem: {fileID: 11400000, guid: 3d2cfa5e6b026e64e8fdee8dc421c72f, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
+    - lootItem: {fileID: 11400000, guid: 173d677b5b788b7478da1b139c843cd0, type: 2}
+      maxLootQuantity: 3
+      minLootQuantity: 1
+      lootProbability: 50
+  - lootItems:
+    - lootItem: {fileID: 11400000, guid: a48a754ecc7d51147815e431aab0bad0, type: 2}
+      maxLootQuantity: 1
+      minLootQuantity: 1
+      lootProbability: 75
+    - lootItem: {fileID: 11400000, guid: 726a1189cb4ed3c4ab5b8a6228b247b3, type: 2}
+      maxLootQuantity: 2
+      minLootQuantity: 1
+      lootProbability: 30
+    - lootItem: {fileID: 11400000, guid: 5727eaa8ebf6d8940a28fbeb5dead961, type: 2}
+      maxLootQuantity: 2
+      minLootQuantity: 1
+      lootProbability: 30
+    - lootItem: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+      maxLootQuantity: 2
+      minLootQuantity: 1
+      lootProbability: 50
+  standardExploreEvents:
+  - loot:
+    - item: {fileID: 11400000, guid: cffe802603e7a97469905f16e85b6a19, type: 2}
+      minAmount: 0
+      maxAmount: 1
+    - item: {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
+      minAmount: 1
+      maxAmount: 2
+    - item: {fileID: 11400000, guid: 5727eaa8ebf6d8940a28fbeb5dead961, type: 2}
+      minAmount: 0
+      maxAmount: 1
+  - loot:
+    - item: {fileID: 11400000, guid: 951c622a828352b43b20f38abbea0203, type: 2}
+      minAmount: 1
+      maxAmount: 2
+    - item: {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
+      minAmount: 1
+      maxAmount: 3
+  - loot:
+    - item: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+      minAmount: 0
+      maxAmount: 1
+    - item: {fileID: 11400000, guid: 9571247f75639d14a87f2b5efb1f6f32, type: 2}
+      minAmount: 1
+      maxAmount: 2
+    - item: {fileID: 11400000, guid: 3d2cfa5e6b026e64e8fdee8dc421c72f, type: 2}
+      minAmount: 1
+      maxAmount: 3
+  - loot:
+    - item: {fileID: 11400000, guid: 173d677b5b788b7478da1b139c843cd0, type: 2}
+      minAmount: 1
+      maxAmount: 3
+    - item: {fileID: 11400000, guid: 726a1189cb4ed3c4ab5b8a6228b247b3, type: 2}
+      minAmount: 0
+      maxAmount: 2
+    - item: {fileID: 11400000, guid: 3d2cfa5e6b026e64e8fdee8dc421c72f, type: 2}
+      minAmount: 2
+      maxAmount: 5
+  - loot:
+    - item: {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
+      minAmount: 1
+      maxAmount: 3
+    - item: {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
+      minAmount: 0
+      maxAmount: 2
+  - loot:
+    - item: {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
+      minAmount: 1
+      maxAmount: 3
+    - item: {fileID: 11400000, guid: 173d677b5b788b7478da1b139c843cd0, type: 2}
+      minAmount: 1
+      maxAmount: 2
+  - loot:
+    - item: {fileID: 11400000, guid: 5727eaa8ebf6d8940a28fbeb5dead961, type: 2}
+      minAmount: 0
+      maxAmount: 2
+    - item: {fileID: 11400000, guid: 951c622a828352b43b20f38abbea0203, type: 2}
+      minAmount: 1
+      maxAmount: 2
+  mainExploreEvents:
+  - eventName: Knife storm
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: "Name searches for supplies in the forest and loses track of
+          time. They don\u2019t notice when dark clouds slowly fill the sky. A storm
+          is brewing. When the rain starts to pour it\u2019s already too late: Name
+          won\u2019t be able to get home in time. To survive, Name has to build a
+          shelter where they can hide from the storm. Luckily, they find a tarp stuck
+          in a tree, but it needs to be cut down. Name manages to construct a knife
+          from some leather and a piece of metal they found earlier today. The night
+          is rough, but Name survives and returns home with new knowledge and a cold. "
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 5ddd8d6173761f24996dfdf5a72ae665, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 5
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 5ddd8d6173761f24996dfdf5a72ae665, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 20
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: Jack the healer
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: 'As Name walks through the forest, they see a silhouette of
+          another person in the distance. Curious but wary, name approaches. The
+          person turns out to be a man called Jack, who is looking for herbs. He
+          explains that he uses them to treat illness and shows name the best spot
+          to pick the plants. As a token of friendship, Jack gives name an herb seed
+          and a strange note he got from someone a long time ago. It turns out to
+          be a diary entry! '
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 34218deb45fb84a45a12e86cfaef3d92, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: 951c622a828352b43b20f38abbea0203, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 34218deb45fb84a45a12e86cfaef3d92, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 100
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: Thirsty person
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: "It\u2019s an unusually hot day and name finds cover from the
+          sun in a bus shelter. After a while, another person stumbles into the shade,
+          clearly dehydrated. Name offers some water and the person happily accepts.
+          When they feel a little bit stronger, they tell name about an old recipe
+          their grandmother used to make before all this, \u201Csmall pancakes\u201D.
+          Should name ask them to join the household? "
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 75e533ce39f887d4380fe0e903a60306, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 7
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: House with people
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name finds a house that looks fairly intact and thinks they
+          might find some useful stuff in there. They try the door and are surprised
+          to find it locked. Scared that there might be people inside, name decides
+          to walk away, but accidentally steps on a string attached to some cans.
+          A booby trap! People sprint out of the door and attack name.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 2
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 30
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: Fashionable corpse
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: "As name walks down the street, they are struck by a foul smell.
+          They see a dead body in a ditch a few steps away. The body is rotten, but
+          the leather jacket the corpse is wearing looks as good as new. Name carefully
+          slips the jacket off the body and puts it on. It feels quite sturdy. Name
+          puts their hands in the pockets and finds a piece of paper in one of them.
+          It\u2019s another diary entry! "
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 60a1c6886ce573140bcc92c5f9cb3f20, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: a1948912334abc94b858624fd6f3ec65, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 60a1c6886ce573140bcc92c5f9cb3f20, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 5
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: a1948912334abc94b858624fd6f3ec65, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 60a1c6886ce573140bcc92c5f9cb3f20, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: Clothing store
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: "Name stumbles upon an abandoned clothing store. Among the
+          racks they find a pair of very fashionable shorts and can\u2019t help but
+          take them. "
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: 6fc9023bd6e0626469311856a86c7a79, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: 6fc9023bd6e0626469311856a86c7a79, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 6f5b22174bb0acb40b8c0aa81d3853a0, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: Library
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: "Name sees a woman dressed in black with her arms full of goods
+          sneak out of a big building. Name is intrigued. They find a way in and
+          quickly realize that it\u2019s a library. Some kind souls have left supplies
+          in the middle of the room for those in need and name searches the pile.
+          They grab some useful stuff to bring back home. On the way out they find
+          a note lodged between two books. It\u2019s a diary entry!"
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: 3d2cfa5e6b026e64e8fdee8dc421c72f, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 3
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: 726a1189cb4ed3c4ab5b8a6228b247b3, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: 5727eaa8ebf6d8940a28fbeb5dead961, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: Axe bandits
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name is on their way home when they are suddenly face to face
+          with some mean looking bandits with axes in their hands.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 2
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 40
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: f84f547bee6555f47b42c2745fa77694, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 224caf76f5cfec349b9b838f44c0ecf9, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: Prepper
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: "Name is picking berries in the forest when a growl interrupts
+          them. A large bear is coming towards name! Name realizes they won\u2019t
+          have a chance against the ferocious animal. Suddenly, a shadow attacks
+          the bear from the side with a battle cry. After a few minutes of struggle,
+          the beast is dead. The savior turns out to be a man called James. He suggests
+          that name put on some better armor next time they venture into the woods.
+          James teaches name how to make his favorite piece of clothing: trekking
+          trousers."
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: b43bed97aefaaac43bfa5431690bb28c, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+  - eventName: Abandoned house
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: 'Name explores an empty house. They find an old recipe for
+          jelly and a diary entry. '
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 4
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 708f9fb3f007ceb4daa14d5f1a51a06d, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+  randomExploreEvents:
+  - eventName: Two-headed foxes
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name is suddenly attacked by two-headed foxes when they are
+          foraging in the forest.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 3
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 30
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 3
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: ca54546ded1aebc479a73d7bed5b1b8c, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: ba8b50297c55f7f42a43387a9e65a1a5, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 20
+    timer:
+      timeUnit: 0
+      ammount: 0
+    cooldown: 2
+  - eventName: Giant insects
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name is suddenly attacked by giant insects when they are foraging
+          in the forest.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 3
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 20
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 4
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: ba8b50297c55f7f42a43387a9e65a1a5, type: 2}
+          maxLootQuantity: 2
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 20
+    timer:
+      timeUnit: 0
+      ammount: 0
+    cooldown: 0
+  limitedExploreEvents:
+  - eventName: Diary Entry
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name found a diary entry hidden under a rock.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 10
+    timer:
+      timeUnit: 0
+      ammount: 0
+    cooldown: 4
+    maxTurns: 4
+    bringsNewCharacter: 0
+  - eventName: New character
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: 'Name finds a lonely person who wishes to join the household. '
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 7
+      textEvent:
+        eventMessage: 'Name finds a lonely person who wishes to join the household. '
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+    cooldown: 5
+    maxTurns: 0
+    bringsNewCharacter: 1
+  - eventName: Save character
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name sees a person getting attacked by a pack of feral dogs
+          and decide to help them.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 7
+      textEvent:
+        eventMessage: 'Name finds a lonely person who wishes to join the household. '
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+    cooldown: 5
+    maxTurns: 0
+    bringsNewCharacter: 1
+--- !u!4 &1115463393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115463391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.16, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1116480388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29046,7 +30863,7 @@ GameObject:
   m_Icon: {fileID: 2800000, guid: 9eff477e4332346818c96745043dae9e, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1171683973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29117,6 +30934,7 @@ MonoBehaviour:
       maxLootQuantity: 2
       minLootQuantity: 1
       lootProbability: 50
+  standardExploreEvents: []
   mainExploreEvents:
   - eventName: Knife storm
     replaceDefaultExplore: 0
@@ -29149,15 +30967,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -29192,15 +31004,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 5ddd8d6173761f24996dfdf5a72ae665, type: 2}
         timer:
@@ -29248,15 +31054,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -29291,15 +31091,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 34218deb45fb84a45a12e86cfaef3d92, type: 2}
         timer:
@@ -29338,15 +31132,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 34218deb45fb84a45a12e86cfaef3d92, type: 2}
         timer:
@@ -29393,15 +31181,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -29436,15 +31218,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 75e533ce39f887d4380fe0e903a60306, type: 2}
         timer:
@@ -29479,15 +31255,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -29533,15 +31303,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -29576,15 +31340,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -29631,15 +31389,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -29674,15 +31426,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 60a1c6886ce573140bcc92c5f9cb3f20, type: 2}
         timer:
@@ -29721,15 +31467,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 60a1c6886ce573140bcc92c5f9cb3f20, type: 2}
         timer:
@@ -29773,15 +31513,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -29820,15 +31554,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -29867,15 +31595,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 6f5b22174bb0acb40b8c0aa81d3853a0, type: 2}
         timer:
@@ -29922,15 +31644,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -29977,15 +31693,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30028,15 +31738,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30071,15 +31775,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30118,15 +31816,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30161,15 +31853,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 224caf76f5cfec349b9b838f44c0ecf9, type: 2}
         timer:
@@ -30218,15 +31904,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30261,15 +31941,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: b43bed97aefaaac43bfa5431690bb28c, type: 2}
         timer:
@@ -30312,15 +31986,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30355,15 +32023,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 708f9fb3f007ceb4daa14d5f1a51a06d, type: 2}
         timer:
@@ -30407,15 +32069,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30450,15 +32106,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30501,15 +32151,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30527,6 +32171,7 @@ MonoBehaviour:
     timer:
       timeUnit: 0
       ammount: 0
+    cooldown: 0
   - eventName: Animal attack 2
     replaceDefaultExplore: 0
     subEvents:
@@ -30552,15 +32197,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30595,15 +32234,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30642,15 +32275,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30668,6 +32295,7 @@ MonoBehaviour:
     timer:
       timeUnit: 0
       ammount: 0
+    cooldown: 0
   - eventName: Save person
     replaceDefaultExplore: 0
     subEvents:
@@ -30693,15 +32321,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30736,15 +32358,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30779,15 +32395,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -30805,6 +32415,8 @@ MonoBehaviour:
     timer:
       timeUnit: 0
       ammount: 0
+    cooldown: 0
+  limitedExploreEvents: []
 --- !u!4 &1171683974
 Transform:
   m_ObjectHideFlags: 0
@@ -30818,7 +32430,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1172680966
 PrefabInstance:
@@ -31363,7 +32975,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &1199288471
 MonoBehaviour:
@@ -31979,7 +33591,7 @@ Transform:
   - {fileID: 1228010491}
   - {fileID: 1502189692}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1244060259
 GameObject:
@@ -32377,7 +33989,7 @@ Transform:
   - {fileID: 366235613}
   - {fileID: 1668894513}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1274253581
 GameObject:
@@ -32769,7 +34381,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -37258,7 +38870,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 847712254}
   m_HandleRect: {fileID: 847712253}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -38301,7 +39913,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1486056822
 GameObject:
@@ -41944,7 +43556,7 @@ RectTransform:
   m_Children:
   - {fileID: 1349550593}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -42445,7 +44057,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666241911
 GameObject:
@@ -42624,7 +44236,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1671288171
 GameObject:
@@ -43163,7 +44775,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!1 &1709130692
 GameObject:
@@ -51568,7 +53180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.060918834
+      value: 0.060918774
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -51880,7 +53492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6080492414866234126, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.1602396
+      value: 0.16023968
       objectReference: {fileID: 0}
     - target: {fileID: 6080492414866234126, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -51916,7 +53528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537715813394, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000036954866
+      value: 0.0000037550917
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537715813485, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Layer
@@ -51936,7 +53548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537978475376, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.18308517
+      value: -0.18308523
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537978475379, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Layer
@@ -52132,7 +53744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7780648542340397819, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7780648542340397819, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52980,7 +54592,7 @@ Transform:
   - {fileID: 1358806764}
   - {fileID: 214226111}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2007192518
 PrefabInstance:
@@ -53111,7 +54723,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2018546874
 GameObject:
@@ -53226,7 +54838,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!1 &2022694846
 GameObject:
@@ -53387,7 +54999,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2029181068
 MonoBehaviour:
@@ -56121,7 +57733,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5498376835606746009
 BoxCollider:
@@ -56220,7 +57832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3118213294834403819, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 3118213294834403819, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: m_LocalPosition.x
