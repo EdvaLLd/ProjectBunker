@@ -24,8 +24,9 @@ public class UIManager : MonoBehaviour
     public static GameObject hoverWindow;
     public static GameObject canvas;
 
-    public static float canvasScaleFactor;
+    public static GameObject diary;
 
+    public static float canvasScaleFactor;
 
     public delegate void OnButtonDisableChanged(Button disabledButton);
     public static event OnButtonDisableChanged onButtonDisableChanged;
@@ -50,6 +51,9 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        //GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+        diary = GameObject.FindGameObjectWithTag("Diary");
         inventoryBG = GameObject.FindGameObjectWithTag("Inventory");
         inventoryContentHolder = GameObject.FindGameObjectWithTag("InventoryContentHolder");
         craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow");
@@ -70,8 +74,8 @@ public class UIManager : MonoBehaviour
         statusHolderGO = GameObject.FindGameObjectWithTag("StatusHolder");
     }
 
-    private void Start()
-    {
+        private void Start()
+        {
         Inventory.onInventoryUpdate += UpdateInventoryDisplay;
         inventoryBG.SetActive(false);
         craftingWindow.SetActive(false);
@@ -79,14 +83,17 @@ public class UIManager : MonoBehaviour
         dangerTextGO.SetActive(false);
         hoverWindow.SetActive(false);
 
+        OpenCloseDiary(false);
+
+
         //kanske problematiskt att den här bara körs en gång?
         canvasScaleFactor = Camera.main.scaledPixelWidth / canvas.GetComponent<CanvasScaler>().referenceResolution.x;
     }
 
-    
+
     private void FixedUpdate()
     {
-        Vector3 start = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0,0, Camera.main.transform.position.z));
+        Vector3 start = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, Camera.main.transform.position.z));
         Debug.DrawRay(start, Vector3.forward * 10, Color.red, 5);
         //start.z = Camera.main.transform.position.z;
         RaycastHit[] objectsHovered = Physics.RaycastAll(start, Vector3.forward, float.PositiveInfinity);
@@ -97,7 +104,14 @@ public class UIManager : MonoBehaviour
         print(objectsHovered.Length);*/
     }
 
-    void SetCanvasScale()
+    public void OpenCloseDiary(bool closeOpen)
+    {
+        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+        if (closeOpen) { ActivateWindow(diary); gameManager.gameDiary.UpdateDiaryGUI(); }
+        else { gameManager.gameDiary.UpdateDiaryGUI(); CloseWindow(diary); }
+    }
+    private void SetCanvasScale()
     {
         float newScale = Camera.main.scaledPixelWidth / canvas.GetComponent<CanvasScaler>().referenceResolution.x;
         if(newScale != canvasScaleFactor)
@@ -235,5 +249,45 @@ public class UIManager : MonoBehaviour
             InitInventorySlot(item.Key, item.Value, inventoryHolder.transform);
         }
         return inventoryHolder;
+    }
+
+    static GameObject AddSlot(Transform parent, Item item, int amount)
+    {
+        GameObject t = Instantiate(inventorySlotStatic, parent);
+        t.GetComponent<ItemHoverDesc>().item = item;
+        t.GetComponent<Image>().sprite = item.Icon;
+        t.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = amount.ToString();
+        return t;
+    }
+
+    public static void NextDiaryPage() 
+    {
+        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+        if (GameManager.leftPageIndex >= gameManager.gameDiary.entries.Count-1)
+        {
+            return;
+        }
+        else 
+        {
+            GameManager.leftPageIndex += 2;
+        }
+
+        gameManager.gameDiary.UpdateDiaryGUI();
+    }
+    public static void PreviousDiaryPage()
+    {
+        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+        if (GameManager.leftPageIndex <= 0)
+        {
+            return;
+        }
+        else
+        {
+            GameManager.leftPageIndex -= 2;
+        }
+
+        gameManager.gameDiary.UpdateDiaryGUI();
     }
 }

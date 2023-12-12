@@ -61,12 +61,16 @@ public class Character : MonoBehaviour
     bool createNewPath = false;
     Vector3 newGoalPos;
 
+    public string characterName;
     List<Desease> deseases = new List<Desease>();
 
+    private CharacterAnimation characterAnim;
     Dictionary<Statuses, int> statuses = new Dictionary<Statuses, int>();
 
-
-    private CharacterAnimation characterAnim;
+    private void Awake() 
+    {
+        characterName = SetCharacterName(FindObjectOfType<GameManager>().characterNames);
+    }
 
     public float workMultiplier { get; private set; } = 1;
 
@@ -95,6 +99,12 @@ public class Character : MonoBehaviour
         {
             audioSource.clip = audioClip;
         }
+    }
+
+    private string SetCharacterName(string[] names)
+    {
+        int randomNameIndex = UnityEngine.Random.Range(0, Mathf.Clamp(names.Length, 0, names.Length - 1));
+        return names[randomNameIndex];
     }
 
 
@@ -213,7 +223,7 @@ public class Character : MonoBehaviour
         else 
         { 
             statuses.Add(status, 1);
-            TextLog.AddLog("\"insert character name\" is now " + status);
+            TextLog.AddLog(characterName + " is now " + status);
             UnitController.SetCharacterStatusVisuals(this);
             WarnPlayer(true);
         }
@@ -233,7 +243,7 @@ public class Character : MonoBehaviour
             {
                 statuses.Remove(status);
                 UnitController.SetCharacterStatusVisuals(this);
-                TextLog.AddLog("\"insert character name\" is no longer " + status);
+                TextLog.AddLog(characterName +  " is no longer " + status);
             }
         }
         else Debug.LogError("shouldnt be here");
@@ -258,7 +268,7 @@ public class Character : MonoBehaviour
             T d = new T();
             d.SetCharacter(this);
             deseases.Add(d);
-            TextLog.AddLog("\"insert character name\" contracted " + d.GetType() + "!");
+            TextLog.AddLog(characterName + " contracted " + d.GetType() + "!");
             AddStatus(Statuses.ill);
         }
     }
@@ -266,7 +276,7 @@ public class Character : MonoBehaviour
     {
         if (desease.GetHealth() < 0)
         {
-            TextLog.AddLog("\"insert character name\" survived her " + desease + " infection!");
+            TextLog.AddLog(characterName + " survived her " + desease + " infection!");
             deseases.Remove(desease);
             RemoveStatus(Statuses.ill);
         }
