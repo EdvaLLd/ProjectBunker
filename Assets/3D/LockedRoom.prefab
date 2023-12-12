@@ -113,6 +113,8 @@ MonoBehaviour:
   roomEntrances: []
   mist: {fileID: 3379313914352542691}
   itemToUnlockRoom: {fileID: 0}
+  mistClip: {fileID: 8300000, guid: 548b4474d14f14244b3455b5e1d5ae64, type: 3}
+  lockClip: {fileID: 8300000, guid: f78d351ded02f414585d19ed3d0a4073, type: 3}
 --- !u!1 &2142692448788573573
 GameObject:
   m_ObjectHideFlags: 0

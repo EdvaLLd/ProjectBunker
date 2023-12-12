@@ -16,10 +16,26 @@ public class ChestContent : MonoBehaviour
     [SerializeField]
     CraftingRecipe[] recipes;
 
+    [SerializeField]
+    private AudioClip audioClip;
+    private AudioSource audioSource;
+
     bool looted = false;
     float alfa = 1;
 
     float fadeTimer = 1;
+
+    private void Awake()
+    {
+        audioSource =gameObject.AddComponent<AudioSource>();
+        if(audioSource != null)
+        {
+            audioSource.clip = audioClip;
+        }
+        audioSource.spatialBlend = 1.0f;
+        audioSource.loop = false;
+
+    }
 
     private void Update()
     {
@@ -47,6 +63,7 @@ public class ChestContent : MonoBehaviour
 
     void Loot()
     {
+        audioSource.Play();
         if (inventory.Length == 0)
         {
             TextLog.AddLog("Chest is empty");

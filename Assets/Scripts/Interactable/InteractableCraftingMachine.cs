@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class InteractableCraftingMachine : InteractableItem
@@ -13,10 +14,21 @@ public class InteractableCraftingMachine : InteractableItem
 
     CraftingWindow craftingWindow;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
+
 
     private void Awake()
     {
         craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow").GetComponent<CraftingWindow>();
+        audioSource = gameObject.AddComponent<AudioSource>();
+
+        if(audioClip != null)
+        {
+            audioSource.clip = audioClip;
+        }
+        //audioSource.loop = true;
+        audioSource.spatialBlend = 1.0f;
     }
 
     public void InteractedWith(Character character)
@@ -33,6 +45,7 @@ public class InteractableCraftingMachine : InteractableItem
         if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
         {
             characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>().StartCrafting();
+            audioSource.Play();
         }
 
         if (recipe != currentRecipeBeingCrafted)
@@ -60,6 +73,7 @@ public class InteractableCraftingMachine : InteractableItem
             if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
             {
                 characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>().StopCrafting();
+                audioSource.Pause();
             }
 
             characterOnStation = null;
@@ -173,6 +187,7 @@ public class InteractableCraftingMachine : InteractableItem
                     if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
                     {
                         characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>().StopCrafting();
+                        audioSource.Pause();
                     }   
                 }
                 /*else
