@@ -28,15 +28,6 @@ public class PartsChanger : MonoBehaviour
         renderers = GetComponentsInChildren<Renderer>();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            bodyPartCollection = RandomizeArr();
-            SetUpCharacter();
-        }
-    }
-
     public void ChangePants(int version)
     {
         ChangeVersionOnCollection(4, version);
@@ -133,7 +124,6 @@ public class PartsChanger : MonoBehaviour
         for (int i = 0; i < renderers.Length; i++)
         {
             renderers[i].sortingLayerName = sortingLayerName;
-            Debug.Log("Current layer: " + renderers[i].sortingLayerName + " New layer: " + sortingLayerName);
         }
     }
 
