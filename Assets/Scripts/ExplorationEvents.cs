@@ -315,7 +315,7 @@ public class ExplorationEvents : Exploration
             float damage = subEvent.damageEvent.damageRecieved;
 
             TakeDamage(damage, target);
-            PlayTextEvent(target.characterName + " took " + damage + " damage to their health!");
+            PlayTextEvent(damage + " damage was dealt to ", target);
 
             /*Timer localTimer = new Timer();
             localTimer.timeUnit = Timer.timeUnits.second;
@@ -368,27 +368,27 @@ public class ExplorationEvents : Exploration
             //string faction = System.Enum.GetName(typeof(ExploreSubEvent.enemyFactions), subEvent.combatEvent.enemyFaction);
             //print(faction);
 
-            PlayTextEvent(character.characterName + " engaged hostile " + faction + " in combat!");
+            PlayTextEvent(character.characterName + " engaged hostile " + faction + " in combat!", character);
             if (randomRecievied <= 0 && randomDealt <= 0)
             {
-                TextLog.AddLog("Neither side sustained any casulties and fled.");
+                PlayTextEvent("Neither side sustained any casulties and fled.", character);
             }
             if (randomDealt > 0)
             {
-                PlayTextEvent(character.characterName + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.");
+                PlayTextEvent(character.characterName + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.", character);
             }
             if (randomRecievied > 0)
             {
                 TakeDamage(randomRecievied, character);
                 if (character.health <= 0)
                 {
-                    PlayTextEvent(character.characterName + " was slained in battle by the " + faction + ".");
+                    PlayTextEvent(character.characterName + " was slained in battle by the " + faction + ".", character);
                     //PlayLootItemLoopEvent(false, true, subEvent.combatEvent.combatLoot);
                 }
                 else
                 {
-                    TextLog.AddLog("Enemy " + faction + " cowardly fled from battle.");
-                    TextLog.AddLog(character.name + " took " + randomRecievied + " damage from the enemy " + faction + " but lives to fight another day.");
+                    PlayTextEvent("Enemy " + faction + " cowardly fled from battle.", character);
+                    PlayTextEvent(character.name + " took " + randomRecievied + " damage from the enemy " + faction + " but lives to fight another day.", character);
                     PlayLootItemLoopEvent(true, true, subEvent.combatEvent.combatLoot);
                 }
 
@@ -418,7 +418,7 @@ public class ExplorationEvents : Exploration
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
 
-            PlayTextEvent(character.characterName + " picked up a piece of paper that seems to be and old diary entry.");
+            PlayTextEvent(character.characterName + " picked up a piece of paper that seems to be and old diary entry.", character);
             gameManager.gameDiary.AddEntry(title, text, author, date);
         } 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// RecipeEvent
@@ -453,7 +453,7 @@ public class ExplorationEvents : Exploration
 
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// IllnessEvent
         //------------------------------------------------------------------------------------------
@@ -467,8 +467,18 @@ public class ExplorationEvents : Exploration
         {
             character.AddDesease<Flu>();
         }
-
-
+        //------------------------------------------------------------------------------------------
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// SimpleLootEvent
+        //------------------------------------------------------------------------------------------
+        [System.Serializable]
+        public class SimpleLootEvent
+        {
+            public Item item;
+            public int minAmount;
+            public int maxAmount;
+        }
+        //------------------------------------------------------------------------------------------
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
     private void TakeDamage(float damage, Character character)
     {
@@ -512,5 +522,81 @@ public class ExplorationEvents : Exploration
         public ExploreEventTypes.DiaryEvent diaryEvent;
         public ExploreEventTypes.IllnessEvent illnessEvent;
     }
+    [System.Serializable]
+    public class RandomExploreEvent : ExploreEvent
+    {
+        public int cooldown;
+        protected bool canBeActivated = true;
+        protected int turnsSinceActivation = 0;
 
+        public virtual void ActivateEvent()
+        {
+            canBeActivated = false;
+        }
+
+        public bool CanBeActivated()
+        {
+            return canBeActivated;
+        }
+
+        public virtual void IncreaseTurnsSinceActivated()
+        {
+            if (!canBeActivated)
+            {
+                turnsSinceActivation++;
+            }
+            if (turnsSinceActivation > cooldown)
+            {
+                canBeActivated = true;
+                turnsSinceActivation = 0;
+                Debug.Log(this.eventName + " är nu redo att köras igen!");
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class LimitedExploreEvent : RandomExploreEvent
+    {
+        public int maxTurns;
+        public bool bringsNewCharacter = false;
+        private int timesActivated;
+
+        public override void ActivateEvent()
+        {
+            base.ActivateEvent();
+            timesActivated++;
+        }
+        public override void IncreaseTurnsSinceActivated()
+        {
+            if (timesActivated < maxTurns || maxTurns == 0)
+            {
+                if (!canBeActivated)
+                {
+                    turnsSinceActivation++;
+                }
+                if (turnsSinceActivation > cooldown)
+                {
+                    canBeActivated = true;
+                    turnsSinceActivation = 0;
+                    Debug.Log(this.eventName + " är nu redo att köras igen!");
+                }
+            }
+            else
+            {
+                TurnOffEvent();
+            }
+
+        }
+
+        public void TurnOffEvent()
+        {
+            canBeActivated = false;
+        }
+    }
+
+    [System.Serializable]
+    public class StandardExploreEvent
+    {
+        public ExploreEventTypes.SimpleLootEvent[] loot;
+    }
 }

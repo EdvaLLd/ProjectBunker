@@ -40,10 +40,10 @@ public class GameManager : MonoBehaviour
     [Header("Events")]
     public static int eventIndex = 0;
 
-    public ExplorationBase.StandardExploreEvent[] standardExploreEvents;
-    public ExplorationBase.ExploreEvent[] mainExploreEvents;
-    public ExplorationBase.RandomExploreEvent[] randomExploreEvents;
-    public ExplorationBase.LimitedExploreEvent[] limitedExploreEvents;
+    public ExplorationEvents.StandardExploreEvent[] standardExploreEvents;
+    public ExplorationEvents.ExploreEvent[] mainExploreEvents;
+    public ExplorationEvents.RandomExploreEvent[] randomExploreEvents;
+    public ExplorationEvents.LimitedExploreEvent[] limitedExploreEvents;
 
 
     [Header("Characters")]
