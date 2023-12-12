@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
 
         explorableLocations = Locations.SetExplorableLocations();
 
-        this.gameDiary.UpdateDiaryGUI();
+        //this.gameDiary.UpdateDiaryGUI();
     }
 
     private void Update()

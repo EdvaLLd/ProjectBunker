@@ -37,28 +37,28 @@ public class Diary
         if (gameManager.gameDiary.entries.Count <= 0) 
         {
             Debug.LogWarning("No diary entries present in GameManager.");
-            BlankPage(true); //true and false as in right aand left, my confused friend.
+            BlankPage(true); //true and false as in right and left, my confused friend.
             BlankPage(false);
             return;
         }
 
-        int maxIndex = gameManager.gameDiary.entries.Count - 1;
+        /*int maxIndex = gameManager.gameDiary.entries.Count - 1;
         if (maxIndex <= 0) 
         {
             maxIndex = 0;
-        }
+        }*/
         
         int pageIndex_Left = GameManager.leftPageIndex;
-        int pageIndex_Right = Mathf.Clamp(pageIndex_Left+1, 0, gameManager.gameDiary.entries.Count);
+        int pageIndex_Right = GetRightPage(pageIndex_Left, gameManager.gameDiary.entries.Count);
 
         if (pageIndex_Left >= gameManager.gameDiary.entries.Count ) 
         {
             BlankPage(false);
         }
-        if (pageIndex_Right >= gameManager.gameDiary.entries.Count)
+        /*if (pageIndex_Right >= gameManager.gameDiary.entries.Count)
         {
             BlankPage(true);
-        }
+        }*/
 
         if (pageIndex_Left % 2 == 0)
         {
@@ -78,6 +78,17 @@ public class Diary
             //GameObject.Find("RightPageText").GetComponent<TMPro.TextMeshProUGUI>().text = gameManager.gameDiary.entries[pageIndex_Right].entryAuthor;
             //GameObject.Find("RightPageText").GetComponent<TMPro.TextMeshProUGUI>().text = gameManager.gameDiary.entries[pageIndex_Right].entryDate;
         }
+    }
+
+    private int GetRightPage(int leftPage, int diaryLenght) 
+    {
+        int rightPage = leftPage + 1;
+        if (rightPage < diaryLenght) 
+        {
+            return rightPage;
+        }
+        BlankPage(true);
+        return diaryLenght-1;
     }
 
     private void BlankPage(bool leftOrRight)

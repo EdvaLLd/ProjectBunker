@@ -17,6 +17,7 @@ TagManager:
   - Canvas
   - Character
   - CharacterName
+  - Diary
   layers:
   - Default
   - TransparentFX
