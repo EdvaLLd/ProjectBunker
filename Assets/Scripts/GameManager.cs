@@ -44,9 +44,10 @@ public class GameManager : MonoBehaviour
     [Header("Events")]
     public static int eventIndex = 0;
 
-    public ExplorationEventsElla.ExploreEvent[] mainExploreEvents;
-    public ExplorationEventsElla.RandomExploreEvent[] randomExploreEvents;
-    public ExplorationEventsElla.LimitedExploreEvent[] limitedExploreEvents;
+    public ExplorationBase.StandardExploreEvent[] standardExploreEvents;
+    public ExplorationBase.ExploreEvent[] mainExploreEvents;
+    public ExplorationBase.RandomExploreEvent[] randomExploreEvents;
+    public ExplorationBase.LimitedExploreEvent[] limitedExploreEvents;
 
 
     private void Awake()

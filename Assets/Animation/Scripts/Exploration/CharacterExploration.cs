@@ -18,13 +18,14 @@ public class CharacterExploration : MonoBehaviour
     }
     public void StartExploration()
     {
+        TextLog.AddLog(name + " went exploring.");
         transform.GetChild(0).gameObject.SetActive(false);
         GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(ExploreWait());
     }
     private void TryActivateMainEvent()
     {
-        ExplorationEventsElla.ExploreEventTypes mainEvents = new ExplorationEventsElla.ExploreEventTypes();
+        ExplorationBase.ExploreEventTypes mainEvents = new ExplorationBase.ExploreEventTypes();
         bool eventDone = mainEvents.LinnearEventSequence(GetComponent<Character>());
         if (eventDone)
         {
@@ -38,7 +39,7 @@ public class CharacterExploration : MonoBehaviour
 
     private void TryActivateLimitedEvent()
     {
-        ExplorationEventsElla.ExploreEventTypes mainEvents = new ExplorationEventsElla.ExploreEventTypes();
+        ExplorationBase.ExploreEventTypes mainEvents = new ExplorationBase.ExploreEventTypes();
         bool eventDone = mainEvents.LimitedEvent(GetComponent<Character>());
         if (eventDone)
         {
@@ -52,7 +53,7 @@ public class CharacterExploration : MonoBehaviour
 
     private void TryActivateRandomEvent()
     {
-        ExplorationEventsElla.ExploreEventTypes mainEvents = new ExplorationEventsElla.ExploreEventTypes();
+        ExplorationBase.ExploreEventTypes mainEvents = new ExplorationBase.ExploreEventTypes();
         bool eventDone = mainEvents.RandomSpecialEvent(GetComponent<Character>());
         if(eventDone)
         {
@@ -66,12 +67,21 @@ public class CharacterExploration : MonoBehaviour
 
     private void ActivateStandardEvent()
     {
-        Debug.Log("Aktivera standardevent");
+        ExplorationBase.ExploreEventTypes.SimpleLootEvent[] lootEvents =  gameManager.standardExploreEvents[Random.Range(0, gameManager.standardExploreEvents.Length)].loot;
+        for(int i = 0; i < lootEvents.Length; i++)
+        {
+            int randomAmount = Random.Range(lootEvents[i].minAmount, lootEvents[i].maxAmount);
+            if(randomAmount > 0)
+            {
+                Inventory.AddItem(lootEvents[i].item, randomAmount);
+            }     
+        }
         EndExploration();
     }
 
     private void EndExploration()
     {
+        TextLog.AddLog(name + " came back from their adventure.");
         transform.GetChild(0).gameObject.SetActive(true);
         GetComponent<BoxCollider2D>().enabled = true;
 
