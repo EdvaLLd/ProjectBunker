@@ -214,4 +214,35 @@ public class UIManager : MonoBehaviour
         t.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = amount.ToString();
         return t;
     }
+
+    public static void NextDiaryPage() 
+    {
+        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+        if (GameManager.leftPageIndex >= gameManager.gameDiary.entries.Count-1)
+        {
+            return;
+        }
+        else 
+        {
+            GameManager.leftPageIndex += 2;
+        }
+
+        gameManager.gameDiary.UpdateDiaryGUI();
+    }
+    public static void PreviousDiaryPage()
+    {
+        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+        if (GameManager.leftPageIndex <= 0)
+        {
+            return;
+        }
+        else
+        {
+            GameManager.leftPageIndex -= 2;
+        }
+
+        gameManager.gameDiary.UpdateDiaryGUI();
+    }
 }

@@ -28,7 +28,10 @@ public class GameManager : MonoBehaviour
     [Tooltip("0=Lake, 1=City, 2=Factory, 3=Forest"), NonReorderable]
     public Looting.LocationLootItems[] locationalLoot = new Looting.LocationLootItems[System.Enum.GetNames(typeof(Locations.Location.environments)).Length - 1];
 
-    [HideInInspector]
+    [Header("Diary")]
+    public static int leftPageIndex = 0;
+    
+    
     public Diary gameDiary = new Diary();
 
     [Header("Events")]
@@ -71,6 +74,8 @@ public class GameManager : MonoBehaviour
         skyboxManager = GameObject.FindObjectOfType<SkyboxController>();
 
         explorableLocations = Locations.SetExplorableLocations();
+
+        this.gameDiary.UpdateDiaryGUI();
     }
 
     private void Update()

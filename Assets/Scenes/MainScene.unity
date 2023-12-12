@@ -12403,7 +12403,7 @@ GameObject:
   - component: {fileID: 498903837}
   - component: {fileID: 498903836}
   m_Layer: 5
-  m_Name: HeaderText
+  m_Name: RightHeaderText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28112,7 +28112,7 @@ PrefabInstance:
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 617168778}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
@@ -28993,6 +28993,20 @@ MonoBehaviour:
       maxLootQuantity: 2
       minLootQuantity: 1
       lootProbability: 30
+  gameDiary:
+    entries:
+    - entryTitle: gfsf
+      entryText: jhgfjytd
+      entryAuthor: htrsy5
+      entryDate: 7778
+    - entryTitle: 53535
+      entryText: y56w
+      entryAuthor: 456y4
+      entryDate: tsy
+    - entryTitle: hgnvnhgvkjhl
+      entryText: 5535ikuoy
+      entryAuthor: jgjg
+      entryDate: e
   mainExploreEvents:
   - eventName: Knife storm
     replaceDefaultExplore: 0
@@ -33912,13 +33926,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 833021598}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: CloseWindow
-        m_Mode: 2
+        m_MethodName: PreviousDiaryPage
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 617168778}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -37903,7 +37917,7 @@ GameObject:
   - component: {fileID: 1512316111}
   - component: {fileID: 1512316110}
   m_Layer: 5
-  m_Name: HeaderText
+  m_Name: LeftHeaderText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53310,13 +53324,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 833021598}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: CloseWindow
-        m_Mode: 2
+        m_MethodName: NextDiaryPage
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 617168778}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
