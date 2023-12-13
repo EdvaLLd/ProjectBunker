@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 5441263170890698890}
   - component: {fileID: 733695529191005928}
   - component: {fileID: 4508814034010406193}
+  - component: {fileID: 2735088160812704209}
   m_Layer: 5
   m_Name: Ingredient
   m_TagString: Untagged
@@ -303,3 +304,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+  descDir: 0
+--- !u!95 &2735088160812704209
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5257418689303467112}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d1791464646305439a18846d0260734, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
