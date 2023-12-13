@@ -543,7 +543,7 @@ public class Character : MonoBehaviour
                 StartCoroutine(NotHungryEffect());
             }
 
-            TextLog.AddLog(UnitController.GetSelectedCharacter().name + "is not hungry.");
+            TextLog.AddLog(UnitController.GetSelectedCharacter().characterName + " is not hungry.");
         }
     }
 
