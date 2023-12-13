@@ -4964,6 +4964,7 @@ MonoBehaviour:
     amount: 1
   recipes:
   - {fileID: 11400000, guid: d987e1143e6026848abb669cedc2c51b, type: 2}
+  audioClip: {fileID: 8300000, guid: 67446328663697c44b27309f6fcace88, type: 3}
 --- !u!114 &5741941811487271850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5003,3 +5004,4 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+

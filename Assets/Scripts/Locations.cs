@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Locations : MonoBehaviour
+public class Locations// : MonoBehaviour
 {
     [System.Serializable]
     public class Location/* : MonoBehaviour*/
@@ -28,7 +28,7 @@ public class Locations : MonoBehaviour
 
     public static Location[] SetExplorableLocations()
     {
-        GameManager gameManager = FindObjectOfType<GameManager>();
+        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
 
         Location[] replaceArray = new Location[System.Enum.GetNames(typeof(Location.environments)).Length];
         if (System.Enum.GetNames(typeof(Location.environments)).Length > 1)

@@ -6,13 +6,22 @@ using UnityEngine.UI;
 public class DisplayGear : MonoBehaviour
 {
     Button buttonClicked;
+
+    public void UpdateDisplay()
+    {
+        if(buttonClicked != null)
+        {
+            DisplayGearOfType(buttonClicked);
+        }
+    }
+
+
     public void DisplayGearOfType(Button button)
     {
         buttonClicked = button;
         GearTypes type = button.GetComponent<EnumsToClassConverter>().GearSortingType;
         HelperMethods.ClearChilds(transform);
         UIManager.CreateInventory(type, gameObject);
-        print(transform.childCount);
         foreach (Transform child in transform)
         {
             if (!child.TryGetComponent<Button>(out Button t))
@@ -33,7 +42,12 @@ public class DisplayGear : MonoBehaviour
 
     public void EquipGear(Equipment gear)
     {
-        buttonClicked.transform.GetChild(0).GetComponent<Image>().sprite = gear.Icon;
-        UnitController.GetSelectedCharacter().EquipGear(gear);
+        //buttonClicked.transform.GetChild(0).GetComponent<Image>().sprite = gear.Icon;
+        if (!UnitController.GetSelectedCharacter().GearEquippedInSlot(out Equipment e, gear.gearType) || e != gear)
+        {
+            UnitController.GetSelectedCharacter().EquipGear(gear);
+            DisplayGearOfType(buttonClicked);
+            CharacterStatsHandler.ResetButton(buttonClicked, UnitController.GetSelectedCharacter());
+        } 
     }
 }

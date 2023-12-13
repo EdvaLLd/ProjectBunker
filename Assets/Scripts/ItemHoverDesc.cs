@@ -20,12 +20,18 @@ public class ItemHoverDesc : MonoBehaviour, IPointerEnterHandler, IPointerMoveHa
 {
     bool isHovering = false;
     public ItemBase item;
+
+    //Använd dessa om saken som ska hoveras inte är en item
+    [SerializeField]
+    string header, description;
+
+    [SerializeField]
     Vector3 paddingToCursor = new Vector3(5, 5, 0);
 
     [SerializeField]
     DescDirEnum descDir = DescDirEnum.TopRight;
 
-
+    public static GameObject windowHovering;
 
     Vector2 descWindowSize;
     Vector2 descDirToV2;
@@ -76,17 +82,19 @@ public class ItemHoverDesc : MonoBehaviour, IPointerEnterHandler, IPointerMoveHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         isHovering = true;
+        windowHovering = gameObject;
+        UIManager.SetWindowActive(UIManager.hoverWindow);
+        UIManager.hoverWindow.transform.position = Input.mousePosition;
         if (item != null)
         {
-            UIManager.SetWindowActive(UIManager.hoverWindow);
-            UIManager.hoverWindow.transform.position = Input.mousePosition;
             UIManager.hoverWindow.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = item.DisplayName;
             UIManager.hoverWindow.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = item.Description;
             GetComponent<Animator>().SetTrigger("Hover");
         }
         else
         {
-            print("uh oh");
+            UIManager.hoverWindow.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = header;
+            UIManager.hoverWindow.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = description;
         }
     }
 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d858a93de3d53cb45b015885e11660fd, type: 3}
+  m_Name: Leather Jacket
+  m_EditorClassIdentifier: 
+  ID: 03011
+  DisplayName: 
+  Description: 
+  Icon: {fileID: 0}
+  SortingType: 5
+  lootProbabilityOverride: 0
+  gearType: 0
+  defence: 0

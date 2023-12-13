@@ -17,6 +17,7 @@ TagManager:
   - Canvas
   - Character
   - CharacterName
+  - StatusHolder
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,34 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Character 1
+    uniqueID: 2631279373
+    locked: 0
+  - name: Character 2
+    uniqueID: 2168198253
+    locked: 0
+  - name: Character 3
+    uniqueID: 1878333321
+    locked: 0
+  - name: Character 4
+    uniqueID: 1756233691
+    locked: 0
+  - name: Character 5
+    uniqueID: 1545974125
+    locked: 0
+  - name: Character 6
+    uniqueID: 346069229
+    locked: 0
+  - name: Character 7
+    uniqueID: 316289377
+    locked: 0
+  - name: Character 8
+    uniqueID: 3060587211
+    locked: 0
+  - name: Character 9
+    uniqueID: 2529237621
+    locked: 0
+  - name: Character 10
+    uniqueID: 2911323671
     locked: 0

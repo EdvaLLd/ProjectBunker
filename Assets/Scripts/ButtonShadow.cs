@@ -19,9 +19,14 @@ public class ButtonShadow : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         UIManager.onButtonDisableChanged += ButtonDisabledChanged;
     }
 
+    private void OnDestroy()
+    {
+        UIManager.onButtonDisableChanged -= ButtonDisabledChanged;
+    }
+
     void ButtonDisabledChanged(Button button)
     {
-        if(button == GetComponent<Button>())
+        if (button == GetComponent<Button>())
         {
             buttonActive = button.enabled;
             GetComponent<Shadow>().enabled = buttonActive;

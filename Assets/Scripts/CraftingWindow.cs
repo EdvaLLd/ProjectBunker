@@ -71,6 +71,7 @@ public class CraftingWindow : MonoBehaviour
             GameObject t;
             t = Instantiate(recipePrefab, recipeList.transform);
             t.transform.GetChild(0).GetComponent<Image>().sprite = recipe.itemCrafted.Icon;
+            t.transform.GetChild(0).GetComponent<ItemHoverDesc>().item = recipe.itemCrafted;
             t.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = recipe.itemCrafted.DisplayName + " .";
             int timeConvertedSec = recipe.craftingTime % 60;
             int timeConvertedMin = recipe.craftingTime / 60;
@@ -192,12 +193,8 @@ public class CraftingWindow : MonoBehaviour
         GameObject ingredientList = window.transform.GetChild(3).gameObject; //super duper scary sätt att fixa på
         for (int i = 0; i < recipe.Ingredients.Count; i++)
         {
-            GameObject t;
-            t = Instantiate(ingredientPrefab, ingredientList.transform);
-            t.GetComponent<ItemHoverDesc>().item = recipe.itemCrafted;
-            t.GetComponent<Image>().sprite = recipe.Ingredients[i].item.Icon;
-            t.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = recipe.Ingredients[i].amount.ToString();
-            if(Inventory.GetAmountOfItem(recipe.Ingredients[i].item) < recipe.Ingredients[i].amount)
+            GameObject t = UIManager.InitInventorySlot(recipe.Ingredients[i].item, recipe.Ingredients[i].amount, ingredientList.transform);
+            if (Inventory.GetAmountOfItem(recipe.Ingredients[i].item) < recipe.Ingredients[i].amount)
             {
                 t.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
             }
