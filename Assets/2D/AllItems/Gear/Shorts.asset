@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d858a93de3d53cb45b015885e11660fd, type: 3}
-  m_Name: Leather Jacket
+  m_Name: Shorts
   m_EditorClassIdentifier: 
-  ID: 03011
-  DisplayName: Leather jacket
-  Description: Warm
-  Icon: {fileID: 5325764616853288914, guid: 3305457be673bd644bd4ad278a53ad11, type: 3}
+  ID: 03014
+  DisplayName: Shorts
+  Description: So fashion forward.
+  Icon: {fileID: -1720428894240423027, guid: b5bede6ee89f9bc4f9be1537e75e267a, type: 3}
   SortingType: 5
   lootProbabilityOverride: 0
-  gearType: 0
-  gearSpriteID: 0
-  defence: 30
+  gearType: 1
+  gearSpriteID: 4
+  defence: 20

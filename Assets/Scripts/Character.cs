@@ -107,6 +107,7 @@ public class Character : MonoBehaviour
                 {
                     Inventory.AddItem(gearEquipped.chest);
                     gearEquipped.chest = null;
+                    if (characterAnim != null) { characterAnim.RemoveEquipment(GearTypes.chest); }
                 }
                 break;
             case GearTypes.legs:
@@ -114,6 +115,7 @@ public class Character : MonoBehaviour
                 {
                     Inventory.AddItem(gearEquipped.boots);
                     gearEquipped.legs = null;
+                    if (characterAnim != null) { characterAnim.RemoveEquipment(GearTypes.legs); }
                 }
                 break;
             case GearTypes.boots:
@@ -121,6 +123,7 @@ public class Character : MonoBehaviour
                 {
                     Inventory.AddItem(gearEquipped.boots);
                     gearEquipped.chest = null;
+                    if (characterAnim != null) { characterAnim.RemoveEquipment(GearTypes.boots); }
                 }
                 break;
             case GearTypes.weapon:
@@ -142,12 +145,15 @@ public class Character : MonoBehaviour
         {
             case GearTypes.chest:
                 gearEquipped.chest = piece;
+                if(characterAnim != null) {characterAnim.ChangeEquipment(GearTypes.chest, piece.gearSpriteID); }
                 break;
             case GearTypes.legs:
                 gearEquipped.legs = piece;
+                if (characterAnim != null) { characterAnim.ChangeEquipment(GearTypes.legs, piece.gearSpriteID); }
                 break;
             case GearTypes.boots:
                 gearEquipped.boots = piece;
+                if (characterAnim != null) { characterAnim.ChangeEquipment(GearTypes.boots, piece.gearSpriteID); }
                 break;
             case GearTypes.weapon:
                 gearEquipped.weapon = piece;
@@ -260,6 +266,11 @@ public class Character : MonoBehaviour
             deseases.Add(d);
             TextLog.AddLog("\"insert character name\" contracted " + d.GetType() + "!");
             AddStatus(Statuses.ill);
+
+            if(characterAnim != null)
+            {
+                characterAnim.TurnSick();
+            }
         }
     }
     public void RemoveDesease(Desease desease)
@@ -269,6 +280,11 @@ public class Character : MonoBehaviour
             TextLog.AddLog("\"insert character name\" survived her " + desease + " infection!");
             deseases.Remove(desease);
             RemoveStatus(Statuses.ill);
+
+            if (characterAnim != null)
+            {
+                characterAnim.BeCured();
+            }
         }
     }
 
