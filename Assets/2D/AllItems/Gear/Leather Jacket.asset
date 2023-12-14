@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 03011
   DisplayName: 
   Description: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 2a0231a0bf7a2534385f5353b8d604a8, type: 3}
   SortingType: 5
   lootProbabilityOverride: 0
   gearType: 0

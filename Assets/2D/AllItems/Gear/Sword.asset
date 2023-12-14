@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 03012
   DisplayName: svod
   Description: stabby
-  Icon: {fileID: 21300000, guid: 0c2bff6d9a8da024fabfca44ce20949c, type: 3}
+  Icon: {fileID: 21300000, guid: 67ec250914842f040836d766de39716e, type: 3}
   SortingType: 5
   lootProbabilityOverride: 0
   gearType: 3
