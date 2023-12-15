@@ -274,7 +274,7 @@ public class UnitController : MonoBehaviour
             UIManager.characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().SetUp(selectedCharacter);
             UIManager.characterStatsWindowStatic.SetActive(true);
             UIManager.characterStatsWindowStatic.GetComponent<Animator>().SetTrigger("SlideUpTrigger");
-            UIManager.characterName.text = selectedCharacter.name;
+            UIManager.characterName.text = selectedCharacter.characterName;
             SetCharacterStatusVisuals(selectedCharacter);
         }
     }
@@ -294,7 +294,7 @@ public class UnitController : MonoBehaviour
                     UIManager.statusHolderGO.transform.GetChild(i).gameObject.SetActive(false);
                 }
             }
-    }
+        }
     }
 
     public static void setCharacterVisual(Character character, bool isSelected)

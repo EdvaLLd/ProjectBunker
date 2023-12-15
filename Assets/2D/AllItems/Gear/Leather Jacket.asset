@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Leather Jacket
   m_EditorClassIdentifier: 
   ID: 03011
-  DisplayName: 
-  Description: 
-  Icon: {fileID: 0}
+  DisplayName: Leather jacket
+  Description: Warm
+  Icon: {fileID: 5325764616853288914, guid: 3305457be673bd644bd4ad278a53ad11, type: 3}
   SortingType: 5
   lootProbabilityOverride: 0
   gearType: 0
-  defence: 0
+  gearSpriteID: 0
+  defence: 30

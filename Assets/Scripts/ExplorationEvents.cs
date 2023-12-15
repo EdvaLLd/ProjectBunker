@@ -12,37 +12,59 @@ public class ExplorationEvents : Exploration
         {
 
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-
-            float eventRandom = Random.Range(0, 100);
-            float probability = gameManager.mainExploreEvents[GameManager.eventIndex].eventProbability;
-
-            if (eventRandom <= 100 - probability && eventRandom != 100)
+            if (gameManager.mainExploreEvents.Length <= 0) 
             {
-                print("cancel");
                 return;
             }
 
-            executedEvent = true;
+            if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
+            {
+                //if (!MainEventsIsEmpty(gameManager.mainExploreEvents)) 
+                //{
+                float eventRandom = Random.Range(0, 100);
+                float probability = gameManager.mainExploreEvents[GameManager.eventIndex].eventProbability;
 
-            print("started event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
+                //executedEvent = true;
+
+                if (eventRandom <= 100 - probability && eventRandom != 100) 
+                {
+                    print("cancel");
+                    return;
+                }
+
+                print("started event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
 
             gameManager.mainExploreEvents[GameManager.eventIndex].timer.CountDown();
 
-            SubEventSequence(gameManager.mainExploreEvents[GameManager.eventIndex]);
+            //SubEventSequence(gameManager.mainExploreEvents[GameManager.eventIndex]);
 
-            if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
-            {
-                GameManager.eventIndex++;
-            }
+                print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex].eventName);
 
-            print("ended event named: " + gameManager.mainExploreEvents[GameManager.eventIndex - 1].eventName);
+                if (GameManager.eventIndex < gameManager.mainExploreEvents.Length)
+                {
+                    GameManager.eventIndex++;
+                }
+                else 
+                {
+                    return;
+                }
+            }     
         }
 
         public void RandomSpecialEvent()
         {
             GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
 
-            ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, gameManager.randomExploreEvents.Length)];
+            int length = gameManager.randomExploreEvents.Length;
+            int maxIndex = Mathf.Clamp(length, 0, length - 1);
+
+            if (length <= 0)
+            {
+                Debug.LogWarning("No random events in array");
+                return;
+            }
+
+            ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, maxIndex)];
             float eventRandom = Random.Range(0, 100);
             float probability = randomEvent.eventProbability;
 
@@ -72,7 +94,7 @@ public class ExplorationEvents : Exploration
                 {
                     case (ExploreSubEvent.eventTypes.Text):
                         subEvent.textEvent.timer.CountDown();
-                        PlayTextEvent(subEvent.textEvent.eventMessage);
+                        PlayTextEvent(subEvent.textEvent.eventMessage, attachedGameObject.GetComponent<Character>());
                         break;
                     case (ExploreSubEvent.eventTypes.Item):
                             subEvent.itemEvent.timer.CountDown();
@@ -95,6 +117,14 @@ public class ExplorationEvents : Exploration
                         subEvent.recipeEvent.timer.CountDown();
                         PlayCharacterEvent();
                         break;
+                    case (ExploreSubEvent.eventTypes.Diary):
+                        subEvent.diaryEvent.timer.CountDown();
+                        PlayDiaryEvent(attachedGameObject.GetComponent<Character>(), subEvent.diaryEvent.diaryEntryTitle, subEvent.diaryEvent.diaryEntryText, subEvent.diaryEvent.diaryEntryAuthor, subEvent.diaryEvent.diaryEntryDate);
+                        break;
+                    case (ExploreSubEvent.eventTypes.Illness):
+                        subEvent.illnessEvent.timer.CountDown();
+                        PlayIllnessEvent(attachedGameObject.GetComponent<Character>());
+                        break;
 
                     default:
                         break;
@@ -114,12 +144,12 @@ public class ExplorationEvents : Exploration
         }
         //------------------------------------------------------------------------------------------
 
-        public void PlayTextEvent(string message)
+        public void PlayTextEvent(string message, Character character)
         {
             if (message != "" || message != null)
             {
                 //TextLog.AddLog(message);
-                FindObjectOfType<SpecialExploringEvents>().ShowSpecialEvent(message);
+                FindObjectOfType<SpecialExploringEvents>().ShowSpecialEvent(message, character.gameObject.name);
             }
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// ItemEvent
@@ -285,7 +315,7 @@ public class ExplorationEvents : Exploration
             float damage = subEvent.damageEvent.damageRecieved;
 
             TakeDamage(damage, target);
-            TextLog.AddLog(target.name + " took " + damage + " damage to their health!");
+            PlayTextEvent(damage + " damage was dealt to ", target);
 
             /*Timer localTimer = new Timer();
             localTimer.timeUnit = Timer.timeUnits.second;
@@ -338,27 +368,27 @@ public class ExplorationEvents : Exploration
             //string faction = System.Enum.GetName(typeof(ExploreSubEvent.enemyFactions), subEvent.combatEvent.enemyFaction);
             //print(faction);
 
-            TextLog.AddLog(character.name + " engaged hostile " + faction + " in combat!");
+            PlayTextEvent(character.characterName + " engaged hostile " + faction + " in combat!", character);
             if (randomRecievied <= 0 && randomDealt <= 0)
             {
-                TextLog.AddLog("Neither side sustained any casulties and fled.");
+                PlayTextEvent("Neither side sustained any casulties and fled.", character);
             }
             if (randomDealt > 0)
             {
-                TextLog.AddLog(character.name + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.");
+                PlayTextEvent(character.characterName + " dealt " + randomDealt + " damage to the " + faction + ", weakening them.", character);
             }
             if (randomRecievied > 0)
             {
                 TakeDamage(randomRecievied, character);
                 if (character.health <= 0)
                 {
-                    TextLog.AddLog(character.name + " was slained in battle by the " + faction + ".");
+                    PlayTextEvent(character.characterName + " was slained in battle by the " + faction + ".", character);
                     //PlayLootItemLoopEvent(false, true, subEvent.combatEvent.combatLoot);
                 }
                 else
                 {
-                    TextLog.AddLog("Enemy " + faction + " cowardly fled from battle.");
-                    TextLog.AddLog(character.name + " took " + randomRecievied + " damage from the enemy " + faction + " but lives to fight another day.");
+                    PlayTextEvent("Enemy " + faction + " cowardly fled from battle.", character);
+                    PlayTextEvent(character.name + " took " + randomRecievied + " damage from the enemy " + faction + " but lives to fight another day.", character);
                     PlayLootItemLoopEvent(true, true, subEvent.combatEvent.combatLoot);
                 }
 
@@ -366,6 +396,31 @@ public class ExplorationEvents : Exploration
 
             //print("Combat");
         }
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// Diary event
+        //------------------------------------------------------------------------------------------
+        [System.Serializable]
+        public class DiaryEvent
+        {
+            [Tooltip("Title of the diary entry, unless you leave it empty.")]
+            public string diaryEntryTitle;
+            [Tooltip("Displayed text message in diary entry.")]
+            public string diaryEntryText;
+            [Tooltip("Name of the author of the diary entry.")]
+            public string diaryEntryAuthor;
+            [Tooltip("Date when the entry was written (in game lore that is).")]
+            public string diaryEntryDate;
+
+            [Tooltip("Delay in ammount of time before event starts in selected units.")]
+            public Timer timer = new Timer();
+        }
+        //------------------------------------------------------------------------------------------
+        public void PlayDiaryEvent(Character character, string title, string text, string author, string date) 
+        {
+            GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+            PlayTextEvent(character.characterName + " picked up a piece of paper that seems to be and old diary entry.", character);
+            gameManager.gameDiary.AddEntry(title, text, author, date);
+        } 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// RecipeEvent
         //------------------------------------------------------------------------------------------
         [System.Serializable]
@@ -385,23 +440,45 @@ public class ExplorationEvents : Exploration
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// CharacterEvent
         //------------------------------------------------------------------------------------------
-
-        //------------------------------------------------------------------------------------------
         [System.Serializable]
         public class CharacterEvent
         {
             public Timer timer = new Timer();
         }
+        //------------------------------------------------------------------------------------------
+
         public void PlayCharacterEvent()
         {
             FindObjectOfType<SpecialExploringEvents>().ShowCharacterChoice();
 
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// IllnessEvent
         //------------------------------------------------------------------------------------------
 
-
+        [System.Serializable]
+        public class IllnessEvent
+        {
+            public Timer timer = new Timer();
+        }
+        public void PlayIllnessEvent(Character character)
+        {
+            character.AddDesease<Flu>();
+        }
+        //------------------------------------------------------------------------------------------
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////// SimpleLootEvent
+        //------------------------------------------------------------------------------------------
+        [System.Serializable]
+        public class SimpleLootEvent
+        {
+            public Item item;
+            public int minAmount;
+            public int maxAmount;
+        }
+        //------------------------------------------------------------------------------------------
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
     private void TakeDamage(float damage, Character character)
     {
@@ -430,7 +507,7 @@ public class ExplorationEvents : Exploration
     [System.Serializable]
     public class ExploreSubEvent
     {
-        public enum eventTypes { Text, Item, Damage, Combat, Recipe, Sickness, Diary, Character };
+        public enum eventTypes { Text, Item, Damage, Combat, Recipe, Illness, Diary, Character };
         public eventTypes eventType;
 
         public enum enemyFactions { Scavengers, Mutated_dogs, Radioactive_lobsters, TwoheadedFoxes, GiantInsects };
@@ -442,6 +519,84 @@ public class ExplorationEvents : Exploration
         public ExploreEventTypes.CombatEvent combatEvent;
         public ExploreEventTypes.RecipeEvent recipeEvent;
         public ExploreEventTypes.CharacterEvent characterEvent;
+        public ExploreEventTypes.DiaryEvent diaryEvent;
+        public ExploreEventTypes.IllnessEvent illnessEvent;
+    }
+    [System.Serializable]
+    public class RandomExploreEvent : ExploreEvent
+    {
+        public int cooldown;
+        protected bool canBeActivated = true;
+        protected int turnsSinceActivation = 0;
+
+        public virtual void ActivateEvent()
+        {
+            canBeActivated = false;
+        }
+
+        public bool CanBeActivated()
+        {
+            return canBeActivated;
+        }
+
+        public virtual void IncreaseTurnsSinceActivated()
+        {
+            if (!canBeActivated)
+            {
+                turnsSinceActivation++;
+            }
+            if (turnsSinceActivation > cooldown)
+            {
+                canBeActivated = true;
+                turnsSinceActivation = 0;
+                Debug.Log(this.eventName + " är nu redo att köras igen!");
+            }
+        }
     }
 
+    [System.Serializable]
+    public class LimitedExploreEvent : RandomExploreEvent
+    {
+        public int maxTurns;
+        public bool bringsNewCharacter = false;
+        private int timesActivated;
+
+        public override void ActivateEvent()
+        {
+            base.ActivateEvent();
+            timesActivated++;
+        }
+        public override void IncreaseTurnsSinceActivated()
+        {
+            if (timesActivated < maxTurns || maxTurns == 0)
+            {
+                if (!canBeActivated)
+                {
+                    turnsSinceActivation++;
+                }
+                if (turnsSinceActivation > cooldown)
+                {
+                    canBeActivated = true;
+                    turnsSinceActivation = 0;
+                    Debug.Log(this.eventName + " är nu redo att köras igen!");
+                }
+            }
+            else
+            {
+                TurnOffEvent();
+            }
+
+        }
+
+        public void TurnOffEvent()
+        {
+            canBeActivated = false;
+        }
+    }
+
+    [System.Serializable]
+    public class StandardExploreEvent
+    {
+        public ExploreEventTypes.SimpleLootEvent[] loot;
+    }
 }

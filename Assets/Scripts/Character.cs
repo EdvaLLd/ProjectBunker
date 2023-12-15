@@ -56,9 +56,15 @@ public class Character : MonoBehaviour
     Vector3 newGoalPos;
 
     List<Statuses> statuses = new List<Statuses>();
-
+    public string characterName;
 
     private CharacterAnimation characterAnim;
+
+
+    private void Awake() 
+    {
+        characterName = SetCharacterName(FindObjectOfType<GameManager>().characterNames);
+    }
 
     public float workMultiplier { get; private set; } = 1;
 
@@ -71,6 +77,9 @@ public class Character : MonoBehaviour
     public MasterAura masterAura { get; private set; }
 
     float mood = .5f; //<.3f=ledsen, >.7f=glad
+    [SerializeField]
+    private AudioClip audioClip;
+    private AudioSource audioSource;
 
     #endregion
 
@@ -78,10 +87,122 @@ public class Character : MonoBehaviour
     {
         characterAnim = GetComponentInChildren<CharacterAnimation>();
         masterAura = new MasterAura(this);
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.spatialBlend = 1.0f;
+        audioSource.loop = false;
+        if (audioClip != null)
+        {
+            audioSource.clip = audioClip;
+        }
+    }
+
+    private string SetCharacterName(string[] names)
+    {
+        int randomNameIndex = UnityEngine.Random.Range(0, Mathf.Clamp(names.Length, 0, names.Length - 1));
+        return names[randomNameIndex];
     }
 
 
-    
+    public void UnEquipGear(GearTypes gt)
+    {
+        switch (gt)
+        {
+            case GearTypes.chest:
+                if (gearEquipped.chest != null)
+                {
+                    Inventory.AddItem(gearEquipped.chest);
+                    gearEquipped.chest = null;
+                    if (characterAnim != null) { characterAnim.RemoveEquipment(GearTypes.chest); }
+                }
+                break;
+            case GearTypes.legs:
+                if (gearEquipped.legs != null)
+                {
+                    Inventory.AddItem(gearEquipped.boots);
+                    gearEquipped.legs = null;
+                    if (characterAnim != null) { characterAnim.RemoveEquipment(GearTypes.legs); }
+                }
+                break;
+            case GearTypes.boots:
+                if (gearEquipped.boots != null)
+                {
+                    Inventory.AddItem(gearEquipped.boots);
+                    gearEquipped.chest = null;
+                    if (characterAnim != null) { characterAnim.RemoveEquipment(GearTypes.boots); }
+                }
+                break;
+            case GearTypes.weapon:
+                if (gearEquipped.weapon != null)
+                {
+                    Inventory.AddItem(gearEquipped.weapon);
+                    gearEquipped.weapon = null;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void EquipGear(Equipment piece)
+    {
+        UnEquipGear(piece.gearType);
+        switch (piece.gearType)
+        {
+            case GearTypes.chest:
+                gearEquipped.chest = piece;
+                if(characterAnim != null) {characterAnim.ChangeEquipment(GearTypes.chest, piece.gearSpriteID); }
+                break;
+            case GearTypes.legs:
+                gearEquipped.legs = piece;
+                if (characterAnim != null) { characterAnim.ChangeEquipment(GearTypes.legs, piece.gearSpriteID); }
+                break;
+            case GearTypes.boots:
+                gearEquipped.boots = piece;
+                if (characterAnim != null) { characterAnim.ChangeEquipment(GearTypes.boots, piece.gearSpriteID); }
+                break;
+            case GearTypes.weapon:
+                gearEquipped.weapon = piece;
+                break;
+            default:
+                break;
+        }
+        Inventory.RemoveItem(piece);
+    }
+
+    public GearScore GetGearScore()
+    {
+        GearScore totalScore = new GearScore();
+        Equipment e;
+        if (GearEquippedInSlot(out e, GearTypes.chest)) totalScore.armor += (e as Armor).GetDefence();
+        if (GearEquippedInSlot(out e, GearTypes.legs)) totalScore.armor += (e as Armor).GetDefence();
+        if (GearEquippedInSlot(out e, GearTypes.boots)) totalScore.armor += (e as Armor).GetDefence();
+        if (GearEquippedInSlot(out e, GearTypes.weapon)) totalScore.attack += (e as Weapon).GetAttack();
+        return totalScore;
+    }
+
+    public bool GearEquippedInSlot(out Equipment e, GearTypes gt)
+    {
+        switch (gt)
+        {
+            case GearTypes.chest:
+                e = gearEquipped.chest;
+                break;
+            case GearTypes.legs:
+                e = gearEquipped.legs;
+                break;
+            case GearTypes.boots:
+                e = gearEquipped.boots;
+                break;
+            case GearTypes.weapon:
+                e = gearEquipped.weapon;
+                break;
+            default:
+                e = null;
+                break;
+        }
+        if (e == null) return false;
+        return true;
+    }
 
     private void Update()
     {
@@ -276,14 +397,7 @@ public class Character : MonoBehaviour
                     if (itemInteractedWith != null)
                     {
                         onTaskCompletion?.Invoke(this);
-                        //Animation stuff ----------------- Jag väntar lite med detta tills jag har craftingdelen
-                        //if (characterAnim != null)
-                        //{
-                        //    if (task == CharacterTasks.crafting)
-                        //    {
-                        //        characterAnim.StartCrafting();
-                        //    }
-                        //}
+
                     }
                 }
             }
@@ -384,6 +498,7 @@ public class Character : MonoBehaviour
             TextLog.AddLog($"{food.DisplayName} eaten!");
             Inventory.RemoveItem(food);
             hunger = Mathf.Clamp(hunger + food.GetHungerRestoration(), 0, maxHunger);
+            audioSource.Play();
         }
         if (hunger >= maxHunger)
         {
@@ -392,7 +507,7 @@ public class Character : MonoBehaviour
                 StartCoroutine(NotHungryEffect());
             }
 
-            TextLog.AddLog(UnitController.GetSelectedCharacter().name + "is not hungry.");
+            TextLog.AddLog(UnitController.GetSelectedCharacter().characterName + " is not hungry.");
         }
     }
 
@@ -457,4 +572,5 @@ public class Character : MonoBehaviour
     {
         return transform.position.y - posMovingTo.y;
     }
+
 }

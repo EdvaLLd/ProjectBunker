@@ -15,6 +15,7 @@ public class Equipment : Item
         SortingType = SortingTypes.Gear;
     }
     public GearTypes gearType;
+    public int gearSpriteID;
 }
 public enum GearTypes
 {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Crafting System/Chest")]
@@ -10,6 +11,7 @@ public class Chest : ItemBase
     Dictionary<Item, int> inventory = new Dictionary<Item, int>();
 
     bool looted = false;
+
     public void CheckContent()
     {
         if(!looted)

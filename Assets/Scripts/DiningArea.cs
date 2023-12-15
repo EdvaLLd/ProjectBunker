@@ -18,6 +18,7 @@ public class DiningArea : InteractableItem
     private void Awake()
     {
         Inventory.onInventoryUpdate += InitInventory;
+       
     }
 
     public void OpenUI(Character character)
