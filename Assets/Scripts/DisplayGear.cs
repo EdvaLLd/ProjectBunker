@@ -43,9 +43,9 @@ public class DisplayGear : MonoBehaviour
     public void EquipGear(Equipment gear)
     {
         //buttonClicked.transform.GetChild(0).GetComponent<Image>().sprite = gear.Icon;
-        if (!UnitController.GetSelectedCharacter().GearEquippedInSlot(out Equipment e, gear.gearType) || e != gear)
+        if (!UnitController.GetSelectedCharacter().gear.GearEquippedInSlot(out Equipment e, gear.gearType) || e != gear)
         {
-            UnitController.GetSelectedCharacter().EquipGear(gear);
+            UnitController.GetSelectedCharacter().gear.EquipGear(gear);
             DisplayGearOfType(buttonClicked);
             CharacterStatsHandler.ResetButton(buttonClicked, UnitController.GetSelectedCharacter());
         } 

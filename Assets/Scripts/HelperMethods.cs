@@ -97,4 +97,26 @@ public class HelperMethods
             Object.Destroy(child.gameObject);
         }
     }
+
+    public static List<Character> GetCharactersInSameRoom(Character ch)
+    {
+        List<Character> allCharacters = UnitController.GetCharacters();
+        List<Character> allCharactersInRoom = new List<Character>();
+        foreach (Character c in allCharacters)
+        {
+            if(!HelperMethods.WallBetweenPoints(ch.transform.position, c.transform.position) &&
+                c != ch)
+            {
+                allCharactersInRoom.Add(c);
+            }
+        }
+        return allCharactersInRoom;
+    }
+
+    //kopierad, antar att den funkar?
+    public static List<T> ScrambleList<T>(List<T> list)
+    {
+        list.Sort((a, b) => 1 - 2 * Random.Range(0, list.Count));
+        return list;
+    }
 }

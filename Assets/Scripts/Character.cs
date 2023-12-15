@@ -4,14 +4,6 @@ using System.ComponentModel;
 using UnityEngine;
 using System;
 
-[Serializable]
-public class EqippedGearSet
-{
-    public Equipment chest = null;
-    public Equipment legs = null;
-    public Equipment boots = null;
-    public Equipment weapon = null;
-}
 
 public enum Statuses
 {
@@ -20,6 +12,7 @@ public enum Statuses
     happy,
     sad,
     hungry,
+    nothing
 }
 public class Character : MonoBehaviour
 {
@@ -39,7 +32,8 @@ public class Character : MonoBehaviour
     public delegate void OnTaskCompletion(Character characterWhoFinishedTask);
     public static event OnTaskCompletion onTaskCompletion;
 
-    EqippedGearSet gearEquipped;
+    float movementSpeedMultiplier = 1;
+
 
     //karakt�rens stats
     public float hunger = 100;
@@ -61,9 +55,7 @@ public class Character : MonoBehaviour
     bool createNewPath = false;
     Vector3 newGoalPos;
 
-    List<Desease> deseases = new List<Desease>();
-
-    Dictionary<Statuses, int> statuses = new Dictionary<Statuses, int>();
+    List<Statuses> statuses = new List<Statuses>();
 
 
     private CharacterAnimation characterAnim;
@@ -74,112 +66,22 @@ public class Character : MonoBehaviour
     GameObject marker;
     int reasonsToWarn = 0;
 
+    public GearHandler gear { get; private set; } = new GearHandler();
+
+    public MasterAura masterAura { get; private set; }
+
+    float mood = .5f; //<.3f=ledsen, >.7f=glad
+
     #endregion
 
     private void Start()
     {
-        //maxHunger = hunger;
-        //maxHealth = health;
-
-        gearEquipped = new EqippedGearSet();
         characterAnim = GetComponentInChildren<CharacterAnimation>();
+        masterAura = new MasterAura(this);
     }
 
 
-    public void UnEquipGear(GearTypes gt)
-    {
-        switch (gt)
-        {
-            case GearTypes.chest:
-                if (gearEquipped.chest != null)
-                {
-                    Inventory.AddItem(gearEquipped.chest);
-                    gearEquipped.chest = null;
-                }
-                break;
-            case GearTypes.legs:
-                if (gearEquipped.legs != null)
-                {
-                    Inventory.AddItem(gearEquipped.boots);
-                    gearEquipped.legs = null;
-                }
-                break;
-            case GearTypes.boots:
-                if (gearEquipped.boots != null)
-                {
-                    Inventory.AddItem(gearEquipped.boots);
-                    gearEquipped.chest = null;
-                }
-                break;
-            case GearTypes.weapon:
-                if (gearEquipped.weapon != null)
-                {
-                    Inventory.AddItem(gearEquipped.weapon);
-                    gearEquipped.weapon = null;
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void EquipGear(Equipment piece)
-    {
-        UnEquipGear(piece.gearType);
-        switch (piece.gearType)
-        {
-            case GearTypes.chest:
-                gearEquipped.chest = piece;
-                break;
-            case GearTypes.legs:
-                gearEquipped.legs = piece;
-                break;
-            case GearTypes.boots:
-                gearEquipped.boots = piece;
-                break;
-            case GearTypes.weapon:
-                gearEquipped.weapon = piece;
-                break;
-            default:
-                break;
-        }
-        Inventory.RemoveItem(piece);
-    }
-
-    public GearScore GetGearScore()
-    {
-        GearScore totalScore = new GearScore();
-        Equipment e;
-        if (GearEquippedInSlot(out e, GearTypes.chest)) totalScore.armor += (e as Armor).GetDefence();
-        if (GearEquippedInSlot(out e, GearTypes.legs)) totalScore.armor += (e as Armor).GetDefence();
-        if (GearEquippedInSlot(out e, GearTypes.boots)) totalScore.armor += (e as Armor).GetDefence();
-        if (GearEquippedInSlot(out e, GearTypes.weapon)) totalScore.attack += (e as Weapon).GetAttack();
-        return totalScore;
-    }
-
-    public bool GearEquippedInSlot(out Equipment e, GearTypes gt)
-    {
-        switch (gt)
-        {
-            case GearTypes.chest:
-                e = gearEquipped.chest;
-                break;
-            case GearTypes.legs:
-                e = gearEquipped.legs;
-                break;
-            case GearTypes.boots:
-                e = gearEquipped.boots;
-                break;
-            case GearTypes.weapon:
-                e = gearEquipped.weapon;
-                break;
-            default:
-                e = null;
-                break;
-        }
-        if (e == null) return false;
-        return true;
-    }
+    
 
     private void Update()
     {
@@ -187,126 +89,84 @@ public class Character : MonoBehaviour
         {
             Move();
             HungerDecay();
-            DeseaseTick();
+            //DeseaseTick();
+            masterAura.Tick();
         }
     }
 
 
-
-
-    #region Statuses
-    public void AddStatus(Statuses status)
+    public void SetMood(float value)
     {
-        if (statuses.ContainsKey(status)) statuses[status] += 1;
-        else 
-        { 
-            statuses.Add(status, 1);
-            TextLog.AddLog("\"insert character name\" is now " + status);
-            UnitController.SetCharacterStatusVisuals(this);
-            WarnPlayer(true);
-        }
-        CheckWorkMultiplier();
+        mood = Mathf.Clamp(value, 0, 1);
+        CheckMoodStatus();
     }
+    public void AddMood(float value)
+    {
+        mood = Mathf.Clamp(mood + value, 0, 1);
+        CheckMoodStatus();
+    }
+    void CheckMoodStatus()
+    {
+        if(mood > 0.3f && mood < 0.7f)
+        {
+            masterAura.RemoveAuras(Debufftypes.Mood);
+        }
+        if (mood < 0.3f)
+        {
+            masterAura.AddAura(AuraPresets.Sad());
+        }
+        else if (mood > 0.7f)
+        {
+            masterAura.AddAura(AuraPresets.Happy());
+        }
+    }
+
     public bool HasStatus(Statuses status)
     {
-        if (statuses.ContainsKey(status)) return true;
-        return false;
-    }
-    public void RemoveStatus(Statuses status)
+        return statuses.Contains(status);
+    } 
+
+    
+
+    public void AuraValuesChanged()
     {
-        if (statuses.ContainsKey(status)) 
-        { 
-            statuses[status] -= 1;
-            if (statuses[status] < 1)
-            {
-                statuses.Remove(status);
-                UnitController.SetCharacterStatusVisuals(this);
-                TextLog.AddLog("\"insert character name\" is no longer " + status);
-            }
-        }
-        else Debug.LogError("shouldnt be here");
-
-        CheckWorkMultiplier();
-    }
-
-    #endregion
-
-    #region Deseases
-    void DeseaseTick()
-    {
-        for (int i = deseases.Count - 1; i >= 0; i--)
+        /*print("-------------------");
+        foreach (KeyValuePair<VariableModifiers, float> item in masterAura.aura.changeValues)
         {
-            deseases[i].Tick();
-        }
-    }
-    public void AddDesease<T>() where T : Desease, new()
-    {
-        if(!HasDesease<T>(out _))
-        {
-            T d = new T();
-            d.SetCharacter(this);
-            deseases.Add(d);
-            TextLog.AddLog("\"insert character name\" contracted " + d.GetType() + "!");
-            AddStatus(Statuses.ill);
-        }
-    }
-    public void RemoveDesease(Desease desease)
-    {
-        if (desease.GetHealth() < 0)
-        {
-            TextLog.AddLog("\"insert character name\" survived her " + desease + " infection!");
-            deseases.Remove(desease);
-            RemoveStatus(Statuses.ill);
-        }
+            print(item.Key + " | " + item.Value);
+        }*/
+        float value = 0;
+        masterAura.aura.GetValue(VariableModifiers.Workspeed, out value);
+        workMultiplier = Mathf.Clamp(1 + value, 0.2f, 2);
+
+        masterAura.aura.GetValue(VariableModifiers.Walkspeed, out value);
+        movementSpeedMultiplier = Mathf.Clamp(1 + value, 0.2f, 2);
+        CheckStatuses(); 
     }
 
-    public bool HasDesease<T>(out T desease) where T : Desease
+    void CheckStatuses()
     {
-        desease = null;
-        foreach (Desease d in deseases)
+        statuses.Clear();
+        //if(masterAura.)
+        if (masterAura.HasAuraWithStatus(Statuses.ill))
         {
-            if(d.GetType() == typeof(T))
-            {
-                desease = d as T;
-                return true;
-            }
+            statuses.Add(Statuses.ill);
         }
-        return false;
-    }
-
-    public List<Desease> GetDeseases()
-    {
-        return deseases;
-    }
-
-    //för om vi medicerar olika deseases
-    public void TreatDesease(Desease desease)
-    {
-        Item med = Database.GetItemWithID("01013");
-        //farligt sätt att göra grejer
-        if (Inventory.GetAmountOfItem(med) > 0)
+        if (masterAura.HasAuraWithStatus(Statuses.injured))
         {
-            desease.Medicate();
-            Inventory.RemoveItem(med);
+            statuses.Add(Statuses.injured);
         }
-    }
-
-    //för om vi medicerar alla deseases
-    public void TreatDesease()
-    {
-        Item med = Database.GetItemWithID("01013");
-        //farligt sätt att göra grejer
-        if (Inventory.GetAmountOfItem(med) > 0 && deseases.Count > 0)
+        if(masterAura.HasAuraWithStatus(Statuses.sad))
         {
-            for (int i = deseases.Count - 1; i >= 0; i--)
-            {
-                deseases[i].Medicate();
-            }
-            Inventory.RemoveItem(med);
+            statuses.Add(Statuses.sad);
         }
-    }
+        if (masterAura.HasAuraWithStatus(Statuses.happy))
+        {
+            statuses.Add(Statuses.happy);
+        }
 
-    #endregion
+        UnitController.SetCharacterStatusVisuals(this);
+    }
 
     #region Movement and Interactions
 
@@ -395,7 +255,7 @@ public class Character : MonoBehaviour
 
         if (move) //teoretiskt s�tt f�rlorar man range p� framen man kommer fram till en point, men spelar nog ingen roll
         {
-            if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed * Time.deltaTime)
+            if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed *movementSpeedMultiplier* Time.deltaTime)
             {
                 transform.position = posMovingTo;
                 if (createNewPath)
@@ -429,7 +289,7 @@ public class Character : MonoBehaviour
             }
             else
             {
-                Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed * Time.deltaTime);
+                Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed *movementSpeedMultiplier* Time.deltaTime);
                 transform.position = newPos;
             }
         }
@@ -496,6 +356,11 @@ public class Character : MonoBehaviour
     {
         isAlive = false;
         TextLog.AddLog("Unit died!");
+        List<Character> charsInRoom = HelperMethods.GetCharactersInSameRoom(this);
+        foreach (Character c in charsInRoom)
+        {
+            c.masterAura.AddAura(AuraPresets.Sad());
+        }
         UnitController.RemoveCharacter(this);
         reasonsToWarn = 0;
         RemoveWarning();
@@ -545,18 +410,6 @@ public class Character : MonoBehaviour
 
     #endregion
 
-    void CheckWorkMultiplier()
-    {
-        //sortera dessa på hur negativa de är (värre är överst)
-        if (HasStatus(Statuses.ill) || HasStatus(Statuses.injured) || HasStatus(Statuses.sad))
-        {
-            workMultiplier = 0.1f;
-        }
-        else
-        {
-            workMultiplier = 1;
-        }
-    }
     void WarnPlayer(bool shouldFade)
     {
         if(marker != null)
