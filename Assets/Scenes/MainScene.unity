@@ -31116,25 +31116,29 @@ MonoBehaviour:
     maxTurns: 0
     bringsNewCharacter: 1
   characterNames:
-  - Gonzalez
-  - John
-  - Emily
-  - Michael
+  - Larissa
+  - Tanja
+  - Ingrid
+  - Gretel
   - Sarah
-  - David
-  - Awe
-  - Jessica
-  - Matthew
-  - Amanda
-  - Christopher
-  - Elizabeth
-  - Emma
-  - Edvard
-  - Ella
-  - Cassandra
-  - Alexander
-  - Thomas
-  - Patricia
+  - Destiny
+  - Paris
+  - Ariel
+  - Caren
+  - Lalita
+  - Frida
+  - Kim
+  - Birdie
+  - Lojsan
+  - Polly
+  - Ullis
+  - Britt
+  - Jules
+  - Allison
+  - Flisan
+  - Brooke
+  - Angel
+  - Iris
 --- !u!4 &1115463393
 Transform:
   m_ObjectHideFlags: 0
