@@ -2846,6 +2846,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amountOfVersions: 5
   ponytail: {fileID: 6085703537175405668}
+  forbiddenShoes: 00000000
+  forbiddenShirts: 00000000
+  forbiddenPants: 0200000004000000
 --- !u!212 &6774663187146554873
 SpriteRenderer:
   m_ObjectHideFlags: 0

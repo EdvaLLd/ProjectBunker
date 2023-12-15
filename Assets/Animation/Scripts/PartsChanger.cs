@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEditorInternal;
@@ -11,9 +12,12 @@ public class PartsChanger : MonoBehaviour
 
     [SerializeField] private int amountOfVersions;
     [SerializeField] private GameObject ponytail;
+    [SerializeField] private int[] forbiddenShoes, forbiddenShirts, forbiddenPants;
+
     private SpriteResolver[] resolvers;
 
-    private int[] bodyPartCollection;
+    private int[] bodyPartCollection = new int[7];
+    private int[] ogBodyPartCollection;
     private Renderer[] renderers;
 
     //Skinparts ------- Torso --------- Ögon --------- Mun ------- Ben -------- Fötter ---------- Hår
@@ -26,7 +30,10 @@ public class PartsChanger : MonoBehaviour
         resolvers = GetComponentsInChildren<SpriteResolver>();
         ponytail.GetComponent<LineRenderer>().enabled = false;
         renderers = GetComponentsInChildren<Renderer>();
+
+        InitializeBodypartCollection();
     }
+
 
     public void ChangePants(int version)
     {
@@ -46,11 +53,36 @@ public class PartsChanger : MonoBehaviour
         bodyPartCollection[5] = version;
     }
 
-    
+    public void RemovePants()
+    {
+        
+        ChangeVersionOnCollection(4, ogBodyPartCollection[4]);
+        bodyPartCollection[4] = ogBodyPartCollection[4];
+    }
+
+    public void RemoveShirt()
+    {
+        ChangeVersionOnCollection(1, ogBodyPartCollection[1]);
+        bodyPartCollection[1] = ogBodyPartCollection[1];
+    }
+
+    public void RemoveShoes()
+    {
+        ChangeVersionOnCollection(5, ogBodyPartCollection[5]);
+        bodyPartCollection[5] = ogBodyPartCollection[5];
+    }
+
+
     public void RandomizeCharacter()
     {
         bodyPartCollection = RandomizeArr();
+        ogBodyPartCollection = (int[]) bodyPartCollection.Clone();
         SetUpCharacter();
+    }
+
+    public void ChangeFaceColor(Color color)
+    {
+        resolvers[14].GetComponent<SpriteRenderer>().color = color;
     }
 
     public void SetUpCharacter()
@@ -61,6 +93,7 @@ public class PartsChanger : MonoBehaviour
         }
         if (bodyPartCollection[6] == 0)
         {
+            Debug.Log("Nu har karaktären en hästsvans");
             ponytail.GetComponent<LineRenderer>().enabled = true;
         }
         else
@@ -82,15 +115,44 @@ public class PartsChanger : MonoBehaviour
     {
         int[] rndArr = new int[7];
         for(int i = 0;  i < 7; i++)
-        {
-            rndArr[i] = Random.Range(0, amountOfVersions);
+        {           
+            rndArr[i] = RandomizeNumber(i);
         }
         return rndArr;
+    }
+
+    private int RandomizeNumber(int currentPart)
+    {
+        int rndN = Random.Range(0, amountOfVersions);
+        if (currentPart == 1 && forbiddenShirts.Contains(rndN))
+        {
+            return RandomizeNumber(1);
+        }else if(currentPart == 4 && forbiddenPants.Contains(rndN))
+        {
+            return RandomizeNumber(4);
+        }else if(currentPart == 5 && forbiddenShoes.Contains(rndN))
+        {
+            return RandomizeNumber(5);
+        }
+        else
+        {
+            return rndN;
+        }
     }
 
     private void ChangeAPart(int bodyPart, int version)
     {
         resolvers[bodyPart].SetCategoryAndLabel(resolvers[bodyPart].GetCategory(), "Entry_" + version);
+    }
+
+    private void InitializeBodypartCollection()
+    {
+        for(int i = 0; i < bodyParts.Length;i++)
+        {
+            string labelName = resolvers[bodyParts[i][0]].GetLabel();
+            bodyPartCollection[i] = int.Parse(labelName.Replace("Entry_", ""));
+        }
+        ogBodyPartCollection = (int[])bodyPartCollection.Clone();
     }
 
     private void ChangeSortingLayer()

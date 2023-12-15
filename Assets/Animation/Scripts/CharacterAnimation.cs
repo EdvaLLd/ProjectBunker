@@ -11,11 +11,13 @@ public class CharacterAnimation : MonoBehaviour
 
     private Character character;
     private Animator animator;
+    private PartsChanger partChanger;
 
     void Start()
     {
         character = GetComponentInParent<Character>();
         animator = GetComponent<Animator>();
+        partChanger = GetComponent<PartsChanger>();
         ghost.SetActive(false);
         book.SetActive(false);
         guitar.SetActive(false);
@@ -23,25 +25,28 @@ public class CharacterAnimation : MonoBehaviour
 
     void Update()
     {
-        //if(Input.GetKeyUp(KeyCode.Alpha1))
-        //{
-        //    PlayGuitar();
-        //}else if (Input.GetKeyUp(KeyCode.Alpha2))
-        //{
-        //    Read();
-        //}else if (Input.GetKeyUp(KeyCode.Alpha3))
-        //{
-        //    Die();
-        //}
-        //else if (Input.GetKeyUp(KeyCode.Alpha4))
-        //{
-        //    ShowGhost();
-        //}else if (Input.GetKeyUp(KeyCode.Alpha5))
-        //{
-        //    StopPlayingGuitar();
-        //    StopReading();
-        //}
-    }
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            TurnSick();
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            BeCured();
+        }
+
+    //}else if (Input.GetKeyUp(KeyCode.Alpha3))
+    //{
+    //    Die();
+    //}
+    //else if (Input.GetKeyUp(KeyCode.Alpha4))
+    //{
+    //    ShowGhost();
+    //}else if (Input.GetKeyUp(KeyCode.Alpha5))
+    //{
+    //    StopPlayingGuitar();
+    //    StopReading();
+    //}
+}
 
     public void Flip()
     {
@@ -105,7 +110,6 @@ public class CharacterAnimation : MonoBehaviour
         animator.SetTrigger("died");
     }
 
-    //Ansiktsanimationer kommer troligtvis få egna metoder sen, men det här är bara för testning
     public void StartCrafting()
     {
         animator.SetBool("isCrafting", true);
@@ -121,10 +125,51 @@ public class CharacterAnimation : MonoBehaviour
         ghost.SetActive(true);
     }
 
-    //public void Loot()
-    //{
-    //    animator.SetTrigger("loot");
-    //}
+    public void TurnSick()
+    {
+        partChanger.ChangeFaceColor(new Color(0.5666106f, 0.7830189f, 0.4912336f));
+    }
+
+    public void BeCured()
+    {
+        partChanger.ChangeFaceColor(new Color(1, 1, 1));
+    }
+
+    public void ChangeEquipment(GearTypes type, int spriteID)
+    {
+        switch (type)
+        {
+            case GearTypes.chest:
+                partChanger.ChangeShirt(spriteID);
+                break;
+            case GearTypes.legs:
+                partChanger.ChangePants(spriteID);
+                break;
+            case GearTypes.boots: 
+                partChanger.ChangeShoes(spriteID);
+                break;
+            case GearTypes.weapon:
+                return;
+        }
+    }
+
+    public void RemoveEquipment(GearTypes type)
+    {
+        switch (type)
+        {
+            case GearTypes.chest:
+                partChanger.RemoveShirt();
+                break;
+            case GearTypes.legs:
+                partChanger.RemovePants();
+                break;
+            case GearTypes.boots:
+                partChanger.RemoveShoes();
+                break;
+            case GearTypes.weapon:
+                return;
+        }
+    }
 
     private void StartClimbing()
     {
@@ -138,5 +183,7 @@ public class CharacterAnimation : MonoBehaviour
     {
         animator.SetBool("isClimbing", false);
     }
+
+    
 
 }
