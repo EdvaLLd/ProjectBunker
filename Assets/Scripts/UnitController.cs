@@ -52,12 +52,6 @@ public class UnitController : MonoBehaviour
 
 
 
-
-    //Speltesttimer
-    float timerForPlaytest = 30;
-    bool randomDesease = false;
-
-
     private void Start()
     {
         unSelectedModifier = unSelectedModifierSetter;
@@ -91,16 +85,6 @@ public class UnitController : MonoBehaviour
 
     private void Update()
     {
-        //if (!randomDesease)
-        //{
-        //    timerForPlaytest -= Time.deltaTime;
-        //    if (timerForPlaytest < 0)
-        //    {
-        //        allCharacters[UnityEngine.Random.Range(0, allCharacters.Count - 1)].AddDesease<Flu>();
-        //        randomDesease = true;
-        //    }
-        //}
-
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Inventory.AddItem(Database.GetItemWithID("04001")); //br�d
@@ -128,13 +112,30 @@ public class UnitController : MonoBehaviour
 
         if (selectedCharacter != null)
         {
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                selectedCharacter.AddDesease<Flu>();
-            }
             if (Input.GetKeyDown(KeyCode.K))
             {
                 selectedCharacter.ConsumeFood(Database.GetItemWithID("04001") as Food);
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                selectedCharacter.masterAura.AddAura(AuraPresets.Flu());
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                selectedCharacter.masterAura.AddAura(AuraPresets.SprainedLeg());
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                selectedCharacter.SetMood(0);
+            }
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                selectedCharacter.SetMood(1);
+            }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                selectedCharacter.SetMood(.5f);
             }
             UpdateCharacterStatsUI();
             if (Input.GetMouseButtonDown(1))
@@ -179,20 +180,25 @@ public class UnitController : MonoBehaviour
         }
     }
 
-    public void UseMedicine()
+    public void RemoveDebuff(Debufftypes debuffName, Item item)
     {
-        if(selectedCharacter != null)
+        if (selectedCharacter != null && Inventory.GetAmountOfItem(item) > 0)
         {
-            selectedCharacter.TreatDesease();
+            if(selectedCharacter.masterAura.RemoveAuras(debuffName))
+            {
+                Inventory.RemoveItem(item);
+            }
         }
     }
 
-    public void UseBandaid()
+    public void UseMedicine(Item item)
     {
-        if (selectedCharacter != null)
-        {
-            //implementera när skador finns
-        }
+        RemoveDebuff(Debufftypes.Disease, item);
+    }
+
+    public void UseBandaid(Item item)
+    {
+        RemoveDebuff(Debufftypes.Injury, item);
     }
 
     public void TaskCompleted(Character character)

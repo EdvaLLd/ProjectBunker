@@ -22,6 +22,9 @@ public class CharacterStatsHandler : MonoBehaviour
     [SerializeField]
     Button chestBtn, legsBtn, bootsBtn, weaponBtn;
 
+    [SerializeField]
+    GameObject armorInventory;
+
     //private void Update()
     //{
     //    if(Inventory.GetAmountOfItem(Database.GetItemWithID("04001")) == 0)
@@ -42,6 +45,7 @@ public class CharacterStatsHandler : MonoBehaviour
         hungerSlider.minValue = 0;
 
         ResetButtons(c);
+        armorInventory.SetActive(false);
     }
 
     public void UpdateHunger(float hunger)
@@ -87,7 +91,7 @@ public class CharacterStatsHandler : MonoBehaviour
 
     public void UnEquipGear(Button b)
     {
-        UnitController.GetSelectedCharacter().UnEquipGear(b.GetComponent<EnumsToClassConverter>().GearSortingType);
+        UnitController.GetSelectedCharacter().gear.UnEquipGear(b.GetComponent<EnumsToClassConverter>().GearSortingType);
         ResetButton(b, UnitController.GetSelectedCharacter());
     }
 
@@ -103,7 +107,7 @@ public class CharacterStatsHandler : MonoBehaviour
     public static void ResetButton(Button b, Character c)
     {
         Equipment e;
-        if (c.GearEquippedInSlot(out e, b.GetComponent<EnumsToClassConverter>().GearSortingType))
+        if (c.gear.GearEquippedInSlot(out e, b.GetComponent<EnumsToClassConverter>().GearSortingType))
         {
             b.transform.GetChild(0).GetComponent<Image>().sprite = e.Icon;
             b.transform.GetChild(1).gameObject.SetActive(true);
