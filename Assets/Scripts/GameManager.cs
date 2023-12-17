@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPersistance
 {
     private static GameManager instance;
     public static GameManager Instance
@@ -111,5 +111,17 @@ public class GameManager : MonoBehaviour
     public static Locations.Location[] GetExplorableLocations() 
     {
         return explorableLocations;
+    }
+
+    public void LoadData(GameData data)
+    {
+        hour = data.clockHour;
+        minute = data.clockMinute;
+    }
+
+    public void SaveData(ref GameData data) 
+    {
+        data.clockHour = hour;
+        data.clockMinute = minute;
     }
 }
