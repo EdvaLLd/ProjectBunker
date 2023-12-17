@@ -5789,7 +5789,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.060918838
+      value: 0.06091878
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -6005,7 +6005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537715813394, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000036954866
+      value: 0.0000037550917
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537978475376, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25093,6 +25093,7 @@ MonoBehaviour:
   legsBtn: {fileID: 0}
   bootsBtn: {fileID: 0}
   weaponBtn: {fileID: 0}
+  armorInventory: {fileID: 0}
 --- !u!1001 &974921279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25313,6 +25314,7 @@ MonoBehaviour:
   legsBtn: {fileID: 2097005911}
   bootsBtn: {fileID: 576926989}
   weaponBtn: {fileID: 1038861348}
+  armorInventory: {fileID: 1513123804}
 --- !u!95 &976560098
 Animator:
   serializedVersion: 5
@@ -39968,7 +39970,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 847712254}
   m_HandleRect: {fileID: 847712253}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -45901,6 +45903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03c48a726f1fb74786d5c84bdbf95c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armorInventory: {fileID: 1513123804}
 --- !u!114 &1671288173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52851,18 +52854,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: SetWindowActive
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1513123804}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 434102639}
         m_TargetAssemblyTypeName: ButtonClicker, Assembly-CSharp
         m_MethodName: ClickButtonSound
@@ -52887,16 +52878,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1671288172}
-        m_TargetAssemblyTypeName: DisplayGear, Assembly-CSharp
-        m_MethodName: DisplayGearOfType
-        m_Mode: 2
+      - m_Target: {fileID: 1513123806}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 1912663205}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SlideUpTrigger
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1912663206
@@ -55517,7 +55508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1910230171392190876, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_labelHash
-      value: 0.0000000563772
+      value: 0.0000001489224
       objectReference: {fileID: 0}
     - target: {fileID: 1910230171392190879, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -55541,7 +55532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.060918834
+      value: 0.060918774
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -55857,7 +55848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6080492414866234126, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.1602396
+      value: 0.16023968
       objectReference: {fileID: 0}
     - target: {fileID: 6080492414866234126, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -55893,7 +55884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537715813394, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000036954866
+      value: 0.0000037550917
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537715813485, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Layer
@@ -55913,7 +55904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537978475376, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.18308517
+      value: -0.18308523
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537978475379, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Layer
@@ -56931,6 +56922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03c48a726f1fb74786d5c84bdbf95c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  armorInventory: {fileID: 0}
 --- !u!1 &2000881831
 GameObject:
   m_ObjectHideFlags: 0

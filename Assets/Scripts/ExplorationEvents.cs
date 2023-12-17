@@ -465,7 +465,7 @@ public class ExplorationEvents : Exploration
         }
         public void PlayIllnessEvent(Character character)
         {
-            character.AddDesease<Flu>();
+            character.masterAura.AddAura(AuraPresets.Flu());
         }
         //------------------------------------------------------------------------------------------
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// SimpleLootEvent

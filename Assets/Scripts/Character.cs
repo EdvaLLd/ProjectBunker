@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 
 
+
 public enum Statuses
 {
     ill,
@@ -103,7 +104,7 @@ public class Character : MonoBehaviour
     }
 
 
-    public void UnEquipGear(GearTypes gt)
+    /*public void UnEquipGear(GearTypes gt)
     {
         switch (gt)
         {
@@ -202,7 +203,7 @@ public class Character : MonoBehaviour
         }
         if (e == null) return false;
         return true;
-    }
+    }*/
 
     private void Update()
     {
@@ -210,7 +211,6 @@ public class Character : MonoBehaviour
         {
             Move();
             HungerDecay();
-            //DeseaseTick();
             masterAura.Tick();
         }
     }

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class DisplayGear : MonoBehaviour
 {
+    [SerializeField]
+    GameObject armorInventory;
     Button buttonClicked;
 
     public void UpdateDisplay()
@@ -30,6 +32,7 @@ public class DisplayGear : MonoBehaviour
                 b.onClick.AddListener(() => EquipGear(child.GetComponent<ItemHoverDesc>().item as Equipment));
             }
         }
+        armorInventory.SetActive(true);
         /*for (int i = 0; i < transform.childCount; i++)
         {
             if (!transform.GetChild(i).TryGetComponent<Button>(out Button t))
