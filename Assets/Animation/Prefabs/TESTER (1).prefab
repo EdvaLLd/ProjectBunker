@@ -6946,7 +6946,7 @@ GameObject:
   - component: {fileID: 4812868309145935644}
   - component: {fileID: 4812868309145935645}
   - component: {fileID: 4812868309145935646}
-  - component: {fileID: 2895020692378159693}
+  - component: {fileID: 3733842626481888063}
   m_Layer: 0
   m_Name: TESTER (1)
   m_TagString: Character
@@ -7068,8 +7068,10 @@ MonoBehaviour:
   notHungryTime: 4
   maxHunger: 100
   maxHealth: 100
+  characterName: 
+  isWorking: 0
   audioClip: {fileID: 0}
---- !u!114 &2895020692378159693
+--- !u!114 &3733842626481888063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7078,7 +7080,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4812868309145935616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1112a1f9028ae7a4392ae71685a47b39, type: 3}
+  m_Script: {fileID: 11500000, guid: fc0fae0b393843e4ab4646aa21f89fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minExploreTime: 5

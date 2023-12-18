@@ -22,10 +22,10 @@ public class DiaryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Insert))
-        {
-            AddDiaryEntry();
-        }
+        //if(Input.GetKeyDown(KeyCode.Insert))
+        //{
+        //    AddDiaryEntry();
+        //}
     }
 
     public void AddDiaryEntry()
@@ -54,7 +54,6 @@ public class DiaryManager : MonoBehaviour
 
     public void UpdateDiary()
     {
-        Debug.Log("I updated!");
         if(collectedDiaryEntries == 0)
         {
             lEntryText.text = "You haven't collected any diary entries yet.";

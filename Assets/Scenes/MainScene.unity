@@ -13407,14 +13407,14 @@ RectTransform:
   - {fileID: 1994906419}
   - {fileID: 124110219}
   - {fileID: 391847755}
-  - {fileID: 507018269}
+  - {fileID: 1144683349}
   - {fileID: 1274253582}
   - {fileID: 113042776}
   - {fileID: 844060637}
   - {fileID: 306374813}
   - {fileID: 103986712}
-  - {fileID: 1947729013}
   - {fileID: 1542329403}
+  - {fileID: 1947729013}
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14060,12 +14060,12 @@ RectTransform:
   - {fileID: 239904701}
   - {fileID: 1422728185}
   - {fileID: 1802999139}
-  m_Father: {fileID: 460437642}
-  m_RootOrder: 8
+  m_Father: {fileID: 1144683349}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000030517578}
+  m_AnchoredPosition: {x: -0.000016934438, y: 0}
   m_SizeDelta: {x: 455.4, y: 292.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &507018270
@@ -29426,7 +29426,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7780648542340397821, guid: 061c2097df6214b489e327f16caca47a, type: 3}
   m_PrefabInstance: {fileID: 1971334737}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1080924131
+--- !u!114 &1080924125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29435,10 +29435,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1080924124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae178491bc92ec942b491895a8c6eba3, type: 3}
+  m_Script: {fileID: 11500000, guid: fc0fae0b393843e4ab4646aa21f89fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentEnvironment: 0
+  minExploreTime: 5
+  maxExploreTime: 10
 --- !u!1 &1085946413
 GameObject:
   m_ObjectHideFlags: 0
@@ -30199,29 +30200,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30250,29 +30237,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 5ddd8d6173761f24996dfdf5a72ae665, type: 2}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30301,29 +30274,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 5ddd8d6173761f24996dfdf5a72ae665, type: 2}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30365,29 +30324,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30416,29 +30361,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 34218deb45fb84a45a12e86cfaef3d92, type: 2}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30487,15 +30418,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 34218deb45fb84a45a12e86cfaef3d92, type: 2}
         timer:
@@ -30505,11 +30430,60 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 6
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: 951c622a828352b43b20f38abbea0203, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: 7d0803fb9e93cf84391a17132c73d263, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: efeabb02fec8014408137abb1c269285, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: 86f5f41d6368514479cffe05007835ef, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: dadb2db4dbc9cff418f62324cbe9e76a, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 34218deb45fb84a45a12e86cfaef3d92, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
         timer:
           timeUnit: 0
           ammount: 0
@@ -30550,29 +30524,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30601,29 +30561,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 75e533ce39f887d4380fe0e903a60306, type: 2}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30652,29 +30598,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30714,29 +30646,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30765,29 +30683,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30828,29 +30732,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30879,29 +30769,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 60a1c6886ce573140bcc92c5f9cb3f20, type: 2}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30934,29 +30810,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 60a1c6886ce573140bcc92c5f9cb3f20, type: 2}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -30989,15 +30851,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 60a1c6886ce573140bcc92c5f9cb3f20, type: 2}
         timer:
@@ -31007,11 +30863,44 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 6
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: a1948912334abc94b858624fd6f3ec65, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 60a1c6886ce573140bcc92c5f9cb3f20, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
         timer:
           timeUnit: 0
           ammount: 0
@@ -31049,29 +30938,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31104,29 +30979,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31159,29 +31020,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 6f5b22174bb0acb40b8c0aa81d3853a0, type: 2}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31222,29 +31069,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31285,15 +31118,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -31303,11 +31130,52 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 6
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: 3d2cfa5e6b026e64e8fdee8dc421c72f, type: 2}
+          maxLootQuantity: 3
+          minLootQuantity: 3
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: 726a1189cb4ed3c4ab5b8a6228b247b3, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: 5727eaa8ebf6d8940a28fbeb5dead961, type: 2}
+          maxLootQuantity: 1
+          minLootQuantity: 1
+          lootProbability: 100
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
         timer:
           timeUnit: 0
           ammount: 0
@@ -31344,29 +31212,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31395,29 +31249,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31450,29 +31290,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31501,15 +31327,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 224caf76f5cfec349b9b838f44c0ecf9, type: 2}
         timer:
@@ -31519,11 +31339,40 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 224caf76f5cfec349b9b838f44c0ecf9, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
         timer:
           timeUnit: 0
           ammount: 0
@@ -31566,29 +31415,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31617,29 +31452,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: b43bed97aefaaac43bfa5431690bb28c, type: 2}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31676,29 +31497,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31727,15 +31534,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 11400000, guid: 708f9fb3f007ceb4daa14d5f1a51a06d, type: 2}
         timer:
@@ -31745,11 +31546,40 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 6
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 11400000, guid: 708f9fb3f007ceb4daa14d5f1a51a06d, type: 2}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
         timer:
           timeUnit: 0
           ammount: 0
@@ -31787,29 +31617,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31838,29 +31654,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 3
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31897,29 +31699,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -31957,29 +31745,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -32008,29 +31782,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 4
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -32063,29 +31823,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -32123,15 +31869,9 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
@@ -32141,11 +31881,40 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 6
+      textEvent:
+        eventMessage: Name found a diary entry hidden under a rock.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
         timer:
           timeUnit: 0
           ammount: 0
@@ -32184,29 +31953,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -32235,29 +31990,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -32297,29 +32038,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -32348,29 +32075,15 @@ MonoBehaviour:
           ammount: 0
       combatEvent:
         enemyFaction: 0
-        maxDamageDealt: 0
-        minDamageDealt: 0
-        maxDamageRecieved: 0
-        minDamageRecieved: 0
-        combatEventMessage: 
         timer:
           timeUnit: 0
           ammount: 0
-        combatLoot: []
       recipeEvent:
         recipe: {fileID: 0}
         timer:
           timeUnit: 0
           ammount: 0
       characterEvent:
-        timer:
-          timeUnit: 0
-          ammount: 0
-      diaryEvent:
-        diaryEntryTitle: 
-        diaryEntryText: 
-        diaryEntryAuthor: 
-        diaryEntryDate: 
         timer:
           timeUnit: 0
           ammount: 0
@@ -33348,6 +33061,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131988716}
   m_CullTransparentMesh: 1
+--- !u!1 &1144683348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1144683349}
+  - component: {fileID: 1144683350}
+  m_Layer: 5
+  m_Name: DiaryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1144683349
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144683348}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 507018269}
+  m_Father: {fileID: 460437642}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000047452017, y: 0.000023726008}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1144683350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144683348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46eeaca1bf0d2a448dcb8234aa817b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lHeaderText: {fileID: 1546710885}
+  lEntryText: {fileID: 1765178786}
+  rHeaderText: {fileID: 1834603664}
+  rEntryText: {fileID: 1266678448}
+  diaryEntriesTextFile: {fileID: 4900000, guid: 406a27b57df504649a2856aaf8fbabd7, type: 3}
 --- !u!1001 &1153141328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33427,7 +33195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -33435,6 +33203,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
@@ -33446,11 +33218,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 434102639}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 833021598}
+    - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
@@ -33462,12 +33242,20 @@ PrefabInstance:
       value: ClickButtonSound
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: UpdateDiary
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: ButtonClicker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -33483,6 +33271,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499155760850253290, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
@@ -44331,7 +44123,7 @@ RectTransform:
   - {fileID: 1489968350}
   - {fileID: 1268695194}
   m_Father: {fileID: 460437642}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.37500003, y: 0.2222238}
   m_AnchorMax: {x: 0.75, y: 0.77777624}
@@ -56686,7 +56478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4499155760850253291, guid: 91e508ae666f60e47b36ad6f8ee3a37f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -57705,7 +57497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.060918834
+      value: 0.060918774
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -58021,7 +57813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6080492414866234126, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.1602396
+      value: 0.16023968
       objectReference: {fileID: 0}
     - target: {fileID: 6080492414866234126, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -58057,7 +57849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537715813394, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000036954866
+      value: 0.0000037550917
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537715813485, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Layer
@@ -58077,7 +57869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537978475376, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.18308517
+      value: -0.18308523
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537978475379, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Layer
@@ -58407,7 +58199,8 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -2126769043
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8411547381005239885, guid: 061c2097df6214b489e327f16caca47a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 061c2097df6214b489e327f16caca47a, type: 3}
 --- !u!1 &1975739156
 GameObject:
