@@ -2889,6 +2889,7 @@ MonoBehaviour:
   buttonsGO: {fileID: 281675641}
   machineTextGO: {fileID: 850113185}
   farmGO: {fileID: 1075046161}
+  playGO: {fileID: 0}
   queueClose: 0
 --- !u!114 &113042778
 MonoBehaviour:
@@ -6044,7 +6045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.06091878
+      value: 0.060918838
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -6260,7 +6261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537715813394, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000037550917
+      value: 0.0000036954866
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537978475376, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10784,6 +10785,7 @@ MonoBehaviour:
   buttonsGO: {fileID: 825274430}
   machineTextGO: {fileID: 592012746}
   farmGO: {fileID: 0}
+  playGO: {fileID: 0}
   queueClose: 0
 --- !u!114 &391467203
 MonoBehaviour:
@@ -14461,6 +14463,10 @@ PrefabInstance:
     - target: {fileID: 3379313914352542689, guid: e86218d4d899d0441a866f7882a243df, type: 3}
       propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.x
       value: 4.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379313914352542689, guid: e86218d4d899d0441a866f7882a243df, type: 3}
+      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[0].m_Value.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3379313914352542690, guid: e86218d4d899d0441a866f7882a243df, type: 3}
       propertyPath: m_Enabled
@@ -18480,6 +18486,7 @@ MonoBehaviour:
     explore: 0
     eat: 0
     farm: 0
+    play: 0
   audioClip: {fileID: 8300000, guid: 58845a62ba781d24496a56c2c5027228, type: 3}
 --- !u!65 &699427034
 BoxCollider:
@@ -20304,6 +20311,7 @@ MonoBehaviour:
     explore: 0
     eat: 0
     farm: 1
+    play: 0
   farmingGO: {fileID: 1542329402}
   farmingSlots: {fileID: 1240130429}
   farmingSeeds: {fileID: 40420732}
@@ -29484,6 +29492,7 @@ MonoBehaviour:
     explore: 1
     eat: 0
     farm: 0
+    play: 0
 --- !u!65 &1089351959
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41217,7 +41226,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 847712254}
   m_HandleRect: {fileID: 847712253}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -50368,6 +50377,7 @@ MonoBehaviour:
     explore: 0
     eat: 0
     farm: 0
+    play: 0
   audioClip: {fileID: 8300000, guid: a8ebcf3e0398b1f46bbfe60907ee70de, type: 3}
 --- !u!65 &1802749886
 BoxCollider:
@@ -51636,6 +51646,7 @@ MonoBehaviour:
     explore: 0
     eat: 0
     farm: 0
+    play: 0
   audioClip: {fileID: 8300000, guid: 901aa35bf3ad99f49a23e522614aa89b, type: 3}
 --- !u!1 &1839475869
 GameObject:
@@ -56993,7 +57004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.060918774
+      value: 0.060918834
       objectReference: {fileID: 0}
     - target: {fileID: 2069652521242270247, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -57309,7 +57320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6080492414866234126, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.16023968
+      value: 0.1602396
       objectReference: {fileID: 0}
     - target: {fileID: 6080492414866234126, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -57345,7 +57356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537715813394, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000037550917
+      value: 0.0000036954866
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537715813485, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Layer
@@ -57365,7 +57376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537978475376, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.18308523
+      value: -0.18308517
       objectReference: {fileID: 0}
     - target: {fileID: 6085703537978475379, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Layer
@@ -59518,6 +59529,7 @@ MonoBehaviour:
     explore: 0
     eat: 0
     farm: 0
+    play: 0
   audioClip: {fileID: 8300000, guid: 0c5e0c548e9bd1e4e8bfb0188cc7f64b, type: 3}
 --- !u!65 &2049845527
 BoxCollider:
@@ -61182,6 +61194,7 @@ MonoBehaviour:
     explore: 0
     eat: 1
     farm: 0
+    play: 0
   diningUI: {fileID: 1274253581}
   diningInventory: {fileID: 1806045830}
   diningText: {fileID: 788412012}
