@@ -64,7 +64,7 @@ public class ExplorationEvents : Exploration
                 return;
             }
 
-            ExplorationEvents.ExploreEvent randomEvent = gameManager.randomExploreEvents[Random.Range(0, maxIndex)];
+            ExplorationEvents.ExploreEvent randomEvent = new ExploreEvent(); //gameManager.randomExploreEvents[Random.Range(0, maxIndex)];
             float eventRandom = Random.Range(0, 100);
             float probability = randomEvent.eventProbability;
 

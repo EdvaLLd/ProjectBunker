@@ -83,8 +83,8 @@ public class UIManager : MonoBehaviour
         clearMistBtnGO.SetActive(false);
         dangerTextGO.SetActive(false);
         hoverWindow.SetActive(false);
+        diary.SetActive(false);
 
-        OpenCloseDiary(false);
 
 
         //kanske problematiskt att den här bara körs en gång?
@@ -105,13 +105,11 @@ public class UIManager : MonoBehaviour
         print(objectsHovered.Length);*/
     }
 
-    public void OpenCloseDiary(bool closeOpen)
+    public void UpdateDiary()
     {
-        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-
-        if (closeOpen) { ActivateWindow(diary); gameManager.gameDiary.UpdateDiaryGUI(); }
-        else { gameManager.gameDiary.UpdateDiaryGUI(); CloseWindow(diary); }
+        diary.GetComponentInParent<DiaryManager>().UpdateDiary();
     }
+
     private void SetCanvasScale()
     {
         float newScale = Camera.main.scaledPixelWidth / canvas.GetComponent<CanvasScaler>().referenceResolution.x;
@@ -263,32 +261,14 @@ public class UIManager : MonoBehaviour
 
     public static void NextDiaryPage() 
     {
-        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-
-        if (GameManager.leftPageIndex >= gameManager.gameDiary.entries.Count-1)
-        {
-            return;
-        }
-        else 
-        {
-            GameManager.leftPageIndex += 2;
-        }
-
-        gameManager.gameDiary.UpdateDiaryGUI();
+        DiaryManager diaryManager = diary.GetComponentInParent<DiaryManager>();
+        diaryManager.NextPage();
+        diaryManager.UpdateDiary();
     }
     public static void PreviousDiaryPage()
     {
-        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-
-        if (GameManager.leftPageIndex <= 0)
-        {
-            return;
-        }
-        else
-        {
-            GameManager.leftPageIndex -= 2;
-        }
-
-        gameManager.gameDiary.UpdateDiaryGUI();
+        DiaryManager diaryManager = diary.GetComponentInParent<DiaryManager>();
+        diaryManager.PreviousPage();
+        diaryManager.UpdateDiary();
     }
 }
