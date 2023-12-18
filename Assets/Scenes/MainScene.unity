@@ -6394,6 +6394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TESTER (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7780648542340397821, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8079665074320337956, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -41217,7 +41221,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 847712254}
   m_HandleRect: {fileID: 847712253}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
