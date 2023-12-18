@@ -304,12 +304,14 @@ public class Character : MonoBehaviour
 
     public void MoveToPos(Vector3 pos)
     {
-        CharacterLeftTask();
         pos = HelperMethods.ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue), transform.lossyScale.y);
 
         UpdateMovement(pos);
+        if(move) CharacterLeftTask();
     }
 
+    //den här borde antagligen fixas så den blir generell och character-assignment till stationer
+    //borde ske i en egen klass, men jag pallar inte (:
     void CharacterLeftTask()
     {
         if (itemInteractedWith != null)
@@ -319,6 +321,15 @@ public class Character : MonoBehaviour
             if (itemInteractedWith.gameObject.TryGetComponent(out machine))
             {
                 machine.CharacterLeftStation(this);
+            }
+            else
+            {
+                Farming farm;
+                //borde kanske vara en generell klass och inte specifikt den här, men men
+                if (itemInteractedWith.gameObject.TryGetComponent(out farm))
+                {
+                    farm.CharacterLeftStation(this);
+                }
             }
         }
         itemInteractedWith = null;

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
+  m_Name: Wheat
+  m_EditorClassIdentifier: 
+  itemCrafted: {fileID: 11400000, guid: 3d2cfa5e6b026e64e8fdee8dc421c72f, type: 2}
+  itemAmount: 2
+  craftingTime: 5
+  Ingredients:
+  - item: {fileID: 11400000, guid: 7af71fb0252cc1844af98321aaa1d050, type: 2}
+    amount: 1
+  CraftableInMachine:
+  - {fileID: 11400000, guid: 29ae568e5f735a544a91e7fd8e148c7f, type: 2}

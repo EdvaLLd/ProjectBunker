@@ -8,13 +8,13 @@ using TMPro;
 public class InteractOptionsBools
 {
     [Tooltip("If crafting is checked the item has to be parsable to Crafting Machine")]
-    public bool crafting, inspect, loot, explore, eat;
+    public bool crafting, inspect, loot, explore, eat, farm;
 }
 public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     //public abstract void ButtonClicked(InteractableItem item);
     [SerializeField]
-    GameObject craftingGO, inspectGO, lootGO, exploreGO, eatGO, buttonsGO, machineTextGO;
+    GameObject craftingGO, inspectGO, lootGO, exploreGO, eatGO, buttonsGO, machineTextGO, farmGO;
 
     [HideInInspector]
     public bool queueClose = false;
@@ -73,6 +73,7 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (bools.loot) lootGO.SetActive(true);
         if (bools.explore) exploreGO.SetActive(true);
         if (bools.eat) eatGO.SetActive(true);
+        if (bools.farm) farmGO.SetActive(true);
 
     }
 
@@ -123,6 +124,14 @@ public class InteractOptions : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (itemInteractedWith.item != null)
         {
             UnitController.InteractedWith(CharacterTasks.eating, itemInteractedWithType, itemInteractedWith);
+        }
+    }
+
+    public void OnFarmClick()
+    {
+        if (itemInteractedWith.item != null)
+        {
+            UnitController.InteractedWith(CharacterTasks.farming, itemInteractedWithType, itemInteractedWith);
         }
     }
 }
