@@ -160,7 +160,7 @@ public class Farming : InteractableItem
 
     public void CharacterLeftStation(Character character)
     {
-        if (isWorking != false)
+        if (isWorking)
         {
             isWorking = false;
             IsWorkingChange();

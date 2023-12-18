@@ -61,6 +61,8 @@ public class Character : MonoBehaviour
 
     private CharacterAnimation characterAnim;
 
+    public bool isWorking;
+
 
     private void Awake() 
     {
@@ -81,6 +83,10 @@ public class Character : MonoBehaviour
     [SerializeField]
     private AudioClip audioClip;
     private AudioSource audioSource;
+
+    //håll båda de här positiva
+    float moodChangeRateIdle = 0.01f;
+    float moodChangeRateWorking = 0.1f;
 
     #endregion
 
@@ -212,6 +218,14 @@ public class Character : MonoBehaviour
             Move();
             HungerDecay();
             masterAura.Tick();
+            if(isWorking)
+            {
+                AddMood(-moodChangeRateWorking * Time.deltaTime);
+            }
+            else
+            {
+                AddMood(moodChangeRateIdle * Time.deltaTime);
+            }
         }
     }
 
@@ -226,6 +240,7 @@ public class Character : MonoBehaviour
         mood = Mathf.Clamp(mood + value, 0, 1);
         CheckMoodStatus();
     }
+    //antagligen ganska ineffektivt, görs varje frame man blir glad/ledsen
     void CheckMoodStatus()
     {
         if(mood > 0.3f && mood < 0.7f)
@@ -268,7 +283,6 @@ public class Character : MonoBehaviour
     void CheckStatuses()
     {
         statuses.Clear();
-        //if(masterAura.)
         if (masterAura.HasAuraWithStatus(Statuses.ill))
         {
             statuses.Add(Statuses.ill);
@@ -312,7 +326,7 @@ public class Character : MonoBehaviour
 
     //den här borde antagligen fixas så den blir generell och character-assignment till stationer
     //borde ske i en egen klass, men jag pallar inte (:
-    void CharacterLeftTask()
+    public void CharacterLeftTask()
     {
         if (itemInteractedWith != null)
         {
@@ -325,15 +339,23 @@ public class Character : MonoBehaviour
             else
             {
                 Farming farm;
-                //borde kanske vara en generell klass och inte specifikt den här, men men
                 if (itemInteractedWith.gameObject.TryGetComponent(out farm))
                 {
                     farm.CharacterLeftStation(this);
+                }
+                else
+                {
+                    PlayStation play;
+                    if (itemInteractedWith.gameObject.TryGetComponent(out play))
+                    {
+                        play.CharacterLeftStation(this);
+                    }
                 }
             }
         }
         itemInteractedWith = null;
         itemInteractedWithBoxCollider = null;
+        isWorking = false;
     }
 
     void UpdateMovement(Vector3 goal)
@@ -484,7 +506,7 @@ public class Character : MonoBehaviour
         List<Character> charsInRoom = HelperMethods.GetCharactersInSameRoom(this);
         foreach (Character c in charsInRoom)
         {
-            c.masterAura.AddAura(AuraPresets.Sad());
+            c.masterAura.AddAura(AuraPresets.Depressed());
         }
         UnitController.RemoveCharacter(this);
         reasonsToWarn = 0;
