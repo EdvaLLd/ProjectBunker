@@ -49,6 +49,7 @@ public class UIManager : MonoBehaviour
     public static GameObject statusHolderGO;
 
 
+
     private void Awake()
     {
         //GameManager gameManager = GameObject.FindObjectOfType<GameManager>();

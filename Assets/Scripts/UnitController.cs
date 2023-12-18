@@ -13,7 +13,7 @@ public class SelectionVisibilityModifier
 
 public enum CharacterTasks
 {
-    none, crafting, inspecting, looting, exploring, eating
+    none, crafting, inspecting, looting, exploring, eating, farming
 }
 
 public class UnitController : MonoBehaviour
@@ -235,6 +235,9 @@ public class UnitController : MonoBehaviour
             case CharacterTasks.eating:
                 character.itemInteractedWith.GetComponent<DiningArea>().OpenUI(character);
 
+                break;
+            case CharacterTasks.farming:
+                character.itemInteractedWith.GetComponent<Farming>().OpenUI(character);
                 break;
 
             default:

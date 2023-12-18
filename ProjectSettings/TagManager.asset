@@ -18,6 +18,8 @@ TagManager:
   - Character
   - CharacterName
   - StatusHolder
+  - Diary
+  - FarmingHolder
   layers:
   - Default
   - TransparentFX
