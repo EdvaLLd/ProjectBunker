@@ -351,7 +351,7 @@ public class ExplorationBase
             int enemyDefense = 0;
             int enemyHealth = 0;
 
-            int charStrength = /*character.GetGearScore().attack +*/ 60;
+            int charStrength = /*character.GetGearScore().attack*/ 60;
             int charDefense = /*character.GetGearScore().armor + */10;
 
             switch (subEvent.combatEvent.enemyFaction)

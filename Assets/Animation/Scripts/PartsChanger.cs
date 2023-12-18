@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text.RegularExpressions;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
@@ -32,6 +29,7 @@ public class PartsChanger : MonoBehaviour
         renderers = GetComponentsInChildren<Renderer>();
 
         InitializeBodypartCollection();
+        SetUpCharacter();
     }
 
 
@@ -93,7 +91,6 @@ public class PartsChanger : MonoBehaviour
         }
         if (bodyPartCollection[6] == 0)
         {
-            Debug.Log("Nu har karaktären en hästsvans");
             ponytail.GetComponent<LineRenderer>().enabled = true;
         }
         else
@@ -189,10 +186,17 @@ public class PartsChanger : MonoBehaviour
         }
     }
 
+    //private string[] GetSortingLayerNames()
+    //{
+    //    System.Type internalEditorUtilityType = typeof(InternalEditorUtility);
+    //    PropertyInfo sortingLayersProperty = internalEditorUtilityType.GetProperty("sortingLayerNames", BindingFlags.Static | BindingFlags.NonPublic);
+    //    return (string[])sortingLayersProperty.GetValue(null, new object[0]);
+    //}
+
     private string[] GetSortingLayerNames()
     {
-        System.Type internalEditorUtilityType = typeof(InternalEditorUtility);
-        PropertyInfo sortingLayersProperty = internalEditorUtilityType.GetProperty("sortingLayerNames", BindingFlags.Static | BindingFlags.NonPublic);
-        return (string[])sortingLayersProperty.GetValue(null, new object[0]);
+        SortingLayer[] sortingLayers = SortingLayer.layers;
+        return sortingLayers.Select(layer => layer.name).ToArray();
     }
+
 }
