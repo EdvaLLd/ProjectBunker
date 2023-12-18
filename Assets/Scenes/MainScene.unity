@@ -37942,6 +37942,7 @@ GameObject:
   - component: {fileID: 1364337042}
   - component: {fileID: 1364337041}
   - component: {fileID: 1364337040}
+  - component: {fileID: 1364337044}
   m_Layer: 5
   m_Name: IllImg
   m_TagString: Untagged
@@ -38037,6 +38038,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1364337038}
   m_CullTransparentMesh: 1
+--- !u!95 &1364337044
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364337038}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d1791464646305439a18846d0260734, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &1367281206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40480,6 +40501,7 @@ GameObject:
   - component: {fileID: 1443860703}
   - component: {fileID: 1443860702}
   - component: {fileID: 1443860701}
+  - component: {fileID: 1443860705}
   m_Layer: 5
   m_Name: HappyImg
   m_TagString: Untagged
@@ -40575,6 +40597,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443860699}
   m_CullTransparentMesh: 1
+--- !u!95 &1443860705
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443860699}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d1791464646305439a18846d0260734, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &1444453292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52123,6 +52165,7 @@ GameObject:
   - component: {fileID: 1852872241}
   - component: {fileID: 1852872240}
   - component: {fileID: 1852872239}
+  - component: {fileID: 1852872243}
   m_Layer: 5
   m_Name: HungryImg
   m_TagString: Untagged
@@ -52218,6 +52261,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852872237}
   m_CullTransparentMesh: 1
+--- !u!95 &1852872243
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852872237}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d1791464646305439a18846d0260734, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1858807452
 GameObject:
   m_ObjectHideFlags: 0
@@ -56479,6 +56542,7 @@ GameObject:
   - component: {fileID: 1948965919}
   - component: {fileID: 1948965918}
   - component: {fileID: 1948965917}
+  - component: {fileID: 1948965921}
   m_Layer: 5
   m_Name: SadImg
   m_TagString: Untagged
@@ -56574,6 +56638,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1948965915}
   m_CullTransparentMesh: 1
+--- !u!95 &1948965921
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948965915}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d1791464646305439a18846d0260734, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1951861520
 GameObject:
   m_ObjectHideFlags: 0
