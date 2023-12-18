@@ -30,20 +30,24 @@ public class Farming : InteractableItem
 
     int currentlySelectedNumber = -1;
 
-    private void Start()
+    bool isWorking = false;
+
+    void IsWorkingChange()
     {
-        slots.Add(new FarmingSlot());
-        slots.Add(new FarmingSlot());
+        //här kan man göra skit som ska ske när man börjar/slutar arbeta
+        //om man börjar crafta, slutar crafta eller går därifrån
     }
 
     private void Update()
     {
         if(characterAtStation != null)
         {
+            bool isWorking = false;
             for (int i = 0; i < slots.Count; i++)
             {
                 if (slots[i].active)
                 {
+                    isWorking = true;
                     slots[i].timer -= Time.deltaTime;
                     slots[i].window.transform.GetChild(0).GetComponent<Slider>().value = slots[i].timer;
                     if (slots[i].timer < 0)
@@ -51,6 +55,11 @@ public class Farming : InteractableItem
                         CraftFinished(slots[i]);
                     }
                 }
+            }
+            if(this.isWorking != isWorking)
+            {
+                this.isWorking = isWorking;
+                IsWorkingChange();
             }
         }
     }
@@ -151,6 +160,11 @@ public class Farming : InteractableItem
 
     public void CharacterLeftStation(Character character)
     {
+        if (isWorking != false)
+        {
+            isWorking = false;
+            IsWorkingChange();
+        }
         characterAtStation = null;
     }
 
