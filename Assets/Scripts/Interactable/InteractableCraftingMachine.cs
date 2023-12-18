@@ -27,7 +27,7 @@ public class InteractableCraftingMachine : InteractableItem
         {
             audioSource.clip = audioClip;
         }
-        //audioSource.loop = true;
+        audioSource.loop = true;
         audioSource.spatialBlend = 1.0f;
     }
 
