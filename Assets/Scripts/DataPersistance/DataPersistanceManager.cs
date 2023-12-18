@@ -10,10 +10,16 @@ public class DataPersistanceManager : MonoBehaviour
     [SerializeField]
     private bool saveOnQuit = true;
     [SerializeField]
+    private string customDirectory = null;
+    [SerializeField]
     private bool initializeNewOnLoadNull = true;
     private GameData gameData;
 
     private List<IDataPersistance> dataPersistanceObjects;
+
+    [Header("File store config."), SerializeField]
+    private string fileName;
+    private FileDataHandler dataHandler;
 
     public static DataPersistanceManager Instance { get; private set; }
 
@@ -28,6 +34,15 @@ public class DataPersistanceManager : MonoBehaviour
 
     private void Start()
     {
+        if (customDirectory != "" || customDirectory != null)
+        {
+            dataHandler = new FileDataHandler(customDirectory, fileName);
+        }
+        else 
+        {
+            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        }
+        
         dataPersistanceObjects = FindAllDataPersistanceObjects();
         if (loadOnStart) 
         {
@@ -48,15 +63,18 @@ public class DataPersistanceManager : MonoBehaviour
             dataPersistanceObject.SaveData(ref gameData);
         }
         print("Saved: " + gameData.clockHour + "h, " + gameData.clockMinute + "m.");
-        // TODO - Save data to a file using data handler.
+
+        // Save data to a file using data handler.
+        dataHandler.Save(gameData);
     }
 
     public void LoadGame() 
     {
-        // TODO - Load saved data from a file using data handler (create data handler script).
+        // Load saved data from a file using data handler (create data handler script).
+        gameData = dataHandler.Load();
 
         //if there is no data -> new game.
-        if(this.gameData == null && initializeNewOnLoadNull)
+        if(gameData == null && initializeNewOnLoadNull)
         {
             Debug.Log("No data found, initialising new game.");
             NewGame();
