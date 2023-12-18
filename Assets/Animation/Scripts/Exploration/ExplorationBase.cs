@@ -132,6 +132,9 @@ public class ExplorationBase
                         subEvent.illnessEvent.timer.CountDown();
                         PlayIllnessEvent(character);
                         break;
+                    case (ExplorationBase.ExploreSubEvent.eventTypes.Diary):
+                        PlayDiaryEvent(character);
+                        break;
 
                     default:
                         break;
@@ -426,6 +429,12 @@ public class ExplorationBase
         public void PlayIllnessEvent(Character character)
         {
             //character.AddDesease<Flu>();
+        }
+
+        public void PlayDiaryEvent(Character character)
+        {
+            FindObjectOfType<DiaryManager>().AddDiaryEntry();
+            TextLog.AddLog(character.name + " found a diary entry!");
         }
 
 
