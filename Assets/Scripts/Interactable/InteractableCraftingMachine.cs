@@ -12,7 +12,7 @@ public class InteractableCraftingMachine : InteractableItem
     Character characterOnStation;
     bool isCrafting = false;
 
-    CraftingWindow craftingWindow;
+    //CraftingWindow craftingWindow;
 
     private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
@@ -20,7 +20,7 @@ public class InteractableCraftingMachine : InteractableItem
 
     private void Awake()
     {
-        craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow").GetComponent<CraftingWindow>();
+        //craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow").GetComponent<CraftingWindow>();
         audioSource = gameObject.AddComponent<AudioSource>();
 
         if(audioClip != null)
@@ -38,8 +38,12 @@ public class InteractableCraftingMachine : InteractableItem
     }
     public void CraftItems(CraftingRecipe recipe, Character characterCrafting)
     {
-        SetIsCrafting(true);
+        if(characterOnStation != null)
+        {
+            CharacterLeftStation(characterOnStation);
+        }
         characterOnStation = characterCrafting;
+        SetIsCrafting(true);
 
         //Animation stuff
         if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
@@ -67,7 +71,7 @@ public class InteractableCraftingMachine : InteractableItem
     }
     public void CharacterLeftStation(Character character)
     {
-        if (character == characterOnStation)
+        if (character == characterOnStation && character != null)
         {
             //Animation stuff
             if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
@@ -75,7 +79,7 @@ public class InteractableCraftingMachine : InteractableItem
                 characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>().StopCrafting();
                 audioSource.Pause();
             }
-
+            character.CharacterLeftTask();
             characterOnStation = null;
             SetIsCrafting(false);
         }
@@ -178,7 +182,7 @@ public class InteractableCraftingMachine : InteractableItem
                 if (amountPayedFor < 1)
                 {
                     SetIsCrafting(false);
-                    craftingWindow.FinishedCrafting(this);
+                    UIManager.craftingWindow.GetComponent<CraftingWindow>().FinishedCrafting(this);
                     currentRecipeBeingCrafted = null;
                     amountLeft = 1;
                     //Kan även fixa med animationer och typ uigrejer här
@@ -204,7 +208,7 @@ public class InteractableCraftingMachine : InteractableItem
                     }
                 }*/
             }
-            craftingWindow.SetCraftingValues(this);
+            UIManager.craftingWindow.GetComponent<CraftingWindow>().SetCraftingValues(this);
         }
     }
 }

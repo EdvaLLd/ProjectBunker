@@ -13,7 +13,7 @@ public class SelectionVisibilityModifier
 
 public enum CharacterTasks
 {
-    none, crafting, inspecting, looting, exploring, eating, farming
+    none, crafting, inspecting, looting, exploring, eating, farming, playing
 }
 
 public class UnitController : MonoBehaviour
@@ -142,6 +142,7 @@ public class UnitController : MonoBehaviour
             {
                 selectedCharacter.MoveToPos(HelperMethods.CursorToWorldCoord());
             }
+            //print(selectedCharacter.isWorking);
         }
     }
 
@@ -210,6 +211,7 @@ public class UnitController : MonoBehaviour
                 break;
             case CharacterTasks.crafting:
                 character.itemInteractedWith.GetComponent<InteractableCraftingMachine>().InteractedWith(character);
+                character.isWorking = true;
                 break;
             case CharacterTasks.inspecting:
                 TextLog.AddLog($"Inspected item: {character.item.Description}");
@@ -238,8 +240,11 @@ public class UnitController : MonoBehaviour
                 break;
             case CharacterTasks.farming:
                 character.itemInteractedWith.GetComponent<Farming>().OpenUI(character);
+                character.isWorking = true;
                 break;
-
+            case CharacterTasks.playing:
+                character.itemInteractedWith.GetComponent<PlayStation>().InteractedWith(character);
+                break;
             default:
                 break;
         }

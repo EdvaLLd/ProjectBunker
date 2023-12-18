@@ -134,12 +134,6 @@ public class MasterAura
         {
             statuses.Add(a.status);
         }
-
-        Debug.Log("---------");
-        foreach(Statuses s in statuses)
-        {
-            Debug.Log(s);
-        }
     }
 
     bool HasAuraWithID(string ID)
