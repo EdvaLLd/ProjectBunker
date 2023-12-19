@@ -34,13 +34,15 @@ public class DataPersistanceManager : MonoBehaviour
 
     private void Start()
     {
-        if (customDirectory != "" || customDirectory != null)
+        if (customDirectory == "" || customDirectory == null)
         {
-            dataHandler = new FileDataHandler(customDirectory, fileName);
+            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            print(Application.persistentDataPath + "/" + fileName);
         }
         else 
         {
-            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            dataHandler = new FileDataHandler(customDirectory, fileName);
+            print(customDirectory + "/" + fileName);
         }
         
         dataPersistanceObjects = FindAllDataPersistanceObjects();

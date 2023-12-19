@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-public class InteractableCraftingMachine : InteractableItem
+public class InteractableCraftingMachine : InteractableItem, IDataPersistance
 {
     CraftingRecipe currentRecipeBeingCrafted;
     int amountLeft = 1;
@@ -206,5 +206,15 @@ public class InteractableCraftingMachine : InteractableItem
             }
             craftingWindow.SetCraftingValues(this);
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        // Variable present on this = data.Corresponding variable present on GameData;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        // data.Corresponding variable present on GameData = Variable present on this;
     }
 }

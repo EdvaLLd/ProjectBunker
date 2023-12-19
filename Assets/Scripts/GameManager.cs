@@ -16,27 +16,31 @@ public class GameManager : MonoBehaviour, IDataPersistance
             return instance;
         }
     }
-
+    #region Variables
+    #region Miscalanious.
     public enum difficulties { Easy, Normal, Hard };
     [SerializeField]
     private difficulties difficulty;
 
     private SkyboxController skyboxManager;
-
+    #endregion
+    #region Location
     private static Locations.Location[] explorableLocations = new Locations.Location[System.Enum.GetNames(typeof(Locations.Location.environments)).Length];
 
+    
     [Header("Location")]
     //public Looting.LootItem looting = new Looting.LootItem();
 
     [Tooltip("0=Lake, 1=City, 2=Factory, 3=Forest"), NonReorderable]
     public Looting.LocationLootItems[] locationalLoot = new Looting.LocationLootItems[System.Enum.GetNames(typeof(Locations.Location.environments)).Length - 1];
-
+    #endregion
+    #region Diary
     [Header("Diary")]
     public static int leftPageIndex = 0;
     
-    
     public Diary gameDiary = new Diary();
-
+    #endregion
+    #region Events
     [Header("Events")]
     public static int eventIndex = 0;
 
@@ -44,8 +48,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
     public ExplorationEvents.ExploreEvent[] mainExploreEvents;
     public ExplorationEvents.RandomExploreEvent[] randomExploreEvents;
     public ExplorationEvents.LimitedExploreEvent[] limitedExploreEvents;
-
-
+    #endregion
+    #region Character
     [Header("Characters")]
     public string[] characterNames =
     {
@@ -69,9 +73,15 @@ public class GameManager : MonoBehaviour, IDataPersistance
         "Thomas",
         "Patricia",
     };
-
+    public static int unusedCharacterIndex = 0;
+    public static CharacterArray characterArray = new CharacterArray();
+    #endregion
+    #region Time
     private float hour = 6;
     private float minute;
+    #endregion
+    #endregion
+
 
     private void Awake()
     {
@@ -88,6 +98,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     {
         skyboxManager.DayAndNightCycle(skyboxManager.cycleRate);
         DigitalClock();
+        PrintCharacterList();
     }
 
     private void DigitalClock() 
@@ -115,13 +126,74 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
     public void LoadData(GameData data)
     {
+        #region Time
         hour = data.clockHour;
         minute = data.clockMinute;
+        #endregion
+
+        #region Diary
+        leftPageIndex = data.diaryLeftPageIndex;
+        #endregion
+
+        #region Event
+        eventIndex = data.mainEventIndex;
+        #endregion
+
+        #region Character
+        unusedCharacterIndex = data.freeCharacterIndex;
+        characterArray = data.arrayOfCharacters;
+        characterArray.sceneCharacters = data.arrayOfCharacters.sceneCharacters;
+        #endregion
     }
 
     public void SaveData(ref GameData data) 
     {
+        #region Time
         data.clockHour = hour;
         data.clockMinute = minute;
+        #endregion
+
+        #region Diary
+        data.diaryLeftPageIndex = leftPageIndex;
+        #endregion
+
+        #region Event
+        data.mainEventIndex = eventIndex;
+        #endregion
+
+        #region Character
+        data.freeCharacterIndex = unusedCharacterIndex;
+        data.arrayOfCharacters = characterArray;
+        data.arrayOfCharacters.sceneCharacters = characterArray.sceneCharacters;
+        #endregion
     }
+
+    private void PrintCharacterList() 
+    {
+        string message = "Character list consists of: ";
+
+        if (Input.GetKeyDown("tab"))
+        {
+            int max = Mathf.Clamp(characterArray.sceneCharacters.Length, 0 , characterArray.sceneCharacters.Length-1);
+            
+            for (int index = 0; index < characterArray.sceneCharacters.Length; index++)
+            {
+                message += characterArray.sceneCharacters[index].characterName + " (" + characterArray.sceneCharacters[index].gameObject.name + ")";
+
+                if (index == max) 
+                {
+                    message += ".";
+                    print(message);
+                    return;
+                }
+                if (max > 0 && index != max) { message += ", "; }
+            }
+        }
+    }
+}
+
+[System.Serializable]
+public class CharacterArray
+{
+    public Character[] sceneCharacters;
 }

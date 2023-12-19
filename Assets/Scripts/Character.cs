@@ -21,10 +21,14 @@ public enum Statuses
     sad,
     hungry,
 }
+
+[Serializable]
 public class Character : MonoBehaviour
 {
-
     #region Variables
+    public bool idIsSet = false;
+    public int characterIndex; // basically the character ID.
+    public Transform characterTransform;
 
     BoxCollider itemInteractedWithBoxCollider = null;
 
@@ -86,8 +90,7 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        //maxHunger = hunger;
-        //maxHealth = health;
+        SetCharacterID();
 
         gearEquipped = new EqippedGearSet();
         characterAnim = GetComponentInChildren<CharacterAnimation>();
@@ -621,4 +624,36 @@ public class Character : MonoBehaviour
         return transform.position.y - posMovingTo.y;
     }
 
+    private void UpdateCharacterTransform() 
+    {
+        characterTransform = gameObject.transform;
+    }
+
+    private void SetCharacterID() 
+    {
+        if (!idIsSet) 
+        {
+            idIsSet = true;
+            characterIndex = GameManager.unusedCharacterIndex;
+            
+            if (!IsDeadBeforeListing(this)) 
+            {
+                //GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+                ArrayTools<Character>.AddElement(GameManager.characterArray.sceneCharacters, this);
+            }
+
+            // Instead of generating some bogus string or number we'll just ++ to the index and use that everytime we generate a character, thus it will be unique everytime and far simpler.
+            GameManager.unusedCharacterIndex++;
+        }
+        print("My ID is: " + characterIndex + " -" + gameObject.name);
+    }
+
+    private bool IsDeadBeforeListing(Character character) 
+    {
+        if (health <= 0) 
+        {
+            return true;
+        }
+        return false;
+    }
 }
