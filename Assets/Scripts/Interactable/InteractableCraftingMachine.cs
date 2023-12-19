@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class InteractableCraftingMachine : InteractableItem
 {
@@ -16,10 +17,12 @@ public class InteractableCraftingMachine : InteractableItem
 
     private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
+    [SerializeField] private GameObject craftingVFX;
 
 
     private void Awake()
     {
+        craftingVFX.gameObject.GetComponent<VisualEffect>().Stop();
         //craftingWindow = GameObject.FindGameObjectWithTag("CraftingWindow").GetComponent<CraftingWindow>();
         audioSource = gameObject.AddComponent<AudioSource>();
 
@@ -108,6 +111,12 @@ public class InteractableCraftingMachine : InteractableItem
     public void SetIsCrafting(bool value)
     {
         isCrafting = value;
+        if (value) {
+            craftingVFX.gameObject.GetComponent<VisualEffect>().Play();
+        }
+        else {
+            craftingVFX.gameObject.GetComponent<VisualEffect>().Stop();
+        }
     }
 
     public CraftingRecipe GetRecipe()
