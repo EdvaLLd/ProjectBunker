@@ -24,13 +24,30 @@ public class Farming : InteractableItem
     [SerializeField]
     Item plantingBox;
 
-    List<FarmingSlot> slots = new List<FarmingSlot>();
+    List<FarmingSlot> slots;
 
     Character characterAtStation = null;
 
     int currentlySelectedNumber = -1;
 
     bool isWorking = false;
+
+    [SerializeField]
+    int maxAmountOfBoxes;
+    [SerializeField]
+    int startAmountOfBoxes;
+
+    private void Start()
+    {
+        slots = new List<FarmingSlot>();
+        for (int i = 0; i < startAmountOfBoxes; i++)
+        {
+            if(slots.Count < maxAmountOfBoxes)
+            {
+                slots.Add(new FarmingSlot());
+            }
+        }
+    }
 
     void IsWorkingChange()
     {
@@ -82,6 +99,7 @@ public class Farming : InteractableItem
 
     public void OpenUI(Character character)
     {
+        FarmHandler.activeInstance = this;
         UIManager.SetWindowActive(farmingGO);
         HelperMethods.ClearChilds(farmingSlots.transform);
         characterAtStation = character;
@@ -207,6 +225,6 @@ public class Farming : InteractableItem
             slots.Add(new FarmingSlot());
             OpenUI(characterAtStation);
         }
-        addBoxGO.GetComponent<Button>().interactable = Inventory.GetAmountOfItem(plantingBox) != 0;
+        addBoxGO.GetComponent<Button>().interactable = Inventory.GetAmountOfItem(plantingBox) != 0 && slots.Count < maxAmountOfBoxes;
     }
 }
