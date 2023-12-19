@@ -135,6 +135,23 @@ public class CharacterAnimation : MonoBehaviour
         partChanger.ChangeFaceColor(new Color(1, 1, 1));
     }
 
+    public void BeSad()
+    {
+        animator.SetBool("isSad", true);
+    }
+
+    public void BeHappy()
+    {
+        animator.SetBool("isHappy", true);
+    }
+
+    public void BeNeutral()
+    {
+        animator.SetBool("isHappy", false);
+        animator.SetBool("isSad", false);
+
+    }
+
     public void ChangeEquipment(GearTypes type, int spriteID)
     {
         switch (type)

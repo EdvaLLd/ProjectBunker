@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
-  m_Name: Water
+  m_Name: Filter
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 11400000, guid: c1a176cb89c803548be78e77ec5ac6e7, type: 2}
+  itemCrafted: {fileID: 11400000, guid: 173d677b5b788b7478da1b139c843cd0, type: 2}
   itemAmount: 2
   craftingTime: 5
   Ingredients:
-  - item: {fileID: 11400000, guid: 173d677b5b788b7478da1b139c843cd0, type: 2}
+  - item: {fileID: 11400000, guid: 5727eaa8ebf6d8940a28fbeb5dead961, type: 2}
     amount: 1
   CraftableInMachine:
-  - {fileID: 11400000, guid: c58263762ab6fae4b82d3c6b75d093f4, type: 2}
+  - {fileID: 11400000, guid: 7e10bd6593929e74bad657a68a0943d8, type: 2}

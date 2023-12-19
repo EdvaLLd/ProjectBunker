@@ -60,7 +60,7 @@ public class Character : MonoBehaviour
     List<Statuses> statuses = new List<Statuses>();
     public string characterName;
 
-    private CharacterAnimation characterAnim;
+    public CharacterAnimation characterAnim { get; private set; }
 
     public bool isWorking;
 
@@ -289,23 +289,26 @@ public class Character : MonoBehaviour
     void CheckStatuses()
     {
         statuses.Clear();
-        diseaseVFX.gameObject.GetComponent<VisualEffect>().Stop();
+        characterAnim.BeNeutral();
+        characterAnim.BeSad();
         if (masterAura.HasAuraWithStatus(Statuses.ill))
         {
-            diseaseVFX.gameObject.GetComponent<VisualEffect>().Play();
             statuses.Add(Statuses.ill);
+            characterAnim.TurnSick();
         }
         if (masterAura.HasAuraWithStatus(Statuses.injured))
         {
             statuses.Add(Statuses.injured);
         }
-        if(masterAura.HasAuraWithStatus(Statuses.sad))
+        if (masterAura.HasAuraWithStatus(Statuses.sad))
         {
             statuses.Add(Statuses.sad);
+            characterAnim.BeSad();
         }
         if (masterAura.HasAuraWithStatus(Statuses.happy))
         {
             statuses.Add(Statuses.happy);
+            characterAnim.BeHappy();
         }
 
         UnitController.SetCharacterStatusVisuals(this);

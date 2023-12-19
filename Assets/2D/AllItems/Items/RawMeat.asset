@@ -16,5 +16,5 @@ MonoBehaviour:
   DisplayName: Raw meat
   Description: A piece of raw meat.
   Icon: {fileID: 21300000, guid: c536c5aeb43feb742a94aa2e4e370bef, type: 3}
-  SortingType: 2
+  SortingType: 1
   lootProbabilityOverride: 0

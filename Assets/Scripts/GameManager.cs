@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
     public ExplorationBase.RandomExploreEvent[] randomExploreEvents;
     public ExplorationBase.LimitedExploreEvent[] limitedExploreEvents;
 
+    GameObject clock;
+
+
+
 
     [Header("Characters")]
     public string[] characterNames =
@@ -81,6 +85,8 @@ public class GameManager : MonoBehaviour
 
         explorableLocations = Locations.SetExplorableLocations();
 
+        clock = GameObject.Find("DayTimeStamp");
+
         //this.gameDiary.UpdateDiaryGUI();
     }
 
@@ -105,7 +111,7 @@ public class GameManager : MonoBehaviour
 
         string displayTime = Mathf.FloorToInt(hour).ToString("00") + ":" + Mathf.FloorToInt(minute).ToString("00");
 
-        GameObject.Find("DayTimeStamp").transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = displayTime;
+        clock.transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = displayTime;
     }
 
     public static Locations.Location[] GetExplorableLocations() 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
   m_Name: Bandaid
   m_EditorClassIdentifier: 
-  ID: 01018
+  ID: 01021
   DisplayName: Bandaid
   Description: Use on wound to make them be able to heal
   Icon: {fileID: 0}
