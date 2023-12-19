@@ -17,6 +17,9 @@ public class ChestContent : MonoBehaviour
     CraftingRecipe[] recipes;
 
     [SerializeField]
+    bool containsDiaryEntry;
+
+    [SerializeField]
     private AudioClip audioClip;
     private AudioSource audioSource;
 
@@ -78,6 +81,10 @@ public class ChestContent : MonoBehaviour
             {
                 Inventory.AddRecipeToMachines(recipes[i]);
             }
+        }
+        if (containsDiaryEntry)
+        {
+            FindObjectOfType<DiaryManager>().AddDiaryEntry();
         }
     }
 }

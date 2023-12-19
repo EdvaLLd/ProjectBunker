@@ -434,7 +434,6 @@ public class ExplorationBase
         public void PlayDiaryEvent(Character character)
         {
             FindObjectOfType<DiaryManager>().AddDiaryEntry();
-            TextLog.AddLog(character.name + " found a diary entry!");
         }
 
 

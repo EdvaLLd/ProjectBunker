@@ -33,6 +33,7 @@ public class DiaryManager : MonoBehaviour
         if(collectedDiaryEntries < 15)
         {
             collectedDiaryEntries++;
+            TextLog.AddLog("A new diary entry!");
         }  
     }
 
