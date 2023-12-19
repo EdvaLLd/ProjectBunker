@@ -7072,7 +7072,7 @@ MonoBehaviour:
   characterName: 
   isWorking: 0
   diseaseVFX: {fileID: 7297995683102187043, guid: 604c33ac0c4932b47ad4939a93255861, type: 3}
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 5baba5b2d78b9ea498139d5956c15db5, type: 3}
 --- !u!114 &3733842626481888063
 MonoBehaviour:
   m_ObjectHideFlags: 0

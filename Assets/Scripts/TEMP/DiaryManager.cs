@@ -34,6 +34,10 @@ public class DiaryManager : MonoBehaviour
         {
             collectedDiaryEntries++;
             TextLog.AddLog("A new diary entry!");
+            if(collectedDiaryEntries == 15)
+            {
+                CharacterExplorationUI.foundParadise = true;
+            }
         }  
     }
 

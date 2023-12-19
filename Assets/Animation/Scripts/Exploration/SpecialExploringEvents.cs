@@ -48,10 +48,10 @@ public class SpecialExploringEvents : MonoBehaviour
 
     public void CreateNewCharacter()
     {
-        newCharacter = Instantiate(newCharacter, birthPos.position, Quaternion.identity);
-        newCharacter.transform.GetChild(0).gameObject.SetActive(true);
+        GameObject temp = Instantiate(newCharacter, birthPos.position, Quaternion.identity);
+        temp.transform.GetChild(0).gameObject.SetActive(true);
 
-        newCharacter.GetComponentInChildren<PartsChanger>().RandomizeCharacter();
-        UnitController.AddCharacter(newCharacter.GetComponent<Character>());
+        temp.GetComponentInChildren<PartsChanger>().RandomizeCharacter();
+        UnitController.AddCharacter(temp.GetComponent<Character>());
     }
 }

@@ -12,6 +12,8 @@ public class CharacterExploration : MonoBehaviour
     [SerializeField] private AudioClip clip;
     private AudioSource audioSource;
 
+    private int locationNr;
+
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -26,8 +28,9 @@ public class CharacterExploration : MonoBehaviour
     {
         
     }
-    public void StartExploration()
+    public void StartExploration(int location)
     {
+        locationNr = location;
         TextLog.AddLog(name + " went exploring.");
         transform.GetChild(0).gameObject.SetActive(false);
         GetComponent<BoxCollider2D>().enabled = false;
@@ -77,10 +80,11 @@ public class CharacterExploration : MonoBehaviour
 
     private void ActivateStandardEvent()
     {
-        ExplorationBase.ExploreEventTypes.SimpleLootEvent[] lootEvents =  gameManager.standardExploreEvents[Random.Range(0, gameManager.standardExploreEvents.Length)].loot;
+        //Random.Range(0, gameManager.standardExploreEvents.Length)
+        ExplorationBase.ExploreEventTypes.SimpleLootEvent[] lootEvents =  gameManager.standardExploreEvents[locationNr].loot;
         for(int i = 0; i < lootEvents.Length; i++)
         {
-            int randomAmount = Random.Range(lootEvents[i].minAmount, lootEvents[i].maxAmount);
+            int randomAmount = Random.Range(lootEvents[i].minAmount, lootEvents[i].maxAmount +1);
             if(randomAmount > 0)
             {
                 Inventory.AddItem(lootEvents[i].item, randomAmount);

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 using System;
 using UnityEngine.VFX;
+using UnityEngine.SceneManagement;
 
 
 
@@ -29,6 +30,7 @@ public class Character : MonoBehaviour
 
     public ItemBase item = null;
     public CharacterTasks task = CharacterTasks.none;
+
     public InteractableItem itemInteractedWith = null;
 
     public delegate void OnTaskCompletion(Character characterWhoFinishedTask);
@@ -528,7 +530,6 @@ public class Character : MonoBehaviour
         UnitController.RemoveCharacter(this);
         reasonsToWarn = 0;
         RemoveWarning();
-
         if (UnitController.GetSelectedCharacter() == this)
         {
             UnitController.SwapSelectedCharacter(this);
@@ -539,6 +540,12 @@ public class Character : MonoBehaviour
         {
             characterAnim.Die();
         }
+        if(UnitController.GetCharacters().Count < 1)
+        {
+            MainMenu.won = false;
+            SceneManager.LoadScene("WinLoseScene");
+        }
+        Destroy(gameObject, 10);
     }
 
     public void ConsumeFood(Food food)

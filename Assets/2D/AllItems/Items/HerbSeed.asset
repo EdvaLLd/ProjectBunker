@@ -15,6 +15,6 @@ MonoBehaviour:
   ID: 01020
   DisplayName: Herb seed
   Description: Used to grow herbs
-  Icon: {fileID: 21300000, guid: 006a3adba8ff95144b4e779daa84bb7e, type: 3}
+  Icon: {fileID: 21300000, guid: b9ad94b13cbc4ec44b43b218d75ccf08, type: 3}
   SortingType: 3
   lootProbabilityOverride: 0

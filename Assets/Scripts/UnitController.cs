@@ -237,9 +237,8 @@ public class UnitController : MonoBehaviour
                 }
                 break;
             case CharacterTasks.exploring:
-                character.gameObject.GetComponent<CharacterExploration>().StartExploration();
-                //characterStatsWindowStatic.SetActive(false);
-                if(character == selectedCharacter) SwapSelectedCharacter(selectedCharacter);
+                //character.gameObject.GetComponent<CharacterExploration>().StartExploration(1);
+                CharacterExplorationUI.OpenUI(character);
 
                 break;
             case CharacterTasks.eating:
@@ -255,6 +254,15 @@ public class UnitController : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    public static void SendToExplore(int location, Character character)
+    {
+        if(selectedCharacter != null)
+        {
+            character.gameObject.GetComponent<CharacterExploration>().StartExploration(location);
+            if (character == selectedCharacter) SwapSelectedCharacter(selectedCharacter);
         }
     }
 

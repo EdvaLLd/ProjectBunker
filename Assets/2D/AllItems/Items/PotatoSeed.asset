@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
-  m_Name: WheatSeed
+  m_Name: PotatoSeed
   m_EditorClassIdentifier: 
-  ID: 01018
-  DisplayName: Wheat seed
-  Description: Used to grow wheat
-  Icon: {fileID: 21300000, guid: b91c7892af6fd7a479814fef11fa3cbe, type: 3}
+  ID: 01023
+  DisplayName: Potato seed
+  Description: Used to grow potatoes?
+  Icon: {fileID: 21300000, guid: 916c4ac24f1322a41848a482ee258a44, type: 3}
   SortingType: 3
   lootProbabilityOverride: 0

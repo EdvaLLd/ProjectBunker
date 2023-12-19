@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
   m_Name: MeatPlantSeed
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 11400000, guid: ba8b50297c55f7f42a43387a9e65a1a5, type: 2}
+  itemCrafted: {fileID: 11400000, guid: c6c577646199d134091f01fa3f78f824, type: 2}
   itemAmount: 1
   craftingTime: 10
   Ingredients:

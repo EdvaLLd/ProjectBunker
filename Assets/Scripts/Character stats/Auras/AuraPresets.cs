@@ -27,7 +27,6 @@ public static class AuraPresets
         a.SetBehaveAsTreatedWound(120);
         a.AddValueChange(VariableModifiers.Workspeed, -.2f);
         a.AddValueChange(VariableModifiers.Walkspeed, -.6f);
-        a.AddValueChange(VariableModifiers.Health, -30);
 
         return a;
     }

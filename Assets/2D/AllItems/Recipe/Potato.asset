@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
-  m_Name: Steak
+  m_Name: Potato
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 11400000, guid: 2b21caec1a383c7488e4f0ffde1bf7f6, type: 2}
+  itemCrafted: {fileID: 11400000, guid: 9571247f75639d14a87f2b5efb1f6f32, type: 2}
   itemAmount: 1
-  craftingTime: 5
+  craftingTime: 2
   Ingredients:
-  - item: {fileID: 11400000, guid: c6c577646199d134091f01fa3f78f824, type: 2}
+  - item: {fileID: 11400000, guid: 1345d08dd95e8ca4283e5c499b25a792, type: 2}
     amount: 1
   CraftableInMachine:
-  - {fileID: 11400000, guid: 6386acef30fedf049ba0443144822351, type: 2}
+  - {fileID: 11400000, guid: 29ae568e5f735a544a91e7fd8e148c7f, type: 2}
