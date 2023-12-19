@@ -20561,6 +20561,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 5486498144861090618, guid: 6cfb64854e25c154d8131a3e7dbee368, type: 3}
   seedPrefab: {fileID: 4264795019321556329, guid: 5180666c033eeca4bbaff6811e8476c4, type: 3}
   plantingBox: {fileID: 11400000, guid: fbec13a674e7e53429f61c13097dbb30, type: 2}
+  maxAmountOfBoxes: 6
+  startAmountOfBoxes: 0
 --- !u!65 &778068562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40057,6 +40059,121 @@ RectTransform:
   m_AnchoredPosition: {x: 15, y: -10}
   m_SizeDelta: {x: 30, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1426005863
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1666241912}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.968
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.7303698
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 81f7a16485e9ec64fad2110bd47272dc, type: 2}
+    - target: {fileID: 919132149155446097, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+      propertyPath: m_Name
+      value: plantBox (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+--- !u!4 &1426005864 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+  m_PrefabInstance: {fileID: 1426005863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1426005865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
+  m_PrefabInstance: {fileID: 1426005863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1426005866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426005865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c6d562bee387d4c94036dc595ccdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableArea: {fileID: 0}
+  item: {fileID: 11400000, guid: 29ae568e5f735a544a91e7fd8e148c7f, type: 2}
+  interactOptionsBools:
+    crafting: 0
+    inspect: 1
+    loot: 0
+    explore: 0
+    eat: 0
+    farm: 1
+    play: 0
+  farmingGO: {fileID: 1542329402}
+  farmingSlots: {fileID: 1240130429}
+  farmingSeeds: {fileID: 40420732}
+  addBoxGO: {fileID: 1268695193}
+  slotPrefab: {fileID: 5486498144861090618, guid: 6cfb64854e25c154d8131a3e7dbee368, type: 3}
+  seedPrefab: {fileID: 4264795019321556329, guid: 5180666c033eeca4bbaff6811e8476c4, type: 3}
+  plantingBox: {fileID: 11400000, guid: fbec13a674e7e53429f61c13097dbb30, type: 2}
+  maxAmountOfBoxes: 1
+  startAmountOfBoxes: 1
+--- !u!65 &1426005867
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426005865}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.601875, y: 0.5571569, z: 0.6018749}
+  m_Center: {x: 0, y: 0.24370253, z: 0}
 --- !u!1 &1427433246
 GameObject:
   m_ObjectHideFlags: 0
@@ -47643,6 +47760,7 @@ Transform:
   - {fileID: 297580425}
   - {fileID: 992110659}
   - {fileID: 1802749883}
+  - {fileID: 1426005864}
   m_Father: {fileID: 802739034}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

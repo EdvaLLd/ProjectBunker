@@ -137,6 +137,14 @@ public class UnitController : MonoBehaviour
             {
                 selectedCharacter.SetMood(.5f);
             }
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                Time.timeScale = 3;
+            }
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                Time.timeScale = 1;
+            }
             UpdateCharacterStatsUI();
             if (Input.GetMouseButtonDown(1))
             {
