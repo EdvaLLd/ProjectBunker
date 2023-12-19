@@ -59,7 +59,7 @@ public class Character : MonoBehaviour
     List<Statuses> statuses = new List<Statuses>();
     public string characterName;
 
-    public CharacterAnimation characterAnim { get; private set; }
+    private CharacterAnimation characterAnim;
 
     public bool isWorking;
 

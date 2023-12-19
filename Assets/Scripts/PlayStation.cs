@@ -9,12 +9,11 @@ public class PlayStation : InteractableItem
     float moodChanger = 0.1f;
     public void InteractedWith(Character character)
     {
-        if(character != this.character && this.character != null)
+        if(character != this.character)
         {
-            this.character.characterAnim.StopReading();
+            //stäng av gamla animations och sånt här
         }
         this.character = character;
-        this.character.characterAnim.Read();
         //fixa med nya animaion och sånt här
     }
 
@@ -30,7 +29,6 @@ public class PlayStation : InteractableItem
     {
         if(this.character == character)
         {
-            this.character.characterAnim.StopReading();
             this.character = null;
         }
     }

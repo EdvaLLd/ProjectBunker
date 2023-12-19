@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
+  ID: 03005
+  DisplayName: Water
+  Description: Purify a bottle of water
+  Icon: {fileID: 21300000, guid: 0905feab7891aa24b807475a6462e920, type: 3}
   itemCrafted: {fileID: 11400000, guid: c1a176cb89c803548be78e77ec5ac6e7, type: 2}
-  itemAmount: 2
-  craftingTime: 5
+  itemAmount: 5
   Ingredients:
   - item: {fileID: 11400000, guid: 173d677b5b788b7478da1b139c843cd0, type: 2}
     amount: 1
