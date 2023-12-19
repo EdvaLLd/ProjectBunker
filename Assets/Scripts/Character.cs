@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using System;
+using UnityEngine.VFX;
 
 
 
@@ -64,8 +65,12 @@ public class Character : MonoBehaviour
     public bool isWorking;
 
 
+    [SerializeField] private GameObject diseaseVFX;
+
+
     private void Awake() 
     {
+        diseaseVFX.gameObject.GetComponent<VisualEffect>().Stop();
         characterName = SetCharacterName(FindObjectOfType<GameManager>().characterNames);
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 1.0f;
@@ -284,8 +289,10 @@ public class Character : MonoBehaviour
     void CheckStatuses()
     {
         statuses.Clear();
+        diseaseVFX.gameObject.GetComponent<VisualEffect>().Stop();
         if (masterAura.HasAuraWithStatus(Statuses.ill))
         {
+            diseaseVFX.gameObject.GetComponent<VisualEffect>().Play();
             statuses.Add(Statuses.ill);
         }
         if (masterAura.HasAuraWithStatus(Statuses.injured))

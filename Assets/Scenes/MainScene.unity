@@ -13879,6 +13879,122 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 67062aeeff922454e82c4f6eb9232aed, type: 3}
   m_PrefabInstance: {fileID: 495953569}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &498957791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 498957792}
+  - component: {fileID: 498957794}
+  - component: {fileID: 498957793}
+  m_Layer: 0
+  m_Name: Crafting smoke
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &498957792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498957791}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.006, y: 0.05806923, z: 0.008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 992110659}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!73398921 &498957793
+VFXRenderer:
+  serializedVersion: 1
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498957791}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!2083052967 &498957794
+VisualEffect:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498957791}
+  m_Enabled: 1
+  m_Asset: {fileID: 8926484042661614526, guid: a15a2c2b4c087514e9e03506042f1da9, type: 3}
+  m_InitialEventName: OnPlay
+  m_InitialEventNameOverriden: 0
+  m_StartSeed: 0
+  m_ResetSeedOnPlay: 1
+  m_ResourceVersion: 1
+  m_PropertySheet:
+    m_Float:
+      m_Array:
+      - m_Value: 0.75
+        m_Name: Spark Intensity
+        m_Overridden: 0
+      - m_Value: 0
+        m_Name: Spark Count
+        m_Overridden: 1
+    m_Vector2f:
+      m_Array: []
+    m_Vector3f:
+      m_Array: []
+    m_Vector4f:
+      m_Array: []
+    m_Uint:
+      m_Array: []
+    m_Int:
+      m_Array: []
+    m_Matrix4x4f:
+      m_Array: []
+    m_AnimationCurve:
+      m_Array: []
+    m_Gradient:
+      m_Array: []
+    m_NamedObject:
+      m_Array: []
+    m_Bool:
+      m_Array: []
 --- !u!1 &499460994
 GameObject:
   m_ObjectHideFlags: 0
@@ -22238,6 +22354,116 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.60178643, y: 0.9104712, z: 0.25179678}
   m_Center: {x: 0, y: 0.00000010430813, z: -0.00000012665987}
+--- !u!1 &847947075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 847947076}
+  - component: {fileID: 847947078}
+  - component: {fileID: 847947077}
+  m_Layer: 0
+  m_Name: Crafting smoke
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &847947076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847947075}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.92364615, y: 0.497, z: -0.396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1838728524}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!73398921 &847947077
+VFXRenderer:
+  serializedVersion: 1
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847947075}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!2083052967 &847947078
+VisualEffect:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847947075}
+  m_Enabled: 1
+  m_Asset: {fileID: 8926484042661614526, guid: a15a2c2b4c087514e9e03506042f1da9, type: 3}
+  m_InitialEventName: OnPlay
+  m_InitialEventNameOverriden: 0
+  m_StartSeed: 0
+  m_ResetSeedOnPlay: 1
+  m_ResourceVersion: 1
+  m_PropertySheet:
+    m_Float:
+      m_Array: []
+    m_Vector2f:
+      m_Array: []
+    m_Vector3f:
+      m_Array: []
+    m_Vector4f:
+      m_Array: []
+    m_Uint:
+      m_Array: []
+    m_Int:
+      m_Array: []
+    m_Matrix4x4f:
+      m_Array: []
+    m_AnimationCurve:
+      m_Array: []
+    m_Gradient:
+      m_Array: []
+    m_NamedObject:
+      m_Array: []
+    m_Bool:
+      m_Array: []
 --- !u!1 &850113185
 GameObject:
   m_ObjectHideFlags: 0
@@ -40179,7 +40405,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea0549ca6d6c5754697eee90cea9b681, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51106,7 +51332,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 47e75ec74e473984dbed05cc76c23ce5, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 47e75ec74e473984dbed05cc76c23ce5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52461,7 +52687,7 @@ MonoBehaviour:
     farm: 0
     play: 0
   audioClip: {fileID: 8300000, guid: 901aa35bf3ad99f49a23e522614aa89b, type: 3}
-  craftingVFX: {fileID: 0}
+  craftingVFX: {fileID: 847947075}
 --- !u!1 &1839475869
 GameObject:
   m_ObjectHideFlags: 0
@@ -58294,6 +58520,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -2126769043
       objectReference: {fileID: 0}
+    - target: {fileID: 6372198396653535077, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+      propertyPath: diseaseVFX
+      value: 
+      objectReference: {fileID: 1971334738}
     - target: {fileID: 6443093253347434773, guid: 061c2097df6214b489e327f16caca47a, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -58565,6 +58795,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8411547381005239885, guid: 061c2097df6214b489e327f16caca47a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+--- !u!1 &1971334738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 578680837955951424, guid: 061c2097df6214b489e327f16caca47a, type: 3}
+  m_PrefabInstance: {fileID: 1971334737}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1975739156
 GameObject:
   m_ObjectHideFlags: 0
@@ -60487,7 +60722,7 @@ MonoBehaviour:
     farm: 0
     play: 0
   audioClip: {fileID: 8300000, guid: 0c5e0c548e9bd1e4e8bfb0188cc7f64b, type: 3}
-  craftingVFX: {fileID: 0}
+  craftingVFX: {fileID: 498957791}
 --- !u!65 &2049845527
 BoxCollider:
   m_ObjectHideFlags: 0
