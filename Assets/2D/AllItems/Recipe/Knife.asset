@@ -12,12 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
-  ID: 03002
-  DisplayName: Knife
-  Description: A nifty little stabber
-  Icon: {fileID: 21300000, guid: 4b40d405bc67afb4e8856d9e7c7db250, type: 3}
   itemCrafted: {fileID: 11400000, guid: ae8556e8cd27c514d8153f040d0ba9d9, type: 2}
   itemAmount: 1
+  craftingTime: 25
   Ingredients:
   - item: {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
     amount: 2

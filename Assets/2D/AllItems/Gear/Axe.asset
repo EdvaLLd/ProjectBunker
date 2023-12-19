@@ -19,4 +19,5 @@ MonoBehaviour:
   SortingType: 5
   lootProbabilityOverride: 0
   gearType: 3
-  attack: 10
+  gearSpriteID: 0
+  attack: 30

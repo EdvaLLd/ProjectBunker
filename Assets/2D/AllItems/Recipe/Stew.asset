@@ -10,15 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
-  m_Name: Medicine
+  m_Name: Stew
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 11400000, guid: a335fb3bf3db2e8459c1724a841ef500, type: 2}
+  itemCrafted: {fileID: 11400000, guid: 38d5e36b598459747818897c0c104533, type: 2}
   itemAmount: 1
-  craftingTime: 30
+  craftingTime: 60
   Ingredients:
-  - item: {fileID: 11400000, guid: 951c622a828352b43b20f38abbea0203, type: 2}
+  - item: {fileID: 11400000, guid: 2b21caec1a383c7488e4f0ffde1bf7f6, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 9571247f75639d14a87f2b5efb1f6f32, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: 726a1189cb4ed3c4ab5b8a6228b247b3, type: 2}
     amount: 1
   - item: {fileID: 11400000, guid: c1a176cb89c803548be78e77ec5ac6e7, type: 2}
-    amount: 3
+    amount: 5
   CraftableInMachine:
   - {fileID: 11400000, guid: 6386acef30fedf049ba0443144822351, type: 2}

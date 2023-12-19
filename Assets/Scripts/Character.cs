@@ -99,8 +99,8 @@ public class Character : MonoBehaviour
     private AudioSource audioSource;
 
     //håll båda de här positiva
-    float moodChangeRateIdle = 0.01f;
-    float moodChangeRateWorking = 0.1f;
+    float moodChangeRateIdle = 0.002f;
+    float moodChangeRateWorking = 0.005f;
 
     #endregion
 
@@ -474,12 +474,12 @@ public class Character : MonoBehaviour
         }
         else
         {
-            hungerConsumedModifier = 0.3f;//jätteskev lösning, vet inte riktigt vad tanken var här??+
+            hungerConsumedModifier = 0.2f;//jätteskev lösning, vet inte riktigt vad tanken var här??+
         }
         hunger -= (hungerConsumedModifier * Time.deltaTime);
         if (hunger < 10)
         {
-            TakeDamage((10 - hunger) * Time.deltaTime * 0.3f);
+            TakeDamage(2 * Time.deltaTime);
         }
 
         health = Mathf.Clamp(health, 0, maxHealth);

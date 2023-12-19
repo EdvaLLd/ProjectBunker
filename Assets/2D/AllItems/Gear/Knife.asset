@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a02c6e5e3b249048a65b1992f4611bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a3c6f61fa770eb459673b9a0ad667a0, type: 3}
   m_Name: Knife
-  m_EditorClassIdentifier:
-  ID: 010016
-  DisplayName: kNOIFE
-  Description: Description
-  Icon: {fileID: 21300000, guid: 4b40d405bc67afb4e8856d9e7c7db250, type: 3}
-  SortingType: 0
+  m_EditorClassIdentifier: 
+  ID: 03016
+  DisplayName: Knife
+  Description: A sharp little thing
+  Icon: {fileID: 21300000, guid: 3e2629da65adb5240b99f38fba036a3e, type: 3}
+  SortingType: 5
   lootProbabilityOverride: 0
+  gearType: 3
+  gearSpriteID: 0
+  attack: 15
