@@ -92,13 +92,14 @@ public class GameManager : MonoBehaviour, IDataPersistance
         explorableLocations = Locations.SetExplorableLocations();
 
         //this.gameDiary.UpdateDiaryGUI();
+
+        characterArray.sceneCharacters = new Character[0];
     }
 
     private void Update()
     {
         skyboxManager.DayAndNightCycle(skyboxManager.cycleRate);
         DigitalClock();
-        PrintCharacterList();
     }
 
     private void DigitalClock() 
@@ -142,7 +143,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
         #region Character
         unusedCharacterIndex = data.freeCharacterIndex;
         characterArray = data.arrayOfCharacters;
-        characterArray.sceneCharacters = data.arrayOfCharacters.sceneCharacters;
+        //characterArray.sceneCharacters = data.arrayOfCharacters.sceneCharacters;
         #endregion
     }
 
@@ -164,31 +165,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
         #region Character
         data.freeCharacterIndex = unusedCharacterIndex;
         data.arrayOfCharacters = characterArray;
-        data.arrayOfCharacters.sceneCharacters = characterArray.sceneCharacters;
+        //data.arrayOfCharacters.sceneCharacters = characterArray.sceneCharacters;
         #endregion
-    }
-
-    private void PrintCharacterList() 
-    {
-        string message = "Character list consists of: ";
-
-        if (Input.GetKeyDown("tab"))
-        {
-            int max = Mathf.Clamp(characterArray.sceneCharacters.Length, 0 , characterArray.sceneCharacters.Length-1);
-            
-            for (int index = 0; index < characterArray.sceneCharacters.Length; index++)
-            {
-                message += characterArray.sceneCharacters[index].characterName + " (" + characterArray.sceneCharacters[index].gameObject.name + ")";
-
-                if (index == max) 
-                {
-                    message += ".";
-                    print(message);
-                    return;
-                }
-                if (max > 0 && index != max) { message += ", "; }
-            }
-        }
     }
 }
 

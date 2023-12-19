@@ -639,7 +639,11 @@ public class Character : MonoBehaviour
             if (!IsDeadBeforeListing(this)) 
             {
                 //GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-                ArrayTools<Character>.AddElement(GameManager.characterArray.sceneCharacters, this);
+                GameManager.characterArray.sceneCharacters = ArrayTools<Character>.AddElement(GameManager.characterArray.sceneCharacters, this);
+                for (int i = 0; i < GameManager.characterArray.sceneCharacters.Length; i++) 
+                {
+                    Debug.LogError("["+i+"]: " + GameManager.characterArray.sceneCharacters[i] + " named: " + GameManager.characterArray.sceneCharacters[i].characterName);
+                }
             }
 
             // Instead of generating some bogus string or number we'll just ++ to the index and use that everytime we generate a character, thus it will be unique everytime and far simpler.

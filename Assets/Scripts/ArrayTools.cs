@@ -8,7 +8,7 @@ public static class ArrayTools<T>
     public static T[] AddElement(T[] inputArray, T element) 
     {
         int updatedLength = inputArray.Length+1;
-        int maxIndex = inputArray.Length;
+        int maxIndex = Mathf.Clamp(updatedLength-1, 0 , updatedLength - 1);
         T[] updatedArray = new T[updatedLength];
 
         for (int index = 0; index < updatedLength; index++) 
@@ -23,6 +23,7 @@ public static class ArrayTools<T>
             }
         }
         updatedArray[maxIndex] = element;
+        Debug.Log(updatedArray[maxIndex] + " is max element (" + maxIndex + ") in list with length: " + updatedLength);
 
         return updatedArray;
     }
