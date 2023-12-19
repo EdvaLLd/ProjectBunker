@@ -5,16 +5,26 @@ using UnityEngine.Events;
 
 public class CharacterExploration : MonoBehaviour
 {
-    //KOM IHÅG UNIT CONTROLLER INNAN DU PUSHAR GREJER
     
     [SerializeField] private int minExploreTime;
     [SerializeField] private int maxExploreTime;
     private GameManager gameManager;
-    private UnityEvent eventActivated = new UnityEvent();
+    [SerializeField] private AudioClip clip;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
+        audioSource = GetComponent<AudioSource>();
+        if(clip != null)
+        {
+            audioSource.clip = clip;
+        }
+    }
+
+    private void Start()
+    {
+        
     }
     public void StartExploration()
     {
@@ -84,6 +94,7 @@ public class CharacterExploration : MonoBehaviour
         TextLog.AddLog(name + " came back from their adventure.");
         transform.GetChild(0).gameObject.SetActive(true);
         GetComponent<BoxCollider2D>().enabled = true;
+        audioSource.Play();
 
         for(int i = 0; i < gameManager.randomExploreEvents.Length; i++)
         {
