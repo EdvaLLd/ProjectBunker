@@ -67,6 +67,13 @@ public class Character : MonoBehaviour
     private void Awake() 
     {
         characterName = SetCharacterName(FindObjectOfType<GameManager>().characterNames);
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.spatialBlend = 1.0f;
+        audioSource.loop = false;
+        if (audioClip != null)
+        {
+            audioSource.clip = audioClip;
+        }
     }
 
     public float workMultiplier { get; private set; } = 1;
@@ -94,13 +101,7 @@ public class Character : MonoBehaviour
     {
         characterAnim = GetComponentInChildren<CharacterAnimation>();
         masterAura = new MasterAura(this);
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.spatialBlend = 1.0f;
-        audioSource.loop = false;
-        if (audioClip != null)
-        {
-            audioSource.clip = audioClip;
-        }
+       
     }
 
     private string SetCharacterName(string[] names)

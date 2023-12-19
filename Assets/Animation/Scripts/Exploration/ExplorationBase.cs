@@ -351,8 +351,8 @@ public class ExplorationBase
             int enemyDefense = 0;
             int enemyHealth = 0;
 
-            int charStrength = /*character.GetGearScore().attack +*/ 60;
-            int charDefense = /*character.GetGearScore().armor + */10;
+            int charStrength = character.gear.GetGearScore().attack + 60;
+            int charDefense = character.gear.GetGearScore().armor + 10;
 
             switch (subEvent.combatEvent.enemyFaction)
             {
@@ -383,6 +383,11 @@ public class ExplorationBase
             
             int rounds = (int)Math.Ceiling(enemyHealth / (double)(charStrength - enemyDefense));
             character.TakeDamage(rounds * (enemyStrength - charDefense));
+
+            if(UnityEngine.Random.Range(0, 100) < 10)
+            {
+                character.masterAura.AddAura(AuraPresets.SprainedLeg());
+            }
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// RecipeEvent
         //------------------------------------------------------------------------------------------
@@ -428,7 +433,7 @@ public class ExplorationBase
         }
         public void PlayIllnessEvent(Character character)
         {
-            //character.AddDesease<Flu>();
+            character.masterAura.AddAura(AuraPresets.Flu());
         }
 
         public void PlayDiaryEvent(Character character)

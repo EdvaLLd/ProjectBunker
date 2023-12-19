@@ -29440,6 +29440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minExploreTime: 5
   maxExploreTime: 10
+  clip: {fileID: 8300000, guid: 6fd8e0b10b092a1429ad7684d8e7adb3, type: 3}
 --- !u!1 &1085946413
 GameObject:
   m_ObjectHideFlags: 0
@@ -31844,6 +31845,134 @@ MonoBehaviour:
       timeUnit: 0
       ammount: 0
     cooldown: 0
+  - eventName: Poisonous plant
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name gets sick from a poisonous plant when they are foraging
+          in the forest.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 5
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 20
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 4
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 1
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: 7af71fb0252cc1844af98321aaa1d050, type: 2}
+          maxLootQuantity: 2
+          minLootQuantity: 1
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: 87c46cc9c5cafa14d89e553126bb3b94, type: 2}
+          maxLootQuantity: 2
+          minLootQuantity: 1
+          lootProbability: 50
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+    cooldown: 5
   limitedExploreEvents:
   - eventName: Diary Entry
     replaceDefaultExplore: 0
@@ -41542,7 +41671,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 847712254}
   m_HandleRect: {fileID: 847712253}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
