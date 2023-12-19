@@ -320,8 +320,9 @@ public class Character : MonoBehaviour
     {
         pos = HelperMethods.ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue), transform.lossyScale.y);
 
+        CharacterLeftTask();
+
         UpdateMovement(pos);
-        if(move) CharacterLeftTask();
     }
 
     //den här borde antagligen fixas så den blir generell och character-assignment till stationer
@@ -353,6 +354,11 @@ public class Character : MonoBehaviour
                 }
             }
         }
+        ResetInteractedWith();
+    }
+
+    public void ResetInteractedWith()
+    {
         itemInteractedWith = null;
         itemInteractedWithBoxCollider = null;
         isWorking = false;

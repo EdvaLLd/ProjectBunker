@@ -79,7 +79,7 @@ public class InteractableCraftingMachine : InteractableItem
                 characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>().StopCrafting();
                 audioSource.Pause();
             }
-            character.CharacterLeftTask();
+            character.ResetInteractedWith();
             characterOnStation = null;
             SetIsCrafting(false);
         }
