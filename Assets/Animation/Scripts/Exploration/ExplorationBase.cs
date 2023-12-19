@@ -351,8 +351,8 @@ public class ExplorationBase
             int enemyDefense = 0;
             int enemyHealth = 0;
 
-            int charStrength = /*character.GetGearScore().attack*/ 60;
-            int charDefense = /*character.GetGearScore().armor + */10;
+            int charStrength = character.gear.GetGearScore().attack + 60;
+            int charDefense = character.gear.GetGearScore().armor + 10;
 
             switch (subEvent.combatEvent.enemyFaction)
             {
@@ -380,9 +380,14 @@ public class ExplorationBase
                     Debug.Log("No enemy was chosen for combat.");
                     break;
             }
-            
+
             int rounds = (int)Math.Ceiling(enemyHealth / (double)(charStrength - enemyDefense));
             character.TakeDamage(rounds * (enemyStrength - charDefense));
+
+            if(UnityEngine.Random.Range(0, 100) < 10)
+            {
+                character.masterAura.AddAura(AuraPresets.SprainedLeg());
+            }
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// RecipeEvent
         //------------------------------------------------------------------------------------------
@@ -428,7 +433,7 @@ public class ExplorationBase
         }
         public void PlayIllnessEvent(Character character)
         {
-            //character.AddDesease<Flu>();
+            character.masterAura.AddAura(AuraPresets.Flu());
         }
 
         public void PlayDiaryEvent(Character character)
@@ -498,7 +503,7 @@ public class ExplorationBase
             {
                 canBeActivated = true;
                 turnsSinceActivation = 0;
-                Debug.Log(this.eventName + " är nu redo att köras igen!");
+                Debug.Log(this.eventName + " ï¿½r nu redo att kï¿½ras igen!");
             }
         }
     }
@@ -527,14 +532,14 @@ public class ExplorationBase
                 {
                     canBeActivated = true;
                     turnsSinceActivation = 0;
-                    Debug.Log(this.eventName + " är nu redo att köras igen!");
+                    Debug.Log(this.eventName + " ï¿½r nu redo att kï¿½ras igen!");
                 }
             }
             else
             {
                 TurnOffEvent();
             }
-            
+
         }
 
         public void TurnOffEvent()
