@@ -40,6 +40,13 @@ public class HelperMethods
         return Physics.Raycast(p1, dir, length, 1 << 6);
     }
 
+    public static int AmountOfWallsBetweenPoints(Vector3 p1, Vector3 p2)
+    {
+        Vector3 dir = (p2 - p1).normalized;
+        float length = Vector3.Distance(p1, p2);
+        return Physics.RaycastAll(p1, dir, length, 1 << 6).Length;
+    }
+
     public static Vector3 ConvertPosToBeOnGround(Vector3 pos)
     {
         return ConvertPosToBeOnGround(pos, 1);

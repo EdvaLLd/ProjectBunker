@@ -38,9 +38,24 @@ public class LockedRoom : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (UIElementConsumeMouseOver.mouseOverIsAvailable)
+        if (UIElementConsumeMouseOver.mouseOverIsAvailable && UnitController.GetSelectedCharacter() != null)
         {
-            if (Inventory.GetAmountOfItem(itemToUnlockRoom) > 0)
+            bool characterInAdjecentRoom = false;
+            foreach (Pathpoint e in roomEntrances)
+            {
+                if(e.isLadder)
+                {
+                    if(HelperMethods.AmountOfWallsBetweenPoints(e.transform.position, UnitController.GetSelectedCharacter().transform.position) < 2)
+                    {
+                        characterInAdjecentRoom = true;
+                    }
+                }
+                if(!HelperMethods.WallBetweenPointsOnGround(e.transform.position, UnitController.GetSelectedCharacter().transform.position))
+                {
+                    characterInAdjecentRoom = true;
+                }
+            }
+            if (Inventory.GetAmountOfItem(itemToUnlockRoom) > 0 && characterInAdjecentRoom)
             {
                 UIManager.clearMistBtnGO.SetActive(true);
                 UIManager.clearMistBtnGO.transform.position = Camera.main.WorldToScreenPoint(transform.position);

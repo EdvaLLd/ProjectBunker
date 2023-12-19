@@ -32376,7 +32376,7 @@ PrefabInstance:
     - target: {fileID: 3531574230500618982, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: inventory.Array.data[1].item
       value: 
-      objectReference: {fileID: 11400000, guid: a335fb3bf3db2e8459c1724a841ef500, type: 2}
+      objectReference: {fileID: 11400000, guid: 8526ae880b073864da544eb9f6542480, type: 2}
     - target: {fileID: 3531574230500618982, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: inventory.Array.data[2].item
       value: 
@@ -32395,7 +32395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531574230500618982, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: inventory.Array.data[1].amount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3531574230500618982, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: inventory.Array.data[2].amount
