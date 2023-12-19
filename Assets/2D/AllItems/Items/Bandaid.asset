@@ -15,6 +15,6 @@ MonoBehaviour:
   ID: 01021
   DisplayName: Bandaid
   Description: Use on wound to make them be able to heal
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 92fb1353100940a448ab0221f329ff09, type: 3}
   SortingType: 4
   lootProbabilityOverride: 0

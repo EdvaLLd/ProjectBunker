@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Potato
   m_EditorClassIdentifier: 
   itemCrafted: {fileID: 11400000, guid: 9571247f75639d14a87f2b5efb1f6f32, type: 2}
-  itemAmount: 1
-  craftingTime: 2
+  itemAmount: 3
+  craftingTime: 40
   Ingredients:
   - item: {fileID: 11400000, guid: 1345d08dd95e8ca4283e5c499b25a792, type: 2}
     amount: 1

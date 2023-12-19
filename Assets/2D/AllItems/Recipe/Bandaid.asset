@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
-  m_Name: Medicine
+  m_Name: Bandaid
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 11400000, guid: a335fb3bf3db2e8459c1724a841ef500, type: 2}
+  itemCrafted: {fileID: 11400000, guid: 7e89a77f8a258614caed0148aff9cf2c, type: 2}
   itemAmount: 1
-  craftingTime: 30
+  craftingTime: 20
   Ingredients:
-  - item: {fileID: 11400000, guid: 951c622a828352b43b20f38abbea0203, type: 2}
-    amount: 1
-  - item: {fileID: 11400000, guid: c1a176cb89c803548be78e77ec5ac6e7, type: 2}
-    amount: 3
+  - item: {fileID: 11400000, guid: 5727eaa8ebf6d8940a28fbeb5dead961, type: 2}
+    amount: 2
   CraftableInMachine:
-  - {fileID: 11400000, guid: 6386acef30fedf049ba0443144822351, type: 2}
+  - {fileID: 11400000, guid: 7e10bd6593929e74bad657a68a0943d8, type: 2}

@@ -91,6 +91,7 @@ public class MasterAura
         {
             if (auras.ContainsKey(dispelType))
             {
+                bool auraTreated = false;
                 bool removeList = true;
                 foreach (Aura item in auras[dispelType])
                 {
@@ -98,19 +99,25 @@ public class MasterAura
                     {
                         item.isTreated = true;
                         removeList = false;
+                        auraTreated = true;
                     }
-                    else
+                    else if(!item.behaveAsUntreatedWound)
                     {
                         aura.RemoveAura(item);
+                        auraTreated = true;
                     }
                 }
                 if (removeList)
                 {
                     auras.Remove(dispelType);
                 }
-                UpdateStatuses();
-                character.AuraValuesChanged();
-                return true;
+                if(auraTreated)
+                {
+                    UpdateStatuses();
+                    character.AuraValuesChanged();
+                }
+                
+                return auraTreated;
             }
             return false;
         }
