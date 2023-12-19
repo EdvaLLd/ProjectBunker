@@ -1215,7 +1215,7 @@ Transform:
   - {fileID: 959329675}
   - {fileID: 434102638}
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &57974234
 GameObject:
@@ -8870,7 +8870,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &314646829
 GameObject:
@@ -14298,7 +14298,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &515840247
 GameObject:
@@ -23197,13 +23197,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1656217148}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
         m_MethodName: UseBandaid
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: 7e89a77f8a258614caed0148aff9cf2c, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Item, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -29320,6 +29320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minExploreTime: 5
   maxExploreTime: 10
+  clip: {fileID: 8300000, guid: 6fd8e0b10b092a1429ad7684d8e7adb3, type: 3}
 --- !u!1 &1085946413
 GameObject:
   m_ObjectHideFlags: 0
@@ -31749,13 +31750,13 @@ MonoBehaviour:
       timeUnit: 0
       ammount: 0
     cooldown: 0
-  - eventName: Aggressive deer
+  - eventName: Poisonous plant
     replaceDefaultExplore: 0
     subEvents:
     - eventType: 0
       textEvent:
-        eventMessage: Name is suddenly attacked by aggressive deer when they are
-          foraging in the forest.
+        eventMessage: Name gets sick from a poisonous plant when they are foraging
+          in the forest.
         timer:
           timeUnit: 0
           ammount: 0
@@ -31790,7 +31791,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    - eventType: 3
+    - eventType: 5
       textEvent:
         eventMessage: 
         timer:
@@ -31810,7 +31811,7 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
       combatEvent:
-        enemyFaction: 1
+        enemyFaction: 4
         timer:
           timeUnit: 0
           ammount: 0
@@ -31841,10 +31842,14 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         loot:
-        - lootItem: {fileID: 11400000, guid: ba8b50297c55f7f42a43387a9e65a1a5, type: 2}
+        - lootItem: {fileID: 11400000, guid: 7af71fb0252cc1844af98321aaa1d050, type: 2}
           maxLootQuantity: 2
           minLootQuantity: 1
           lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: 87c46cc9c5cafa14d89e553126bb3b94, type: 2}
+          maxLootQuantity: 2
+          minLootQuantity: 1
+          lootProbability: 50
       damageEvent:
         damageRecieved: 0
         timer:
@@ -31868,11 +31873,11 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 10
+    eventProbability: 5
     timer:
       timeUnit: 0
       ammount: 0
-    cooldown: 2
+    cooldown: 5
   limitedExploreEvents:
   - eventName: Diary Entry
     replaceDefaultExplore: 0
@@ -32201,7 +32206,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1116480388
 PrefabInstance:
@@ -41902,13 +41907,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1656217148}
         m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
         m_MethodName: UseMedicine
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: a335fb3bf3db2e8459c1724a841ef500, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Item, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -59153,7 +59158,7 @@ Transform:
   - {fileID: 1358806764}
   - {fileID: 214226111}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2007192518
 PrefabInstance:
@@ -62519,7 +62524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3118213294834403819, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 3118213294834403819, guid: fbfdd54e0dd9db34bb69b26bef0137ff, type: 3}
       propertyPath: m_LocalPosition.x
