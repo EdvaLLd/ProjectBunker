@@ -159,7 +159,7 @@ public class ExplorationBase
             if (message != "" || message != null)
             {
                 //TextLog.AddLog(message);
-                FindObjectOfType<SpecialExploringEvents>().ShowSpecialEvent(message, character.gameObject.name);
+                FindObjectOfType<SpecialExploringEvents>().ShowSpecialEvent(message, character.characterName);
             }
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////// ItemEvent
