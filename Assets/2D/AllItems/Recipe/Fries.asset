@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
   m_Name: Fries
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 0}
+  itemCrafted: {fileID: 11400000, guid: d7b1731d512fd24459c610b809e4b1e1, type: 2}
   itemAmount: 1
   craftingTime: 15
   Ingredients:
   - item: {fileID: 11400000, guid: 9571247f75639d14a87f2b5efb1f6f32, type: 2}
     amount: 1
-  CraftableInMachine: []
+  CraftableInMachine:
+  - {fileID: 11400000, guid: 6386acef30fedf049ba0443144822351, type: 2}

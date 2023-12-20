@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 04008
   DisplayName: Fries
   Description: They blend so perfectly
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: c914a12d731ac8f479595d08b07357d2, type: 3}
   SortingType: 2
   lootProbabilityOverride: 0
   hungerRestoration: 20

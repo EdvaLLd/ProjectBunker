@@ -45,7 +45,7 @@ public class InteractableItem : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (UIElementConsumeMouseOver.mouseOverIsAvailable)
+        if (UIElementConsumeMouseOver.mouseOverIsAvailable && UnitController.GetSelectedCharacter() != null)
         {
             interactOptions.GetComponent<InteractOptions>().SetUp(interactOptionsBools, this, item);
         }

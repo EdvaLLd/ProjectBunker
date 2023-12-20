@@ -63,14 +63,14 @@ public class CharacterStatsHandler : MonoBehaviour
 
     void SliderShaker(Slider slider)
     {
-        if (slider.value < slider.maxValue * 0.25f)
+        /*if (slider.value < slider.maxValue * 0.25f)
         {
             slider.GetComponent<Animator>().SetBool("Shaker", true);
         }
         else
         {
             slider.GetComponent<Animator>().SetBool("Shaker", false);
-        }
+        }*/
     }
 
     void SetColor(float value, GameObject o)
