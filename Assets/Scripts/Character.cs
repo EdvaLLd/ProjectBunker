@@ -70,6 +70,7 @@ public class Character : MonoBehaviour
     [SerializeField] private GameObject diseaseVFX;
 
 
+
     private void Awake() 
     {
         diseaseVFX.gameObject.GetComponent<VisualEffect>().Stop();
@@ -293,6 +294,7 @@ public class Character : MonoBehaviour
         statuses.Clear();
         characterAnim.BeNeutral();
         characterAnim.BeSad();
+        characterAnim.BeCured();
         if (masterAura.HasAuraWithStatus(Statuses.ill))
         {
             statuses.Add(Statuses.ill);
@@ -331,7 +333,7 @@ public class Character : MonoBehaviour
 
     public void MoveToPos(Vector3 pos)
     {
-        pos = HelperMethods.ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue), transform.lossyScale.y);
+        pos = HelperMethods.ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue), GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y);
 
         CharacterLeftTask();
 
@@ -470,20 +472,21 @@ public class Character : MonoBehaviour
         if(health != maxHealth && hunger > 80)
         {
             TakeDamage(-5 * Time.deltaTime);
-            hungerConsumedModifier = 2;
+            hungerConsumedModifier = 1;
         }
         else
         {
-            hungerConsumedModifier = 0.2f;//jätteskev lösning, vet inte riktigt vad tanken var här??+
+            hungerConsumedModifier = .17f;//jätteskev lösning, vet inte riktigt vad tanken var här??+
         }
         hunger -= (hungerConsumedModifier * Time.deltaTime);
-        if (hunger < 10)
+        if (hunger <= 0)
         {
-            TakeDamage(2 * Time.deltaTime);
+            TakeDamage(1 * Time.deltaTime);
         }
 
         health = Mathf.Clamp(health, 0, maxHealth);
         hunger = Mathf.Clamp(hunger, 0, maxHunger);
+        print(hunger);
     }
 
     public void TakeDamage(float damage)

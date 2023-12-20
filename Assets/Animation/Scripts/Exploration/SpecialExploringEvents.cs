@@ -21,11 +21,11 @@ public class SpecialExploringEvents : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Space))
+        /*if(Input.GetKeyUp(KeyCode.Space))
         {
             ShowSpecialEvent("Hejdå", "Sture");
             ShowCharacterChoice();
-        }
+        }*/
     }
 
     public void ShowSpecialEvent(string eventText, string characterName)

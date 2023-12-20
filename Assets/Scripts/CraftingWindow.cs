@@ -86,9 +86,9 @@ public class CraftingWindow : MonoBehaviour
             t.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = finalTime;
             t.GetComponent<Button>().onClick.AddListener(() => RecipeClicked(recipe));
             //craftingWindow.GetComponent<Image>().sprite = machine.Icon;
-            transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = machine.name;
             InitRecipeWindow(t, recipe);
         }
+        transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = machine.name;
     }
 
     public void ChangeCraftAmount(int changeValue = 1)

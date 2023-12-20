@@ -85,64 +85,13 @@ public class UnitController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Inventory.AddItem(Database.GetItemWithID("04001")); //br�d
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Inventory.AddItem(Database.GetItemWithID("01010")); //water
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Inventory.AddItem(Database.GetItemWithID("01004")); //electric cable
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Inventory.AddItem(Database.GetItemWithID("01001")); //wood
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Inventory.AddItem(Database.GetItemWithID("01008")); //metal
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            Inventory.AddItem(Database.GetItemWithID("01002")); //leather
-        }
-
         if (selectedCharacter != null)
         {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                selectedCharacter.ConsumeFood(Database.GetItemWithID("04001") as Food);
-            }
-
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                selectedCharacter.masterAura.AddAura(AuraPresets.Flu());
-            }
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                selectedCharacter.masterAura.AddAura(AuraPresets.SprainedLeg());
-            }
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                selectedCharacter.SetMood(0);
-            }
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                selectedCharacter.SetMood(1);
-            }
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                selectedCharacter.SetMood(.5f);
-            }
             UpdateCharacterStatsUI();
             if (Input.GetMouseButtonDown(1))
             {
                 selectedCharacter.MoveToPos(HelperMethods.CursorToWorldCoord());
             }
-            //print(selectedCharacter.isWorking);
         }
 
         if (Input.GetKeyDown(KeyCode.M))
@@ -152,6 +101,10 @@ public class UnitController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             Time.timeScale = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Time.timeScale = 0;
         }
     }
 
@@ -171,8 +124,14 @@ public class UnitController : MonoBehaviour
     }
     void UpdateCharacterStatsUI()
     {
-        UIManager.characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHealth(((int)(selectedCharacter.health / howOftenToUpdateStats) + 1) * howOftenToUpdateStats);
-        UIManager.characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHunger(((int)(selectedCharacter.hunger / howOftenToUpdateStats) + 1) * howOftenToUpdateStats);
+        float value = ((int)(selectedCharacter.health / howOftenToUpdateStats) + 1) * howOftenToUpdateStats;
+        UIManager.characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHealth(value);
+        value = ((int)(selectedCharacter.hunger / howOftenToUpdateStats) + 1) * howOftenToUpdateStats;
+        if(selectedCharacter.hunger == 0)
+        {
+            value = 0;
+        }
+        UIManager.characterStatsWindowStatic.GetComponent<CharacterStatsHandler>().UpdateHunger(value);
     }
 
     public static void FeedCharacter(Food food, Character character = null)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 11400000, guid: ae8556e8cd27c514d8153f040d0ba9d9, type: 2}
+  itemCrafted: {fileID: 11400000, guid: 9143c701e0ffe854e8a46f4d75ce5f28, type: 2}
   itemAmount: 1
   craftingTime: 25
   Ingredients:
