@@ -27,14 +27,13 @@ public class Character : MonoBehaviour
 {
     #region Variables
     public bool idIsSet = false;
-    public int characterIndex; // basically the character ID.
     public Transform characterTransform;
 
-    BoxCollider itemInteractedWithBoxCollider = null;
+    public BoxCollider itemInteractedWithBoxCollider = null;
 
-    List<Vector3> path;
-    Vector3 posMovingTo = Vector3.zero;
-    bool move = false;
+    public List<Vector3> path;
+    public Vector3 posMovingTo = Vector3.zero;
+    public bool move = false;
 
     public ItemBase item = null;
     public CharacterTasks task = CharacterTasks.none;
@@ -43,22 +42,22 @@ public class Character : MonoBehaviour
     public delegate void OnTaskCompletion(Character characterWhoFinishedTask);
     public static event OnTaskCompletion onTaskCompletion;
 
-    EqippedGearSet gearEquipped;
+    public EqippedGearSet gearEquipped;
 
-    //karakt�rens stats
+    #region CharacterStats
     public float hunger = 100;
     public float health = 100;
-    bool isAlive = true;
+    public bool isAlive = true;
 
-    bool lowHealthWarningShowed = false;
+    public bool lowHealthWarningShowed = false;
     
-    private bool isHungry = true;
+    public bool isHungry = true;
 
-    [SerializeField]
+    //[SerializeField]
     private float hungerConsumedModifier = .3f;
 
-    [SerializeField]
-    private float notHungryTime = 4;
+    //[SerializeField]
+    public float notHungryTime = 4;
 
     public float maxHunger;
     public float maxHealth;
@@ -66,32 +65,28 @@ public class Character : MonoBehaviour
     Vector3 newGoalPos;
 
     public string characterName;
-    List<Desease> deseases = new List<Desease>();
+    public List<Desease> deseases = new List<Desease>();
 
-    private CharacterAnimation characterAnim;
-    Dictionary<Statuses, int> statuses = new Dictionary<Statuses, int>();
+    public CharacterAnimation characterAnim;
+    public Dictionary<Statuses, int> statuses = new Dictionary<Statuses, int>();
+    public float workMultiplier { get; private set; } = 1;
+
+    public GameObject marker;
+    public int reasonsToWarn = 0;
+
+    //[SerializeField]
+    public AudioClip audioClip;
+    public AudioSource audioSource;
+    #endregion
+    #endregion
 
     private void Awake() 
     {
         characterName = SetCharacterName(FindObjectOfType<GameManager>().characterNames);
     }
 
-    public float workMultiplier { get; private set; } = 1;
-
-
-    GameObject marker;
-    int reasonsToWarn = 0;
-
-    [SerializeField]
-    private AudioClip audioClip;
-    private AudioSource audioSource;
-
-    #endregion
-
     private void Start()
     {
-        SetCharacterID();
-
         gearEquipped = new EqippedGearSet();
         characterAnim = GetComponentInChildren<CharacterAnimation>();
 
@@ -623,41 +618,8 @@ public class Character : MonoBehaviour
     {
         return transform.position.y - posMovingTo.y;
     }
-
     private void UpdateCharacterTransform() 
     {
         characterTransform = gameObject.transform;
-    }
-
-    private void SetCharacterID() 
-    {
-        if (!idIsSet) 
-        {
-            idIsSet = true;
-            characterIndex = GameManager.unusedCharacterIndex;
-            
-            if (!IsDeadBeforeListing(this)) 
-            {
-                //GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-                GameManager.characterArray.sceneCharacters = ArrayTools<Character>.AddElement(GameManager.characterArray.sceneCharacters, this);
-                for (int i = 0; i < GameManager.characterArray.sceneCharacters.Length; i++) 
-                {
-                    Debug.LogError("["+i+"]: " + GameManager.characterArray.sceneCharacters[i] + " named: " + GameManager.characterArray.sceneCharacters[i].characterName);
-                }
-            }
-
-            // Instead of generating some bogus string or number we'll just ++ to the index and use that everytime we generate a character, thus it will be unique everytime and far simpler.
-            GameManager.unusedCharacterIndex++;
-        }
-        print("My ID is: " + characterIndex + " -" + gameObject.name);
-    }
-
-    private bool IsDeadBeforeListing(Character character) 
-    {
-        if (health <= 0) 
-        {
-            return true;
-        }
-        return false;
     }
 }

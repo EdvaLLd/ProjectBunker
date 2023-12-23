@@ -11,6 +11,7 @@ public class GameData
     #region Time
     public float clockHour;
     public float clockMinute;
+    public int dayCount;
     #endregion
 
     #region Diary
@@ -23,11 +24,10 @@ public class GameData
     #endregion
 
     #region Character
-    public int freeCharacterIndex;
-    public CharacterArray arrayOfCharacters;
+    public CharacterList listOfCharacters;
     #endregion
     #endregion
-   
+
 
     #region Skybox
     public float dayNightNumber;
@@ -72,11 +72,12 @@ public class GameData
         #region TimeData
         clockHour = 6;
         clockMinute = 0;
+        dayCount = 0;
         #endregion
 
         #region DiaryData
         diaryLeftPageIndex = 0;
-        diary = null;
+        diary = new Diary();
         #endregion
 
         #region EventData
@@ -84,8 +85,8 @@ public class GameData
         #endregion
 
         #region CharacterData
-        freeCharacterIndex = 0;
-        arrayOfCharacters = null;
+        
+        listOfCharacters = new CharacterList();
         #endregion
         #endregion
 

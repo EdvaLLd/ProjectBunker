@@ -4,22 +4,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class JsonHelper
+public static class JsonObjArrayConverter
 {
-    public static T[] FromJson<T>(string json)
+    public static T[] ArrayFromJson<T>(string json)
     {
         Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
         return wrapper.Items;
     }
 
-    public static string ToJson<T>(T[] array)
+    public static string ArrayToJson<T>(T[] array)
     {
         Wrapper<T> wrapper = new Wrapper<T>();
         wrapper.Items = array;
         return JsonUtility.ToJson(wrapper);
     }
 
-    public static string ToJson<T>(T[] array, bool prettyPrint)
+    public static string ArrayToJson<T>(T[] array, bool prettyPrint)
     {
         Wrapper<T> wrapper = new Wrapper<T>();
         wrapper.Items = array;

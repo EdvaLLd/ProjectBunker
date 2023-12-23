@@ -34,22 +34,7 @@ public class DataPersistanceManager : MonoBehaviour
 
     private void Start()
     {
-        if (customDirectory == "" || customDirectory == null)
-        {
-            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-            print(Application.persistentDataPath + "/" + fileName);
-        }
-        else 
-        {
-            dataHandler = new FileDataHandler(customDirectory, fileName);
-            print(customDirectory + "/" + fileName);
-        }
-        
-        dataPersistanceObjects = FindAllDataPersistanceObjects();
-        if (loadOnStart) 
-        {
-            LoadGame();
-        }
+        LoadGameData();
     }
 
     public void NewGame() 
@@ -64,7 +49,7 @@ public class DataPersistanceManager : MonoBehaviour
         {
             dataPersistanceObject.SaveData(ref gameData);
         }
-        print("Saved: " + gameData.clockHour + "h, " + gameData.clockMinute + "m.");
+        //print("Saved: " + gameData.clockHour + "h, " + gameData.clockMinute + "m.");
 
         // Save data to a file using data handler.
         dataHandler.Save(gameData);
@@ -87,7 +72,7 @@ public class DataPersistanceManager : MonoBehaviour
         {
             dataPersistanceObject.LoadData(gameData);
         }
-        print("Loaded: " + gameData.clockHour + "h, " + gameData.clockMinute + "m.");
+        //print("Loaded: " + gameData.clockHour + "h, " + gameData.clockMinute + "m.");
     }
 
     private void OnApplicationQuit()
@@ -104,5 +89,23 @@ public class DataPersistanceManager : MonoBehaviour
         return new List<IDataPersistance>(dataPersistanceObjects);
     }
 
-    
+    private void LoadGameData() 
+    {
+        if (customDirectory == "" || customDirectory == null)
+        {
+            dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            print(Application.persistentDataPath + "/" + fileName);
+        }
+        else
+        {
+            dataHandler = new FileDataHandler(customDirectory, fileName);
+            print(customDirectory + "/" + fileName);
+        }
+
+        dataPersistanceObjects = FindAllDataPersistanceObjects();
+        if (loadOnStart)
+        {
+            LoadGame();
+        }
+    }
 }
