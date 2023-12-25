@@ -28562,7 +28562,11 @@ MonoBehaviour:
       minLootQuantity: 1
       lootProbability: 50
   gameDiary:
-    entries: []
+    entries:
+    - entryTitle: t
+      entryText: t2
+      entryAuthor: a
+      entryDate: d
   standardExploreEvents:
   - loot:
     - item: {fileID: 11400000, guid: cffe802603e7a97469905f16e85b6a19, type: 2}

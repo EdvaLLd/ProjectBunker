@@ -75,7 +75,7 @@ public class DataPersistanceManager : MonoBehaviour
         //print("Loaded: " + gameData.clockHour + "h, " + gameData.clockMinute + "m.");
     }
 
-    private void OnApplicationQuit()
+    private void OnApplicationQuit() // Temporary solution for now, button later.
     {
         if (saveOnQuit) 
         {
