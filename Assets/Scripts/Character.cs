@@ -26,8 +26,10 @@ public enum Statuses
 public class Character : MonoBehaviour
 {
     #region Variables
+    public bool hasName = false;
     public bool idIsSet = false;
     public Transform characterTransform;
+    public Vector3 loadedCharacterPosition;
 
     public BoxCollider itemInteractedWithBoxCollider = null;
 
@@ -61,15 +63,16 @@ public class Character : MonoBehaviour
 
     public float maxHunger;
     public float maxHealth;
-    bool createNewPath = false;
-    Vector3 newGoalPos;
+    
+    public  bool createNewPath = false;
+    public Vector3 newGoalPos;
 
     public string characterName;
     public List<Desease> deseases = new List<Desease>();
 
     public CharacterAnimation characterAnim;
     public Dictionary<Statuses, int> statuses = new Dictionary<Statuses, int>();
-    public float workMultiplier { get; private set; } = 1;
+    public float workMultiplier /*{ get; private set; }*/ = 1;
 
     public GameObject marker;
     public int reasonsToWarn = 0;
@@ -79,11 +82,6 @@ public class Character : MonoBehaviour
     public AudioSource audioSource;
     #endregion
     #endregion
-
-    private void Awake() 
-    {
-        characterName = SetCharacterName(FindObjectOfType<GameManager>().characterNames);
-    }
 
     private void Start()
     {
@@ -97,12 +95,35 @@ public class Character : MonoBehaviour
         {
             audioSource.clip = audioClip;
         }
+        SetLoadedPosition();
+        SetCharacterName();
+        statuses.Add(Statuses.happy, 3);
     }
 
-    private string SetCharacterName(string[] names)
+    private void SetCharacterName()
     {
+        if (hasName) 
+        {
+            return;
+        }
+
+        string[] names = FindObjectOfType<GameManager>().characterNames;
+
         int randomNameIndex = UnityEngine.Random.Range(0, Mathf.Clamp(names.Length, 0, names.Length - 1));
-        return names[randomNameIndex];
+
+        characterName = names[randomNameIndex];
+        hasName = true;
+    }
+
+    private void SetLoadedPosition() 
+    {
+        if (loadedCharacterPosition == null || loadedCharacterPosition == Vector3.zero) 
+        {
+            Debug.LogError(gameObject.name + " has a null position. Will use default.");
+            gameObject.transform.position = new Vector3(2.503f, -0.874f, 0.762f);
+            return;
+        }
+        gameObject.transform.position = loadedCharacterPosition;
     }
 
 
@@ -618,7 +639,7 @@ public class Character : MonoBehaviour
     {
         return transform.position.y - posMovingTo.y;
     }
-    private void UpdateCharacterTransform() 
+    public void UpdateCharacterTransform() 
     {
         characterTransform = gameObject.transform;
     }

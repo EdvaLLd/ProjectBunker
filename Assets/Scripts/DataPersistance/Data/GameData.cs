@@ -24,7 +24,7 @@ public class GameData
     #endregion
 
     #region Character
-    public CharacterList listOfCharacters;
+    public JsonCharacterList listOfCharacters;
     #endregion
     #endregion
 
@@ -86,7 +86,7 @@ public class GameData
 
         #region CharacterData
         
-        listOfCharacters = new CharacterList();
+        listOfCharacters = new JsonCharacterList();
         #endregion
         #endregion
 

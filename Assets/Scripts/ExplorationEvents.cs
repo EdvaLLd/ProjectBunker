@@ -578,7 +578,7 @@ public class ExplorationEvents : Exploration
                 {
                     canBeActivated = true;
                     turnsSinceActivation = 0;
-                    Debug.Log(this.eventName + " är nu redo att köras igen!");
+                    Debug.Log(this.eventName + " can be run again.");
                 }
             }
             else

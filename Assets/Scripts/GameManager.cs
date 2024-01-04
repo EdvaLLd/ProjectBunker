@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
         "Thomas",
         "Patricia",
     };
+    public static JsonCharacterList serializedCharacterList = new JsonCharacterList();
     public static CharacterList characterList = new CharacterList();
     #endregion
     #region Time
@@ -92,12 +93,12 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
         //this.gameDiary.UpdateDiaryGUI();
 
-        characterList.sceneCharacters = new List<SerializableCharacter>();/*new Character[0];*/
+        //serializedCharacterList.serializedCharacters = new List<JsonCharacter>();/*new Character[0];*/
     }
 
     private void Start()
     {
-        characterList.sceneCharacters = PopulateCharacterList();
+        //characterList.sceneCharacters = PopulateSerializedCharacterList();
     }
 
     private void Update()
@@ -131,12 +132,9 @@ public class GameManager : MonoBehaviour, IDataPersistance
         return explorableLocations;
     }
 
-    private List<SerializableCharacter> PopulateCharacterList() 
+    private List<JsonCharacter> PopulateSerializedCharacterList() 
     {
-        List<SerializableCharacter> returnList = new List<SerializableCharacter>();
-
-        // TODO - populate characterList;
-        // Try using for loop.
+        List<JsonCharacter> returnList = new List<JsonCharacter>();
 
         Character[] characters = FindObjectsOfType<Character>();
 
@@ -144,44 +142,28 @@ public class GameManager : MonoBehaviour, IDataPersistance
         {
             for (int index = 0; index < characters.Length; index++)
             {
-                SerializableCharacter serializedCharacter = new SerializableCharacter();
-
-                serializedCharacter.idIsSet = characters[index].idIsSet;
-                serializedCharacter.characterPosition.x = characters[index].characterTransform.position.x;
-                serializedCharacter.characterPosition.y = characters[index].characterTransform.position.y;
-                serializedCharacter.characterPosition.z = characters[index].characterTransform.position.z;
-                serializedCharacter.itemInteractedWithBoxCollider = characters[index].itemInteractedWithBoxCollider;
-                serializedCharacter.path = characters[index].path;
-                serializedCharacter.posMovingTo = characters[index].posMovingTo;
-                serializedCharacter.move = characters[index].move;
-                serializedCharacter.item = characters[index].item;
-                serializedCharacter.task = characters[index].task;
-                serializedCharacter.itemInteractedWith = characters[index].itemInteractedWith;
-                //SerializedCharacter.onTaskCompletion = characters[index]._; // Solve how to get this variable.
-                serializedCharacter.gearEquipped = characters[index].gearEquipped;
-                serializedCharacter.hunger = characters[index].hunger;
-                serializedCharacter.health = characters[index].health;
-                serializedCharacter.isAlive = characters[index].isAlive;
-                serializedCharacter.lowHealthWarningShowed = characters[index].lowHealthWarningShowed;
-                serializedCharacter.notHungryTime = characters[index].notHungryTime;
-                serializedCharacter.maxHunger = characters[index].maxHunger;
-                serializedCharacter.maxHealth = characters[index].maxHealth;
-                serializedCharacter.characterName = characters[index].characterName;
-                serializedCharacter.deseases = characters[index].deseases;
-                serializedCharacter.characterAnim = characters[index].characterAnim;
-                //serializedCharacter.statuses = characters[index].statuses; // Dictionary, not supported by JsonUtility, watch tutorial for workaround.
-                serializedCharacter.workMultiplier = characters[index].workMultiplier;
-                serializedCharacter.marker = characters[index].marker;
-                serializedCharacter.reasonsToWarn = characters[index].reasonsToWarn;
-                serializedCharacter.audioClip = characters[index].audioClip;
-                serializedCharacter.audioSource = characters[index].audioSource;
-
-                // We'll fiddle with this later, after christmas.
-
-                returnList.Add(serializedCharacter);
+                returnList.Add(JsonCharacter.CharacterToJson(characters[index]));
             }
         }
-        
+
+        return returnList;
+    }
+
+    private List<Character> PopulateCharacterListWithLoaded(GameData data)
+    {
+        List<Character> returnList = new List<Character>();
+        List<JsonCharacter> serializedCharacters = data.listOfCharacters.serializedCharacters;
+
+        if (serializedCharacters.Count > 0)
+        {
+            for (int index = 0; index < serializedCharacters.Count; index++)
+            {
+                returnList.Add(JsonCharacter.JsonToCharacter(serializedCharacters[index]));
+                Debug.Log("Loaded character named: " + serializedCharacters[index].characterName);
+            }
+
+            Debug.Log("returnList.Count: " + returnList.Count);
+        }
 
         return returnList;
     }
@@ -209,9 +191,10 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
         #region Character
         //characterArray = data.arrayOfCharacters;
-        if (data.listOfCharacters.sceneCharacters.Count > 0) 
+        
+        if (data.listOfCharacters.serializedCharacters.Count > 0) 
         {
-            characterList.sceneCharacters = data.listOfCharacters.sceneCharacters; // Shows up empty in save file because the default is null and when it is loaded on start it sets the list in GM to null which result in it saving null thus getting stuck in a cycle of loading and saving null, which in our case is nothing.
+            characterList.characters = PopulateCharacterListWithLoaded(data); // Shows up empty in save file because the default is null and when it is loaded on start it sets the list in GM to null which result in it saving null thus getting stuck in a cycle of loading and saving null, which in our case is nothing.
         }
         //characterArray.test = data.arrayOfCharacters.test;
         #endregion
@@ -238,10 +221,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
         #endregion
 
         #region Character
+        serializedCharacterList.serializedCharacters = PopulateSerializedCharacterList();
         //data.arrayOfCharacters = characterArray;
-        if (characterList.sceneCharacters.Count > 0) 
+        if (serializedCharacterList.serializedCharacters.Count > 0) 
         {
-            data.listOfCharacters.sceneCharacters = characterList.sceneCharacters;
+            data.listOfCharacters.serializedCharacters = serializedCharacterList.serializedCharacters;
         }
         //data.arrayOfCharacters.test = characterArray.test;
         #endregion
@@ -249,9 +233,13 @@ public class GameManager : MonoBehaviour, IDataPersistance
 }
 
 [System.Serializable]
+public class JsonCharacterList
+{
+    public List<JsonCharacter> serializedCharacters;
+}
+
+[System.Serializable]
 public class CharacterList
 {
-    public List<SerializableCharacter> sceneCharacters;
-    //public Character[] sceneCharacters;
-    //public int[] test;
+    public List<Character> characters;
 }
