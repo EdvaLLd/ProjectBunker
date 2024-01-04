@@ -53,6 +53,17 @@ public class Farming : InteractableItem
     {
         //här kan man göra skit som ska ske när man börjar/slutar arbeta
         //om man börjar crafta, slutar crafta eller går därifrån
+
+        //Animation
+        if (isWorking)
+        {
+            characterAtStation.characterAnim.StartCrafting();
+        }
+        else
+        {
+            characterAtStation.characterAnim.StopCrafting();
+        }
+        
     }
 
     private void Update()
@@ -183,6 +194,8 @@ public class Farming : InteractableItem
             isWorking = false;
             IsWorkingChange();
         }
+        //Animation
+        characterAtStation.characterAnim.StopCrafting();
         characterAtStation = null;
     }
 
@@ -204,6 +217,9 @@ public class Farming : InteractableItem
         }
         slot.timer = slot.recipe.craftingTime;
         slot.active = true;
+
+        //Animation
+        characterAtStation.characterAnim.StartCrafting();
     }
     void StopCraft(FarmingSlot slot)
     {
@@ -214,6 +230,9 @@ public class Farming : InteractableItem
                 Inventory.AddItem(i.item, i.amount);
                 slot.active = false;
             }
+
+            //Animation
+            characterAtStation.characterAnim.StopCrafting();
         }
     }
 
