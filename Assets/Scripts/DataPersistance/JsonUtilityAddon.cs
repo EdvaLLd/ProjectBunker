@@ -8,28 +8,57 @@ public static class JsonUtilityAddon
     {
         public static T[] ArrayFromJson<T>(string json)
         {
-            Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
-            return wrapper.Items;
+            SerializableArray<T> wrapper = JsonUtility.FromJson<SerializableArray<T>>(json);
+            return wrapper.elements;
         }
 
         public static string ArrayToJson<T>(T[] array)
         {
-            Wrapper<T> wrapper = new Wrapper<T>();
-            wrapper.Items = array;
+            SerializableArray<T> wrapper = new SerializableArray<T>();
+            wrapper.elements = array;
             return JsonUtility.ToJson(wrapper);
         }
 
         public static string ArrayToJson<T>(T[] array, bool prettyPrint)
         {
-            Wrapper<T> wrapper = new Wrapper<T>();
-            wrapper.Items = array;
+            SerializableArray<T> wrapper = new SerializableArray<T>();
+            wrapper.elements = array;
+            return JsonUtility.ToJson(wrapper, prettyPrint);
+        }
+        
+        [System.Serializable]
+        public class SerializableArray<T>
+        {
+            public T[] elements;
+        }
+    }
+
+    public static class JsonList // Edited the one above slightly.
+    {
+        public static List<T> ListFromJson<T>(string json)
+        {
+            SerializableList<T> wrapper = JsonUtility.FromJson<SerializableList<T>>(json);
+            return wrapper.content;
+        }
+
+        public static string ListToJson<T>(List<T> list)
+        {
+            SerializableList<T> wrapper = new SerializableList<T>();
+            wrapper.content = list;
+            return JsonUtility.ToJson(wrapper);
+        }
+
+        public static string ListToJson<T>(List<T> list, bool prettyPrint)
+        {
+            SerializableList<T> wrapper = new SerializableList<T>();
+            wrapper.content = list;
             return JsonUtility.ToJson(wrapper, prettyPrint);
         }
 
         [System.Serializable]
-        private class Wrapper<T>
+        public class SerializableList<T>
         {
-            public T[] Items;
+            public List<T> content;
         }
     }
 
@@ -48,7 +77,7 @@ public static class JsonUtilityAddon
                 serializedDictionary.keyArray[index] = key;
                 index++;
                 
-                if (index > Mathf.Clamp(dictionary.Keys.Count-1, 0, dictionary.Keys.Count-1)) 
+                if (index > Mathf.Clamp(dictionary.Keys.Count-1, 0, dictionary.Keys.Count-1)) //So that it doesn't loop but just iterates over every element once.
                 {
                     index = 0;
                     break;

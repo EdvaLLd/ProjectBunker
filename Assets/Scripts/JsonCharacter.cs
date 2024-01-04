@@ -45,11 +45,12 @@ public class JsonCharacter
     //public JsonSerializablePosition newGoalPos;
 
     public string characterName;
-    public List<Desease> deseases = new List<Desease>();
 
     public CharacterAnimation characterAnim;
-    public JsonUtilityAddon.JsonDictionary.SerializableDictionary<Statuses, int> statuses = new JsonUtilityAddon.JsonDictionary.SerializableDictionary<Statuses, int>();
-        //<Statuses, int> statuses = new Dictionary<Statuses, int>();
+    //public JsonUtilityAddon.JsonDictionary.SerializableDictionary<Statuses, int> statuses = new JsonUtilityAddon.JsonDictionary.SerializableDictionary<Statuses, int>();
+    //<Statuses, int> statuses = new Dictionary<Statuses, int>();
+
+    public JsonUtilityAddon.JsonList.SerializableList<Statuses> statuses = new();
 
     public float workMultiplier = 1;
 
@@ -59,6 +60,12 @@ public class JsonCharacter
     public AudioClip audioClip;
     public AudioSource audioSource;
     #endregion
+    
+    /*[System.Serializable]
+    public class JsonSerializableStatuses
+    {
+        public List<Statuses> content;
+    }
 
     [System.Serializable]
     public class JsonSerializablePosition 
@@ -66,7 +73,7 @@ public class JsonCharacter
         public float x;
         public float y;
         public float z;
-    }
+    }*/
 
     #region Character/JsonCharacter conversion
     public static JsonCharacter CharacterToJson(Character sceneCharacter)
@@ -89,7 +96,7 @@ public class JsonCharacter
         serializedCharacter.task = sceneCharacter.task;
         serializedCharacter.itemInteractedWith = sceneCharacter.itemInteractedWith;
         //SerializedCharacter.onTaskCompletion = characters[index]._; // Solve how to get this variable.
-        serializedCharacter.gearEquipped = sceneCharacter.gearEquipped;
+        //serializedCharacter.gearEquipped = sceneCharacter.gearEquipped;
         serializedCharacter.hunger = sceneCharacter.hunger;
         serializedCharacter.health = sceneCharacter.health;
         serializedCharacter.isAlive = sceneCharacter.isAlive;
@@ -100,9 +107,9 @@ public class JsonCharacter
         serializedCharacter.createNewPath = sceneCharacter.createNewPath;
         serializedCharacter.newGoalPos = sceneCharacter.newGoalPos;
         serializedCharacter.characterName = sceneCharacter.characterName;
-        serializedCharacter.deseases = sceneCharacter.deseases;
+        //serializedCharacter.deseases = sceneCharacter.deseases;
         serializedCharacter.characterAnim = sceneCharacter.characterAnim;
-        serializedCharacter.statuses = JsonUtilityAddon.JsonDictionary.DictionaryToJson(sceneCharacter.statuses);
+        serializedCharacter.statuses.content = sceneCharacter.statuses;
         serializedCharacter.workMultiplier = sceneCharacter.workMultiplier;
         serializedCharacter.marker = sceneCharacter.marker;
         serializedCharacter.reasonsToWarn = sceneCharacter.reasonsToWarn;
@@ -130,7 +137,7 @@ public class JsonCharacter
         returnCharacter.task = serializedCharacter.task;
         returnCharacter.itemInteractedWith = serializedCharacter.itemInteractedWith;
         //SerializedCharacter.onTaskCompletion = characters[index]._; // Solve how to get this variable.
-        returnCharacter.gearEquipped = serializedCharacter.gearEquipped;
+        //returnCharacter.gearEquipped = serializedCharacter.gearEquipped;
         returnCharacter.hunger = serializedCharacter.hunger;
         returnCharacter.health = serializedCharacter.health;
         returnCharacter.isAlive = serializedCharacter.isAlive;
@@ -141,10 +148,10 @@ public class JsonCharacter
         returnCharacter.createNewPath = serializedCharacter.createNewPath;
         returnCharacter.newGoalPos = serializedCharacter.newGoalPos;
         returnCharacter.characterName = serializedCharacter.characterName;
-        returnCharacter.deseases = serializedCharacter.deseases;
-        returnCharacter.characterAnim = serializedCharacter.characterAnim;        
+        //returnCharacter.deseases = serializedCharacter.deseases;
+        //returnCharacter.characterAnim = serializedCharacter.characterAnim;        
 
-        returnCharacter.statuses = serializedCharacter.JsonToStatuses(serializedCharacter.statuses);
+        returnCharacter.statuses = serializedCharacter.statuses.content;
         returnCharacter.workMultiplier = serializedCharacter.workMultiplier;
         returnCharacter.marker = serializedCharacter.marker;
         returnCharacter.reasonsToWarn = serializedCharacter.reasonsToWarn;

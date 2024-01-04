@@ -64,7 +64,8 @@ public class Character : MonoBehaviour
     public  bool createNewPath = false;
     public Vector3 newGoalPos;
 
-    List<Statuses> statuses = new List<Statuses>();
+    [HideInInspector] 
+    public List <Statuses> statuses = new List<Statuses>();
     public string characterName;
 
     public CharacterAnimation characterAnim { get; private set; }
@@ -79,7 +80,6 @@ public class Character : MonoBehaviour
     private void Awake() 
     {
         diseaseVFX.gameObject.GetComponent<VisualEffect>().Stop();
-        characterName = SetCharacterName(FindObjectOfType<GameManager>().characterNames);
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 1.0f;
         audioSource.loop = false;
@@ -89,20 +89,23 @@ public class Character : MonoBehaviour
         }
     }
 
-    public float workMultiplier { get; private set; } = 1;
+    public float workMultiplier /*{ get; private set; }*/ = 1;
 
 
-    GameObject marker;
-    int reasonsToWarn = 0;
+    [HideInInspector]
+    public GameObject marker;
+    [HideInInspector]
+    public int reasonsToWarn = 0;
 
     public GearHandler gear { get; private set; } = new GearHandler();
 
     public MasterAura masterAura { get; private set; }
 
     float mood = .5f; //<.3f=ledsen, >.7f=glad
-    [SerializeField]
-    private AudioClip audioClip;
-    private AudioSource audioSource;
+    //[SerializeField]
+    public AudioClip audioClip;
+    [HideInInspector]
+    public AudioSource audioSource;
 
     //håll båda de här positiva
     float moodChangeRateIdle = 0.002f;
