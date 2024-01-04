@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -391,6 +391,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amountOfVersions: 2
   ponytail: {fileID: 0}
+  forbiddenShoes: 
+  forbiddenShirts: 
+  forbiddenPants: 
 --- !u!1 &781670175
 GameObject:
   m_ObjectHideFlags: 0
@@ -4702,6 +4705,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amountOfVersions: 2
   ponytail: {fileID: 0}
+  forbiddenShoes: 
+  forbiddenShirts: 
+  forbiddenPants: 
 --- !u!114 &4785590770619540673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5511,6 +5517,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 987184896071499721, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
+      propertyPath: m_SpriteKey
+      value: 0.00013716354
+      objectReference: {fileID: 0}
+    - target: {fileID: 987184896071499721, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
       propertyPath: m_labelHash
       value: 0.0000001489224
       objectReference: {fileID: 0}
@@ -5518,6 +5528,10 @@ PrefabInstance:
       propertyPath: m_CategoryHash
       value: 1.9362923e-20
       objectReference: {fileID: 0}
+    - target: {fileID: 987184896071499726, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2819272821683541935, guid: 3305457be673bd644bd4ad278a53ad11, type: 3}
     - target: {fileID: 987184896071499726, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5746,6 +5760,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5856782722861563462, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -1.3817128
+      objectReference: {fileID: 0}
+    - target: {fileID: 5856782722861563462, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: -0.36690646
+      objectReference: {fileID: 0}
+    - target: {fileID: 5856782722861563462, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
+      propertyPath: m_Bounds.m_Extent.x
+      value: 0.27568996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5856782722861563462, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
+      propertyPath: m_Bounds.m_Extent.y
+      value: 0.11781503
+      objectReference: {fileID: 0}
+    - target: {fileID: 5856782722861563462, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
+      propertyPath: m_BoneTransforms.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5856782722861563462, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
+      propertyPath: m_BoneTransforms.Array.data[0]
+      value: 
+      objectReference: {fileID: 6085703536946158678}
     - target: {fileID: 6080492416125856265, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.16768827
@@ -6056,6 +6094,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
+--- !u!4 &6085703536946158678 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6010510670505721476, guid: 1166e70116113b042a97ee115eb6a51a, type: 3}
+  m_PrefabInstance: {fileID: 6085703536946158677}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6217188427765197232
 Transform:
   m_ObjectHideFlags: 0
