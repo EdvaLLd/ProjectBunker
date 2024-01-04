@@ -35897,7 +35897,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 847712254}
   m_HandleRect: {fileID: 847712253}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -36294,7 +36294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308352331048, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.2397979
+      value: -0.23979785
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308391302575, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -36374,7 +36374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308828809589, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.16023965
+      value: 0.1602396
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308828809589, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
@@ -36554,7 +36554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309650757977, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.18308537
+      value: -0.1830854
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309678324264, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_Bounds.m_Center.x
