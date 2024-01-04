@@ -486,7 +486,7 @@ public class Character : MonoBehaviour
 
         health = Mathf.Clamp(health, 0, maxHealth);
         hunger = Mathf.Clamp(hunger, 0, maxHunger);
-        print(hunger);
+        //print(hunger);
     }
 
     public void TakeDamage(float damage)
