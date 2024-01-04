@@ -382,9 +382,18 @@ public class ExplorationBase
             }
 
             int rounds = (int)Math.Ceiling(enemyHealth / (double)(charStrength - enemyDefense));
-            character.TakeDamage(rounds * (enemyStrength - charDefense));
+            int damage = rounds * (enemyStrength - charDefense);
+            if (damage > character.health)
+            {
+                character.health = 1;
+            }
+            else
+            {
+                character.TakeDamage(damage);
+            }
+            
 
-            if(UnityEngine.Random.Range(0, 100) < 10)
+            if(UnityEngine.Random.Range(0, 100) < 30)
             {
                 character.masterAura.AddAura(AuraPresets.SprainedLeg());
             }
