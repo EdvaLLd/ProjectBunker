@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 [CreateAssetMenu(menuName = "Inventory System/Inventory Item")]
+
+[Serializable]
 public class Item : ItemBase
 {
     public SortingTypes SortingType;
@@ -17,7 +21,7 @@ public class Item : ItemBase
     }*/
 }
 
-[System.Serializable]
+[Serializable]
 public enum SortingTypes
 {
     All,

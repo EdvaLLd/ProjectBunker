@@ -17,16 +17,21 @@ public enum Statuses
     hungry,
     nothing
 }
+
+[Serializable]
 public class Character : MonoBehaviour
 {
-
     #region Variables
+    public bool hasName = false;
+    public bool idIsSet = false;
+    public Transform characterTransform;
+    public Vector3 loadedCharacterPosition;
 
-    BoxCollider itemInteractedWithBoxCollider = null;
+    public BoxCollider itemInteractedWithBoxCollider = null;
 
-    List<Vector3> path;
-    Vector3 posMovingTo = Vector3.zero;
-    bool move = false;
+    public List<Vector3> path;
+    public Vector3 posMovingTo = Vector3.zero;
+    public bool move = false;
 
     public ItemBase item = null;
     public CharacterTasks task = CharacterTasks.none;
@@ -38,26 +43,26 @@ public class Character : MonoBehaviour
 
     float movementSpeedMultiplier = 1;
 
-
-    //karakt�rens stats
+    #region CharacterStats
     public float hunger = 100;
     public float health = 100;
-    bool isAlive = true;
+    public bool isAlive = true;
 
-    bool lowHealthWarningShowed = false;
+    public bool lowHealthWarningShowed = false;
     
-    private bool isHungry = true;
+    public bool isHungry = true;
 
-    [SerializeField]
+    //[SerializeField]
     private float hungerConsumedModifier = .3f;
 
-    [SerializeField]
-    private float notHungryTime = 4;
+    //[SerializeField]
+    public float notHungryTime = 4;
 
     public float maxHunger;
     public float maxHealth;
-    bool createNewPath = false;
-    Vector3 newGoalPos;
+    
+    public  bool createNewPath = false;
+    public Vector3 newGoalPos;
 
     List<Statuses> statuses = new List<Statuses>();
     public string characterName;
@@ -104,18 +109,40 @@ public class Character : MonoBehaviour
     float moodChangeRateWorking = 0.005f;
 
     #endregion
+    #endregion
 
     private void Start()
     {
         characterAnim = GetComponentInChildren<CharacterAnimation>();
         masterAura = new MasterAura(this);
-       
+        SetLoadedPosition();
+        SetCharacterName();
     }
 
-    private string SetCharacterName(string[] names)
+    private void SetCharacterName()
     {
+        if (hasName) 
+        {
+            return;
+        }
+
+        string[] names = FindObjectOfType<GameManager>().characterNames;
+
         int randomNameIndex = UnityEngine.Random.Range(0, Mathf.Clamp(names.Length, 0, names.Length - 1));
-        return names[randomNameIndex];
+
+        characterName = names[randomNameIndex];
+        hasName = true;
+    }
+
+    private void SetLoadedPosition() 
+    {
+        if (loadedCharacterPosition == null || loadedCharacterPosition == Vector3.zero) 
+        {
+            Debug.LogError(gameObject.name + " has a null position. Will use default.");
+            gameObject.transform.position = new Vector3(2.503f, -0.874f, 0.762f);
+            return;
+        }
+        gameObject.transform.position = loadedCharacterPosition;
     }
 
 
@@ -632,5 +659,8 @@ public class Character : MonoBehaviour
     {
         return transform.position.y - posMovingTo.y;
     }
-
+    public void UpdateCharacterTransform() 
+    {
+        characterTransform = gameObject.transform;
+    }
 }
