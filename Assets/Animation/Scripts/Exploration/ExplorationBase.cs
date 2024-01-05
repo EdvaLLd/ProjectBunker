@@ -4,9 +4,9 @@ using UnityEngine;
 using Unity.Mathematics;
 using System;
 
-public class ExplorationBase
+public class ExplorationBase : MonoBehaviour
 {
-    public class ExploreEventTypes : ExplorationEvents
+    public class ExploreEventTypes : ExplorationBase
     {
         public bool LinnearEventSequence(Character character)
         {

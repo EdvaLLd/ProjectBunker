@@ -141,8 +141,8 @@ public class Character : MonoBehaviour
     {
         if (loadedCharacterPosition == null || loadedCharacterPosition == Vector3.zero) 
         {
-            Debug.LogError(gameObject.name + " has a null position. Will use default.");
-            gameObject.transform.position = new Vector3(2.503f, -0.874f, 0.762f);
+            Debug.LogError(gameObject.name + "'s loaded position is null. Will use default (by the entrance door).");
+            gameObject.transform.position = new Vector3(5.3f, 0.362f, 0.542f);
             return;
         }
         gameObject.transform.position = loadedCharacterPosition;
