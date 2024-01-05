@@ -44,10 +44,10 @@ public class GameManager : MonoBehaviour, IDataPersistance
     [Header("Events")]
     public static int eventIndex = 0;
 
-    public ExplorationEvents.StandardExploreEvent[] standardExploreEvents;
-    public ExplorationEvents.ExploreEvent[] mainExploreEvents;
-    public ExplorationEvents.RandomExploreEvent[] randomExploreEvents;
-    public ExplorationEvents.LimitedExploreEvent[] limitedExploreEvents;
+    public ExplorationBase.StandardExploreEvent[] standardExploreEvents;
+    public ExplorationBase.ExploreEvent[] mainExploreEvents;
+    public ExplorationBase.RandomExploreEvent[] randomExploreEvents;
+    public ExplorationBase.LimitedExploreEvent[] limitedExploreEvents;
     #endregion
     #region Character
     [Header("Characters")]
