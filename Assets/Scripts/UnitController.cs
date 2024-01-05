@@ -92,6 +92,10 @@ public class UnitController : MonoBehaviour
             {
                 selectedCharacter.MoveToPos(HelperMethods.CursorToWorldCoord());
             }
+            if(Input.GetKeyDown(KeyCode.J))
+            {
+                selectedCharacter.masterAura.AddAura(AuraPresets.Flu());
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.M))

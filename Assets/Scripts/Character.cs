@@ -299,7 +299,13 @@ public class Character : MonoBehaviour
         {
             statuses.Add(Statuses.ill);
             characterAnim.TurnSick();
+            diseaseVFX.gameObject.GetComponent<VisualEffect>().Play();
         }
+        else
+        {
+            diseaseVFX.gameObject.GetComponent<VisualEffect>().Stop();
+        }
+
         if (masterAura.HasAuraWithStatus(Statuses.injured))
         {
             statuses.Add(Statuses.injured);
