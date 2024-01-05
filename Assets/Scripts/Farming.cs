@@ -132,6 +132,10 @@ public class Farming : InteractableItem
         {
             OpenSeedUI(0);
         }
+        else
+        {
+            HelperMethods.ClearChilds(farmingSeeds.transform);
+        }
     }
 
     void UpdateSlot(FarmingSlot farmingSlot)
@@ -201,11 +205,14 @@ public class Farming : InteractableItem
 
     public void SeedClicked(int nr, CraftingRecipe seed)
     {
-        if (slots[nr].recipe != null) StopCraft(slots[nr]);
-        slots[nr].recipe = seed;
-        UpdateSlot(slots[nr]);
-        StartCraft(slots[nr]);
-        OpenSeedUI(nr);
+        if (slots.Count > 0)
+        {
+            if (slots[nr].recipe != null) StopCraft(slots[nr]);
+            slots[nr].recipe = seed;
+            UpdateSlot(slots[nr]);
+            StartCraft(slots[nr]);
+            OpenSeedUI(nr);
+        }
     }
 
     //borde antagligen gå att kalla på från en "avbryt" knapp
