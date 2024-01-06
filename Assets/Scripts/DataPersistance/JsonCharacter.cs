@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class JsonCharacter
 {
+    public int idKey;
     public bool idIsSet = false;
     public bool hasName = false;
 
@@ -85,6 +86,7 @@ public class JsonCharacter
 
         //character.UpdateCharacterTransform();
         //serializedCharacter.transform = character.characterTransform;
+        serializedCharacter.idKey = sceneCharacter.idKey;
         serializedCharacter.hasName = sceneCharacter.hasName;
         serializedCharacter.idIsSet = sceneCharacter.idIsSet;
         serializedCharacter.storedCharacterPosition = sceneCharacter.transform.position;
@@ -119,49 +121,49 @@ public class JsonCharacter
         return serializedCharacter;
     }
 
-    public static Character JsonToCharacter(JsonCharacter serializedCharacter)
+    public static void JsonToCharacter(JsonCharacter serializedCharacter, Character targetCharacter) // Will apply the following variable values from the serialized JsonCharacter to Character targetCharacter.
     {
-        Character returnCharacter = new Character();
+        //Character returnCharacter = new Character(); /// Not allowed because can not create scripts deriving from MonoBehaviour using "new" keyword as they act as components, not objects if I indestand this correctly.
 
         //character.characterTransform.position = Vector3.zero;
-
-        returnCharacter.hasName = serializedCharacter.hasName;
-        returnCharacter.idIsSet = serializedCharacter.idIsSet;
+        targetCharacter.idKey = serializedCharacter.idKey;
+        targetCharacter.hasName = serializedCharacter.hasName;
+        targetCharacter.idIsSet = serializedCharacter.idIsSet;
         //returnCharacter.characterTransform.position = serializedCharacter.characterPosition;
-        returnCharacter.loadedCharacterPosition = serializedCharacter.storedCharacterPosition;
-        returnCharacter.itemInteractedWithBoxCollider = serializedCharacter.itemInteractedWithBoxCollider;
-        returnCharacter.path = serializedCharacter.path;
-        returnCharacter.posMovingTo = serializedCharacter.posMovingTo;
-        returnCharacter.move = serializedCharacter.move;
-        returnCharacter.item = serializedCharacter.item;
-        returnCharacter.task = serializedCharacter.task;
-        returnCharacter.itemInteractedWith = serializedCharacter.itemInteractedWith;
+        targetCharacter.loadedCharacterPosition = serializedCharacter.storedCharacterPosition;
+        targetCharacter.itemInteractedWithBoxCollider = serializedCharacter.itemInteractedWithBoxCollider;
+        targetCharacter.path = serializedCharacter.path;
+        targetCharacter.posMovingTo = serializedCharacter.posMovingTo;
+        targetCharacter.move = serializedCharacter.move;
+        targetCharacter.item = serializedCharacter.item;
+        targetCharacter.task = serializedCharacter.task;
+        targetCharacter.itemInteractedWith = serializedCharacter.itemInteractedWith;
         //SerializedCharacter.onTaskCompletion = characters[index]._; // Solve how to get this variable.
         //returnCharacter.gearEquipped = serializedCharacter.gearEquipped;
-        returnCharacter.hunger = serializedCharacter.hunger;
-        returnCharacter.health = serializedCharacter.health;
-        returnCharacter.isAlive = serializedCharacter.isAlive;
-        returnCharacter.lowHealthWarningShowed = serializedCharacter.lowHealthWarningShowed;
-        returnCharacter.notHungryTime = serializedCharacter.notHungryTime;
-        returnCharacter.maxHunger = serializedCharacter.maxHunger;
-        returnCharacter.maxHealth = serializedCharacter.maxHealth;
-        returnCharacter.createNewPath = serializedCharacter.createNewPath;
-        returnCharacter.newGoalPos = serializedCharacter.newGoalPos;
-        returnCharacter.characterName = serializedCharacter.characterName;
+        targetCharacter.hunger = serializedCharacter.hunger;
+        targetCharacter.health = serializedCharacter.health;
+        targetCharacter.isAlive = serializedCharacter.isAlive;
+        targetCharacter.lowHealthWarningShowed = serializedCharacter.lowHealthWarningShowed;
+        targetCharacter.notHungryTime = serializedCharacter.notHungryTime;
+        targetCharacter.maxHunger = serializedCharacter.maxHunger;
+        targetCharacter.maxHealth = serializedCharacter.maxHealth;
+        targetCharacter.createNewPath = serializedCharacter.createNewPath;
+        targetCharacter.newGoalPos = serializedCharacter.newGoalPos;
+        targetCharacter.characterName = serializedCharacter.characterName;
         //returnCharacter.deseases = serializedCharacter.deseases;
         //returnCharacter.characterAnim = serializedCharacter.characterAnim;        
 
-        returnCharacter.statuses = serializedCharacter.statuses.content;
-        returnCharacter.workMultiplier = serializedCharacter.workMultiplier;
-        returnCharacter.marker = serializedCharacter.marker;
-        returnCharacter.reasonsToWarn = serializedCharacter.reasonsToWarn;
-        returnCharacter.audioClip = serializedCharacter.audioClip;
-        returnCharacter.audioSource = serializedCharacter.audioSource;
+        targetCharacter.statuses = serializedCharacter.statuses.content;
+        targetCharacter.workMultiplier = serializedCharacter.workMultiplier;
+        targetCharacter.marker = serializedCharacter.marker;
+        targetCharacter.reasonsToWarn = serializedCharacter.reasonsToWarn;
+        targetCharacter.audioClip = serializedCharacter.audioClip;
+        targetCharacter.audioSource = serializedCharacter.audioSource;
 
-        return returnCharacter;
+        //return returnCharacter;
     }
 
-    /*public static*/private Dictionary<Statuses, int> JsonToStatuses(JsonUtilityAddon.JsonDictionary.SerializableDictionary<Statuses,int> serializedDictionary) 
+    /*public staticprivate Dictionary<Statuses, int> JsonToStatuses(JsonUtilityAddon.JsonDictionary.SerializableDictionary<Statuses,int> serializedDictionary) 
     {
         Dictionary<Statuses, int> returnDictionary = new Dictionary<Statuses, int>();
 
@@ -178,6 +180,6 @@ public class JsonCharacter
         }
 
         return returnDictionary;
-    }
+    }*/
     #endregion
 }

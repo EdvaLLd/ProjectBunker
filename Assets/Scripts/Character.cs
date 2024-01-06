@@ -22,6 +22,8 @@ public enum Statuses
 public class Character : MonoBehaviour
 {
     #region Variables
+    [HideInInspector]
+    public int idKey = 0;
     public bool hasName = false;
     public bool idIsSet = false;
     public Transform characterTransform;
@@ -49,7 +51,7 @@ public class Character : MonoBehaviour
     public bool isAlive = true;
 
     public bool lowHealthWarningShowed = false;
-    
+
     public bool isHungry = true;
 
     //[SerializeField]
@@ -60,12 +62,12 @@ public class Character : MonoBehaviour
 
     public float maxHunger;
     public float maxHealth;
-    
-    public  bool createNewPath = false;
+
+    public bool createNewPath = false;
     public Vector3 newGoalPos;
 
-    [HideInInspector] 
-    public List <Statuses> statuses = new List<Statuses>();
+    [HideInInspector]
+    public List<Statuses> statuses = new List<Statuses>();
     public string characterName;
 
     public CharacterAnimation characterAnim { get; private set; }
@@ -77,7 +79,7 @@ public class Character : MonoBehaviour
 
 
 
-    private void Awake() 
+    private void Awake()
     {
         diseaseVFX.gameObject.GetComponent<VisualEffect>().Stop();
         audioSource = gameObject.AddComponent<AudioSource>();
@@ -120,11 +122,12 @@ public class Character : MonoBehaviour
         masterAura = new MasterAura(this);
         SetLoadedPosition();
         SetCharacterName();
+        SetId();
     }
 
     private void SetCharacterName()
     {
-        if (hasName) 
+        if (hasName)
         {
             return;
         }
@@ -137,9 +140,9 @@ public class Character : MonoBehaviour
         hasName = true;
     }
 
-    private void SetLoadedPosition() 
+    private void SetLoadedPosition()
     {
-        if (loadedCharacterPosition == null || loadedCharacterPosition == Vector3.zero) 
+        if (loadedCharacterPosition == null || loadedCharacterPosition == Vector3.zero)
         {
             Debug.LogError(gameObject.name + "'s loaded position is null. Will use default (by the entrance door).");
             gameObject.transform.position = new Vector3(5.3f, 0.362f, 0.542f);
@@ -257,7 +260,7 @@ public class Character : MonoBehaviour
             Move();
             HungerDecay();
             masterAura.Tick();
-            if(isWorking)
+            if (isWorking)
             {
                 AddMood(-moodChangeRateWorking * Time.deltaTime);
             }
@@ -282,7 +285,7 @@ public class Character : MonoBehaviour
     //antagligen ganska ineffektivt, görs varje frame man blir glad/ledsen
     void CheckMoodStatus()
     {
-        if(mood > 0.3f && mood < 0.7f)
+        if (mood > 0.3f && mood < 0.7f)
         {
             masterAura.RemoveAuras(Debufftypes.Mood);
         }
@@ -299,9 +302,9 @@ public class Character : MonoBehaviour
     public bool HasStatus(Statuses status)
     {
         return statuses.Contains(status);
-    } 
+    }
 
-    
+
 
     public void AuraValuesChanged()
     {
@@ -316,7 +319,7 @@ public class Character : MonoBehaviour
 
         masterAura.aura.GetValue(VariableModifiers.Walkspeed, out value);
         movementSpeedMultiplier = Mathf.Clamp(1 + value, 0.2f, 2);
-        CheckStatuses(); 
+        CheckStatuses();
     }
 
     void CheckStatuses()
@@ -460,7 +463,7 @@ public class Character : MonoBehaviour
 
         if (move) //teoretiskt s�tt f�rlorar man range p� framen man kommer fram till en point, men spelar nog ingen roll
         {
-            if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed *movementSpeedMultiplier* Time.deltaTime)
+            if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed * movementSpeedMultiplier * Time.deltaTime)
             {
                 transform.position = posMovingTo;
                 if (createNewPath)
@@ -487,7 +490,7 @@ public class Character : MonoBehaviour
             }
             else
             {
-                Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed *movementSpeedMultiplier* Time.deltaTime);
+                Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed * movementSpeedMultiplier * Time.deltaTime);
                 transform.position = newPos;
             }
         }
@@ -499,7 +502,7 @@ public class Character : MonoBehaviour
 
     void HungerDecay()
     {
-        if(health != maxHealth && hunger > 80)
+        if (health != maxHealth && hunger > 80)
         {
             TakeDamage(-5 * Time.deltaTime);
             hungerConsumedModifier = 1;
@@ -573,7 +576,7 @@ public class Character : MonoBehaviour
         {
             characterAnim.Die();
         }
-        if(UnitController.GetCharacters().Count < 1)
+        if (UnitController.GetCharacters().Count < 1)
         {
             MainMenu.won = false;
             SceneManager.LoadScene("WinLoseScene");
@@ -617,9 +620,9 @@ public class Character : MonoBehaviour
 
     void WarnPlayer(bool shouldFade)
     {
-        if(marker != null)
+        if (marker != null)
         {
-            if(shouldFade)
+            if (shouldFade)
             {
                 marker.GetComponent<UIMarker>().SetShouldFade(true);
                 reasonsToWarn++;
@@ -639,12 +642,12 @@ public class Character : MonoBehaviour
         {
             marker = UIManager.InstantiateWarningAtPos(gameObject, .6f, shouldFade, 5);
         }
-        if(!shouldFade)  reasonsToWarn++;
+        if (!shouldFade) reasonsToWarn++;
     }
     void RemoveWarning()
     {
         reasonsToWarn--;
-        if(reasonsToWarn < 0) reasonsToWarn = 0;
+        if (reasonsToWarn < 0) reasonsToWarn = 0;
         if (reasonsToWarn == 0 && marker != null) Destroy(marker);
     }
     void OnMouseOver()
@@ -662,8 +665,20 @@ public class Character : MonoBehaviour
     {
         return transform.position.y - posMovingTo.y;
     }
-    public void UpdateCharacterTransform() 
+    public void UpdateCharacterTransform()
     {
         characterTransform = gameObject.transform;
+    }
+
+    private void SetId ()
+    {
+        if (idIsSet) 
+        {
+            return;
+        }
+
+        idKey = GameObject.FindObjectOfType<GameManager>().availableIdKey;
+        GameObject.FindObjectOfType<GameManager>().availableIdKey ++;
+        idIsSet = true;
     }
 }

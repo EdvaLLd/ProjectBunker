@@ -24,6 +24,7 @@ public class GameData
     #endregion
 
     #region Character
+    public int availableIdKey;
     public JsonCharacterList listOfCharacters;
     #endregion
     #endregion
@@ -85,7 +86,8 @@ public class GameData
         #endregion
 
         #region CharacterData
-        
+
+        availableIdKey = 0;
         listOfCharacters = new JsonCharacterList();
         #endregion
         #endregion

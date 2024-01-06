@@ -18,16 +18,16 @@ public class GameManager : MonoBehaviour, IDataPersistance
     }
     #region Variables
     #region Miscalanious.
-    public enum difficulties { Easy, Normal, Hard };
+    /*public enum difficulties { Easy, Normal, Hard }; // Was just for practice when I began using this Variable type again, at the start of our project.
     [SerializeField]
-    private difficulties difficulty;
+    private difficulties difficulty;*/
 
     private SkyboxController skyboxManager;
     #endregion
     #region Location
     private static Locations.Location[] explorableLocations = new Locations.Location[System.Enum.GetNames(typeof(Locations.Location.environments)).Length];
 
-    
+
     [Header("Location")]
     //public Looting.LootItem looting = new Looting.LootItem();
 
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     #region Diary
     [Header("Diary")]
     public static int leftPageIndex = 0;
-    
+
     public Diary gameDiary = new Diary();
     #endregion
     #region Events
@@ -73,8 +73,12 @@ public class GameManager : MonoBehaviour, IDataPersistance
         "Thomas",
         "Patricia",
     };
+    [HideInInspector]
+    public int availableIdKey = 0;
     public static JsonCharacterList serializedCharacterList = new JsonCharacterList();
-    public static CharacterList characterList = new CharacterList();
+    [SerializeField, Tooltip("This field contains the prefab base that will be used when loading serialized characters.")] 
+    private GameObject characterLoadPrefab;
+    //public static CharacterList characterList = new CharacterList();
     #endregion
     #region Time
     private float hour = 6;
@@ -99,6 +103,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     private void Start()
     {
         //characterList.sceneCharacters = PopulateSerializedCharacterList();
+        SpawnSerializedCharacters(serializedCharacterList.serializedCharacters);
     }
 
     private void Update()
@@ -149,27 +154,9 @@ public class GameManager : MonoBehaviour, IDataPersistance
         return returnList;
     }
 
-    private List<Character> PopulateCharacterListWithLoaded(GameData data)
-    {
-        List<Character> returnList = new List<Character>();
-        List<JsonCharacter> serializedCharacters = data.listOfCharacters.serializedCharacters;
-
-        if (serializedCharacters.Count > 0)
-        {
-            for (int index = 0; index < serializedCharacters.Count; index++)
-            {
-                returnList.Add(JsonCharacter.JsonToCharacter(serializedCharacters[index]));
-                Debug.Log("Loaded character named: " + serializedCharacters[index].characterName);
-            }
-
-            Debug.Log("returnList.Count: " + returnList.Count);
-        }
-
-        return returnList;
-    }
-
     public void LoadData(GameData data)
     {
+        #region Load variables
         #region Time
         hour = data.clockHour;
         minute = data.clockMinute;
@@ -191,17 +178,24 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
         #region Character
         //characterArray = data.arrayOfCharacters;
-        
-        if (data.listOfCharacters.serializedCharacters.Count > 0) 
+        availableIdKey = data.availableIdKey;
+
+        if (data.listOfCharacters.serializedCharacters.Count > 0)
         {
-            characterList.characters = PopulateCharacterListWithLoaded(data); // Shows up empty in save file because the default is null and when it is loaded on start it sets the list in GM to null which result in it saving null thus getting stuck in a cycle of loading and saving null, which in our case is nothing.
+            serializedCharacterList.serializedCharacters = data.listOfCharacters.serializedCharacters;
+        }
+        else 
+        {
+            Debug.LogError("No characters serialized.");
         }
         //characterArray.test = data.arrayOfCharacters.test;
+        #endregion
         #endregion
     }
 
     public void SaveData(ref GameData data) 
     {
+        #region Save variables
         #region Time
         data.clockHour = hour;
         data.clockMinute = minute;
@@ -221,6 +215,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
         #endregion
 
         #region Character
+        data.availableIdKey = availableIdKey;
+
         serializedCharacterList.serializedCharacters = PopulateSerializedCharacterList();
         //data.arrayOfCharacters = characterArray;
         if (serializedCharacterList.serializedCharacters.Count > 0) 
@@ -229,6 +225,63 @@ public class GameManager : MonoBehaviour, IDataPersistance
         }
         //data.arrayOfCharacters.test = characterArray.test;
         #endregion
+        #endregion
+    }
+
+    public void SpawnSerializedCharacters(List<JsonCharacter> loadedCharacters) 
+    {
+        if (loadedCharacters.Count <= 0) 
+        {
+            Debug.LogError("No characters serialized to spawn. \nSpawning of characters was canceled.");
+            return;
+        }
+        if (characterLoadPrefab == null) 
+        {
+            Debug.LogError("No prefab set for characterLoadPrefab. \nSpawning of characters was canceled.");
+            return;
+        }
+        if (!characterLoadPrefab.TryGetComponent(out Character character))
+        {
+            Debug.LogError("No Character component present for prefab. Add Character script or change prefab to one with script present. \nSpawning of characters was canceled.");
+            return;
+        }
+
+        for (int index = 0; index < loadedCharacters.Count; index++) 
+        {
+            bool alreadyExists = false;
+            GameObject loadCharacter = new GameObject();
+            loadCharacter = characterLoadPrefab;
+
+            JsonCharacter.JsonToCharacter(loadedCharacters[index], loadCharacter.GetComponent<Character>());
+
+            for (int idCheckIndex = 0; idCheckIndex < GameObject.FindObjectsOfType<Character>().Length; idCheckIndex++) 
+            {
+                if (loadedCharacters[index].idKey == GameObject.FindObjectsOfType<Character>()[idCheckIndex].GetComponent<Character>().idKey) 
+                {
+                    alreadyExists = true;
+                    break;
+                }
+
+                if (idCheckIndex >= GameObject.FindObjectsOfType<Character>().Length) 
+                {
+                    break;
+                }
+            }
+
+            if (!alreadyExists)
+            {
+                Instantiate(loadCharacter);
+            }
+            else 
+            {
+                Debug.LogWarning("Character of with idKey: " + loadedCharacters[index].idKey + " is already on the scene and will not be instantiated.");
+            }
+
+            if (index >= loadedCharacters.Count) 
+            {
+                break;
+            }
+        }
     }
 }
 
