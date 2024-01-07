@@ -23393,7 +23393,7 @@ MonoBehaviour:
   saveOnQuit: 1
   customDirectory: 
   initializeNewOnLoadNull: 1
-  fileName: desperate.house
+  fileName: 
 --- !u!4 &1003994746
 Transform:
   m_ObjectHideFlags: 0
