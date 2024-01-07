@@ -37,7 +37,7 @@ public class Locations// : MonoBehaviour
             replaceArray = new Location[System.Enum.GetNames(typeof(Location.environments)).Length - 1]; // -1 top reduce length by the first element (home).
 
 
-            Location.environments[] locationArray = (Location.environments[])System.Enum.GetValues(typeof(Location.environments));
+            Location.environments[] locationArray = (Location.environments[])System.Enum.GetValues(typeof(Location.environments)); /// Refer to this when you want to iterate over enums through for loop.
 
             for (int arrayIndex = 0; arrayIndex < replaceArray.Length; arrayIndex++) // arrayIndex loops over the the Location class objects in the Location[] replaceArray.
             {
@@ -48,7 +48,6 @@ public class Locations// : MonoBehaviour
                 replaceArray[arrayIndex].distanceToHome = replaceArray[arrayIndex].RandomDistance();
                 replaceArray[arrayIndex].locationName += " No_" + arrayIndex;
                 replaceArray[arrayIndex].locationLoot = gameManager.locationalLoot[arrayIndex].lootItems;
-
             }
         }
         return replaceArray; // Outputs an array without the first element of the enum with the approriate length of quantity of enums - 1.

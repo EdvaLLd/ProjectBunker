@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
-public class SkyboxController : MonoBehaviour
+public class SkyboxController : MonoBehaviour,IDataPersistance
 {
     [SerializeField] Transform _Sun = default;
     [SerializeField] Transform _Moon = default;
@@ -12,7 +12,7 @@ public class SkyboxController : MonoBehaviour
     /*[SerializeField]*/ private Vector3 MoonPhaseVector; // A bit funky right now but we'll se how it goes.
 
    
-    [Tooltip("Min=0, Max=360, 0=dawn, 180=dusk.")]
+    [Tooltip("Min=0, Max=360, 0=dawn, 90=day, 180=dusk, 270=night.")]
     public float dayNightValue = 0; //0.0f - 360.0f
     public float cycleRate = 1;
 
@@ -67,6 +67,16 @@ public class SkyboxController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        dayNightValue = data.dayNightNumber;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.dayNightNumber = dayNightValue;
     }
 
     void LateUpdate()
