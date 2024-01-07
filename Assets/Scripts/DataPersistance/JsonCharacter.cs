@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class JsonCharacter
 {
+    #region General
     public int idKey;
     public bool idIsSet = false;
     public bool hasName = false;
@@ -15,7 +16,7 @@ public class JsonCharacter
 
     public BoxCollider itemInteractedWithBoxCollider = null;
 
-    public List<Vector3> path;
+    public /*JsonUtilityAddon.JsonList.Serializable*/List<Vector3> path = new();
     public Vector3 posMovingTo = Vector3.zero;
     public bool move = false;
 
@@ -26,8 +27,8 @@ public class JsonCharacter
     public delegate void OnTaskCompletion(Character characterWhoFinishedTask);
     public static event OnTaskCompletion onTaskCompletion;
 
-    public EqippedGearSet gearEquipped;
-
+    float movementSpeedMultiplier = 1;
+    #endregion
     #region CharacterStats
     public float hunger = 100;
     public float health = 100;
@@ -61,19 +62,11 @@ public class JsonCharacter
     public AudioClip audioClip;
     public AudioSource audioSource;
     #endregion
-    
-    /*[System.Serializable]
-    public class JsonSerializableStatuses
-    {
-        public List<Statuses> content;
-    }
 
-    [System.Serializable]
-    public class JsonSerializablePosition 
+    /*[System.Serializable]
+    public class JsonSerializablePath
     {
-        public float x;
-        public float y;
-        public float z;
+        public List<JsonUtilityAddon.JsonVector.SerializableVector3> pathPoints;
     }*/
 
     #region Character/JsonCharacter conversion
@@ -89,9 +82,9 @@ public class JsonCharacter
         serializedCharacter.idKey = sceneCharacter.idKey;
         serializedCharacter.hasName = sceneCharacter.hasName;
         serializedCharacter.idIsSet = sceneCharacter.idIsSet;
-        serializedCharacter.storedCharacterPosition = sceneCharacter.transform.position;
+        serializedCharacter.storedCharacterPosition = sceneCharacter.gameObject.transform.position;
         serializedCharacter.itemInteractedWithBoxCollider = sceneCharacter.itemInteractedWithBoxCollider;
-        serializedCharacter.path = sceneCharacter.path;
+        serializedCharacter.path/*.content*/ = sceneCharacter.path;
         serializedCharacter.posMovingTo = sceneCharacter.posMovingTo;
         serializedCharacter.move = sceneCharacter.move;
         serializedCharacter.item = sceneCharacter.item;
@@ -132,7 +125,7 @@ public class JsonCharacter
         //returnCharacter.characterTransform.position = serializedCharacter.characterPosition;
         targetCharacter.loadedCharacterPosition = serializedCharacter.storedCharacterPosition;
         targetCharacter.itemInteractedWithBoxCollider = serializedCharacter.itemInteractedWithBoxCollider;
-        targetCharacter.path = serializedCharacter.path;
+        targetCharacter.path = serializedCharacter.path/*.content*/;
         targetCharacter.posMovingTo = serializedCharacter.posMovingTo;
         targetCharacter.move = serializedCharacter.move;
         targetCharacter.item = serializedCharacter.item;

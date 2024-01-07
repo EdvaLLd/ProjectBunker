@@ -4,10 +4,14 @@ using UnityEngine;
 
 [System.Serializable]
 public class GameData
-{   
+{
     #region Variables
     #region GameManager
-    
+
+    #region Other
+    public bool firstRun;
+    #endregion
+
     #region Time
     public float clockHour;
     public float clockMinute;
@@ -69,6 +73,10 @@ public class GameData
     public GameData() 
     {   // Exists in gamemanager that is.
         #region GameManagerData
+
+        #region OtherData
+        firstRun = true;
+        #endregion
 
         #region TimeData
         clockHour = 6;

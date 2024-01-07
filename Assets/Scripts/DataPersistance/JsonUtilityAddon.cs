@@ -126,4 +126,15 @@ public static class JsonUtilityAddon
             public TValue[] valueArray;
         }
     }
+
+    public static class JsonVector 
+    {
+        [System.Serializable]
+        public class SerializableVector3
+        {
+            public float x;
+            public float y;
+            public float z;
+        }
+    }
 }

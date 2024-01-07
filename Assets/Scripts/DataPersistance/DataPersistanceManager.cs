@@ -63,7 +63,7 @@ public class DataPersistanceManager : MonoBehaviour
         //if there is no data -> new game.
         if(gameData == null && initializeNewOnLoadNull)
         {
-            Debug.Log("No data found, initialising new game.");
+            Debug.LogError("No data found, initialising new game.");
             NewGame();
         }
 

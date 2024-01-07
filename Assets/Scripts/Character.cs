@@ -22,11 +22,12 @@ public enum Statuses
 public class Character : MonoBehaviour
 {
     #region Variables
-    [HideInInspector]
+    #region General
+    //[HideInInspector]
     public int idKey = 0;
     public bool hasName = false;
     public bool idIsSet = false;
-    public Transform characterTransform;
+    //public Transform characterTransform;
     public Vector3 loadedCharacterPosition;
 
     public BoxCollider itemInteractedWithBoxCollider = null;
@@ -44,7 +45,7 @@ public class Character : MonoBehaviour
     public static event OnTaskCompletion onTaskCompletion;
 
     float movementSpeedMultiplier = 1;
-
+    #endregion
     #region CharacterStats
     public float hunger = 100;
     public float health = 100;
@@ -140,7 +141,7 @@ public class Character : MonoBehaviour
         hasName = true;
     }
 
-    private void SetLoadedPosition()
+    public void SetLoadedPosition()
     {
         if (loadedCharacterPosition == null || loadedCharacterPosition == Vector3.zero)
         {
@@ -665,10 +666,10 @@ public class Character : MonoBehaviour
     {
         return transform.position.y - posMovingTo.y;
     }
-    public void UpdateCharacterTransform()
+    /*public void UpdateCharacterTransform()
     {
         characterTransform = gameObject.transform;
-    }
+    }*/
 
     private void SetId ()
     {
@@ -677,8 +678,11 @@ public class Character : MonoBehaviour
             return;
         }
 
-        idKey = GameObject.FindObjectOfType<GameManager>().availableIdKey;
-        GameObject.FindObjectOfType<GameManager>().availableIdKey ++;
+        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+        idKey = gameManager.availableIdKey;
+        gameManager.UpdateAvailableIdKey();
+        //gameManager.availableIdKey ++;
         idIsSet = true;
     }
 }

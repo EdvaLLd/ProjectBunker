@@ -2098,7 +2098,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4812868309145935616}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 2.67, y: -0.896, z: 0.762}
+  m_LocalPosition: {x: 4.612478, y: 0.34999996, z: 0.44777727}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2195,19 +2195,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49242c0520e2c044fad394b4fea55b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
-  task: 0
+  idKey: 0
+  hasName: 1
+  idIsSet: 1
+  loadedCharacterPosition: {x: 4.612478, y: 0.34999996, z: 0.44777727}
+  itemInteractedWithBoxCollider: {fileID: 0}
+  path: []
+  posMovingTo: {x: 4.612478, y: 0.34999996, z: 0.44777727}
+  move: 0
+  item: {fileID: 11400000, guid: 4a4c24d0070be5e498066b984a5cac6d, type: 2}
+  task: 3
   itemInteractedWith: {fileID: 0}
-  hunger: 100
-  health: 100
-  hungerConsumedModifier: 0.3
+  hunger: 0
+  health: 1.3143871
+  isAlive: 1
+  lowHealthWarningShowed: 1
+  isHungry: 1
   notHungryTime: 4
   maxHunger: 100
   maxHealth: 100
-  characterName: 
+  createNewPath: 0
+  newGoalPos: {x: 4.0586944, y: 0.34999996, z: 0.5}
+  statuses: 02000000
+  characterName: Lalita
   isWorking: 0
   diseaseVFX: {fileID: 7297995683102187043, guid: 604c33ac0c4932b47ad4939a93255861, type: 3}
+  workMultiplier: 1.4
+  marker: {fileID: 0}
+  reasonsToWarn: 1
   audioClip: {fileID: 8300000, guid: 5baba5b2d78b9ea498139d5956c15db5, type: 3}
+  audioSource: {fileID: 0}
 --- !u!114 &3733842626481888063
 MonoBehaviour:
   m_ObjectHideFlags: 0
