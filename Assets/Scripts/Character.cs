@@ -17,16 +17,24 @@ public enum Statuses
     hungry,
     nothing
 }
+
+[Serializable]
 public class Character : MonoBehaviour
 {
-
     #region Variables
+    #region General
+    //[HideInInspector]
+    public int idKey = 0;
+    public bool hasName = false;
+    public bool idIsSet = false;
+    //public Transform characterTransform;
+    public Vector3 loadedCharacterPosition;
 
-    BoxCollider itemInteractedWithBoxCollider = null;
+    public BoxCollider itemInteractedWithBoxCollider = null;
 
-    List<Vector3> path;
-    Vector3 posMovingTo = Vector3.zero;
-    bool move = false;
+    public List<Vector3> path;
+    public Vector3 posMovingTo = Vector3.zero;
+    public bool move = false;
 
     public ItemBase item = null;
     public CharacterTasks task = CharacterTasks.none;
@@ -37,29 +45,30 @@ public class Character : MonoBehaviour
     public static event OnTaskCompletion onTaskCompletion;
 
     float movementSpeedMultiplier = 1;
-
-
-    //karakt�rens stats
+    #endregion
+    #region CharacterStats
     public float hunger = 100;
     public float health = 100;
-    bool isAlive = true;
+    public bool isAlive = true;
 
-    bool lowHealthWarningShowed = false;
-    
-    private bool isHungry = true;
+    public bool lowHealthWarningShowed = false;
 
-    [SerializeField]
+    public bool isHungry = true;
+
+    //[SerializeField]
     private float hungerConsumedModifier = .3f;
 
-    [SerializeField]
-    private float notHungryTime = 4;
+    //[SerializeField]
+    public float notHungryTime = 4;
 
     public float maxHunger;
     public float maxHealth;
-    bool createNewPath = false;
-    Vector3 newGoalPos;
 
-    List<Statuses> statuses = new List<Statuses>();
+    public bool createNewPath = false;
+    public Vector3 newGoalPos;
+
+    [HideInInspector]
+    public List<Statuses> statuses = new List<Statuses>();
     public string characterName;
 
     public CharacterAnimation characterAnim { get; private set; }
@@ -71,10 +80,9 @@ public class Character : MonoBehaviour
 
 
 
-    private void Awake() 
+    private void Awake()
     {
         diseaseVFX.gameObject.GetComponent<VisualEffect>().Stop();
-        characterName = SetCharacterName(FindObjectOfType<GameManager>().characterNames);
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 1.0f;
         audioSource.loop = false;
@@ -84,38 +92,64 @@ public class Character : MonoBehaviour
         }
     }
 
-    public float workMultiplier { get; private set; } = 1;
+    public float workMultiplier /*{ get; private set; }*/ = 1;
 
 
-    GameObject marker;
-    int reasonsToWarn = 0;
+    [HideInInspector]
+    public GameObject marker;
+    [HideInInspector]
+    public int reasonsToWarn = 0;
 
     public GearHandler gear { get; private set; } = new GearHandler();
 
     public MasterAura masterAura { get; private set; }
 
     float mood = .5f; //<.3f=ledsen, >.7f=glad
-    [SerializeField]
-    private AudioClip audioClip;
-    private AudioSource audioSource;
+    //[SerializeField]
+    public AudioClip audioClip;
+    [HideInInspector]
+    public AudioSource audioSource;
 
     //håll båda de här positiva
     float moodChangeRateIdle = 0.002f;
     float moodChangeRateWorking = 0.005f;
 
     #endregion
+    #endregion
 
     private void Start()
     {
         characterAnim = GetComponentInChildren<CharacterAnimation>();
         masterAura = new MasterAura(this);
-       
+        SetLoadedPosition();
+        SetCharacterName();
+        SetId();
     }
 
-    private string SetCharacterName(string[] names)
+    private void SetCharacterName()
     {
+        if (hasName)
+        {
+            return;
+        }
+
+        string[] names = FindObjectOfType<GameManager>().characterNames;
+
         int randomNameIndex = UnityEngine.Random.Range(0, Mathf.Clamp(names.Length, 0, names.Length - 1));
-        return names[randomNameIndex];
+
+        characterName = names[randomNameIndex];
+        hasName = true;
+    }
+
+    public void SetLoadedPosition()
+    {
+        if (loadedCharacterPosition == null || loadedCharacterPosition == Vector3.zero)
+        {
+            Debug.LogError(gameObject.name + "'s loaded position is null. Will use default (by the entrance door).");
+            gameObject.transform.position = new Vector3(5.3f, 0.362f, 0.542f);
+            return;
+        }
+        gameObject.transform.position = loadedCharacterPosition;
     }
 
 
@@ -227,7 +261,7 @@ public class Character : MonoBehaviour
             Move();
             HungerDecay();
             masterAura.Tick();
-            if(isWorking)
+            if (isWorking)
             {
                 AddMood(-moodChangeRateWorking * Time.deltaTime);
             }
@@ -252,7 +286,7 @@ public class Character : MonoBehaviour
     //antagligen ganska ineffektivt, görs varje frame man blir glad/ledsen
     void CheckMoodStatus()
     {
-        if(mood > 0.3f && mood < 0.7f)
+        if (mood > 0.3f && mood < 0.7f)
         {
             masterAura.RemoveAuras(Debufftypes.Mood);
         }
@@ -269,9 +303,9 @@ public class Character : MonoBehaviour
     public bool HasStatus(Statuses status)
     {
         return statuses.Contains(status);
-    } 
+    }
 
-    
+
 
     public void AuraValuesChanged()
     {
@@ -286,7 +320,7 @@ public class Character : MonoBehaviour
 
         masterAura.aura.GetValue(VariableModifiers.Walkspeed, out value);
         movementSpeedMultiplier = Mathf.Clamp(1 + value, 0.2f, 2);
-        CheckStatuses(); 
+        CheckStatuses();
     }
 
     void CheckStatuses()
@@ -436,7 +470,7 @@ public class Character : MonoBehaviour
 
         if (move) //teoretiskt s�tt f�rlorar man range p� framen man kommer fram till en point, men spelar nog ingen roll
         {
-            if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed *movementSpeedMultiplier* Time.deltaTime)
+            if (Vector3.Distance(transform.position, posMovingTo) < UnitController.movementSpeed * movementSpeedMultiplier * Time.deltaTime)
             {
                 transform.position = posMovingTo;
                 if (createNewPath)
@@ -463,7 +497,7 @@ public class Character : MonoBehaviour
             }
             else
             {
-                Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed *movementSpeedMultiplier* Time.deltaTime);
+                Vector3 newPos = Vector3.MoveTowards(transform.position, posMovingTo, UnitController.movementSpeed * movementSpeedMultiplier * Time.deltaTime);
                 transform.position = newPos;
             }
         }
@@ -475,7 +509,7 @@ public class Character : MonoBehaviour
 
     void HungerDecay()
     {
-        if(health != maxHealth && hunger > 80)
+        if (health != maxHealth && hunger > 80)
         {
             TakeDamage(-5 * Time.deltaTime);
             hungerConsumedModifier = 1;
@@ -492,7 +526,7 @@ public class Character : MonoBehaviour
 
         health = Mathf.Clamp(health, 0, maxHealth);
         hunger = Mathf.Clamp(hunger, 0, maxHunger);
-        print(hunger);
+        //print(hunger);
     }
 
     public void TakeDamage(float damage)
@@ -549,7 +583,7 @@ public class Character : MonoBehaviour
         {
             characterAnim.Die();
         }
-        if(UnitController.GetCharacters().Count < 1)
+        if (UnitController.GetCharacters().Count < 1)
         {
             MainMenu.won = false;
             SceneManager.LoadScene("WinLoseScene");
@@ -593,9 +627,9 @@ public class Character : MonoBehaviour
 
     void WarnPlayer(bool shouldFade)
     {
-        if(marker != null)
+        if (marker != null)
         {
-            if(shouldFade)
+            if (shouldFade)
             {
                 marker.GetComponent<UIMarker>().SetShouldFade(true);
                 reasonsToWarn++;
@@ -615,12 +649,12 @@ public class Character : MonoBehaviour
         {
             marker = UIManager.InstantiateWarningAtPos(gameObject, .6f, shouldFade, 5);
         }
-        if(!shouldFade)  reasonsToWarn++;
+        if (!shouldFade) reasonsToWarn++;
     }
     void RemoveWarning()
     {
         reasonsToWarn--;
-        if(reasonsToWarn < 0) reasonsToWarn = 0;
+        if (reasonsToWarn < 0) reasonsToWarn = 0;
         if (reasonsToWarn == 0 && marker != null) Destroy(marker);
     }
     void OnMouseOver()
@@ -638,5 +672,23 @@ public class Character : MonoBehaviour
     {
         return transform.position.y - posMovingTo.y;
     }
+    /*public void UpdateCharacterTransform()
+    {
+        characterTransform = gameObject.transform;
+    }*/
 
+    private void SetId ()
+    {
+        if (idIsSet) 
+        {
+            return;
+        }
+
+        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+
+        idKey = gameManager.availableIdKey;
+        gameManager.UpdateAvailableIdKey();
+        //gameManager.availableIdKey ++;
+        idIsSet = true;
+    }
 }
