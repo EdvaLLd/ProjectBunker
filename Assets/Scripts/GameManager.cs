@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
         "Patricia",
     };
     [HideInInspector]
-    public int availableIdKey = 0;
+    public int availableIdKey = 1;
     public static JsonCharacterList serializedCharacterList = new JsonCharacterList();
     [SerializeField, Tooltip("This field contains the prefab base that will be used when loading serialized characters.")] 
     private GameObject characterPrefab;
@@ -272,6 +272,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
                 if (loadedCharacters[index].idKey == GameObject.FindObjectsOfType<Character>()[idCheckIndex].GetComponent<Character>().idKey) 
                 {
                     OverwriteCharacter(loadCharacter.GetComponent<Character>(), GameObject.FindObjectsOfType<Character>()[idCheckIndex]);
+                    //UpdateAvailableIdKey();
                     alreadyExists = true;
                     break;
                 }
@@ -290,6 +291,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
             {
                 Debug.Log("Character with idKey: " + loadedCharacters[index].idKey + " is already on the scene and will not be instantiated, instead it will be overwritten.");
             }
+            UpdateAvailableIdKey();
 
             if (index >= loadedCharacters.Count) 
             {
@@ -307,6 +309,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
         }
 
         GameObject character = Instantiate(characterPrefab);
+        UpdateAvailableIdKey();
 
         character.transform.position = new Vector3(5.3f, 0.362f, 0.542f);
     }
