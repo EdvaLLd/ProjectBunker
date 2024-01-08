@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
 {
-    //[SerializeField] private GameObject ghost;
-    [SerializeField] private GameObject guitar;
-    [SerializeField] private GameObject book;
+    public GameObject guitar;
+    public GameObject book;
     [SerializeField] private GameObject ghost;
 
     private Character character;

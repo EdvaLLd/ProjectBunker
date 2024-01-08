@@ -184,14 +184,9 @@ public class PartsChanger : MonoBehaviour
         {
             renderers[i].sortingLayerName = sortingLayerName;
         }
+        GetComponent<CharacterAnimation>().book.GetComponent<Renderer>().sortingLayerName = sortingLayerName;
+        GetComponent<CharacterAnimation>().guitar.GetComponent<Renderer>().sortingLayerName = sortingLayerName;
     }
-
-    //private string[] GetSortingLayerNames()
-    //{
-    //    System.Type internalEditorUtilityType = typeof(InternalEditorUtility);
-    //    PropertyInfo sortingLayersProperty = internalEditorUtilityType.GetProperty("sortingLayerNames", BindingFlags.Static | BindingFlags.NonPublic);
-    //    return (string[])sortingLayersProperty.GetValue(null, new object[0]);
-    //}
 
     private string[] GetSortingLayerNames()
     {

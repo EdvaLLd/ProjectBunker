@@ -15624,14 +15624,14 @@ MonoBehaviour:
     subEvents:
     - eventType: 0
       textEvent:
-        eventMessage: "Name searches for supplies in the forest and loses track of
-          time. They don\u2019t notice when dark clouds slowly fill the sky. A storm
-          is brewing. When the rain starts to pour it\u2019s already too late: Name
-          won\u2019t be able to get home in time. To survive, Name has to build a
-          shelter where they can hide from the storm. Luckily, they find a tarp stuck
-          in a tree, but it needs to be cut down. Name manages to construct a knife
-          from some leather and a piece of metal they found earlier today. The night
-          is rough, but Name survives and returns home with new knowledge and a cold. "
+        eventMessage: "Name searches for supplies and loses track of time. They don\u2019t
+          notice when dark clouds slowly fill the sky. A storm is brewing. When the
+          rain starts to pour it\u2019s already too late: Name won\u2019t be able
+          to get home in time. To survive, Name has to build a shelter where they
+          can hide from the storm. Luckily, they find a tarp stuck in a tree, but
+          it needs to be cut down. Name manages to construct a knife from some leather
+          and a piece of metal they found earlier today. The night is rough, but
+          Name survives and returns home with new knowledge and a cold. "
         timer:
           timeUnit: 0
           ammount: 0
@@ -15749,8 +15749,8 @@ MonoBehaviour:
     subEvents:
     - eventType: 0
       textEvent:
-        eventMessage: 'As Name walks through the forest, they see a silhouette of
-          another person in the distance. Curious but wary, name approaches. The
+        eventMessage: 'As Name walks through the wilderness, they see a silhouette
+          of another person in the distance. Curious but wary, name approaches. The
           person turns out to be a man called Jack, who is looking for herbs. He
           explains that he uses them to treat illness and shows name the best spot
           to pick the plants. As a token of friendship, Jack gives name an herb seed
@@ -16958,14 +16958,13 @@ MonoBehaviour:
     subEvents:
     - eventType: 0
       textEvent:
-        eventMessage: "Name is picking berries in the forest when a growl interrupts
-          them. A large bear is coming towards name! Name realizes they won\u2019t
-          have a chance against the ferocious animal. Suddenly, a shadow attacks
-          the bear from the side with a battle cry. After a few minutes of struggle,
-          the beast is dead. The savior turns out to be a man called James. He suggests
-          that name put on some better armor next time they venture into the woods.
-          James teaches name how to make his favorite piece of clothing: trekking
-          trousers."
+        eventMessage: "Name is picking berries when a growl interrupts them. A large
+          bear is coming towards name! Name realizes they won\u2019t have a chance
+          against the ferocious animal. Suddenly, a shadow attacks the bear from
+          the side with a battle cry. After a few minutes of struggle, the beast
+          is dead. The savior turns out to be a man called James. He suggests that
+          name put on some better armor next time they venture into the woods. James
+          teaches name how to make his favorite piece of clothing: trekking trousers."
         timer:
           timeUnit: 0
           ammount: 0
@@ -17167,7 +17166,7 @@ MonoBehaviour:
     - eventType: 0
       textEvent:
         eventMessage: Name is suddenly attacked by two-headed foxes when they are
-          foraging in the forest.
+          foraging.
         timer:
           timeUnit: 0
           ammount: 0
@@ -17294,8 +17293,7 @@ MonoBehaviour:
     subEvents:
     - eventType: 0
       textEvent:
-        eventMessage: Name is suddenly attacked by giant insects when they are foraging
-          in the forest.
+        eventMessage: Name is suddenly attacked by giant insects when they are foraging.
         timer:
           timeUnit: 0
           ammount: 0
@@ -17418,8 +17416,7 @@ MonoBehaviour:
     subEvents:
     - eventType: 0
       textEvent:
-        eventMessage: Name gets sick from a poisonous plant when they are foraging
-          in the forest.
+        eventMessage: Name gets sick from a poisonous plant when they are foraging.
         timer:
           timeUnit: 0
           ammount: 0
@@ -35986,7 +35983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308352331048, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.23979785
+      value: -0.2397979
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308391302575, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -36066,7 +36063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308828809589, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.1602396
+      value: 0.16023965
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308828809589, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
@@ -36246,7 +36243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309650757977, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.1830854
+      value: -0.18308537
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309678324264, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_Bounds.m_Center.x

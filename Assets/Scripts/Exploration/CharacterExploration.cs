@@ -11,6 +11,7 @@ public class CharacterExploration : MonoBehaviour
     private GameManager gameManager;
     [SerializeField] private AudioClip clip;
     private AudioSource audioSource;
+    private Character character;
 
     private int locationNr;
 
@@ -22,6 +23,7 @@ public class CharacterExploration : MonoBehaviour
         {
             audioSource.clip = clip;
         }
+        character = GetComponent<Character>();
     }
 
     private void Start()
@@ -31,7 +33,7 @@ public class CharacterExploration : MonoBehaviour
     public void StartExploration(int location)
     {
         locationNr = location;
-        TextLog.AddLog(name + " went exploring.");
+        TextLog.AddLog(character.characterName + " went exploring.");
         transform.GetChild(0).gameObject.SetActive(false);
         GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(ExploreWait());
@@ -95,7 +97,7 @@ public class CharacterExploration : MonoBehaviour
 
     private void EndExploration()
     {
-        TextLog.AddLog(name + " came back from their adventure.");
+        TextLog.AddLog(character.characterName + " came back from their adventure.");
         transform.GetChild(0).gameObject.SetActive(true);
         GetComponent<BoxCollider2D>().enabled = true;
         audioSource.Play();
