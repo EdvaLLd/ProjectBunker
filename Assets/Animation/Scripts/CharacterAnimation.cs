@@ -24,28 +24,33 @@ public class CharacterAnimation : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            TurnSick();
-        }
-        if (Input.GetKeyUp(KeyCode.Alpha2))
-        {
-            BeCured();
-        }
+        //if (Input.GetKeyUp(KeyCode.Alpha1))
+        //{
+        //    TurnSick();
+        //}
+        //if (Input.GetKeyUp(KeyCode.Alpha2))
+        //{
+        //    BeCured();
+        //}
 
-    //}else if (Input.GetKeyUp(KeyCode.Alpha3))
-    //{
-    //    Die();
-    //}
-    //else if (Input.GetKeyUp(KeyCode.Alpha4))
-    //{
-    //    ShowGhost();
-    //}else if (Input.GetKeyUp(KeyCode.Alpha5))
-    //{
-    //    StopPlayingGuitar();
-    //    StopReading();
-    //}
-}
+        //}else if (Input.GetKeyUp(KeyCode.Alpha3))
+        //{
+        //    Die();
+        //}
+        //else if (Input.GetKeyUp(KeyCode.Alpha4))
+        //{
+        //    ShowGhost();
+        //}else 
+        if (Input.GetKeyUp(KeyCode.Alpha5))
+        {
+            StopReading();
+            PlayGuitar();
+        } else if (Input.GetKeyUp(KeyCode.Alpha6))
+        {
+            StopPlayingGuitar();
+            Read();
+        }
+    }
 
     public void Flip()
     {
@@ -94,7 +99,6 @@ public class CharacterAnimation : MonoBehaviour
 
     public void StartMoving()
     {
-        //animator.SetTrigger("isNeutral");
         animator.SetBool("isMoving", true);
     }
 

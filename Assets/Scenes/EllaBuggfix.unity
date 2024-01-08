@@ -36294,7 +36294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308352331048, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.23979785
+      value: -0.2397979
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308391302575, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -36374,7 +36374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308828809589, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.1602396
+      value: 0.16023965
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308828809589, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
@@ -36446,6 +36446,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309162070417, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_Bounds.m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812868309198681885, guid: c0b1a8af60001e744aa1490943357865, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812868309198681886, guid: c0b1a8af60001e744aa1490943357865, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309204503309, guid: c0b1a8af60001e744aa1490943357865, type: 3}
@@ -36554,7 +36562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309650757977, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.1830854
+      value: -0.18308537
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309678324264, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -36602,6 +36610,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309717102291, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_Bounds.m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812868309780735756, guid: c0b1a8af60001e744aa1490943357865, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309845452701, guid: c0b1a8af60001e744aa1490943357865, type: 3}
