@@ -293,7 +293,6 @@ public class Character : MonoBehaviour
     {
         statuses.Clear();
         characterAnim.BeNeutral();
-        //characterAnim.BeSad();
         characterAnim.BeCured();
         if (masterAura.HasAuraWithStatus(Statuses.ill))
         {

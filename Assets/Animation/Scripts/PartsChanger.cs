@@ -186,13 +186,6 @@ public class PartsChanger : MonoBehaviour
         }
     }
 
-    //private string[] GetSortingLayerNames()
-    //{
-    //    System.Type internalEditorUtilityType = typeof(InternalEditorUtility);
-    //    PropertyInfo sortingLayersProperty = internalEditorUtilityType.GetProperty("sortingLayerNames", BindingFlags.Static | BindingFlags.NonPublic);
-    //    return (string[])sortingLayersProperty.GetValue(null, new object[0]);
-    //}
-
     private string[] GetSortingLayerNames()
     {
         SortingLayer[] sortingLayers = SortingLayer.layers;
