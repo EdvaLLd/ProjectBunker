@@ -77,12 +77,15 @@ public class Character : MonoBehaviour
 
 
     [SerializeField] private GameObject diseaseVFX;
+    [SerializeField] private GameObject disappearSmoke;
+    [SerializeField] private GameObject characterSprites;
 
 
 
     private void Awake()
     {
         diseaseVFX.gameObject.GetComponent<VisualEffect>().Stop();
+        disappearSmoke.gameObject.GetComponent<VisualEffect>().Stop();
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.spatialBlend = 1.0f;
         audioSource.loop = false;
@@ -588,7 +591,15 @@ public class Character : MonoBehaviour
             MainMenu.won = false;
             SceneManager.LoadScene("WinLoseScene");
         }
-        Destroy(gameObject, 10);
+        StartCoroutine(Disappear());
+        Destroy(gameObject, 13);
+    }
+
+    IEnumerator Disappear() {
+        yield return new WaitForSeconds(10f);
+        disappearSmoke.gameObject.GetComponent<VisualEffect>().Play();
+        yield return new WaitForSeconds(0.5f);
+        characterSprites.SetActive(false);
     }
 
     public void ConsumeFood(Food food)
