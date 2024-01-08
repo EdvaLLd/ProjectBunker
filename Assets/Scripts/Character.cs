@@ -684,11 +684,7 @@ public class Character : MonoBehaviour
             return;
         }
 
-        GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-
-        idKey = gameManager.availableIdKey;
-        gameManager.UpdateAvailableIdKey();
-        //gameManager.availableIdKey ++;
+        idKey = GameObject.FindObjectOfType<GameManager>().availableIdKey;
         idIsSet = true;
     }
 }
