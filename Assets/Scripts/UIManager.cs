@@ -41,6 +41,9 @@ public class UIManager : MonoBehaviour
     static GameObject warningImageStatic;
 
 
+    [SerializeField]
+    GameObject progressSlider;
+    public static GameObject progressSliderStatic;
 
     public static GameObject characterStatsWindowStatic;
     //namn på karaktärerna
@@ -66,6 +69,7 @@ public class UIManager : MonoBehaviour
         dangerTextGO = GameObject.FindGameObjectWithTag("DangerTxt");
         hoverWindow = GameObject.FindGameObjectWithTag("HoverWindow");
         canvas = GameObject.FindGameObjectWithTag("Canvas");
+        progressSliderStatic = progressSlider;
 
         inventorySlotStatic = inventorySlot;
         warningImageStatic = warningImage;

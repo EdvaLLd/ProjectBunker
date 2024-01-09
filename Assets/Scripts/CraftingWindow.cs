@@ -19,6 +19,7 @@ public class CraftingWindow : MonoBehaviour
     CraftingRecipe recipeMarked;
 
     InteractableCraftingMachine craftingMachine;
+    CraftingMachine machine;
 
     [SerializeField]
     Button lowerAmountBtn, increaseAmountBtn;
@@ -34,6 +35,15 @@ public class CraftingWindow : MonoBehaviour
     {
         Inventory.onInventoryUpdate += UpdateAmountSliderValues;
         Inventory.onRecipeAdded += NewRecipeAdded;
+        Inventory.onInventoryUpdate += UpdateWindow;
+    }
+
+    private void Update()
+    {
+        if(characterWhoOpenedWindow.move || UnitController.GetSelectedCharacter() != characterWhoOpenedWindow)
+        {
+            UIManager.CloseWindow(gameObject);
+        }
     }
 
     void NewRecipeAdded(CraftingRecipe recipe)
@@ -46,8 +56,17 @@ public class CraftingWindow : MonoBehaviour
         }
     }
 
+    void UpdateWindow()
+    {
+        if(isActiveAndEnabled)
+        {
+            InitCraftingWindow(machine, craftingMachine, characterWhoOpenedWindow);
+        }
+    }
+
     public void InitCraftingWindow(CraftingMachine machine, InteractableCraftingMachine physicalMachine, Character character)
     {
+        this.machine = machine;
         craftingMachine = physicalMachine;
         characterWhoOpenedWindow = character;
         //Time.timeScale = 0;

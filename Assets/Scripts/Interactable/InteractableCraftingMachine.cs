@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.UI;
 
 public class InteractableCraftingMachine : InteractableItem, IDataPersistance
 {
@@ -19,6 +20,10 @@ public class InteractableCraftingMachine : InteractableItem, IDataPersistance
     [SerializeField] private AudioClip audioClip;
     [SerializeField] private GameObject craftingVFX;
 
+    GameObject progressSlider;
+
+    bool initPos = false;
+
 
     private void Awake()
     {
@@ -34,6 +39,19 @@ public class InteractableCraftingMachine : InteractableItem, IDataPersistance
         audioSource.spatialBlend = 1.0f;
     }
 
+    private void Start()
+    {
+        progressSlider = Instantiate(UIManager.progressSliderStatic, UIManager.canvas.transform);
+        progressSlider.transform.SetAsFirstSibling();
+        Vector3 pos = transform.position;
+        //pos.x += transform.lossyScale.x / 2 * GetComponent<BoxCollider>().bounds.center.x;
+        //pos.y += transform.lossyScale.y / 2 * GetComponent<BoxCollider>().bounds.center.y;
+
+        pos.y += 0.1f;
+        progressSlider.transform.position = Camera.main.WorldToScreenPoint(pos);
+        progressSlider.SetActive(false);
+    }
+
     public void InteractedWith(Character character)
     {
         UIManager.SetWindowActive(UIManager.craftingWindow);
@@ -46,7 +64,6 @@ public class InteractableCraftingMachine : InteractableItem, IDataPersistance
             CharacterLeftStation(characterOnStation);
         }
         characterOnStation = characterCrafting;
-        SetIsCrafting(true);
 
         //Animation stuff
         if (characterOnStation.gameObject.GetComponentInChildren<CharacterAnimation>() != null)
@@ -71,6 +88,7 @@ public class InteractableCraftingMachine : InteractableItem, IDataPersistance
                 RefundItemsForCraft(amountPayedFor - amountLeft);
             }
         }
+        SetIsCrafting(true);
     }
     public void CharacterLeftStation(Character character)
     {
@@ -110,6 +128,13 @@ public class InteractableCraftingMachine : InteractableItem, IDataPersistance
 
     public void SetIsCrafting(bool value)
     {
+        progressSlider.SetActive(value);
+        if(!initPos)
+        {
+            Vector3 pos = Physics.ClosestPoint(transform.position + Vector3.up*10, GetComponent<BoxCollider>(), transform.position, Quaternion.identity);
+            pos.y += .3f;
+            progressSlider.transform.position = Camera.main.WorldToScreenPoint(pos);
+        }
         isCrafting = value;
         if (value) {
             craftingVFX.gameObject.GetComponent<VisualEffect>().Play();
@@ -180,6 +205,7 @@ public class InteractableCraftingMachine : InteractableItem, IDataPersistance
         if(isCrafting)
         {
             progress += Time.deltaTime / currentRecipeBeingCrafted.craftingTime * characterOnStation.workMultiplier;
+            progressSlider.GetComponent<Slider>().value = progress;
             if(progress > 1)
 
             {

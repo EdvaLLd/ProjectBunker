@@ -17,6 +17,8 @@ public class LockedRoom : MonoBehaviour
     private AudioClip mistClip, lockClip;
     private AudioSource audioSource;
 
+    bool hovering = false;
+
     private void Start()
     {
         for (int i = 0; i < roomEntrances.Length; i++)
@@ -34,23 +36,34 @@ public class LockedRoom : MonoBehaviour
             audioSource.clip = lockClip;
         }
         audioSource.spatialBlend = 1.0f;
+        Inventory.onInventoryUpdate += CheckLootedItem;
+    }
+
+    void CheckLootedItem()
+    {
+        if(hovering)DisplayButton();
     }
 
     private void OnMouseEnter()
+    {
+        hovering = true;
+        DisplayButton();
+    }
+    void DisplayButton()
     {
         if (UIElementConsumeMouseOver.mouseOverIsAvailable && UnitController.GetSelectedCharacter() != null)
         {
             bool characterInAdjecentRoom = false;
             foreach (Pathpoint e in roomEntrances)
             {
-                if(e.isLadder)
+                if (e.isLadder)
                 {
-                    if(HelperMethods.AmountOfWallsBetweenPoints(e.transform.position, UnitController.GetSelectedCharacter().transform.position) < 2)
+                    if (HelperMethods.AmountOfWallsBetweenPoints(e.transform.position, UnitController.GetSelectedCharacter().transform.position) < 2)
                     {
                         characterInAdjecentRoom = true;
                     }
                 }
-                if(!HelperMethods.WallBetweenPointsOnGround(e.transform.position, UnitController.GetSelectedCharacter().transform.position))
+                if (!HelperMethods.WallBetweenPointsOnGround(e.transform.position, UnitController.GetSelectedCharacter().transform.position))
                 {
                     characterInAdjecentRoom = true;
                 }
@@ -74,13 +87,20 @@ public class LockedRoom : MonoBehaviour
             {
                 UIManager.dangerTextGO.SetActive(true);
                 UIManager.dangerTextGO.transform.position = Camera.main.WorldToScreenPoint(transform.position);
-                if (mist == null)
+                if (characterInAdjecentRoom)
                 {
-                    UIManager.dangerTextGO.GetComponent<TextMeshProUGUI>().text = "LOCKED";
+                    if (mist == null)
+                    {
+                        UIManager.dangerTextGO.GetComponent<TextMeshProUGUI>().text = "LOCKED";
+                    }
+                    else
+                    {
+                        UIManager.dangerTextGO.GetComponent<TextMeshProUGUI>().text = "DANGER!!";
+                    }
                 }
                 else
                 {
-                    UIManager.dangerTextGO.GetComponent<TextMeshProUGUI>().text = "DANGER!!";
+                    UIManager.dangerTextGO.GetComponent<TextMeshProUGUI>().text = "TOO FAR AWAY";
                 }
             }
         }
@@ -88,6 +108,7 @@ public class LockedRoom : MonoBehaviour
 
     private void OnMouseExit()
     {
+        hovering = false;
         UIManager.clearMistBtnGO.SetActive(false);
         UIManager.dangerTextGO.SetActive(false);
     }
@@ -104,7 +125,8 @@ public class LockedRoom : MonoBehaviour
             Inventory.RemoveItem(itemToUnlockRoom);
             UIManager.clearMistBtnGO.gameObject.SetActive(false);
             StartCoroutine(WaitForSound(audioSource.clip));
-            
+            UIManager.clearMistBtnGO.SetActive(false);
+            UIManager.dangerTextGO.SetActive(false);
         }
     }
 
