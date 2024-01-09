@@ -556,6 +556,11 @@ public class Character : MonoBehaviour
             UnitDied();
         }
     }
+
+    public void KILLCHARACTER()
+    {
+        UnitDied();
+    }
     public void UseHunger(float amount)
     {
         hunger -= amount;
@@ -565,6 +570,7 @@ public class Character : MonoBehaviour
     {
         isAlive = false;
         TextLog.AddLog("Unit died!");
+        transform.position = HelperMethods.ConvertPosToBeOnGround(transform.position, GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y);
         List<Character> charsInRoom = HelperMethods.GetCharactersInSameRoom(this);
         foreach (Character c in charsInRoom)
         {
@@ -573,6 +579,7 @@ public class Character : MonoBehaviour
         UnitController.RemoveCharacter(this);
         reasonsToWarn = 0;
         RemoveWarning();
+        CharacterLeftTask();
         if (UnitController.GetSelectedCharacter() == this)
         {
             UnitController.SwapSelectedCharacter(this);
@@ -581,6 +588,10 @@ public class Character : MonoBehaviour
         //Prel animation stuff
         if (characterAnim != null)
         {
+            //finns det någon anledning att death inte kan triggas från
+            //Any State?
+            characterAnim.StopReading();
+            characterAnim.StopPlayingGuitar();
             characterAnim.Die();
         }
         if (UnitController.GetCharacters().Count < 1)

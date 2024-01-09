@@ -38,7 +38,7 @@ public class GearHandler
                 if (gearEquipped.boots != null)
                 {
                     Inventory.AddItem(gearEquipped.boots);
-                    gearEquipped.chest = null;
+                    gearEquipped.boots = null;
                 }
                 break;
             case GearTypes.weapon:

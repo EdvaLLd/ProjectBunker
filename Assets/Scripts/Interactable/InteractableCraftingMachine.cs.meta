@@ -3,7 +3,12 @@ guid: d340c3dcbff896c469a8f3125fc819b7
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - interactableArea: {instanceID: 0}
+  - item: {instanceID: 0}
+  - audioClip: {instanceID: 0}
+  - craftingVFX: {instanceID: 0}
+  - progressSlider: {fileID: 354166270233156486, guid: 7ae841359a8fee7418d108320a68e061, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
