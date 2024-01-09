@@ -73,4 +73,31 @@ public class FileDataHandler
             Debug.LogError("Error when trying to save data to: " + fullPath + "\n" + e);
         }
     }
+
+    public void Clear()
+    {
+        // Path.Combine to account for different OS's using different path separators (selfish bastards, can never come together to unify stuff for some actual QoL improvement, Corpo slime).
+        string fullPath = Path.Combine(dataDirectoryPath, dataFileName);
+
+        try
+        {
+            // creating dir. if it doesn't exist yet.
+            Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+
+            // Serialising saved C# data object into Json file
+            string storeData = "";
+
+            using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+            {
+                using (StreamWriter writer = new StreamWriter(stream))
+                {
+                    writer.Write(storeData);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error when trying to clear data from: " + fullPath + "\n" + e);
+        }
+    }
 }

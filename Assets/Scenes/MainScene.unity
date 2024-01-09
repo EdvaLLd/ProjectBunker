@@ -15303,6 +15303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99f7e8ad206d3d4bb915ae1e47e444a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnStartCharacter: 0
   isFirstRun: 1
   locationalLoot:
   - lootItems:
@@ -19052,7 +19053,7 @@ MonoBehaviour:
   inventorySlot: {fileID: 5257418689303467112, guid: 3ac425931aba22341b4e72c267a428ab, type: 3}
   sortingTypeEnabled: 0
   warningImage: {fileID: 8200556780890326169, guid: 82f74c4c5b7e7e14f96ac5cb6ff4ff2b, type: 3}
-  progressSlider: {fileID: 354166270233156486, guid: 7ae841359a8fee7418d108320a68e061, type: 3}
+  progressSlider: {fileID: 0}
 --- !u!4 &833021599
 Transform:
   m_ObjectHideFlags: 0
@@ -35675,7 +35676,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 847712254}
   m_HandleRect: {fileID: 847712253}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -36080,7 +36081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308352331048, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.2397979
+      value: -0.23979785
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308391302575, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -36160,7 +36161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308828809589, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.16023965
+      value: 0.1602396
       objectReference: {fileID: 0}
     - target: {fileID: 4812868308828809589, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
@@ -36344,7 +36345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309650757977, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.18308537
+      value: -0.1830854
       objectReference: {fileID: 0}
     - target: {fileID: 4812868309651810157, guid: c0b1a8af60001e744aa1490943357865, type: 3}
       propertyPath: m_IsActive
