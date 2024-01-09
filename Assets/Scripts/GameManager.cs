@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour, IDataPersistance
     [SerializeField]
     private difficulties difficulty;*/
 
+    [SerializeField]
+    private bool spawnStartCharacter = false;
     public bool isFirstRun = true;
     private SkyboxController skyboxManager;
     #endregion
@@ -74,10 +76,10 @@ public class GameManager : MonoBehaviour, IDataPersistance
         "Thomas",
         "Patricia",
     };
-    [HideInInspector]
-    public int availableIdKey = 1;
+    //[HideInInspector]
+    public int availableIdKey = 0;
     public static JsonCharacterList serializedCharacterList = new JsonCharacterList();
-    [SerializeField, Tooltip("This field contains the prefab base that will be used when loading serialized characters.")] 
+    [SerializeField, Tooltip("This field contains the prefab base that will be used when loading serialized characters.")]
     private GameObject characterPrefab;
     //public static CharacterList characterList = new CharacterList();
     #endregion
@@ -91,7 +93,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
     private void Awake()
     {
         instance = this;
-        
+
         skyboxManager = GameObject.FindObjectOfType<SkyboxController>();
 
         explorableLocations = Locations.SetExplorableLocations();
@@ -127,18 +129,18 @@ public class GameManager : MonoBehaviour, IDataPersistance
         GameObject.Find("DayCounter").transform.GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = dayCount;
     }
 
-    public static Locations.Location[] GetExplorableLocations() 
+    public static Locations.Location[] GetExplorableLocations()
     {
         return explorableLocations;
     }
 
-    private List<JsonCharacter> SerializeSceneCharacters() 
+    private List<JsonCharacter> SerializeSceneCharacters()
     {
         List<JsonCharacter> returnList = new List<JsonCharacter>();
 
         Character[] characters = FindObjectsOfType<Character>();
 
-        if (characters.Length > 0) 
+        if (characters.Length > 0)
         {
             for (int index = 0; index < characters.Length; index++)
             {
@@ -167,11 +169,11 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
         #region Diary
         leftPageIndex = data.diaryLeftPageIndex;
-        if (data.diary.entries.Count > 0) 
+        if (data.diary.entries.Count > 0)
         {
             gameDiary.entries = data.diary.entries;
         }
-        
+
         #endregion
 
         #region Event
@@ -186,12 +188,12 @@ public class GameManager : MonoBehaviour, IDataPersistance
         {
             serializedCharacterList.serializedCharacters = data.listOfCharacters.serializedCharacters;
         }
-        else 
+        else
         {
             Debug.LogError("No characters serialized.");
         }
-        
-        if (isFirstRun) 
+
+        if (isFirstRun && spawnStartCharacter)
         {
             SpawnStartCharacter();
         }
@@ -201,7 +203,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
         #endregion
     }
 
-    public void SaveData(ref GameData data) 
+    public void SaveData(ref GameData data)
     {
         #region Save variables
 
@@ -217,7 +219,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
         #region Diary
         data.diaryLeftPageIndex = leftPageIndex;
-        if (gameDiary.entries.Count > 0) 
+        if (gameDiary.entries.Count > 0)
         {
             data.diary.entries = gameDiary.entries;
         }
@@ -232,7 +234,7 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
         serializedCharacterList.serializedCharacters = SerializeSceneCharacters();
         //data.arrayOfCharacters = characterArray;
-        if (serializedCharacterList.serializedCharacters.Count > 0) 
+        if (serializedCharacterList.serializedCharacters.Count > 0)
         {
             data.listOfCharacters.serializedCharacters = serializedCharacterList.serializedCharacters;
         }
@@ -241,14 +243,14 @@ public class GameManager : MonoBehaviour, IDataPersistance
         #endregion
     }
 
-    private void SpawnSerializedCharacters(List<JsonCharacter> loadedCharacters) 
+    private void SpawnSerializedCharacters(List<JsonCharacter> serializedCharacters)
     {
-        if (loadedCharacters.Count <= 0) 
+        if (serializedCharacters.Count <= 0)
         {
             Debug.LogError("No characters serialized to spawn. \nSpawning of characters was canceled.");
             return;
         }
-        if (characterPrefab == null) 
+        if (characterPrefab == null)
         {
             Debug.LogError("No prefab set for characterPrefab. \nSpawning of characters was canceled.");
             return;
@@ -259,25 +261,44 @@ public class GameManager : MonoBehaviour, IDataPersistance
             return;
         }
 
-        for (int index = 0; index < loadedCharacters.Count; index++) 
+
+        GameObject spawnCharacter = characterPrefab; // initialized GameObject with prefab.
+
+        Character[] sceneCharacters = GameObject.FindObjectsOfType<Character>(); // Creating Character array of all characters present on scene.
+        int[] sceneIds = new int[sceneCharacters.Length];
+        bool alreadyExists = false/*new bool[serializedCharacters.Count]*/;// bool to confirm or deny existance of characters on scene.
+
+        for (int keyIndex = 0; keyIndex < sceneCharacters.Length; keyIndex++)
         {
-            bool alreadyExists = false;
-            GameObject loadCharacter = new GameObject();
-            loadCharacter = characterPrefab;
+            sceneIds[keyIndex] = sceneCharacters[keyIndex].idKey;
 
-            JsonCharacter.JsonToCharacter(loadedCharacters[index], loadCharacter.GetComponent<Character>());
-
-            for (int idCheckIndex = 0; idCheckIndex < GameObject.FindObjectsOfType<Character>().Length; idCheckIndex++) 
+            if (keyIndex >= Mathf.Clamp(sceneCharacters.Length - 1, 0, sceneCharacters.Length - 1))
             {
-                if (loadedCharacters[index].idKey == GameObject.FindObjectsOfType<Character>()[idCheckIndex].GetComponent<Character>().idKey) 
+                break;
+            }
+        }
+
+        for (int characterIndex = 0; characterIndex < serializedCharacters.Count; characterIndex++)  // looping over serialized characters.
+        {
+            for (int compareIndex = 0; compareIndex < sceneIds.Length; compareIndex++) // looping over scene Characters to compare to serialized characters.
+            {
+                Character sceneCharacter = sceneCharacters[compareIndex];
+
+                Debug.Log("serializedCharID: " + serializedCharacters[characterIndex].idKey + " vs " + "sceneCharID: " + sceneIds[compareIndex]); // sceneCharacter.idKey is set to 1 for some reason?
+
+                if (serializedCharacters[characterIndex].idKey != sceneIds[compareIndex]) // comparing if idKey do not match.
                 {
-                    OverwriteCharacter(loadCharacter.GetComponent<Character>(), GameObject.FindObjectsOfType<Character>()[idCheckIndex]);
-                    //UpdateAvailableIdKey();
+                    Debug.Log("No match.");
+                }
+                else // if not.
+                {
+                    Debug.Log("Match.");
+                    OverwriteCharacter(serializedCharacters[characterIndex], sceneCharacter);
+                    /*alreadyExists[characterIndex]*/
                     alreadyExists = true;
                     break;
                 }
-
-                if (idCheckIndex >= GameObject.FindObjectsOfType<Character>().Length) 
+                if (compareIndex >= Mathf.Clamp(sceneCharacters.Length - 1, 0, sceneCharacters.Length))
                 {
                     break;
                 }
@@ -285,22 +306,32 @@ public class GameManager : MonoBehaviour, IDataPersistance
 
             if (!alreadyExists)
             {
-                Instantiate(loadCharacter);
+                Debug.Log(serializedCharacters[characterIndex].idKey + " was summoned!");
+                JsonCharacter.JsonToCharacter(serializedCharacters[characterIndex], spawnCharacter.GetComponent<Character>());
+                Instantiate(spawnCharacter);
             }
-            else 
-            {
-                Debug.Log("Character with idKey: " + loadedCharacters[index].idKey + " is already on the scene and will not be instantiated, instead it will be overwritten.");
-            }
-            UpdateAvailableIdKey();
+            else
 
-            if (index >= loadedCharacters.Count) 
+            if (characterIndex >= Mathf.Clamp(serializedCharacters.Count - 1, 0, serializedCharacters.Count - 1))
             {
                 break;
-            } 
+            }
         }
+
+        /*for (int spawnIndex = 0; spawnIndex < serializedCharacters.Count; spawnIndex++) 
+        {
+          
+        }*/
+
+        /*string s = "alreadyExists: ";
+        foreach (bool b in alreadyExists) 
+        {
+            s += b + " ";
+        }
+        Debug.Log(s);*/
     }
 
-    private void SpawnStartCharacter() 
+    private void SpawnStartCharacter()
     {
         if (characterPrefab == null)
         {
@@ -309,62 +340,72 @@ public class GameManager : MonoBehaviour, IDataPersistance
         }
 
         GameObject character = Instantiate(characterPrefab);
-        UpdateAvailableIdKey();
 
         character.transform.position = new Vector3(5.3f, 0.362f, 0.542f);
     }
 
-    private void OverwriteCharacter(Character loadedCharacter, Character targetCharacter) 
+    private void OverwriteCharacter(JsonCharacter inputCharacterData, Character targetCharacter)
     {
-        targetCharacter.idKey = loadedCharacter.idKey;
-        targetCharacter.hasName = loadedCharacter.hasName;
-        targetCharacter.idIsSet = loadedCharacter.idIsSet;
-        targetCharacter.loadedCharacterPosition = loadedCharacter.loadedCharacterPosition;
-        targetCharacter.itemInteractedWithBoxCollider = loadedCharacter.itemInteractedWithBoxCollider;
-        targetCharacter.path = loadedCharacter.path;
-        targetCharacter.posMovingTo = loadedCharacter.posMovingTo;
-        targetCharacter.move = loadedCharacter.move;
-        targetCharacter.item = loadedCharacter.item;
-        targetCharacter.task = loadedCharacter.task;
-        targetCharacter.itemInteractedWith = loadedCharacter.itemInteractedWith;
+        targetCharacter.idKey = inputCharacterData.idKey;
+        targetCharacter.hasName = inputCharacterData.hasName;
+        targetCharacter.idIsSet = inputCharacterData.idIsSet;
+        targetCharacter.loadedCharacterPosition = inputCharacterData.storedCharacterPosition;
+        targetCharacter.itemInteractedWithBoxCollider = inputCharacterData.itemInteractedWithBoxCollider;
+        targetCharacter.path = inputCharacterData.path;
+        targetCharacter.posMovingTo = inputCharacterData.posMovingTo;
+        targetCharacter.move = inputCharacterData.move;
+        targetCharacter.item = inputCharacterData.item;
+        targetCharacter.task = inputCharacterData.task;
+        targetCharacter.itemInteractedWith = inputCharacterData.itemInteractedWith;
         //SerializedCharacter.onTaskCompletion = characters[index]._; // Solve how to get this variable.
         //serializedCharacter.gearEquipped = sceneCharacter.gearEquipped;
-        targetCharacter.hunger = loadedCharacter.hunger;
-        targetCharacter.health = loadedCharacter.health;
-        targetCharacter.isAlive = loadedCharacter.isAlive;
-        targetCharacter.lowHealthWarningShowed = loadedCharacter.lowHealthWarningShowed;
-        targetCharacter.notHungryTime = loadedCharacter.notHungryTime;
-        targetCharacter.maxHunger = loadedCharacter.maxHunger;
-        targetCharacter.maxHealth = loadedCharacter.maxHealth;
-        targetCharacter.createNewPath = loadedCharacter.createNewPath;
-        targetCharacter.newGoalPos = loadedCharacter.newGoalPos;
-        targetCharacter.characterName = loadedCharacter.characterName;
+        targetCharacter.hunger = inputCharacterData.hunger;
+        targetCharacter.health = inputCharacterData.health;
+        targetCharacter.isAlive = inputCharacterData.isAlive;
+        targetCharacter.lowHealthWarningShowed = inputCharacterData.lowHealthWarningShowed;
+        targetCharacter.notHungryTime = inputCharacterData.notHungryTime;
+        targetCharacter.maxHunger = inputCharacterData.maxHunger;
+        targetCharacter.maxHealth = inputCharacterData.maxHealth;
+        targetCharacter.createNewPath = inputCharacterData.createNewPath;
+        targetCharacter.newGoalPos = inputCharacterData.newGoalPos;
+        targetCharacter.characterName = inputCharacterData.characterName;
         //serializedCharacter.deseases = sceneCharacter.deseases;
         //targetCharacter.characterAnim = inputCharacter.characterAnim;
-        targetCharacter.statuses = loadedCharacter.statuses;
-        targetCharacter.workMultiplier = loadedCharacter.workMultiplier;
-        targetCharacter.marker = loadedCharacter.marker;
-        targetCharacter.reasonsToWarn = loadedCharacter.reasonsToWarn;
-        targetCharacter.audioClip = loadedCharacter.audioClip;
-        targetCharacter.audioSource = loadedCharacter.audioSource;
-        
+        targetCharacter.statuses = inputCharacterData.statuses.content;
+        targetCharacter.workMultiplier = inputCharacterData.workMultiplier;
+        targetCharacter.marker = inputCharacterData.marker;
+        targetCharacter.reasonsToWarn = inputCharacterData.reasonsToWarn;
+        targetCharacter.audioClip = inputCharacterData.audioClip;
+        targetCharacter.audioSource = inputCharacterData.audioSource;
+
         targetCharacter.SetLoadedPosition();
+
+        Debug.Log("Character with idKey: " + targetCharacter.idKey + " was overwritten");
     }
 
     private void OnApplicationQuit()
     {
-        if (isFirstRun) 
+        if (isFirstRun)
         {
             isFirstRun = false;
         }
     }
 
-    public void UpdateAvailableIdKey() 
+    public void UpdateAvailableIdKey()
     {
-        Character[] characters = GameObject.FindObjectsOfType<Character>();
-        int[] idKeys = new int[characters.Length];
+        int[] keys = new int[serializedCharacterList.serializedCharacters.Count];
 
-        availableIdKey = Mathf.Max(idKeys) + 1;
+        for (int index = 0; index < keys.Length; index++)
+        {
+            keys[index] = (serializedCharacterList.serializedCharacters[index].idKey);
+
+            if (index >= keys.Length)
+            {
+                break;
+            }
+        }
+
+        availableIdKey = Mathf.Max(keys) + 1;
     }
 }
 
