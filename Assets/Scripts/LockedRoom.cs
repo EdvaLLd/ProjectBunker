@@ -19,6 +19,8 @@ public class LockedRoom : MonoBehaviour
 
     bool hovering = false;
 
+    bool isDestroyed = false;
+
     private void Start()
     {
         for (int i = 0; i < roomEntrances.Length; i++)
@@ -41,7 +43,7 @@ public class LockedRoom : MonoBehaviour
 
     void CheckLootedItem()
     {
-        if(hovering)DisplayButton();
+        if(hovering && !isDestroyed)DisplayButton();
     }
 
     private void OnMouseEnter()
@@ -116,7 +118,8 @@ public class LockedRoom : MonoBehaviour
     public void UnlockRoom()
     {
         if (Inventory.GetAmountOfItem(itemToUnlockRoom) > 0)
-        { 
+        {
+            isDestroyed = true;
             for (int i = 0; i < roomEntrances.Length; i++)
             {
                 roomEntrances[i].RemoveLockedFrom();

@@ -19053,7 +19053,7 @@ MonoBehaviour:
   inventorySlot: {fileID: 5257418689303467112, guid: 3ac425931aba22341b4e72c267a428ab, type: 3}
   sortingTypeEnabled: 0
   warningImage: {fileID: 8200556780890326169, guid: 82f74c4c5b7e7e14f96ac5cb6ff4ff2b, type: 3}
-  progressSlider: {fileID: 0}
+  progressSlider: {fileID: 354166270233156486, guid: 7ae841359a8fee7418d108320a68e061, type: 3}
 --- !u!4 &833021599
 Transform:
   m_ObjectHideFlags: 0
