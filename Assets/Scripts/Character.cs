@@ -447,7 +447,7 @@ public class Character : MonoBehaviour
     {
         if (path.Count > 0)
         {
-            posMovingTo = path[0];
+            posMovingTo = HelperMethods.ConvertPosToBeOnGround(path[0], GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y);
             path.RemoveAt(0);
 
             //Animation stuff
