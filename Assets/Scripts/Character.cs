@@ -558,11 +558,6 @@ public class Character : MonoBehaviour
             UnitDied();
         }
     }
-
-    public void KILLCHARACTER()
-    {
-        UnitDied();
-    }
     public void UseHunger(float amount)
     {
         hunger -= amount;

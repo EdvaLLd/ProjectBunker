@@ -96,11 +96,6 @@ public class UnitController : MonoBehaviour
             {
                 selectedCharacter.masterAura.AddAura(AuraPresets.Flu());
             }
-
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                selectedCharacter.KILLCHARACTER();
-            }
         }
 
 
