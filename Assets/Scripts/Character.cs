@@ -376,7 +376,6 @@ public class Character : MonoBehaviour
     public void MoveToPos(Vector3 pos)
     {
         pos = HelperMethods.ConvertPosToBeOnGround(new Vector3(pos.x, pos.y, Pathfinding.zMoveValue), GetComponent<BoxCollider2D>().size.y * transform.lossyScale.y);
-
         CharacterLeftTask();
 
         UpdateMovement(pos);

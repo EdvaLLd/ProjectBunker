@@ -59,7 +59,7 @@ public class InteractableCraftingMachine : InteractableItem, IDataPersistance
     }
     public void CraftItems(CraftingRecipe recipe, Character characterCrafting)
     {
-        if(characterOnStation != null)
+        if(characterOnStation != null && characterOnStation != characterCrafting)
         {
             CharacterLeftStation(characterOnStation);
         }

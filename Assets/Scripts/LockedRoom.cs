@@ -60,10 +60,17 @@ public class LockedRoom : MonoBehaviour
             {
                 if (e.isLadder)
                 {
-                    if (HelperMethods.AmountOfWallsBetweenPoints(e.transform.position, UnitController.GetSelectedCharacter().transform.position) < 2)
+                    for (int i = 0; i < e.connections.Length; i++)
+                    {
+                        if (!HelperMethods.WallBetweenPointsOnGround(e.connections[i].transform.position, UnitController.GetSelectedCharacter().transform.position))
+                        {
+                            characterInAdjecentRoom = true;
+                        }
+                    }
+                    /*if (HelperMethods.AmountOfWallsBetweenPoints(e.transform.position, UnitController.GetSelectedCharacter().transform.position) < 2)
                     {
                         characterInAdjecentRoom = true;
-                    }
+                    }*/
                 }
                 if (!HelperMethods.WallBetweenPointsOnGround(e.transform.position, UnitController.GetSelectedCharacter().transform.position))
                 {

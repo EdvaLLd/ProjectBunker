@@ -40,7 +40,7 @@ public class CraftingWindow : MonoBehaviour
 
     private void Update()
     {
-        if(characterWhoOpenedWindow.move || UnitController.GetSelectedCharacter() != characterWhoOpenedWindow)
+        if(characterWhoOpenedWindow != null && (characterWhoOpenedWindow.move || UnitController.GetSelectedCharacter() != characterWhoOpenedWindow))
         {
             UIManager.CloseWindow(gameObject);
         }
@@ -58,7 +58,7 @@ public class CraftingWindow : MonoBehaviour
 
     void UpdateWindow()
     {
-        if(isActiveAndEnabled)
+        if(UIManager.craftingWindow.active && craftingMachine != null)
         {
             InitCraftingWindow(machine, craftingMachine, characterWhoOpenedWindow);
         }

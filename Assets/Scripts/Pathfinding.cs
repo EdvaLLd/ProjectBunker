@@ -4,9 +4,6 @@ using UnityEngine;
 
 /*
  * Kvar att fixa: 
- * så man går i djupled till maskiner
- * så man går på marken
- * om man är närmre ett slutpunkten än objektet, men objektet är närmre näst sista punkten än sista så går man fel
  * om man klickar på en punkt innan man har en karaktär markerad så går snubben dit direkt efter man markerar denne
  */
 public class Pathfinding : MonoBehaviour
