@@ -149,7 +149,7 @@ public class CraftingWindow : MonoBehaviour
 
     public void OnAmountSliderValueChange()
     {
-        if (amountSlider.value != craftingMachine.GetAmount())
+        if (amountSlider.value != craftingMachine.GetAmount() && !craftingMachine.GetIsCrafting())
         {
             SetCraftAmount((int)amountSlider.value);
         }

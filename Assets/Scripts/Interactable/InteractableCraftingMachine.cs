@@ -59,7 +59,8 @@ public class InteractableCraftingMachine : InteractableItem, IDataPersistance
     }
     public void CraftItems(CraftingRecipe recipe, Character characterCrafting)
     {
-        if(characterOnStation != null && characterOnStation != characterCrafting)
+        SetIsCrafting(true);
+        if (characterOnStation != null && characterOnStation != characterCrafting)
         {
             CharacterLeftStation(characterOnStation);
         }
@@ -88,7 +89,7 @@ public class InteractableCraftingMachine : InteractableItem, IDataPersistance
                 RefundItemsForCraft(amountPayedFor - amountLeft);
             }
         }
-        SetIsCrafting(true);
+
     }
     public void CharacterLeftStation(Character character)
     {
