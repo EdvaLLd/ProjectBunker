@@ -45,6 +45,11 @@ public class Character : MonoBehaviour
     public static event OnTaskCompletion onTaskCompletion;
 
     float movementSpeedMultiplier = 1;
+
+    // Top to bottom of list in SpriteLibrary script in "Character" object on MainScene.
+    [Tooltip("Body part by index:" + "\n" + "0 = Head" + "\n" + "1 = Hair" + "\n" + "2 = Chest" + "\n" + "3 = Hip" + "\n" + "4 = Left eye (idle)" + "\n" +"5 = Left eye (blinking)" + "\n" + "6 = Left eye (open)" + "\n" + "7 = Left eye (sad)" + "\n" + "8 = Right eye (idle)" + "\n" + "9 = Right eye (blinking)" + "\n" + "10 = Right eye (open)" + "\n" + "11 = Right eye (sad)" + "\n" + "12 = Left arm" + "\n" + "13 = Left hand" + "\n"+ "14 = Right arm" + "\n" + "15 = Right hand" + "\n" + "16 = Left leg" + "\n" + "17 = Left foot" + "\n" + "18 = Right leg" + "\n" + "19 = Right foot" + "\n" + "20 = Mouth (idle)" + "\n" + "21 = Mouth (happy)" + "\n" + "22 = Mouth (sad)")]
+    public int[] bodyPartArray = new int[23];
+
     #endregion
     #region CharacterStats
     public float hunger = 100;
@@ -701,5 +706,10 @@ public class Character : MonoBehaviour
 
         idKey = GameObject.FindObjectOfType<GameManager>().availableIdKey;
         idIsSet = true;
+    }
+
+    private void SetCharacterAppearance() 
+    {
+
     }
 }

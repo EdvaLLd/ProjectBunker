@@ -155,24 +155,5 @@ public class JsonCharacter
 
         //return returnCharacter;
     }
-
-    /*public staticprivate Dictionary<Statuses, int> JsonToStatuses(JsonUtilityAddon.JsonDictionary.SerializableDictionary<Statuses,int> serializedDictionary) 
-    {
-        Dictionary<Statuses, int> returnDictionary = new Dictionary<Statuses, int>();
-
-        //Debug.LogError("Am I alive???");
-
-        for (int index = 0; index < serializedDictionary.keyArray.Length; index++) 
-        {
-            returnDictionary.Add(serializedDictionary.keyArray[index], serializedDictionary.valueArray[index]);
-
-            if (index >= serializedDictionary.keyArray.Length)
-            {
-                break;
-            }
-        }
-
-        return returnDictionary;
-    }*/
     #endregion
 }

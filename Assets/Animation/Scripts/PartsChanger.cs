@@ -194,4 +194,8 @@ public class PartsChanger : MonoBehaviour
         return sortingLayers.Select(layer => layer.name).ToArray();
     }
 
+    public int[] GetBodyPartCollection() 
+    {
+        return bodyPartCollection;
+    }
 }
