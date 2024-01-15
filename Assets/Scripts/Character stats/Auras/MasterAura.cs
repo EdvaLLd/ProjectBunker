@@ -100,6 +100,7 @@ public class MasterAura
                         item.isTreated = true;
                         removeList = false;
                         auraTreated = true;
+                        TextLog.AddLog(character.characterName + " had her wounds treated and heals quickly!");
                     }
                     else if(!item.behaveAsUntreatedWound)
                     {

@@ -114,8 +114,8 @@ public class Character : MonoBehaviour
     public AudioSource audioSource;
 
     //håll båda de här positiva
-    float moodChangeRateIdle = 0.002f;
-    float moodChangeRateWorking = 0.005f;
+    float moodChangeRateIdle = 0.005f;
+    float moodChangeRateWorking = 0.003f;
 
     #endregion
     #endregion
@@ -597,6 +597,7 @@ public class Character : MonoBehaviour
         }
         StartCoroutine(Disappear());
         Destroy(gameObject, 13);
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 
     IEnumerator Disappear() {

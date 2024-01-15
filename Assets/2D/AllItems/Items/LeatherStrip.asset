@@ -15,6 +15,6 @@ MonoBehaviour:
   ID: 01007
   DisplayName: Leather strip
   Description: A piece of leather, but made in to a strip
-  Icon: {fileID: 21300000, guid: 8d9b6eeaf2cc0cb448729577df436e9f, type: 3}
+  Icon: {fileID: 21300000, guid: b856100ec5535a14f97e768ad2c75cbc, type: 3}
   SortingType: 1
   lootProbabilityOverride: 0

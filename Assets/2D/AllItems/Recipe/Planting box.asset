@@ -17,8 +17,8 @@ MonoBehaviour:
   craftingTime: 20
   Ingredients:
   - item: {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
-    amount: 8
+    amount: 5
   - item: {fileID: 11400000, guid: 55134782f88d93e4782dd84e4d8e3e74, type: 2}
-    amount: 4
+    amount: 2
   CraftableInMachine:
   - {fileID: 11400000, guid: 7e10bd6593929e74bad657a68a0943d8, type: 2}

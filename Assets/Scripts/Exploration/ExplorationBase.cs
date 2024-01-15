@@ -426,8 +426,14 @@ public class ExplorationBase : MonoBehaviour
         }
         public void PlayCharacterEvent()
         {
-            FindObjectOfType<SpecialExploringEvents>().ShowCharacterChoice();
-
+            if (UnitController.GetCharacters().Count < UnitController.maxAmountOfCharacters)
+            {
+                FindObjectOfType<SpecialExploringEvents>().ShowCharacterChoice();
+            }
+            else
+            {
+                TextLog.AddLog("House is full!");
+            }
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -40,8 +40,8 @@ public class UnitController : MonoBehaviour
     int howOftenToUpdateStats = 5;
 
 
-    
 
+    public static int maxAmountOfCharacters = 5;
 
     [SerializeField]
     CraftingRecipe[] recipes;

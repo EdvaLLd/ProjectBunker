@@ -15360,10 +15360,13 @@ MonoBehaviour:
     - item: {fileID: 11400000, guid: cffe802603e7a97469905f16e85b6a19, type: 2}
       minAmount: 1
       maxAmount: 1
+    - item: {fileID: 11400000, guid: 5727eaa8ebf6d8940a28fbeb5dead961, type: 2}
+      minAmount: 0
+      maxAmount: 1
   - loot:
     - item: {fileID: 11400000, guid: 5727eaa8ebf6d8940a28fbeb5dead961, type: 2}
       minAmount: 1
-      maxAmount: 2
+      maxAmount: 3
     - item: {fileID: 11400000, guid: 9571247f75639d14a87f2b5efb1f6f32, type: 2}
       minAmount: 0
       maxAmount: 1
@@ -15388,6 +15391,9 @@ MonoBehaviour:
       minAmount: 1
       maxAmount: 1
     - item: {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
+      minAmount: 0
+      maxAmount: 1
+    - item: {fileID: 11400000, guid: c6c577646199d134091f01fa3f78f824, type: 2}
       minAmount: 0
       maxAmount: 1
   mainExploreEvents:
@@ -17476,6 +17482,96 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
     - eventType: 1
+      textEvent:
+        eventMessage: 
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 1
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot:
+        - lootItem: {fileID: 11400000, guid: 7af71fb0252cc1844af98321aaa1d050, type: 2}
+          maxLootQuantity: 2
+          minLootQuantity: 1
+          lootProbability: 100
+        - lootItem: {fileID: 11400000, guid: 87c46cc9c5cafa14d89e553126bb3b94, type: 2}
+          maxLootQuantity: 2
+          minLootQuantity: 1
+          lootProbability: 50
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    eventProbability: 5
+    timer:
+      timeUnit: 0
+      ammount: 0
+    cooldown: 5
+  - eventName: New Character
+    replaceDefaultExplore: 0
+    subEvents:
+    - eventType: 0
+      textEvent:
+        eventMessage: Name found a person roaming around.
+        timer:
+          timeUnit: 0
+          ammount: 0
+      itemEvent:
+        eventMessage: 
+        addOrSubtract: 0
+        randomLoot: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+        loot: []
+      damageEvent:
+        damageRecieved: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      combatEvent:
+        enemyFaction: 0
+        timer:
+          timeUnit: 0
+          ammount: 0
+      recipeEvent:
+        recipe: {fileID: 0}
+        timer:
+          timeUnit: 0
+          ammount: 0
+      characterEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+      illnessEvent:
+        timer:
+          timeUnit: 0
+          ammount: 0
+    - eventType: 7
       textEvent:
         eventMessage: 
         timer:

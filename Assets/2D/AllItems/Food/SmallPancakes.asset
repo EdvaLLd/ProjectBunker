@@ -18,4 +18,4 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: add597862c856d3428ce4dc754f38aea, type: 3}
   SortingType: 2
   lootProbabilityOverride: 0
-  hungerRestoration: 45
+  hungerRestoration: 60

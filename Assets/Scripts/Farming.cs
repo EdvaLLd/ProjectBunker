@@ -193,14 +193,17 @@ public class Farming : InteractableItem
 
     public void CharacterLeftStation(Character character)
     {
-        if (isWorking)
+        if (character == characterAtStation && character != null)
         {
-            isWorking = false;
-            IsWorkingChange();
+            if (isWorking)
+            {
+                isWorking = false;
+                IsWorkingChange();
+            }
+            //Animation
+            characterAtStation.characterAnim.StopCrafting();
+            characterAtStation = null;
         }
-        //Animation
-        characterAtStation.characterAnim.StopCrafting();
-        characterAtStation = null;
     }
 
     public void SeedClicked(int nr, CraftingRecipe seed)

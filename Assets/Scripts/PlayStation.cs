@@ -6,7 +6,7 @@ public class PlayStation : InteractableItem
 {
     Character character;
     [SerializeField]
-    float moodChanger = 0.1f;
+    float moodChanger = 0.05f;
     public void InteractedWith(Character character)
     {
         if(character != this.character && this.character != null)
