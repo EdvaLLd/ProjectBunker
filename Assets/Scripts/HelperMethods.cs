@@ -112,7 +112,7 @@ public class HelperMethods
         foreach (Character c in allCharacters)
         {
             if(!HelperMethods.WallBetweenPoints(ch.transform.position, c.transform.position) &&
-                c != ch)
+                c != ch && Vector3.Distance(ch.transform.position,c.transform.position) < 5)
             {
                 allCharactersInRoom.Add(c);
             }

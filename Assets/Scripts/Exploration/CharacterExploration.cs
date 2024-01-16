@@ -36,7 +36,7 @@ public class CharacterExploration : MonoBehaviour
         TextLog.AddLog(character.characterName + " went exploring.");
         //transform.GetChild(0).gameObject.SetActive(false);
         //transform.GetChild(2).gameObject.SetActive(false);
-        transform.position += new Vector3(0,0,100);
+        transform.position -= new Vector3(0,0,100);
         GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(ExploreWait());
         List<Character> characters = UnitController.GetCharacters();
@@ -111,7 +111,7 @@ public class CharacterExploration : MonoBehaviour
         TextLog.AddLog(character.characterName + " came back from their adventure.");
         //transform.GetChild(0).gameObject.SetActive(true);
         //transform.GetChild(2).gameObject.SetActive(true);
-        transform.position -= new Vector3(0, 0, 100);
+        transform.position += new Vector3(0, 0, 100);
         GetComponent<Character>().task = CharacterTasks.none;
         GetComponent<BoxCollider2D>().enabled = true;
         audioSource.Play();
