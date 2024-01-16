@@ -51,6 +51,8 @@ public class UIManager : MonoBehaviour
 
     public static GameObject statusHolderGO;
 
+    static GameObject pauseMenu;
+
 
 
     private void Awake()
@@ -71,6 +73,8 @@ public class UIManager : MonoBehaviour
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         progressSliderStatic = progressSlider;
 
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+
         inventorySlotStatic = inventorySlot;
         warningImageStatic = warningImage;
 
@@ -88,11 +92,27 @@ public class UIManager : MonoBehaviour
         dangerTextGO.SetActive(false);
         hoverWindow.SetActive(false);
         diary.SetActive(false);
-
+        pauseMenu.SetActive(false);
 
 
         //kanske problematiskt att den här bara körs en gång?
         canvasScaleFactor = Camera.main.scaledPixelWidth / canvas.GetComponent<CanvasScaler>().referenceResolution.x;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        {
+            if(pauseMenu.active)
+            {
+                Time.timeScale = 1; 
+            }
+            else
+            {
+                Time.timeScale = 0;
+            }
+            ActivateWindow(pauseMenu);
+        }
     }
 
 
@@ -274,5 +294,10 @@ public class UIManager : MonoBehaviour
         DiaryManager diaryManager = diary.GetComponentInParent<DiaryManager>();
         diaryManager.PreviousPage();
         diaryManager.UpdateDiary();
+    }
+
+    public static void SetTimeScale(int timeScale)
+    {
+        Time.timeScale = timeScale;
     }
 }

@@ -20,6 +20,11 @@ public static class IDHandler
         {
             IDToGive = (ids.Count + 1).ToString();
         }
+        if(ids.ContainsKey(IDToGive))
+        {
+            GetLowestFreeID();
+            IDToGive = lowestFreeID.ToString();
+        }
         ids.Add(IDToGive, 1);
         return IDToGive;
     }

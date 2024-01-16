@@ -326,20 +326,28 @@ public class Character : MonoBehaviour
         CheckStatuses();
     }
 
+    bool illVFxPlaying = false;
+
     void CheckStatuses()
     {
         statuses.Clear();
         characterAnim.BeNeutral();
         characterAnim.BeCured();
+        VisualEffect dVFX = diseaseVFX.gameObject.GetComponent<VisualEffect>();
         if (masterAura.HasAuraWithStatus(Statuses.ill))
         {
             statuses.Add(Statuses.ill);
             characterAnim.TurnSick();
-            diseaseVFX.gameObject.GetComponent<VisualEffect>().Play();
+            if (!illVFxPlaying)
+            {
+                illVFxPlaying = true;
+                dVFX.Play();
+            }
         }
         else
         {
-            diseaseVFX.gameObject.GetComponent<VisualEffect>().Stop();
+            dVFX.Stop();
+            illVFxPlaying = false;
         }
 
         if (masterAura.HasAuraWithStatus(Statuses.injured))

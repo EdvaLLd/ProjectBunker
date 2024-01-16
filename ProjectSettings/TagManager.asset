@@ -21,6 +21,7 @@ TagManager:
   - Diary
   - FarmingHolder
   - ExplorationUI
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
