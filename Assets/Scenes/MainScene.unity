@@ -17616,11 +17616,11 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 15
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
-    cooldown: 3
+    cooldown: 5
   limitedExploreEvents:
   - eventName: Diary Entry
     replaceDefaultExplore: 0

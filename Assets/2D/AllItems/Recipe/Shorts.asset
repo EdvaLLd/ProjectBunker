@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
   m_Name: Shorts
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 11400000, guid: 6fc9023bd6e0626469311856a86c7a79, type: 2}
+  itemCrafted: {fileID: 11400000, guid: efeabb02fec8014408137abb1c269285, type: 2}
   itemAmount: 1
   craftingTime: 45
   Ingredients:

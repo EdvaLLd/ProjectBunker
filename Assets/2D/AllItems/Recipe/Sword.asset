@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 11400000, guid: ee999ea1d197ed64797b66356f00cfd8, type: 2}
+  itemCrafted: {fileID: 11400000, guid: 263e03458fc30a5428863c1588fe86eb, type: 2}
   itemAmount: 1
   craftingTime: 120
   Ingredients:

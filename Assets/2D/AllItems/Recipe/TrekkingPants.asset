@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
   m_Name: TrekkingPants
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 11400000, guid: 5cdce6c49bb57ae42a949a722e58a59f, type: 2}
+  itemCrafted: {fileID: 11400000, guid: 7d0803fb9e93cf84391a17132c73d263, type: 2}
   itemAmount: 1
   craftingTime: 70
   Ingredients:

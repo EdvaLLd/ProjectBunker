@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c12616f0bd4374cbf282447a5ef51b, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  itemCrafted: {fileID: 11400000, guid: f84f547bee6555f47b42c2745fa77694, type: 2}
+  itemCrafted: {fileID: 11400000, guid: 7e939f54b65a3664899e83565925dc25, type: 2}
   itemAmount: 1
   craftingTime: 75
   Ingredients:
