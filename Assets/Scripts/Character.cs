@@ -48,7 +48,7 @@ public class Character : MonoBehaviour
     #endregion
     #region CharacterStats
     public float hunger = 100;
-    public float health = 100;
+    public float health  = 100;
     public bool isAlive = true;
 
     public bool lowHealthWarningShowed = false;

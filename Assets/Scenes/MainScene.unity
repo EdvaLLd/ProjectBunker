@@ -15733,7 +15733,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 20
+    eventProbability: 50
     timer:
       timeUnit: 0
       ammount: 0
@@ -16102,7 +16102,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 5
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -16261,7 +16261,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 5
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -16470,7 +16470,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 5
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -16598,7 +16598,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 5
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -16745,7 +16745,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 5
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -16942,7 +16942,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 5
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -17029,7 +17029,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 5
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -17148,7 +17148,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 5
+    eventProbability: 10
     timer:
       timeUnit: 0
       ammount: 0
@@ -17616,11 +17616,11 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 5
+    eventProbability: 15
     timer:
       timeUnit: 0
       ammount: 0
-    cooldown: 5
+    cooldown: 3
   limitedExploreEvents:
   - eventName: Diary Entry
     replaceDefaultExplore: 0
@@ -39260,8 +39260,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6616909173415973089, guid: c7a27ec40306bc94ea2747f08ffc5d36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.355
+      objectReference: {fileID: 0}
+    - target: {fileID: -6616909173415973089, guid: c7a27ec40306bc94ea2747f08ffc5d36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.042
+      value: 0.057
+      objectReference: {fileID: 0}
+    - target: {fileID: -6616909173415973089, guid: c7a27ec40306bc94ea2747f08ffc5d36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.307
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c7a27ec40306bc94ea2747f08ffc5d36, type: 3}
       propertyPath: m_Name

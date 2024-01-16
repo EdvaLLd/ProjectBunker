@@ -385,12 +385,9 @@ public class ExplorationBase : MonoBehaviour
             int damage = rounds * (enemyStrength - charDefense);
             if (damage > character.health)
             {
-                character.health = 1;
+                damage = (int)character.health - 1;
             }
-            else
-            {
-                character.TakeDamage(damage);
-            }
+            character.TakeDamage(damage);
             
 
             if(UnityEngine.Random.Range(0, 100) < 30)
@@ -473,12 +470,13 @@ public class ExplorationBase : MonoBehaviour
         {
             return;
         }
-        if (character.health <= 0)
+        character.TakeDamage(damage);
+        /*if (character.health <= 0)
         {
             return;
         }
 
-        Mathf.Clamp(character.health -= damage, 0, character.maxHealth);
+        Mathf.Clamp(character.health -= damage, 0, character.maxHealth);*/
     }
 
     [System.Serializable]
