@@ -41,15 +41,15 @@ public class CharacterAnimation : MonoBehaviour
         //{
         //    ShowGhost();
         //}else 
-        if (Input.GetKeyUp(KeyCode.Alpha5))
-        {
-            StopReading();
-            PlayGuitar();
-        } else if (Input.GetKeyUp(KeyCode.Alpha6))
-        {
-            StopPlayingGuitar();
-            Read();
-        }
+        //if (Input.GetKeyUp(KeyCode.Alpha5))
+        //{
+        //    StopReading();
+        //    PlayGuitar();
+        //} else if (Input.GetKeyUp(KeyCode.Alpha6))
+        //{
+        //    StopPlayingGuitar();
+        //    Read();
+        //}
     }
 
     public void Flip()
