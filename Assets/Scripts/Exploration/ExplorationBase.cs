@@ -383,10 +383,10 @@ public class ExplorationBase : MonoBehaviour
 
             int rounds = (int)Math.Ceiling(enemyHealth / (double)(charStrength - enemyDefense));
             int damage = rounds * (enemyStrength - charDefense);
-            if (damage > character.health)
-            {
-                damage = (int)character.health - 1;
-            }
+            //if (damage > character.health)
+            //{
+            //    damage = (int)character.health - 1;
+            //}
             character.TakeDamage(damage);
             
 
