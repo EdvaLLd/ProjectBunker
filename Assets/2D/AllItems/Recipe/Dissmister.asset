@@ -23,6 +23,6 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 355ff3b31b8359c4b8c8c34830e565a5, type: 2}
     amount: 2
   - item: {fileID: 11400000, guid: cffe802603e7a97469905f16e85b6a19, type: 2}
-    amount: 1
+    amount: 3
   CraftableInMachine:
   - {fileID: 11400000, guid: 7e10bd6593929e74bad657a68a0943d8, type: 2}

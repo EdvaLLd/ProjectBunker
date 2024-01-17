@@ -16322,7 +16322,7 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         loot:
-        - lootItem: {fileID: 11400000, guid: a1948912334abc94b858624fd6f3ec65, type: 2}
+        - lootItem: {fileID: 11400000, guid: dadb2db4dbc9cff418f62324cbe9e76a, type: 2}
           maxLootQuantity: 1
           minLootQuantity: 1
           lootProbability: 100
@@ -16491,7 +16491,7 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         loot:
-        - lootItem: {fileID: 11400000, guid: 6fc9023bd6e0626469311856a86c7a79, type: 2}
+        - lootItem: {fileID: 11400000, guid: efeabb02fec8014408137abb1c269285, type: 2}
           maxLootQuantity: 1
           minLootQuantity: 1
           lootProbability: 100
@@ -16802,7 +16802,7 @@ MonoBehaviour:
           timeUnit: 0
           ammount: 0
         loot:
-        - lootItem: {fileID: 11400000, guid: f84f547bee6555f47b42c2745fa77694, type: 2}
+        - lootItem: {fileID: 11400000, guid: 7e939f54b65a3664899e83565925dc25, type: 2}
           maxLootQuantity: 1
           minLootQuantity: 1
           lootProbability: 100
@@ -17617,7 +17617,7 @@ MonoBehaviour:
         timer:
           timeUnit: 0
           ammount: 0
-    eventProbability: 10
+    eventProbability: 15
     timer:
       timeUnit: 0
       ammount: 0

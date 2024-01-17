@@ -16,6 +16,24 @@ public enum CharacterTasks
     none, crafting, inspecting, looting, exploring, eating, farming, playing
 }
 
+
+
+/*
+ * exploartion-ställen borde vara olika svåra
+ * man borde få mer om man har bätter rustning
+ * man får aldrig karatärer?
+ * mat tar jättelång tid att göra, ska man kunna uppgradera matlagning?
+ * exploration väldigt segt mot slutet
+ * man får överskott av allt, men inga dagboksanteckningar
+ * inte kunna utforska om man är skadad
+ * ändra status till skadad, men läker
+ * gör så man får shorts tidigare
+ * hur bra gear/mat är framgår inte, hur bra mat är går att lista ut, men inte gear
+ * matförnstret borde visa hur mycket hunger karaktären som gick dit har
+ * gör djurattacker ingen skada?
+ * använda flera bandage tar bort den ikonen? men inte auran
+ */
+
 public class UnitController : MonoBehaviour
 {
     //Hur man ser skillnad om en karakt�r �r markerad eller inte

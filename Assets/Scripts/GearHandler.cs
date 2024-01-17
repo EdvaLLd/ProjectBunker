@@ -30,7 +30,7 @@ public class GearHandler
             case GearTypes.legs:
                 if (gearEquipped.legs != null)
                 {
-                    Inventory.AddItem(gearEquipped.boots);
+                    Inventory.AddItem(gearEquipped.legs);
                     gearEquipped.legs = null;
                 }
                 break;

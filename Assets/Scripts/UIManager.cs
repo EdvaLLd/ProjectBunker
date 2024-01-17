@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
     public static GameObject statusHolderGO;
 
     static GameObject pauseMenu;
+    float timeScaleBeforePause = 1;
 
 
 
@@ -105,16 +106,17 @@ public class UIManager : MonoBehaviour
         {
             if(pauseMenu.active)
             {
-                Time.timeScale = 1; 
+                Time.timeScale = timeScaleBeforePause; 
             }
             else
             {
+                timeScaleBeforePause = Time.timeScale;
+                if (timeScaleBeforePause < 1) timeScaleBeforePause = 1;
                 Time.timeScale = 0;
             }
             ActivateWindow(pauseMenu);
         }
     }
-
 
     private void FixedUpdate()
     {
